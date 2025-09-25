@@ -1,0 +1,30 @@
+{
+  "name": "BondageClubChaos",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "esbuild src/index.ts --bundle --sourcemap --watch --outfile=dist/bundle.js --loader:.ts=ts --loader:.css=text --loader:.png=dataurl --loader:.svg=dataurl",
+    "build": "node ./build.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "bc-stubs": "^119.0.0",
+    "esbuild": "^0.25.9",
+    "esbuild-plugin-alias": "^0.2.1",
+    "esbuild-svg": "^1.0.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "zois-core": "link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core"
+    }
+  },
+  "dependencies": {
+    "@iconify-json/game-icons": "^1.2.3",
+    "lucide": "^0.541.0",
+    "zois-core": "link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core"
+  }
+}
