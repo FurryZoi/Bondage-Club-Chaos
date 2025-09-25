@@ -7,7 +7,7 @@ export class PurificatioEffect extends BaseEffect {
     }
 
     get atoms(): Atom[] {
-        return [Atom.LUX, Atom.FULGUR];
+        return [Atom.LUX];
     }
 
     get icon(): SVGElement {
