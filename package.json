@@ -1,5 +1,5 @@
 {
-  "name": "BondageClubChaos",
+  "name": "BondageClub-Chaos",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
@@ -18,13 +18,11 @@
     "esbuild-svg": "^1.0.3"
   },
   "pnpm": {
-    "overrides": {
-      "zois-core": "link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core"
-    }
+    "overrides": {}
   },
   "dependencies": {
     "@iconify-json/game-icons": "^1.2.3",
     "lucide": "^0.541.0",
-    "zois-core": "link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core"
+    "zois-core": "^1.1.5"
   }
 }

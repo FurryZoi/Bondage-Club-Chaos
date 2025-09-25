@@ -33,7 +33,6 @@ export class DarkMagicSubscreen extends BaseSubscreen {
             this.createButton({
                 text: t.name,
                 icon: t.icon,
-                iconWidth: "auto",
                 x: 165,
                 y: 320 + (115 * i),
                 width: 600,

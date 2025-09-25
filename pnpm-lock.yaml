@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  zois-core: link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core
-
 importers:
 
   .:
@@ -18,8 +15,8 @@ importers:
         specifier: ^0.541.0
         version: 0.541.0
       zois-core:
-        specifier: link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core
-        version: link:C:/Users/VolkPC/AppData/Local/pnpm/global/5/node_modules/zois-core
+        specifier: ^1.1.5
+        version: 1.1.5
     devDependencies:
       bc-stubs:
         specifier: ^119.0.0
@@ -365,11 +362,17 @@ packages:
   '@types/prettier@2.7.3':
     resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
 
+  '@types/validator@13.15.3':
+    resolution: {integrity: sha512-7bcUmDyS6PN3EuD9SlGGOxM77F8WLVsrwkxyWxKnxzmXoequ6c7741QBrANq6htVRGOITJ7z72mTP6Z4XyuG+Q==}
+
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
   bc-stubs@119.0.0:
     resolution: {integrity: sha512-/sLUoFAGGVP2Tl6UWqnUv0qqUUENYMVcY7XbvSVlsUhsNq80G8lNA/CDnTeHIQuXlUiNi8kyn2xM2k2ZfYUh5g==}
+
+  bondage-club-mod-sdk@1.2.0:
+    resolution: {integrity: sha512-S+li+PgX7Qo5yccS/R/eAXC4Opq8lc5AdhTPjC2XhWxDGTieUQKj3QJ4ZLgL8x0ySnK7h+DvlkRZd8+OT5JErQ==}
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
@@ -389,6 +392,12 @@ packages:
 
   caniuse-lite@1.0.30001741:
     resolution: {integrity: sha512-QGUGitqsc8ARjLdgAfxETDhRbJ0REsP6O3I96TAth/mVjh2cYzN2u+3AzPP3aVSm2FehEItaJw1xd+IGBXWeSw==}
+
+  class-transformer@0.5.1:
+    resolution: {integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==}
+
+  class-validator@0.14.2:
+    resolution: {integrity: sha512-3kMVRF2io8N8pY1IFIXlho9r8IPUUIfHe2hYVtiebvAzU2XeQFXTv+XI4WX+TnXmtwXMDcjngcpkiPM0O9PvLw==}
 
   commander@7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
@@ -517,6 +526,9 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
+  libphonenumber-js@1.12.22:
+    resolution: {integrity: sha512-nzdkDyqlcLV754o1RrOJxh8kycG+63odJVUqnK4dxhw7buNkdTqJc/a/CE0h599dTJgFbzvr6GEOemFBSBryAA==}
+
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
@@ -525,6 +537,11 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-react@0.542.0:
+    resolution: {integrity: sha512-w3hD8/SQB7+lzU2r4VdFyzzOzKnUjTZIF/MQJGSSvni7Llewni4vuViRppfRAa2guOsY5k4jZyxw/i9DQHv+dw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   lucide@0.541.0:
     resolution: {integrity: sha512-L4lj6PQMu3phzKEMGj3yX+1FXVMUtzjXEo4iajXSHmA3a93IxbFRmJddq96E8MYEP6JbBjs+fo4hVygZqngSVg==}
@@ -562,9 +579,24 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
+  react-dom@19.1.1:
+    resolution: {integrity: sha512-Dlq/5LAZgF0Gaz6yiqZCf6VCcZs1ghAJyrsu84Q/GT0gV+mCxbfmKNoGRKBYMJ8IEdGPqu49YWXD02GCknEDkw==}
+    peerDependencies:
+      react: ^19.1.1
+
+  react@19.1.1:
+    resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
+    engines: {node: '>=0.10.0'}
+
+  reflect-metadata@0.2.2:
+    resolution: {integrity: sha512-urBwgfrvVP/eAyXx4hluJivBKzuEbSQs9rKWCrCkbSxNv8mxPcUZKeuoF3Uy4mJl3Lwprp6yy5/39VWigZ4K6Q==}
+
   resolve-from@4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
     engines: {node: '>=4'}
+
+  scheduler@0.26.0:
+    resolution: {integrity: sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==}
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -602,6 +634,10 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
+  validator@13.15.15:
+    resolution: {integrity: sha512-BgWVbCI72aIQy937xbawcs+hrVaN/CZ2UwutgaJ36hGqRrLNM+f5LUT/YPRbo8IV/ASeFzXszezV+y2+rq3l8A==}
+    engines: {node: '>= 0.10'}
+
   ws@8.11.0:
     resolution: {integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==}
     engines: {node: '>=10.0.0'}
@@ -620,6 +656,27 @@ packages:
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
+
+  zois-core@1.1.5:
+    resolution: {integrity: sha512-T/wsRrlbvatBy1nZC8t2BsCuEeKIrLjEHsxHQE2LnZLTHZjNji6OsFrk+X+5n52UNVIyJ8QbyjwZrS3lNshtmw==}
+
+  zustand@5.0.8:
+    resolution: {integrity: sha512-gyPKpIaxY9XcO2vSMrLbiER7QMAMGOQZVRdJ6Zi782jkbzZygq5GI9nG8g+sMgitRtndwaBSl7uiqC49o1SSiw==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
 
 snapshots:
 
@@ -911,6 +968,8 @@ snapshots:
 
   '@types/prettier@2.7.3': {}
 
+  '@types/validator@13.15.3': {}
+
   argparse@2.0.1: {}
 
   bc-stubs@119.0.0:
@@ -920,6 +979,8 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+
+  bondage-club-mod-sdk@1.2.0: {}
 
   boolbase@1.0.0: {}
 
@@ -935,6 +996,14 @@ snapshots:
   camelcase@6.3.0: {}
 
   caniuse-lite@1.0.30001741: {}
+
+  class-transformer@0.5.1: {}
+
+  class-validator@0.14.2:
+    dependencies:
+      '@types/validator': 13.15.3
+      libphonenumber-js: 1.12.22
+      validator: 13.15.15
 
   commander@7.2.0: {}
 
@@ -1086,6 +1155,8 @@ snapshots:
 
   json5@2.2.3: {}
 
+  libphonenumber-js@1.12.22: {}
+
   lines-and-columns@1.2.4: {}
 
   lower-case@2.0.2:
@@ -1095,6 +1166,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-react@0.542.0(react@19.1.1):
+    dependencies:
+      react: 19.1.1
 
   lucide@0.541.0: {}
 
@@ -1130,7 +1205,18 @@ snapshots:
 
   picocolors@1.1.1: {}
 
+  react-dom@19.1.1(react@19.1.1):
+    dependencies:
+      react: 19.1.1
+      scheduler: 0.26.0
+
+  react@19.1.1: {}
+
+  reflect-metadata@0.2.2: {}
+
   resolve-from@4.0.0: {}
+
+  scheduler@0.26.0: {}
 
   semver@6.3.1: {}
 
@@ -1179,8 +1265,30 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
+  validator@13.15.15: {}
+
   ws@8.11.0: {}
 
   xmlhttprequest-ssl@2.0.0: {}
 
   yallist@3.1.1: {}
+
+  zois-core@1.1.5:
+    dependencies:
+      bondage-club-mod-sdk: 1.2.0
+      class-transformer: 0.5.1
+      class-validator: 0.14.2
+      lucide: 0.541.0
+      lucide-react: 0.542.0(react@19.1.1)
+      react: 19.1.1
+      react-dom: 19.1.1(react@19.1.1)
+      reflect-metadata: 0.2.2
+      zustand: 5.0.8(react@19.1.1)
+    transitivePeerDependencies:
+      - '@types/react'
+      - immer
+      - use-sync-external-store
+
+  zustand@5.0.8(react@19.1.1):
+    optionalDependencies:
+      react: 19.1.1

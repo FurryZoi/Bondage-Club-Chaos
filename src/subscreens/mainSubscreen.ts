@@ -73,7 +73,6 @@ export class MainSubscreen extends BaseSubscreen {
             this.createButton({
                 text: t.name,
                 icon: t.icon,
-                iconWidth: "auto",
                 x: 165,
                 y: 280 + (115 * i),
                 width: 500,
