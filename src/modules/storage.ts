@@ -1,11 +1,13 @@
 import { version } from "@/../package.json";
+import type { Effect, MinimumRole, SpellIcon } from "./darkMagic";
 import { messagesManager } from "zois-core/messaging";
-import { SpellIcon } from "./darkMagic";
+import { SyncStorageMessageData } from "@/types/messages";
 
 export let modStorage: ModStorage = { version: "" };
 
 export interface ModStorage {
-    quickMenu?: {
+    // Quick Access Menu
+    qam?: {
         enabled?: boolean
         enabledFeatures?: string
         cloneBackup?: {
@@ -42,6 +44,7 @@ export interface ModStorage {
         permanentSkillsBoost?: boolean
         autoTight?: boolean
         anonymousMode?: boolean
+        allowActivities?: boolean
         mapSuperPower?: boolean
         xray?: boolean
         showPadlocksPasswords?: boolean
@@ -52,7 +55,17 @@ export interface ModStorage {
             icon: SpellIcon
             effects: string
             data?: Record<string, unknown>
+            createdBy: {
+                name: string
+                id: number
+            }
         }[]
+        limits?: {
+            effects?: Record<string, MinimumRole>
+        }
+        state?: {
+            spells?: (ModStorage["darkMagic"]["spells"][0] & { castedBy: { name: string, id: number } })[]
+        }
     }
     version: string
 }
@@ -64,15 +77,23 @@ export function loadStorage(): void {
     if (!modStorage.version) modStorage.version = version;
     if (modStorage.version === "1.8.7") modStorage = { version };
     syncStorage();
+    messagesManager.onPacket("syncStorage", (data: SyncStorageMessageData, sender) => {
+        if (!sender.BCC) {
+            messagesManager.sendPacket<SyncStorageMessageData>("syncStorage", {
+                storage: JSON.parse(JSON.stringify(modStorage)),
+            });
+        }
+        sender.BCC = data.storage;
+    });
 }
 
 export function syncStorage(): void {
     if (typeof modStorage !== "object") return;
     Player.ExtensionSettings.BCC = LZString.compressToBase64(JSON.stringify(modStorage));
     ServerPlayerExtensionSettingsSync("BCC");
-    // messagesManager.sendPacket<SyncStorageMessageData>("syncStorage", {
-    //     storage: deleteProtectedProperties(modStorage),
-    // });
+    messagesManager.sendPacket<SyncStorageMessageData>("syncStorage", {
+        storage: JSON.parse(JSON.stringify(modStorage)),
+    });
 }
 
 export function resetStorage(): void {

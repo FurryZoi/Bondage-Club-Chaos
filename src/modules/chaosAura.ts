@@ -1,10 +1,10 @@
 import { getNickname, getPlayer, waitFor } from "zois-core";
 import { modStorage } from "./storage";
 import { messagesManager } from "zois-core/messaging";
-import { isBody, isCloth, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
+import { isBody, isCloth } from "zois-core/wardrobe";
 import { hookFunction, HookPriority } from "zois-core/modsApi";
 
-let chaosAuraLastData = {
+const chaosAuraLastData = {
     appearance: null,
     pose: null
 };
@@ -127,14 +127,14 @@ async function skyShieldAction(target: Character) {
                     )
                 ) && ServerChatRoomGetAllowItem(Player, target)
             ) {
-                let items1 = appearance1
+                const items1 = appearance1
                     .filter(itemsFilter)
                     .map((item) => JSON.stringify(item));
-                let items2 = appearance2
+                const items2 = appearance2
                     .filter(itemsFilter)
                     .map((item) => JSON.stringify(item));
                 let retributionItems = [];
-                items2.forEach(function (item) {
+                items2.forEach((item) => {
                     if (!items1.includes(item)) retributionItems.push(JSON.parse(item));
                 });
                 retributionItems = retributionItems.filter(

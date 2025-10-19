@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-.bccQuickMenu {
+.bccQAM {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -14,8 +14,8 @@
   top: 50%;
   transform: translate(-50%, -50%);
   padding-top: 0.25em;
-  max-width: min(80vw, 80vh);
-  width: max-content;
+  max-width: 360px;
+  width: 90%;
   border-radius: 4px;
   background: rgb(255, 255, 255);
   border: 2px solid rgba(182 182 182 / 11%);
@@ -24,7 +24,7 @@
   z-index: 10;
 }
 
-.bccQuickMenuButton {
+.bccQAMButton {
   display: grid;
   place-items: center;
   width: 2.5em;
@@ -42,13 +42,13 @@
   z-index: 25;
 }
 
-.bccQuickMenuButton img {
+.bccQAMButton img {
   pointer-events: none;
   width: 80%;
   aspect-ratio: 1/1;
 }
 
-.bccQuickMenuSelect {
+.bccQAMSelect {
   cursor: pointer;
   background: white;
   border: 2px solid rgb(195, 195, 195);
@@ -57,15 +57,15 @@
   z-index: 10;
 }
 
-.bccQuickMenuSelect[opened="true"] {
+.bccQAMSelect[opened="true"] {
   border-color: rgb(0, 96, 223);
 }
 
-.bccQuickMenuSelect[opened="false"]:hover {
+.bccQAMSelect[opened="false"]:hover {
   border-color: rgb(170, 170, 170);
 }
 
-.bccQuickMenuSelect>svg {
+.bccQAMSelect>svg {
   position: absolute;
   right: 0.45em;
   top: 50%;
@@ -75,52 +75,53 @@
   color: rgb(0, 96, 223);
 }
 
-.bccQuickMenuSelect>div[data-position="bottom"] {
+.bccQAMSelect>div {
   position: absolute;
-  top: calc(100% + 0.45em);
   left: 0;
   width: 100%;
+  max-height: 50vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c2c2c2 #e7e7e7;
   background: #f6f6f6;
   border: 2px solid rgb(235 235 235);
   border-radius: 0.4em;
 }
 
-.bccQuickMenuSelect>div[data-position="top"] {
-  position: absolute;
+.bccQAMSelect>div[data-position="top"] {
   bottom: calc(100% + 0.45em);
-  left: 0;
-  width: 100%;
-  background: #f6f6f6ed;
-  border: 2px solid rgb(235 235 235);
-  border-radius: 0.4em;
 }
 
-.bccQuickMenuSelect>div>div {
+.bccQAMSelect>div[data-position="bottom"] {
+  top: calc(100% + 0.45em);
+}
+
+.bccQAMSelect>div>div {
   width: 100%;
   padding: 0.45em;
   border-radius: 0.25em;
 }
 
-.bccQuickMenuSelect>div>div>svg {
+.bccQAMSelect>div>div>svg {
   width: 1.25em;
   height: 1.25em;
   color: rgb(0, 96, 223);
 }
 
-.bccQuickMenuSelect>div>div:hover {
+.bccQAMSelect>div>div:hover {
   background: #ededed;
 }
 
-.lcChangelog {
-  font-family: Comfortaa, sans-serif;
+.bccChangelog {
+  font-family: "Yusei Magic";
   padding: 0.25em;
 }
 
-.lcChangelog ul {
+.bccChangelog ul {
   padding-left: 1em;
 }
 
-.lcChangelog ul li {
+.bccChangelog ul li {
   padding: 0.5em 0;
 }
 
@@ -146,7 +147,6 @@
   box-shadow: 0 0 1.875em rgba(0, 173, 181, 0.5);
 }
 
-/* Жуткие теневыe щупальца */
 .tentacle-horror {
   position: absolute;
   right: -0.3125em;
@@ -171,7 +171,6 @@
   transform-origin: right center;
 }
 
-/* Присоски на щупальцах */
 .tentacle::before {
   content: '';
   position: absolute;
@@ -186,7 +185,6 @@
   box-shadow: 0 0 0.1875em rgba(0, 173, 181, 0.8);
 }
 
-/* Кончик щупальца */
 .tentacle::after {
   content: '';
   position: absolute;
@@ -201,7 +199,6 @@
   opacity: 0.8;
 }
 
-/* Разная анимация для каждого щупальца */
 .tentacle:nth-child(1) {
   height: 0.25em;
   animation-delay: 0s;
@@ -225,7 +222,6 @@
   transform: rotate(-3deg);
 }
 
-/* Дополнительные детали щупалец */
 .tentacle-detail {
   position: absolute;
   background: rgba(0, 173, 181, 0.3);
@@ -249,7 +245,6 @@
   animation-delay: 1s;
 }
 
-/* Теневые частицы */
 .tentacle-particle {
   position: absolute;
   width: 0.0625em;
@@ -346,7 +341,6 @@
   }
 }
 
-/* Эффект слизи */
 .tentacle-slime {
   position: absolute;
   right: 0;
@@ -373,7 +367,6 @@
   }
 }
 
-/* Адаптивность для разных размеров экрана */
 @media (max-width: 768px) {
   .horror-tentacle-button {
     font-size: 0.9rem;
@@ -397,60 +390,13 @@
   }
 }
 
-.magic-reveal {
-  font-family: 'Finger Paint', cursive;
-  font-size: 4rem;
-  color: transparent;
-  text-align: center;
-  position: relative;
-  animation: textGlow 2s ease-in-out forwards;
-  animation-delay: 2.5s;
-}
-
-/* Анимация появления букв */
 .letter {
   display: inline-block;
   opacity: 0;
   color: var(--tmd-text, black);
   transform: translateY(30px) rotateX(90deg);
-  animation: letterReveal 0.5s ease-out forwards;
+  animation: letterReveal 0.45s ease-out forwards;
   font-family: 'Finger Paint';
-}
-
-.letter:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.letter:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.letter:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.letter:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.letter:nth-child(5) {
-  animation-delay: 0.5s;
-}
-
-.letter:nth-child(6) {
-  animation-delay: 0.6s;
-}
-
-.letter:nth-child(7) {
-  animation-delay: 0.7s;
-}
-
-.letter:nth-child(8) {
-  animation-delay: 0.8s;
-}
-
-.letter:nth-child(9) {
-  animation-delay: 0.9s;
 }
 
 @keyframes letterReveal {

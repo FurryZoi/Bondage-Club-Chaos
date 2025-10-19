@@ -9,7 +9,7 @@ export function loadSettingsSubscreen(): void {
 
 	PreferenceRegisterExtensionSetting({
 		Identifier: "BCC",
-		ButtonText: "BCC",
+		ButtonText: "BCC Settings",
 		Image: icon.replace('width="512"', 'width="85"').replace('height="512"', 'height="85"'),
 		click: () => {
 			getCurrentSubscreen()?.click();
@@ -19,7 +19,7 @@ export function loadSettingsSubscreen(): void {
 		},
 		exit: () => false,
 		load: () => {
-			setSubscreen(new MainSubscreen());
+			setSubscreen(new MainSubscreen(true));
 		}
 	});
 }

@@ -1,14 +1,13 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, SendToBack } from "lucide";
-import { MainSubscreen } from "./mainSubscreen";
 
-export class OverlaySubscreen extends BaseSubscreen {
+export class RaceSubscreen extends BaseSubscreen {
     get icon(): SVGElement {
         return createElement(SendToBack);
     }
 
     get name() {
-        return "Overlay";
+        return "Race";
     }
 
     public load(): void {
@@ -17,6 +16,5 @@ export class OverlaySubscreen extends BaseSubscreen {
 
     public exit(): void {
         super.exit();
-        this.setSubscreen(new MainSubscreen());
     }
 }

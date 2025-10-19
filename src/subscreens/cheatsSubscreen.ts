@@ -1,10 +1,11 @@
 import { BaseSubscreen } from "zois-core/ui";
-import { createElement, HandCoins, PanelsTopLeft, SendToBack, Shell, Skull } from "lucide";
-import { messagesManager } from "zois-core/messaging";
+import { createElement, HandCoins } from "lucide";
 import { toastsManager } from "zois-core/popups";
 import { modStorage } from "@/modules/storage";
 import { refreshBonus } from "@/modules/cheats";
 import { StyleModule } from "zois-core/ui-modules";
+import { MainSubscreen } from "./mainSubscreen";
+
 
 function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSubscreen): void {
     Player.Reputation.forEach((r) => {
@@ -32,7 +33,7 @@ function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSu
                 ]
             },
             onChange() {
-                DialogSetReputation(r.Type, parseInt(input.value));
+                DialogSetReputation(r.Type, parseInt(input.value, 10));
                 ServerPlayerReputationSync();
             },
         })
@@ -73,7 +74,7 @@ function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscr
                 ]
             },
             onChange() {
-                s.Level = parseInt(input.value);
+                s.Level = parseInt(input.value, 10);
                 ServerPlayerSkillSync();
             },
         })
@@ -97,7 +98,7 @@ export class CheatsSubscreen extends BaseSubscreen {
         return "Cheats";
     }
 
-    load(): void {
+    public load(): void {
         super.load();
 
         let y = 220;
@@ -116,8 +117,8 @@ export class CheatsSubscreen extends BaseSubscreen {
             width: 400,
             height: 60,
             onChange() {
-                if (parseInt(input.value) < 0 || Number.isNaN(parseInt(input.value))) return;
-                Player.Money = parseInt(input.value);
+                if (parseInt(input.value, 10) < 0 || Number.isNaN(parseInt(input.value, 10))) return;
+                Player.Money = parseInt(input.value, 10);
                 ServerPlayerSync();
             },
         });
@@ -161,10 +162,14 @@ export class CheatsSubscreen extends BaseSubscreen {
         y += 90;
 
         this.createCheckbox({
-            text: "Bypass activities",
+            text: "Always allow interactions with activities",
             x: 200,
             y,
-            isChecked: false
+            isChecked: modStorage.cheats?.allowActivities,
+            onChange() {
+                if (!modStorage.cheats) modStorage.cheats = {};
+                modStorage.cheats.allowActivities = !modStorage.cheats.allowActivities;
+            },
         });
         y += 90;
 
@@ -215,13 +220,14 @@ export class CheatsSubscreen extends BaseSubscreen {
             onClick: () => {
                 const ids = [];
                 AssetFemale3DCG.forEach((group) => {
-                    group.Asset.forEach((item: AssetDefinition.Script) => {
+                    group.Asset.forEach((item) => {
+                        if (typeof item === "string") return;
                         if (item.Name) {
                             let exists = false;
                             for (let I = 0; I < Player.Inventory.length; I++) {
                                 if (
-                                    Player.Inventory[I].Name == item.Name &&
-                                    Player.Inventory[I].Group == group.Group
+                                    Player.Inventory[I].Name === item.Name &&
+                                    Player.Inventory[I].Group === group.Group
                                 ) exists = true;
                             }
                             if (!exists && item.InventoryID) {
@@ -294,7 +300,8 @@ export class CheatsSubscreen extends BaseSubscreen {
         appendReputationElements(container, this);
     }
 
-    exit(): void {
+    public exit(): void {
         super.exit();
+        this.setSubscreen(new MainSubscreen());
     }
 }

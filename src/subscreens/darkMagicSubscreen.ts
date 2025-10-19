@@ -1,15 +1,16 @@
-import { BaseSubscreen, dataUrlSvgWithColor } from "zois-core/ui";
-import { createElement, SendToBack, Shell, Skull } from "lucide";
-import { MySpellsSubscreen } from "./dark-magic/mySpellsSubscreen";
-import { CreateSpellSubscreen } from "./dark-magic/createSpellSubscreen";
-import { RaceSubscreen } from "./dark-magic/raceSubscreen";
-import { LimitsSubscreen } from "./dark-magic/limitsSubscreen";
+import { BaseSubscreen } from "zois-core/ui";
+import { createElement, Skull } from "lucide";
+import { MySpellsSubscreen } from "./dark-magic-subscreen/mySpellsSubscreen";
+import { SpellEditorSubscreen } from "./dark-magic-subscreen/spellEditorSubscreen";
+// import { RaceSubscreen } from "./dark-magic/raceSubscreen";
+import { LimitsSubscreen } from "./dark-magic-subscreen/limitsSubscreen";
 import { MainSubscreen } from "./mainSubscreen";
 import evilBookIcon from "@/assets/game-icons/evilBook.svg";
 import spellBookIcon from "@/assets/game-icons/spellBook.svg";
 import { ShuffleTextModule } from "@/ui-modules/shuffleTextModule";
-import { StyleModule } from "zois-core/ui-modules";
-import { TomeOfKnowledgeSubscreen } from "./dark-magic/tomeOfKnowledgeSubscreen";
+import { ClickModule, DynamicClassModule, StyleModule } from "zois-core/ui-modules";
+import { TomeOfKnowledgeSubscreen } from "./dark-magic-subscreen/tomeOfKnowledgeSubscreen";
+import { atoms } from "@/modules/darkMagic";
 
 export class DarkMagicSubscreen extends BaseSubscreen {
     get icon(): SVGElement {
@@ -20,16 +21,15 @@ export class DarkMagicSubscreen extends BaseSubscreen {
         return "Dark Magic";
     }
 
-    load(): void {
+    public load(): void {
         super.load();
 
         [
-            new MySpellsSubscreen(), new CreateSpellSubscreen(),
+            new MySpellsSubscreen(), new SpellEditorSubscreen(),
             new LimitsSubscreen()
         ].forEach((t, i) => {
             t.icon.style.width = "auto";
             t.icon.style.height = "70%";
-            console.log(t.icon);
             this.createButton({
                 text: t.name,
                 icon: t.icon,
@@ -72,17 +72,71 @@ export class DarkMagicSubscreen extends BaseSubscreen {
             }
         });
 
-        this.createSvg({
-            dataurl: spellBookIcon,
-            size: 500,
-            x: 1000,
-            y: 350,
-            fill: "var(--tmd-text, black)",
-            stroke: "none"
+        const radius = 210;
+        const centerX = 1350;
+        const centerY = 600;
+
+        this.createText({
+            text: "Atoms Of Magic",
+            x: centerX - radius / 2,
+            y: centerY - 40,
+            width: 200,
+            modules: {
+                base: [
+                    new StyleModule({
+                        textAlign: "center"
+                    })
+                ]
+            }
+        });
+
+        Object.values(atoms).forEach((atom, i) => {
+            const angle = (i / Object.values(atoms).length) * 2 * Math.PI;
+            const x = centerX + radius * Math.cos(angle) - 35;
+            const y = centerY + radius * Math.sin(angle) - 35;
+            const iconContainer = this.createContainer({
+                x,
+                y,
+                modules: {
+                    base: [
+                        new DynamicClassModule({
+                            base: {
+                                borderRadius: "50%",
+                                padding: "0.2em",
+                                filter: `drop-shadow(0 0 0.12em ${atom.iconColor})`
+                            }
+                        })
+                    ]
+                }
+            });
+            iconContainer.append(
+                this.createSvg({
+                    place: false,
+                    dataurl: atom.iconDataUrl,
+                    fill: atom.iconColor,
+                    size: 70,
+                })
+            );
+            this.createText({
+                text: atom.name,
+                color: atom.iconColor,
+                x,
+                y: y + 80,
+                width: 80,
+                fontSize: 2,
+                modules: {
+                    base: [
+                        new StyleModule({
+                            textAlign: "center"
+                        })
+                    ]
+                }
+            });
         });
     }
 
-    exit(): void {
+    public exit(): void {
+        super.exit();
         this.setSubscreen(new MainSubscreen());
     }
 }

@@ -5,24 +5,28 @@
   "main": "index.js",
   "scripts": {
     "dev": "esbuild src/index.ts --bundle --sourcemap --watch --outfile=dist/bundle.js --loader:.ts=ts --loader:.css=text --loader:.png=dataurl --loader:.svg=dataurl",
-    "build": "node ./build.mjs"
+    "build": "node ./build.mjs",
+    "lint": "pnpm exec biome lint",
+    "lint:fix": "pnpm exec biome lint --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
-    "bc-stubs": "^119.0.0",
-    "esbuild": "^0.25.9",
-    "esbuild-plugin-alias": "^0.2.1",
-    "esbuild-svg": "^1.0.3"
+    "@biomejs/biome": "2.2.5",
+    "bc-stubs": "^121.0.0",
+    "esbuild": "^0.25.11"
   },
   "pnpm": {
     "overrides": {}
   },
   "dependencies": {
     "@iconify-json/game-icons": "^1.2.3",
+    "@sugarch/bc-activity-manager": "^1.0.2",
+    "@sugarch/bc-mod-hook-manager": "^0.3.1",
     "lucide": "^0.541.0",
-    "zois-core": "^1.1.5"
+    "reflect-metadata": "^0.2.2",
+    "zois-core": "^1.1.6"
   }
 }

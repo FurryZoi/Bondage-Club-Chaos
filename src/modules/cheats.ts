@@ -1,9 +1,11 @@
 import { hookFunction, HookPriority } from "zois-core/modsApi";
 import { modStorage } from "./storage";
 import { getPlayer, waitFor } from "zois-core";
+import { setPosition } from "zois-core/ui";
+import { toastsManager } from "zois-core/popups";
 
 export function refreshBonus(): void {
-    let skills = Player.Skill;
+    const skills = Player.Skill;
     if (modStorage.cheats?.permanentSkillsBoost) {
         skills.forEach((skill) => {
             skill.ModifierLevel = 5;
@@ -13,7 +15,7 @@ export function refreshBonus(): void {
             if (!modStorage.cheats?.permanentSkillsBoost) {
                 return clearInterval(id);
             }
-            let skills = Player.Skill;
+            const skills = Player.Skill;
             skills.forEach((skill) => {
                 skill.ModifierLevel = 5;
                 skill.ModifierTimeout = Date.now() + 3600000;
@@ -80,11 +82,11 @@ export function loadCheats(): void {
 
     hookFunction("CommonDrawAppearanceBuild", HookPriority.ADD_BEHAVIOR, (args, next) => {
         if (!modStorage.cheats?.xray) return next(args);
-        let C = args[0];
-        let callbacks = args[1];
+        const C: Character = args[0];
         C.AppearanceLayers?.forEach((Layer) => {
             const A = Layer.Asset;
             if (A.Group?.Clothing) {
+                //@ts-expect-error
                 (A).DynamicBeforeDraw = true;
             }
         });
@@ -93,21 +95,21 @@ export function loadCheats(): void {
 
     hookFunction("CommonCallFunctionByNameWarn", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         // Taken from LSCG
-        let funcName = args[0];
-        let params = args[1];
+        const funcName = args[0];
+        const params = args[1];
         if (!params) {
             return next(args);
         }
-        let C = params['C'];
-        let CA = params['CA'];
-        let regex = /Assets(.+)BeforeDraw/i;
+        const C = params['C'];
+        const CA = params['CA'];
+        const regex = /Assets(.+)BeforeDraw/i;
         if (regex.test(funcName) && modStorage.cheats?.xray) {
-            let ret = next(args) ?? {};
-            if (!!CA) {
-                let layerName = (params['L'] ?? "")?.trim().slice(1) ?? "";
-                let layerIx = CA.Asset.Layer.findIndex(l => l.Name == layerName);
-                let originalLayerOpacity = CA.Asset.Layer[layerIx]?.Opacity ?? CA.Asset.Opacity;
-                let curOpacity = ret.Opacity ?? originalLayerOpacity ?? 1;
+            const ret = next(args) ?? {};
+            if (CA) {
+                const layerName = (params['L'] ?? "")?.trim().slice(1) ?? "";
+                const layerIx = CA.Asset.Layer.findIndex(l => l.Name === layerName);
+                const originalLayerOpacity = CA.Asset.Layer[layerIx]?.Opacity ?? CA.Asset.Opacity;
+                const curOpacity = ret.Opacity ?? originalLayerOpacity ?? 1;
                 ret.Opacity = curOpacity * 0.4;
                 ret.AlphaMasks = [];
             }
@@ -116,15 +118,85 @@ export function loadCheats(): void {
             return next(args);
     });
 
-    hookFunction("InventoryItemMiscPasswordPadlockDraw", HookPriority.OBSERVE, (args, next) => {
+    hookFunction("ExtendedItemLoad", HookPriority.OBSERVE, (args, next) => {
         console.log(1);
         if (!modStorage.cheats?.showPadlocksPasswords) return next(args);
         console.log(3);
-        if (!DialogFocusSourceItem) return;
+        if (
+            !DialogFocusSourceItem ||
+            !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)
+        ) return next(args);
         if (InventoryItemMiscPasswordPadlockIsSet()) {
             console.log(2);
             waitFor(() => !!document.getElementById("Password"))
                 .then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
+        }
+        return next(args);
+    });
+
+    hookFunction("ChatRoomFocusCharacter", HookPriority.OBSERVE, (args, next) => {
+        next(args);
+        console.log("Loaded 1")
+        if (!modStorage.cheats?.allowActivities) return next(args);
+        console.log("Loaded 2")
+        const C = CharacterGetCurrent();
+        if (!C) return next(args);
+        console.log("Loaded 3")
+        if (ServerChatRoomGetAllowItem(Player, C)) return next(args);
+        if (C.HasOnBlacklist(Player)) {
+            toastsManager.error({
+                title: "Activities cheat denied",
+                message: "You are blacklisted or ghosted by this player",
+                duration: 4500
+            });
+            return next(args);
+        }
+        if (DialogMenuMode !== "dialog") return next(args);
+        console.log("Loaded")
+        setTimeout(() => DialogSetStatus("(You don's have access to use or remove items, but you can perform activities.)"), 1000);
+        console.log(C.CurrentDialog)
+    });
+
+    hookFunction("DialogClick", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        next(args);
+        if (!modStorage.cheats?.allowActivities) return;
+        console.log("Click");
+        // CurrentCharacter instead of CharacterGetCurrent()
+        const C = (MouseX < 500) ? Player : CurrentCharacter;
+        if (!C) return;
+        if (ServerChatRoomGetAllowItem(Player, CurrentCharacter)) return;
+
+        const X = MouseX < 500 ? 0 : 500;
+        for (const Group of AssetGroup) {
+            if (!Group.IsItem()) continue;
+            const Zone = Group.Zone.find((Z) => DialogClickedInZone(C, Z, 1, X, 0, C.HeightRatio));
+            if (Zone) {
+                DialogChangeFocusToGroup(C, Group);
+                DialogChangeMode("activities");
+                break;
+            }
+        }
+
+        const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
+        if (CharacterGetCurrent()?.IsPlayer() && isExitButtonExists) ElementRemove("bcc-exit-dialog-button");
+        if (!isExitButtonExists) {
+            const button = ElementButton.Create("bcc-exit-dialog-button", () => DialogChangeMode("dialog"), { tooltip: "(BCC) Back", image: "Icons/Exit.png" });
+            document.body.append(button);
+            setPosition(button, 40, 20, "top-right");
+            ElementSetSize(button, 90, 90);
+            button.addEventListener("click", () => {
+                button.remove();
+                DialogChangeFocusToGroup(C, null);
+            });
+        }
+    });
+
+    hookFunction("DialogResize", HookPriority.OBSERVE, (args, next) => {
+        if (!modStorage.cheats?.allowActivities) return next(args);
+        const button = document.getElementById("bcc-exit-dialog-button");
+        if (button) {
+            setPosition(button, 40, 20, "top-right");
+            ElementSetSize(button, 90, 90);
         }
         return next(args);
     });

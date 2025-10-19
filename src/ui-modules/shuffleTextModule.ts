@@ -1,4 +1,4 @@
-import { BaseModule, Context, ModuleTarget } from "zois-core/modules";
+import { BaseModule, type Context, type ModuleTarget } from "zois-core/modules";
 
 function shuffleString(str) {
     return str
@@ -8,7 +8,7 @@ function shuffleString(str) {
 }
 
 export class ShuffleTextModule extends BaseModule {
-    effect(context: Context, target: ModuleTarget): void {
+    public effect(context: Context, target: ModuleTarget): void {
         const id = setInterval(() => {
             try {
                 target.textContent = shuffleString(target.textContent);

@@ -1,20 +1,39 @@
 import { BaseSubscreen } from "zois-core/ui";
-import { CodeXml, createElement, GitPullRequest, PawPrint, Rat } from "lucide";
-import { CenterModule, CounterUpModule, StyleModule, TypeModule } from "zois-core/ui-modules";
+import { Bug, CodeXml, createElement, GitPullRequest, Heart, Trash2 } from "lucide";
+import { ClickModule, DynamicClassModule, StyleModule, TypeModule } from "zois-core/ui-modules";
 import { version } from "@/../package.json";
-import { TestModule } from "@/ui-modules/testModule";
 import { TentaclesModule } from "@/ui-modules/tentaclesModule";
 import { Atom, atoms } from "@/modules/darkMagic";
 import { PaintTextModule } from "@/ui-modules/paintTextModule";
 import { ChaosAuraSubscreen } from "./chaosAuraSubscreen";
 import { OverlaySubscreen } from "./overlaySubscreen";
 import { DarkMagicSubscreen } from "./darkMagicSubscreen";
-import { QuickMenuSubscreen } from "./quickMenuSubscreen";
+import { QuickAccessMenuSubscreen } from "./quickAccessMenuSubscreen";
 import { CheatsSubscreen } from "./cheatsSubscreen";
 import { syncStorage } from "@/modules/storage";
+import { AttributionsSubscreen } from "./attributionsSubscreen";
+import { ResetSettingsSubscreen } from "./resetSettingsSubscreen";
+import { getRandomNumber } from "zois-core";
+
+
+const quotes = [
+    "Chaos is not always the opposite of order",
+    "Chaos is complex order, not mess",
+    "I find peace in chaos, because it contains the possibility of everything",
+    "War is the father of all things, and chaos is their mother",
+    "Chaos is a feature, not a bug of the universe",
+    "There is a love for chaos in every creator because only out of it is new things born",
+    "Chaos often turns out to be not destruction, but a different form of organization — more complex, dynamic and full of possibilities",
+    "Ἔρις"
+];
+
 
 export class MainSubscreen extends BaseSubscreen {
-    load(): void {
+    constructor(private readonly animations: boolean = false) {
+        super();
+    }
+
+    public load(): void {
         super.load();
         this.createCard({
             anchor: "bottom-right",
@@ -23,13 +42,13 @@ export class MainSubscreen extends BaseSubscreen {
             name: "Version",
             value: version,
             icon: createElement(GitPullRequest),
-            modules: {
+            modules: this.animations ? {
                 value: [
                     new TypeModule({
                         duration: 850
                     })
                 ]
-            }
+            } : undefined
         });
 
         this.createText({
@@ -40,18 +59,13 @@ export class MainSubscreen extends BaseSubscreen {
             width: 1600,
             modules: {
                 base: [
-                    new PaintTextModule(),
-                    // new StyleModule({
-                    //     ["font-family"]: "Finger Paint",
-                    //     ["text-align"]: "center",
-                    //     ["text-shadow"]: "rgba(115, 0, 255, 1) 0px 0px 0.05em"
-                    // })
+                    new PaintTextModule(this.animations),
                 ]
             }
         });
 
         this.createText({
-            text: "Chaos is not always the opposite of order",
+            text: quotes[getRandomNumber(0, quotes.length - 1)],
             fontSize: 3,
             x: 800,
             y: 230,
@@ -68,14 +82,14 @@ export class MainSubscreen extends BaseSubscreen {
 
         [
             new ChaosAuraSubscreen(), new OverlaySubscreen(), new DarkMagicSubscreen(),
-            new QuickMenuSubscreen(), new CheatsSubscreen()
+            new QuickAccessMenuSubscreen(), new CheatsSubscreen()
         ].forEach((t, i) => {
             this.createButton({
                 text: t.name,
                 icon: t.icon,
                 x: 165,
                 y: 280 + (115 * i),
-                width: 500,
+                width: 575,
                 padding: 2,
                 modules: {
                     base: [
@@ -95,32 +109,52 @@ export class MainSubscreen extends BaseSubscreen {
         this.createButton({
             text: "Source Code",
             icon: createElement(CodeXml),
-            anchor: "bottom-right",
-            x: 325,
-            y: 65,
-            width: 425,
-            padding: 1
+            x: 1050,
+            y: 400,
+            width: 485,
+            padding: 2,
+            onClick() {
+                window.open("https://github.com/FurryZoi/Bondage-Club-Chaos", "_blank");
+            },
         });
 
-        this.createText({
-            text: atoms[Atom.IGNIS].name,
-            x: 900,
-            y: 400,
-            width: 800
-        }).style.textAlign = "center";
+        this.createButton({
+            text: "Issues",
+            icon: createElement(Bug),
+            x: 1050,
+            y: 510,
+            width: 485,
+            padding: 2,
+            onClick() {
+                window.open("https://github.com/FurryZoi/Bondage-Club-Chaos/issues", "_blank");
+            }
+        });
 
-        this.createText({
-            text: atoms[Atom.IGNIS].description,
-            x: 900,
-            y: 485,
-            width: 800,
-            withBorder: true,
-            padding: 2
-        }).style.textAlign = "center";
+        this.createButton({
+            text: "Attributions",
+            icon: createElement(Heart),
+            x: 1050,
+            y: 620,
+            width: 485,
+            padding: 2,
+            onClick: () => this.setSubscreen(new AttributionsSubscreen())
+        });
+
+        this.createButton({
+            text: "Reset Settings",
+            icon: createElement(Trash2),
+            x: 1050,
+            y: 730,
+            style: "inverted",
+            width: 485,
+            padding: 2,
+            onClick: () => this.setSubscreen(new ResetSettingsSubscreen())
+        });
     }
 
 
-    exit(): void {
+    public exit(): void {
+        super.exit();
         this.setSubscreen(null);
         syncStorage();
         PreferenceSubscreenExtensionsClear();

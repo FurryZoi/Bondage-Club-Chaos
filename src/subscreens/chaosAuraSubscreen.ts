@@ -1,8 +1,9 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, Shell } from "lucide";
 import { CounterUpModule } from "zois-core/ui-modules";
-import { ModStorage, modStorage, syncStorage } from "@/modules/storage";
+import { type ModStorage, modStorage, syncStorage } from "@/modules/storage";
 import { updateChaosAuraLastData } from "@/modules/chaosAura";
+import { MainSubscreen } from "./mainSubscreen";
 
 export class ChaosAuraSubscreen extends BaseSubscreen {
     get icon(): SVGElement {
@@ -19,7 +20,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         modStorage.chaosAura.triggers[triggerName] = !modStorage.chaosAura.triggers[triggerName];
     }
 
-    load(): void {
+    public load(): void {
         super.load();
 
         let y = 240;
@@ -100,7 +101,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         //     padding: 2,
         //     width: 900,
         // });
-        
+
         this.createCheckbox({
             text: "Ignore items change if not restraint",
             x: 750,
@@ -129,14 +130,14 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             y: 60,
             modules: {
                 value: [
-                    new CounterUpModule({ duration: 850, endValue: 100 })
+                    new CounterUpModule({ duration: 1100, endValue: 100 })
                 ]
             }
         })
     }
 
-    exit(): void {
+    public exit(): void {
         super.exit();
-        syncStorage();
+        this.setSubscreen(new MainSubscreen());
     }
 }

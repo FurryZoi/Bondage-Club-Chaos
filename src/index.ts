@@ -1,18 +1,17 @@
+import "reflect-metadata";
 import { injectStyles, MOD_DATA, registerCore, waitForStart } from "zois-core";
-import { version } from "../package.json";
 import { toastsManager } from "zois-core/popups";
 import styles from "./styles.css";
-import { messagesManager } from "zois-core/messaging";
-import { IsString } from "zois-core/validation"
+import { version } from "../package.json";
 import { loadSettingsSubscreen } from "./modules/settings";
-import { createIcons, Heart } from "lucide";
 import kitnyx2Font from "./assets/Kitnyx2.ttf";
 import { loadCheats } from "./modules/cheats";
 import { loadStorage } from "./modules/storage";
 import { loadChaosAura } from "./modules/chaosAura";
 import { loadOverlay } from "./modules/overlay";
 import { loadDarkMagic } from "./modules/darkMagic";
-import { loadQuickMenu } from "./modules/quickMenu";
+import { loadQuickAccessMenu } from "./modules/quickAccessMenu";
+import { addActivities } from "./modules/activities";
 
 
 function start() {
@@ -36,10 +35,11 @@ function start() {
     loadStorage();
     loadSettingsSubscreen();
     loadCheats();
-    loadQuickMenu();
+    loadQuickAccessMenu();
     loadChaosAura();
     loadOverlay();
     loadDarkMagic();
+    addActivities();
 
     toastsManager.success({
         title: `${MOD_DATA.fullName} loaded`,

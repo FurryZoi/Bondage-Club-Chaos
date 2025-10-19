@@ -1,36 +1,37 @@
-import { BaseModule, Context, ModuleTarget } from "zois-core/modules";
+import { BaseModule, type Context } from "zois-core/modules";
 
 
 export class PaintTextModule extends BaseModule {
-    constructor() {
+    constructor(private readonly animation: boolean = true) {
         super();
     }
-    effect(context: Context, target: ModuleTarget) {
-        const text = context.element.textContent;
-        context.element.innerHTML = `<div class="magic-reveal" id="magicText">
-  <div class="magic-particle particle-1"></div>
-  <div class="magic-particle particle-2"></div>
-  <div class="magic-particle particle-3"></div>
-  <div class="magic-particle particle-4"></div>
-</div>`;
-        const container = context.element;
 
-        // Создаем буквы с анимацией
+    public effect(context: Context) {
+        const text = context.element.textContent;
+        const container = context.element;
+        container.innerHTML = "";
+
         text.split('').forEach((letter, index) => {
-            const span = document.createElement('span');
-            span.className = 'letter';
+            const span = document.createElement("span");
+            if (this.animation) span.className = "letter";
+            else {
+                span.style.fontFamily = "Finger Paint";
+                span.style.textShadow = "0.045em 0.045em 0 var(--tmd-text, black), -0.045em -0.045em 0 var(--tmd-accent, #6600da), 0.045em -0.045em 0 var(--tmd-text, black), -0.045em 0.045em 0 var(--tmd-accent, #6600da)";
+            }
             if (letter === " ") span.innerHTML = "&nbsp;";
             else span.textContent = letter;
-            span.style.animationDelay = `${index * 0.05}s`;
+            if (this.animation) {
+                span.style.animationDelay = `${index * 0.05}s`;
+            } else {
+                span.style.animation = "";
+            }
             container.appendChild(span);
         });
 
-        // Добавляем пробелы
-        const space = document.createElement('span');
-        space.className = 'letter';
-        space.innerHTML = '&nbsp;';
-        space.style.animationDelay = '0.6s';
+        const space = document.createElement("span");
+        space.className = "letter";
+        space.innerHTML = "&nbsp;";
+        space.style.animationDelay = "0.6s";
         container.appendChild(space)
-        // return context;
     }
 }
