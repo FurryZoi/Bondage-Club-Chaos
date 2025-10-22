@@ -2,7 +2,7 @@
 // @name Bondage Club Chaos
 // @namespace https://www.bondageprojects.com/
 // @version 2.0.0
-// @description Littlish CLub Mod
+// @description Cheat addon with quality of life features, own activities and magical mechanics
 // @author Zoi
 // @match https://bondageprojects.elementfx.com/*
 // @match https://www.bondageprojects.elementfx.com/*
