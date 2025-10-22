@@ -17,7 +17,6 @@ export function addActivities(): void {
             Target: ["ItemPelvis", "ItemButt", "ItemVulva", "ItemVulvaPiercings"],
         },
         useImage: (_activity, target, _group) => {
-            console.log(target);
             const asset = InventoryGet(target, "Panties")?.Asset;
             return AssetGetPreviewPath(asset) + "/" + asset?.Name + ".png";
         },

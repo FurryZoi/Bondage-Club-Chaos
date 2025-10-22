@@ -1,5 +1,5 @@
 import { Atom, getSpellEffect } from "../modules/darkMagic";
-import { modStorage, syncStorage } from "../modules/storage";
+import { ModStorage, modStorage, syncStorage } from "../modules/storage";
 import { BaseEffect, TriggerEvent } from "./baseEffect";
 
 export class PurificatioEffect extends BaseEffect {
@@ -17,12 +17,17 @@ export class PurificatioEffect extends BaseEffect {
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        const activeSpells = JSON.parse(JSON.stringify(modStorage.darkMagic?.state?.spells ?? []));
+        const activeSpells: ModStorage["darkMagic"]["state"]["spells"] = JSON.parse(
+            JSON.stringify(modStorage.darkMagic?.state?.spells ?? [])
+        );
         for (const spell of activeSpells) {
-            console.log(spell);
             for (const effectChar of spell.effects) {
                 const effect = getSpellEffect(effectChar.charCodeAt(0));
-                effect.remove(event, spell.name, false);
+                effect.remove({
+                    sourceCharacter: event.sourceCharacter,
+                    sourceSpellName: event.spellName,
+                    targetSpellName: spell.name
+                }, false);
             }
         }
         syncStorage();

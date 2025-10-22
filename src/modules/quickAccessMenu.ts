@@ -6,8 +6,10 @@ import { messagesManager } from "zois-core/messaging";
 import { toastsManager } from "zois-core/popups";
 import { addDynamicClass, DynamicClassStyles, setSubscreen } from "zois-core/ui";
 import { importAppearance, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
-import { allowSpellCast, castSpell, getSpellEffect, getSpellIcon, isMagicItem } from "./darkMagic";
+import { addDefaultParametersIfNeeds, allowSpellCast, castSpell, getSpellEffect, getSpellIcon, isMagicItem } from "./darkMagic";
 import { type ModStorage, modStorage, syncStorage } from "./storage";
+import { validateData } from "zois-core/validation";
+import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 
 let serverPing: number;
 let currentSubscreen: QAMSubscreen;
@@ -125,7 +127,6 @@ class Draggable {
 
     onClick() {
         if (this.isDragging || this.wasDragged) return;
-        console.log(this.isDragging, this.wasDragged)
         if (document.querySelector(".bccQAM")) {
             document.querySelector(".bccQAM").remove();
             currentSubscreen = null;
@@ -384,7 +385,9 @@ function setQAMSubscreen(s: QAMSubscreen): void {
     title.textContent = s.name;
     title.style.cssText = "font-weight: bold; padding: 0.5em 1em; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
     if (s.name === "BONDAGE CLUB CHAOS") {
-        title.style.textShadow = "-0.1em -0.05em 0 rgb(102, 0, 218)";
+        title.style.textShadow = "rgb(102, 0, 218) -0.095em -0.05em 0px";
+        title.style.letterSpacing = "0.05em";
+        title.style.fontFamily = "Finger Paint";
     } else {
         const backBtn = document.createElement("button");
         backBtn.style.cssText = "cursor: pointer; background: none; border: none;";
@@ -1107,7 +1110,7 @@ export const quickMenuSubscreens: QAMSubscreen[] = [
             }
 
             let target: Character = Player;
-            let spell: ModStorage["darkMagic"]["spells"][0] = modStorage.darkMagic?.spells?.[0];
+            let spell: ModStorage["darkMagic"]["spells"][0] = JSON.parse(JSON.stringify(modStorage.darkMagic.spells[0]));
 
             const select = quickMenuBuilder.buildCharacterSelect((_target) => {
                 target = _target;
@@ -1117,12 +1120,87 @@ export const quickMenuSubscreens: QAMSubscreen[] = [
                 options: modStorage.darkMagic?.spells?.map((s) => ({ name: s.name, text: s.name, icon: dataURLToSVGElement(getSpellIcon(s.icon).dataurl) })),
                 currentOption: modStorage.darkMagic?.spells?.[0]?.name,
                 onChange: (value) => {
-                    spell = modStorage.darkMagic.spells.find((s) => s.name === value);
+                    spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells.find((s) => s.name === value)));
+                    addDefaultParametersIfNeeds(spell);
+                    refreshParamtersContainer();
                 }
             });
 
+            const paramters = document.createElement("div");
+            paramters.style.cssText = "display: flex; flex-direction: column; row-gap: 0.5em; border: 3px dashed #dcccffff; border-radius: 4px; padding: 0.5em 0; margin: 0.5em auto; width: 90%;";
+
+            function refreshParamtersContainer() {
+                paramters.innerHTML = "";
+                const title = document.createElement("p");
+                title.style.cssText = "margin: 0.65em auto; width: 90%; font-weight: bold; font-size: 0.85em; color: #9977d0;";
+                title.textContent = "Parameters";
+                paramters.append(title);
+
+                for (const c of spell.effects.split("")) {
+                    const effect = getSpellEffect(c.charCodeAt(0));
+                    if (effect.parameters.length === 0) continue;
+                    const effectName = document.createElement("p");
+                    effectName.style.cssText = "margin: 0.6em auto 0 auto; width: 90%;";
+                    effectName.textContent = effect.name;
+                    paramters.append(effectName);
+                    for (const parameter of effect.parameters) {
+                        const value = spell.data?.[c]?.[parameter.name];
+                        switch (parameter.type) {
+                            case "boolean": {
+                                const checkbox = document.createElement("label");
+                                checkbox.style.cssText = "margin: auto; width: 90%;"
+                                const input = document.createElement("input");
+                                input.type = "checkbox";
+                                if (typeof value === "boolean") input.checked = value;
+                                input.addEventListener("change", () => {
+                                    spell.data[c][parameter.name] = input.checked;
+                                });
+                                checkbox.append(input, parameter.label);
+                                paramters.append(checkbox);
+                                break;
+                            }
+                            case "choice":
+                                paramters.append(
+                                    quickMenuBuilder.buildSelect({
+                                        options: parameter.options,
+                                        currentOption: parameter.options.find((o) => o.name === value)?.name ?? parameter.options[0].name,
+                                        onChange: (_value) => {
+                                            spell.data[c][parameter.name] = _value;
+                                        }
+                                    })
+                                );
+                                break;
+                            case "number": {
+                                const input = quickMenuBuilder.buildInput(parameter.label);
+                                input.type = "number";
+                                if (typeof value === "number") input.value = value.toString();
+                                if (parameter.min) input.min = parameter.min.toString();
+                                if (parameter.min) input.max = parameter.max.toString();
+                                input.addEventListener("input", () => {
+                                    spell.data[c][parameter.name] = parseInt(input.value, 10);
+                                });
+                                paramters.append(input);
+                                break;
+                            }
+                            case "text": {
+                                const input = quickMenuBuilder.buildInput(parameter.label);
+                                if (typeof value === "string") input.value = value;
+                                input.addEventListener("input", () => {
+                                    spell.data[c][parameter.name] = input.value;
+                                });
+                                paramters.append(input);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (paramters.children.length === 1) paramters.style.display = "none";
+                else paramters.style.display = "flex";
+            }
+
             const btn = quickMenuBuilder.buildButton("Cast Spell");
-            btn.addEventListener("click", () => {
+            btn.addEventListener("click", async () => {
                 if (!spell) return;
                 if (!Player.CanInteract()) {
                     return toastsManager.error({ message: "You can't interact", duration: 3000 });
@@ -1141,10 +1219,24 @@ export const quickMenuSubscreens: QAMSubscreen[] = [
                         duration: 5000
                     });
                 }
+                const { isValid } = await validateData({
+                    spell
+                }, CastSpellMessageDto);
+
+                if (!isValid) {
+                    return toastsManager.error({
+                        title: "Spell validation failed",
+                        message: "Check spell's settings and make sure that everything is specified correctly",
+                        duration: 5000
+                    });
+                }
+
                 castSpell(target, spell);
             });
 
-            container.append(select, _select, btn);
+            refreshParamtersContainer();
+
+            container.append(select, _select, paramters, btn);
         }
     },
     {

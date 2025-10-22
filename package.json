@@ -1,7 +1,7 @@
 {
-  "name": "BondageClub-Chaos",
+  "name": "Bondage Club Chaos",
   "version": "2.0.0",
-  "description": "",
+  "description": "Cheat addon with quality of life features, own activities and magical mechanics",
   "main": "index.js",
   "scripts": {
     "dev": "esbuild src/index.ts --bundle --sourcemap --watch --outfile=dist/bundle.js --loader:.ts=ts --loader:.css=text --loader:.png=dataurl --loader:.svg=dataurl",
@@ -10,8 +10,8 @@
     "lint:fix": "pnpm exec biome lint --write"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Zoi",
+  "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
     "@biomejs/biome": "2.2.5",

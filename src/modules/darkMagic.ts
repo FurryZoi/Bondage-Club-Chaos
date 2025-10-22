@@ -43,10 +43,12 @@ import { getNickname } from "zois-core";
 import { hookFunction, HookPriority, patchFunction } from "zois-core/modsApi";
 import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 import { TraditioArtiumEffect } from "@/spell-effects/traditioArtiumEffect";
+import { FlammaSubmissionisEffect } from "@/spell-effects/flammaSubmissionisEffect";
+import { AcceleratioVoluptatisEffect } from "@/spell-effects/acceleratioVoluptatisEffect";
 
 
 let showAnimaFurtaWaitingButton = false;
-const MAGIC_ITEMS = ["RainbowWand", "Broom", "AnimeGirlWand", "Baguette"];
+export const MAGIC_ITEMS = ["RainbowWand", "Broom", "AnimeGirlWand", "Baguette"];
 
 
 export enum Atom {
@@ -69,7 +71,9 @@ export enum Effect {
     VISIO_INVERSION = 1006,
     VOCIS_ALTERATIO = 1007,
     VOCIS_PRIVATIO = 1008,
-    TRADITIO_ARTIUM = 1009
+    TRADITIO_ARTIUM = 1009,
+    FLAMMA_SUBMISSIONIS = 1010,
+    ACCELERATIO_VOLUPTATIS = 1011
 };
 
 export interface AtomItem {
@@ -92,7 +96,9 @@ export enum CastSpellRejectionReason {
     NOT_BCC_PLAYER = "NOT_BCC_PLAYER",
     EFFECTS_LIMITED = "EFFECTS_LIMITED",
     NO_EFFECTS = "NO_EFFECTS",
-    SPELLS_COUNT_LIMIT = "SPELLS_COUNT_LIMIT"
+    SPELLS_COUNT_LIMIT = "SPELLS_COUNT_LIMIT",
+    SELF_CAST_NOT_ALLOWED = "SELF_CAST_NOT_ALLOWED",
+    CANT_CAST_AT_THIS_MOMENT = "CANT_CAST_AT_THIS_MOMENT"
 };
 
 export const atoms: Record<Atom, AtomItem> = {
@@ -100,43 +106,43 @@ export const atoms: Record<Atom, AtomItem> = {
         name: "Nox",
         iconDataUrl: noxIcon,
         iconColor: "black",
-        description: "It is used in the most powerful and dangerous spells, which is why by default all these spells are limited in the permission settings for your safety"
+        description: "Used in the most powerful and dangerous spells, which is why by default all these spells are limited in settings"
     },
     [Atom.IGNIS]: {
         name: "Ignis",
         iconDataUrl: ignisIcon,
         iconColor: "orange",
-        description: "The aspect used in spells for attack, self-defense, and so on"
+        description: "Used in spells for attack, self-defense, and so on"
     },
     [Atom.RATIO]: {
         name: "Ratio",
         iconDataUrl: ratioIcon,
         iconColor: "#ffd1d1",
-        description: "It is used in spells which change the behavior of the target and encourage the performance of any actions"
+        description: "Used in spells which change the behavior of the character and encourage the performance of any actions"
     },
     [Atom.LUX]: {
         name: "Lux",
         iconDataUrl: luxIcon,
         iconColor: "yellow",
-        description: "It is used in neutral safe spells, such as power-ups"
+        description: "Used in neutral safe spells, such as power-ups"
     },
     [Atom.GEMITUM]: {
         name: "Gemitum",
         iconDataUrl: gemitumIcon,
         iconColor: "red",
-        description: "It is used in erotic spells..?"
+        description: "Used in spells which affect emotions, feelings and control arousal"
     },
     [Atom.MOTUS]: {
         name: "Motus",
         iconDataUrl: motusIcon,
         iconColor: "#d4d0ff",
-        description: "It is used in spells that move a target or make it move"
+        description: "Used in spells which move character or make it move"
     },
     [Atom.MATERIA]: {
         name: "Materia",
         iconDataUrl: materiaIcon,
         iconColor: "#8f59fbff",
-        description: "It is used in spells that change materia, that is, the space around you"
+        description: "Used in spells that change materia, that is, the space around you"
     }
 };
 
@@ -150,7 +156,9 @@ export const spellEffects: Record<Effect, BaseEffect> = {
     [Effect.VISIO_INVERSION]: new VisioInversioEffect(),
     [Effect.VOCIS_ALTERATIO]: new VocisAlteratioEffect(),
     [Effect.VOCIS_PRIVATIO]: new VocisPrivatioEffect(),
-    [Effect.TRADITIO_ARTIUM]: new TraditioArtiumEffect()
+    [Effect.TRADITIO_ARTIUM]: new TraditioArtiumEffect(),
+    [Effect.FLAMMA_SUBMISSIONIS]: new FlammaSubmissionisEffect(),
+    [Effect.ACCELERATIO_VOLUPTATIS]: new AcceleratioVoluptatisEffect()
 };
 
 export enum SpellIcon {
@@ -345,13 +353,28 @@ export function generateSpellName(name: string, attempt: number = 1): string {
     return search;
 }
 
+export function addDefaultParametersIfNeeds(spell: ModStorage["darkMagic"]["spells"][0]): void {
+    spell.data ??= {};
+    for (const effectChar of spell.effects.split("")) {
+        spell.data[effectChar] ??= {}
+        const effect = getSpellEffect(effectChar.charCodeAt(0));
+        for (const parameter of effect.parameters) {
+            if (parameter.type === "boolean") spell.data[effectChar][parameter.name] ??= false;
+            if (parameter.type === "choice") spell.data[effectChar][parameter.name] ??= parameter.options[0].name;
+        }
+    }
+}
+
 export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]["spells"][0]) {
+    spell = JSON.parse(JSON.stringify(spell));
+    spell.name = generateSpellName(spell.name.trim());
+    addDefaultParametersIfNeeds(spell);
     if (!isSpellInstant(spell)) {
         modStorage.darkMagic ??= {};
         modStorage.darkMagic.state ??= {};
         modStorage.darkMagic.state.spells ??= [];
         modStorage.darkMagic.state.spells.push({
-            name: generateSpellName(spell.name.trim()),
+            name: spell.name,
             icon: spell.icon,
             effects: spell.effects.split("").filter((c) => !spellEffects[c.charCodeAt(0) as Effect].isInstant).join(""),
             data: JSON.parse(JSON.stringify(spell.data ?? {})),
@@ -398,7 +421,6 @@ export async function loadDarkMagic(): Promise<void> {
     }
 
     messagesManager.onPacket("castSpell", CastSpellMessageDto, (data: CastSpellMessageDto, sender) => {
-        console.log("Cast spell", data);
         const allow = allowSpellCast(sender, Player, data.spell);
         if (allow.result === false) return;
         processSpell(sender, data.spell);
@@ -407,14 +429,7 @@ export async function loadDarkMagic(): Promise<void> {
     hookFunction("ChatRoomToggleKneel", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         const controllableCharacter = (getSpellEffect(Effect.ANIMA_FURTA) as AnimaFurtaEffect).getControllableCharacter();
         if (!controllableCharacter) return next(args);
-        if (
-            ![PoseChangeStatus.NEVER, PoseChangeStatus.NEVER_WITHOUT_AID].includes(
-                PoseCanChangeUnaidedStatus(
-                    controllableCharacter,
-                    controllableCharacter.IsKneeling() ? "BaseLower" : "Kneel"
-                )
-            )
-        ) {
+        if (controllableCharacter.CanChangeToPose(controllableCharacter.IsKneeling() ? "BaseLower" : "Kneel")) {
             PoseSetActive(
                 controllableCharacter,
                 controllableCharacter.IsKneeling() ? "BaseLower" : "Kneel"

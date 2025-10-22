@@ -29,7 +29,6 @@ export class MasqueradaEffect extends BaseEffect {
     }
 
     public trigger(event: TriggerEvent): void {
-        console.log(event);
         super.trigger(event);
         if (!event.init) return;
         const lastOutfit = LZString.compressToBase64(JSON.stringify(ServerAppearanceBundle(Player.Appearance)));
@@ -39,10 +38,10 @@ export class MasqueradaEffect extends BaseEffect {
         this.setParameter("outfit", undefined, event.spellName);
     }
 
-    public remove(event: RemoveEvent, spellName: string, push: boolean = true): void {
-        super.remove(event, spellName, push);
-        console.log(event);
-        ServerAppearanceLoadFromBundle(Player, Player.AssetFamily, JSON.parse(LZString.decompressFromBase64(event.data.lastOutfit)));
+    public remove(event: RemoveEvent, push: boolean = true): void {
+        const lastOutfit = this.getParameter<string>("lastOutfit", Player);
+        super.remove(event, push);
+        ServerAppearanceLoadFromBundle(Player, Player.AssetFamily, JSON.parse(LZString.decompressFromBase64(lastOutfit)), Player.MemberNumber);
         ChatRoomCharacterUpdate(Player);
     }
 }

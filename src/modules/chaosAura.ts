@@ -1,5 +1,8 @@
+// BCC legacy code
+// TODO: Refactoring
+
 import { getNickname, getPlayer, waitFor } from "zois-core";
-import { modStorage } from "./storage";
+import { modStorage, syncStorage } from "./storage";
 import { messagesManager } from "zois-core/messaging";
 import { isBody, isCloth } from "zois-core/wardrobe";
 import { hookFunction, HookPriority } from "zois-core/modsApi";
@@ -37,12 +40,7 @@ async function skyShieldAction(target: Character) {
     let triggered = false;
     const triggers = modStorage.chaosAura?.triggers;
 
-    if (
-        !(
-            modStorage.chaosAura?.whiteList?.enabled &&
-            modStorage.chaosAura?.whiteList?.value?.includes(target.MemberNumber)
-        )
-    ) {
+    if (!modStorage.chaosAura?.whiteList?.includes(target.MemberNumber)) {
         if (triggers?.clothesChange) {
             if (
                 JSON.stringify(
@@ -104,6 +102,9 @@ async function skyShieldAction(target: Character) {
         }
 
         if (triggered) {
+            modStorage.chaosAura.triggersCount ??= 0;
+            modStorage.chaosAura.triggersCount++;
+            syncStorage();
             ServerSend("ChatRoomCharacterUpdate", {
                 ID: Player.OnlineID,
                 ActivePose: newActivePose,
@@ -121,10 +122,7 @@ async function skyShieldAction(target: Character) {
                 modStorage.chaosAura?.retribution && (
                     !targetStorage?.chaosAura?.enabled ||
                     !targetStorage?.chaosAura?.triggers?.itemsChange ||
-                    (
-                        targetStorage?.chaosAura?.whiteList?.enabled &&
-                        targetStorage?.chaosAura?.whiteList?.value?.includes(Player.MemberNumber)
-                    )
+                    targetStorage?.chaosAura?.whiteList?.includes(Player.MemberNumber)
                 ) && ServerChatRoomGetAllowItem(Player, target)
             ) {
                 const items1 = appearance1

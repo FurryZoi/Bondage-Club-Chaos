@@ -11,6 +11,7 @@ import { ShuffleTextModule } from "@/ui-modules/shuffleTextModule";
 import { ClickModule, DynamicClassModule, StyleModule } from "zois-core/ui-modules";
 import { TomeOfKnowledgeSubscreen } from "./dark-magic-subscreen/tomeOfKnowledgeSubscreen";
 import { atoms } from "@/modules/darkMagic";
+import { BasicsPage } from "./dark-magic-subscreen/tome-of-knowledge-pages/basics";
 
 export class DarkMagicSubscreen extends BaseSubscreen {
     get icon(): SVGElement {
@@ -73,8 +74,8 @@ export class DarkMagicSubscreen extends BaseSubscreen {
         });
 
         const radius = 210;
-        const centerX = 1350;
-        const centerY = 600;
+        const centerX = 1365;
+        const centerY = 615;
 
         this.createText({
             text: "Atoms Of Magic",

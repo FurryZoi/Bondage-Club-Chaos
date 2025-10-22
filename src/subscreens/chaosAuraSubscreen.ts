@@ -85,22 +85,14 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         y += 90;
 
         this.createCheckbox({
-            text: "Magic cast",
+            text: "Magic cast (WIP)",
             x: 140,
             y,
             isChecked: modStorage.chaosAura?.triggers?.magicCast,
+            isDisabled: () => true,
             onChange: () => this.turnTrigger("magicCast")
         });
         y += 90;
-
-        // this.createText({
-        //     x: 750,
-        //     y: 200,
-        //     text: "Chaos aura can protect you from any restraints and even LSCG spells, if retribution enabled then chaos aura will take revenge on those who will try to tie you up, chaos aura will ignore those who are in the ignore list if ignore list is enabled",
-        //     withBackground: true,
-        //     padding: 2,
-        //     width: 900,
-        // });
 
         this.createCheckbox({
             text: "Ignore items change if not restraint",
@@ -108,7 +100,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             y: 240,
             isChecked: modStorage.chaosAura?.ignoreItemsChangeIfNotRestraint,
             onChange: () => {
-                if (!modStorage.chaosAura) modStorage.chaosAura = {};
+                modStorage.chaosAura ??= {};
                 modStorage.chaosAura.ignoreItemsChangeIfNotRestraint = !modStorage.chaosAura.ignoreItemsChangeIfNotRestraint;
             }
         });
@@ -117,9 +109,14 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             title: "Whitelist",
             x: 750,
             y: 360,
-            value: [],
+            value: modStorage.chaosAura?.whiteList ?? [],
             width: 800,
-            height: 550
+            height: 550,
+            numbersOnly: true,
+            onChange: (value) => {
+                modStorage.chaosAura ??= {};
+                modStorage.chaosAura.whiteList = value as number[];
+            }
         });
 
         this.createCard({
@@ -130,7 +127,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             y: 60,
             modules: {
                 value: [
-                    new CounterUpModule({ duration: 1100, endValue: 100 })
+                    new CounterUpModule({ duration: 1100, endValue: modStorage.chaosAura?.triggersCount ?? 0 })
                 ]
             }
         })

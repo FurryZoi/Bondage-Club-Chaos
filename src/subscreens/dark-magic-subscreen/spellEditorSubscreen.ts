@@ -7,6 +7,7 @@ import { EffectSettingsSubscreen } from "./effectSettingsSubscreen";
 import { DarkMagicSubscreen } from "../darkMagicSubscreen";
 import { ClickModule } from "zois-core/ui-modules";
 import { getNickname } from "zois-core";
+import { MySpellsSubscreen } from "./mySpellsSubscreen";
 
 
 export class SpellEditorSubscreen extends BaseSubscreen {
@@ -171,12 +172,11 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                         this.effectAddElement.textContent = "Remove Effect";
                         effectButtonElement.setAttribute("data-zc-style", "green");
                     }
-                    // this.textElement.innerHTML = "Effects:" + this.addedEffects.map((e) => "<div>" + spellEffects[e].name + "</div>").join("");
                 }
             });
         }
         if (this.effectSettingsElement) {
-            this.effectSettingsElement.classList.toggle("zcDisabled", !spellEffects[this.selectedEffectId].parameters);
+            this.effectSettingsElement.classList.toggle("zcDisabled", spellEffects[this.selectedEffectId].parameters.length === 0);
         } else {
             this.effectSettingsElement = this.createButton({
                 text: "Settings",
@@ -186,7 +186,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                 padding: 2,
                 width: 365,
                 onClick: () => this.setSubscreen(new EffectSettingsSubscreen(this.selectedEffectId, this.spellSettings)),
-                isDisabled: () => !spellEffects[this.selectedEffectId].parameters
+                isDisabled: () => spellEffects[this.selectedEffectId].parameters.length === 0
             });
         }
     }
@@ -284,9 +284,9 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                         if (this.spellSettings.createdBy.id !== Player.MemberNumber) {
                             this.createText({
                                 anchor: "bottom-right",
-                                x: 325,
+                                x: 300,
                                 y: 115,
-                                width: 600,
+                                width: 565,
                                 color: "red",
                                 text: "Can't edit spells which were not created by you"
                             });
@@ -303,7 +303,6 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                 modStorage.darkMagic ??= {};
                                 modStorage.darkMagic.spells ??= [];
                                 const spell = modStorage.darkMagic.spells.find((s) => s.name === this._oldName);
-                                // console.log(this._oldName, spell, modStorage.darkMagic.spells);
                                 if (spell) {
                                     spell.name = this.spellSettings.name;
                                     spell.effects = this.spellSettings.effects;
@@ -377,7 +376,8 @@ export class SpellEditorSubscreen extends BaseSubscreen {
     }
 
     public exit(): void {
+        const s = this.previousSubscreen instanceof MySpellsSubscreen ? new MySpellsSubscreen() : new DarkMagicSubscreen();
         super.exit();
-        this.setSubscreen(new DarkMagicSubscreen());
+        this.setSubscreen(s);
     }
 }

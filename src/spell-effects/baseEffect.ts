@@ -40,12 +40,23 @@ export interface TriggerEvent {
     init: boolean
 }
 
-export interface RemoveEvent extends TriggerEvent { };
+export interface RemoveEvent {
+    sourceCharacter: Character
+    sourceSpellName: string | null
+    targetSpellName: string
+}
 
 export abstract class BaseEffect {
-    private removeHookCallbacks: (() => void)[] = [];
+    private removeCallbacks: Record<string, {
+        hooks: (() => void)[]
+        intervals: (() => void)[]
+    }> = {};
 
     get isInstant(): boolean {
+        return true;
+    }
+
+    get selfCastAllowed(): boolean {
         return true;
     }
 
@@ -73,7 +84,7 @@ export abstract class BaseEffect {
     }
 
     get parameters(): EffectParameter[] {
-        return null;
+        return [];
     }
 
     get isActive(): boolean {
@@ -106,12 +117,15 @@ export abstract class BaseEffect {
 
     public getParameter<T>(name: string, C: Character = Player): T {
         if (!this.isActiveOn(C)) return null;
-        const storage = C.IsPlayer() ? modStorage : C.BCC;
-        for (const spell of (storage?.darkMagic?.state?.spells ?? []).toReversed()) {
-            if (spell.effects?.includes(String.fromCharCode(this.id))) {
-                return spell.data?.[String.fromCharCode(this.id)]?.[name];
-            }
+        const spells = this.getSpellsWithEffect(C);
+        if (spells.length === 0) return null;
+        const parameter = this.parameters.find((p) => p.name === name);
+        let parameterValue = spells[0].data?.[String.fromCharCode(this.id)]?.[name] as T;
+        if (parameter) {
+            if (parameter.type === "boolean") parameterValue ??= false as T;
+            if (parameter.type === "choice") parameterValue ??= parameter.options[0].name as T;
         }
+        return parameterValue;
     }
 
     public setParameter(name: string, value: unknown, spellName: string) {
@@ -123,21 +137,33 @@ export abstract class BaseEffect {
         spell.data[String.fromCharCode(this.id)][name] = value;
     }
 
-    protected hookFunction(fnName, hookPriority, fn) {
+    protected hookFunction(event: TriggerEvent, fnName, hookPriority, fn) {
         const removeHook = hookFunction(fnName, hookPriority, fn);
-        this.removeHookCallbacks.push(removeHook);
+        this.removeCallbacks[event.spellName].hooks.push(removeHook);
     }
 
-    public trigger(_event: TriggerEvent) { }
+    protected setInterval(event: TriggerEvent, callback: () => void, ms: number): void {
+        const id = setInterval(callback, ms);
+        this.removeCallbacks[event.spellName].intervals.push(() => clearInterval(id));
+    }
 
-    public remove(_event: RemoveEvent, spellName: string, push: boolean = true) {
+    public trigger(event: TriggerEvent) {
+        this.removeCallbacks[event.spellName] = {
+            hooks: [],
+            intervals: []
+        };
+    }
+
+    public remove(event: RemoveEvent, push: boolean = true) {
         if (!this.isActive) return;
-        for (const cb of this.removeHookCallbacks) cb();
+        for (const cb of this.removeCallbacks[event.targetSpellName].hooks) cb();
+        for (const cb of this.removeCallbacks[event.targetSpellName].intervals) cb();
+        delete this.removeCallbacks[event.targetSpellName];
         const spells = modStorage.darkMagic.state.spells;
-        const spell = spells.find((s) => s.name === spellName);
+        const spell = spells.find((s) => s.name === event.targetSpellName);
         spell.effects = spell.effects.replaceAll(String.fromCharCode(this.id), "");
         if (spell.effects.length === 0) {
-            spells.splice(spells.findIndex((s) => s.name === spellName), 1);
+            spells.splice(spells.findIndex((s) => s.name === event.targetSpellName), 1);
         }
         if (push) syncStorage();
     }
@@ -148,7 +174,10 @@ export abstract class BaseEffect {
     } | {
         result: true
     } {
-        if (sourceCharacter.MemberNumber === targetCharacter.MemberNumber) return { result: true };
+        if (sourceCharacter.MemberNumber === targetCharacter.MemberNumber) {
+            if (!this.selfCastAllowed) return { result: false, reason: CastSpellRejectionReason.SELF_CAST_NOT_ALLOWED };
+            return { result: true };
+        }
         const effectsLimits = (targetCharacter.IsPlayer() ? modStorage : targetCharacter.BCC)?.darkMagic?.limits?.effects;
         const minimumRole = effectsLimits?.[String.fromCharCode(this.id)];
         switch (minimumRole) {

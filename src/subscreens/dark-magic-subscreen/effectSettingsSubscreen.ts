@@ -6,7 +6,7 @@ import type { ModStorage } from "@/modules/storage";
 
 export class EffectSettingsSubscreen extends BaseSubscreen {
     get name() {
-        return `Create Spell > ${spellEffects[this.effectId].name}'s Settings`;
+        return `Spell Editor > ${spellEffects[this.effectId].name}'s Settings`;
     }
 
     constructor(private readonly effectId: Effect, private spellSettings: ModStorage["darkMagic"]["spells"][0]) {
@@ -21,14 +21,17 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
 
     private getParameterValue<T>(name: string): T {
         this.spellSettings.data[String.fromCharCode(this.effectId)] ??= {};
-        return this.spellSettings.data[String.fromCharCode(this.effectId)][name];
+        return this.spellSettings.data[String.fromCharCode(this.effectId)][name] as T;
     }
 
     public load(): void {
         super.load();
 
         // Should not be called, but just in case
-        if (!spellEffects[this.effectId].parameters) return this.exit();
+        if (spellEffects[this.effectId].parameters.length === 0) {
+            this.exit();
+            return;
+        }
 
         let y = 200;
         for (const param of spellEffects[this.effectId].parameters) {
@@ -39,7 +42,8 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
                         y,
                         value: this.getParameterValue(param.name),
                         placeholder: param.label,
-                        width: 500,
+                        width: 800,
+                        padding: 2,
                         onChange: () => {
                             this.setParameter(param.name, textInput.value);
                         },
@@ -53,7 +57,8 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
                         y,
                         value: this.getParameterValue(param.name),
                         placeholder: param.label,
-                        width: 500,
+                        width: 800,
+                        padding: 2,
                         modules: {
                             base: [
                                 new AttributesModule({
@@ -86,7 +91,7 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
                         y,
                         options: param.options,
                         currentOption: this.getParameterValue(param.name) ?? param.options[0].name,
-                        width: 500,
+                        width: 800,
                         onChange: (name) => {
                             this.setParameter(param.name, name);
                         },

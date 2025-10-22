@@ -119,15 +119,12 @@ export function loadCheats(): void {
     });
 
     hookFunction("ExtendedItemLoad", HookPriority.OBSERVE, (args, next) => {
-        console.log(1);
         if (!modStorage.cheats?.showPadlocksPasswords) return next(args);
-        console.log(3);
         if (
             !DialogFocusSourceItem ||
             !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)
         ) return next(args);
         if (InventoryItemMiscPasswordPadlockIsSet()) {
-            console.log(2);
             waitFor(() => !!document.getElementById("Password"))
                 .then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
         }
@@ -136,12 +133,9 @@ export function loadCheats(): void {
 
     hookFunction("ChatRoomFocusCharacter", HookPriority.OBSERVE, (args, next) => {
         next(args);
-        console.log("Loaded 1")
         if (!modStorage.cheats?.allowActivities) return next(args);
-        console.log("Loaded 2")
         const C = CharacterGetCurrent();
         if (!C) return next(args);
-        console.log("Loaded 3")
         if (ServerChatRoomGetAllowItem(Player, C)) return next(args);
         if (C.HasOnBlacklist(Player)) {
             toastsManager.error({
@@ -152,15 +146,12 @@ export function loadCheats(): void {
             return next(args);
         }
         if (DialogMenuMode !== "dialog") return next(args);
-        console.log("Loaded")
-        setTimeout(() => DialogSetStatus("(You don's have access to use or remove items, but you can perform activities.)"), 1000);
-        console.log(C.CurrentDialog)
+        setTimeout(() => DialogSetStatus("(You don't have access to use or remove items, but you can perform activities.)"), 250);
     });
 
     hookFunction("DialogClick", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         next(args);
         if (!modStorage.cheats?.allowActivities) return;
-        console.log("Click");
         // CurrentCharacter instead of CharacterGetCurrent()
         const C = (MouseX < 500) ? Player : CurrentCharacter;
         if (!C) return;

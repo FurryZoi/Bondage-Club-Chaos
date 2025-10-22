@@ -1,13 +1,19 @@
 import { HookPriority } from "zois-core/modsApi";
-import { Atom, Effect, getSpellEffect } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent } from "./baseEffect";
+import { Atom, CastSpellRejectionReason, Effect, getSpellEffect } from "../modules/darkMagic";
+import { BaseEffect, RemoveEvent, TriggerEvent } from "./baseEffect";
 import { messagesManager } from "zois-core/messaging";
 import { AnimaFurtaMessageDto } from "@/dto/animaFurtaMessageDto";
 import { getPlayer } from "zois-core";
 
 
 export class AnimaFurtaEffect extends BaseEffect {
+    private removePacketListener: () => void;
+
     get isInstant(): boolean {
+        return false;
+    }
+
+    get selfCastAllowed(): boolean {
         return false;
     }
 
@@ -25,47 +31,64 @@ export class AnimaFurtaEffect extends BaseEffect {
 
     public getControllableCharacter(): Character {
         return ChatRoomCharacter.find((c) => {
-            return c.BCC && this.isActiveOn(c) && this.getSpellsWithEffect(c)[0].castedBy === Player.MemberNumber;
+            return c.BCC && this.isActiveOn(c) && this.getSpellsWithEffect(c)[0].castedBy.id === Player.MemberNumber;
         });
+    }
+
+    public canCast(_sourceCharacter: Character, targetCharacter: Character): {
+        result: false
+        reason: CastSpellRejectionReason
+    } | {
+        result: true
+    } {
+        if (this.isActiveOn(targetCharacter)) return { result: false, reason: CastSpellRejectionReason.CANT_CAST_AT_THIS_MOMENT };
+        return { result: true };
     }
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        console.log("event", event);
         if (event.init) {
-            this.hookFunction("ChatRoomLeave", HookPriority.OBSERVE, (args, next) => {
-                this.remove(event);
+            this.hookFunction(event, "ChatRoomLeave", HookPriority.OBSERVE, (args, next) => {
+                this.remove({
+                    sourceCharacter: event.sourceCharacter,
+                    sourceSpellName: null,
+                    targetSpellName: event.spellName
+                });
                 return next(args);
             });
 
-            this.hookFunction("ChatRoomListUpdate", HookPriority.OBSERVE, (args, next) => {
-                const [_, adding, memberNumber] = args as [number[], boolean, number];
-                if (!adding && memberNumber === event.sourceCharacter?.MemberNumber) this.remove(event);
+            this.hookFunction(event, "ChatRoomSyncMemberLeave", HookPriority.OBSERVE, (args, next) => {
+                const data = args[0];
+                if (data.SourceMemberNumber === event.sourceCharacter?.MemberNumber) {
+                    this.remove({
+                        sourceCharacter: event.sourceCharacter,
+                        sourceSpellName: null,
+                        targetSpellName: event.spellName
+                    });
+                }
                 return next(args);
             });
 
-            this.hookFunction("ChatRoomSendChat", HookPriority.OVERRIDE_BEHAVIOR, () => {
+            this.hookFunction(event, "ChatRoomSendChat", HookPriority.OVERRIDE_BEHAVIOR, () => {
                 return messagesManager.sendLocal("You lost control of yourself");
             });
 
-            this.hookFunction("Player.CanWalk", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("Player.CanChangeToPose", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("Player.CanChangeOwnClothes", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("PoseCanChangeUnaidedStatus", HookPriority.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
-            this.hookFunction("ChatRoomCanAttemptStand", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("ChatRoomCanAttemptKneel", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("Player.CanInteract", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("InventoryGroupIsBlockedForCharacter", HookPriority.OVERRIDE_BEHAVIOR, () => true);
-            this.hookFunction("DialogClickExpressionMenu", HookPriority.OVERRIDE_BEHAVIOR, () => false);
-            this.hookFunction("ChatRoomMapViewMove", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "Player.CanWalk", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "Player.CanChangeToPose", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "Player.CanChangeOwnClothes", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "PoseCanChangeUnaidedStatus", HookPriority.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
+            this.hookFunction(event, "ChatRoomCanAttemptStand", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "ChatRoomCanAttemptKneel", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "Player.CanInteract", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "InventoryGroupIsBlockedForCharacter", HookPriority.OVERRIDE_BEHAVIOR, () => true);
+            this.hookFunction(event, "DialogClickExpressionMenu", HookPriority.OVERRIDE_BEHAVIOR, () => false);
+            this.hookFunction(event, "ChatRoomMapViewMove", HookPriority.OVERRIDE_BEHAVIOR, () => false);
 
-            messagesManager.onPacket("animaFurtaCommand", AnimaFurtaMessageDto, (data: AnimaFurtaMessageDto, sender) => {
-                console.log(data)
+            this.removePacketListener = messagesManager.onPacket("animaFurtaCommand", AnimaFurtaMessageDto, (data: AnimaFurtaMessageDto, sender) => {
                 if (!sender.BCC) return;
                 if (
                     !getSpellEffect(Effect.ANIMA_FURTA).isActive
                 ) return;
-                console.log(data)
                 if (data.name === "toggleKneel") {
                     const Dictionary = new DictionaryBuilder()
                         .sourceCharacter(Player)
@@ -107,7 +130,16 @@ export class AnimaFurtaEffect extends BaseEffect {
                 }
             });
         } else {
-            this.remove(event);
+            this.remove({
+                sourceCharacter: event.sourceCharacter,
+                sourceSpellName: null,
+                targetSpellName: event.spellName
+            }, false);
         }
+    }
+
+    public remove(event: RemoveEvent, push?: boolean): void {
+        super.remove(event, push);
+        this.removePacketListener?.();
     }
 }

@@ -78,7 +78,7 @@ export class VocisAlteratioEffect extends BaseEffect {
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        this.hookFunction("ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        this.hookFunction(event, "ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];
             const params = args[1];
             const speechType = this.getParameter<"puppy" | "kitty" | "bunny" | "baby" | "cow">("speechType");
@@ -99,7 +99,7 @@ export class VocisAlteratioEffect extends BaseEffect {
                     }
                     if (speechType === "bunny") {
                         params.Content = garbleSpeech(params.Content, [
-                            "скви"
+                            "eep", "huf", "huff", "hufff", "thump"
                         ]);
                     }
                     if (speechType === "baby") {

@@ -27,7 +27,7 @@ export class NomenFraudisEffect extends BaseEffect {
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        this.hookFunction("ChatRoomMessage", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        this.hookFunction(event, "ChatRoomMessage", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];
             const sender = getPlayer(message.Sender);
             if (!sender) return next(args);

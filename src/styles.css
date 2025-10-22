@@ -125,7 +125,7 @@
   padding: 0.5em 0;
 }
 
-.horror-tentacle-button {
+/* .horror-tentacle-button {
   position: relative;
   padding: 1.25em 2.5em;
   background: linear-gradient(145deg, #0c0c0c, #1a1a1a);
@@ -145,7 +145,7 @@
 .horror-tentacle-button:hover {
   background: linear-gradient(145deg, #1a1a1a, #0c0c0c);
   box-shadow: 0 0 1.875em rgba(0, 173, 181, 0.5);
-}
+} */
 
 .tentacle-horror {
   position: absolute;
@@ -164,7 +164,7 @@
   position: relative;
   width: 0.75em;
   height: 0.1875em;
-  background: linear-gradient(to left, #00adb5, #007780);
+  background: linear-gradient(to left, var(--tmd-text, #00adb5), var(--tmd-text, #007780));
   border-radius: 0.125em;
   opacity: 0.9;
   animation: tentacleWriggle 4s ease-in-out infinite;
@@ -179,10 +179,10 @@
   transform: translateY(-50%);
   width: 0.25em;
   height: 0.25em;
-  background: linear-gradient(45deg, #007780, #00565c);
+  background: linear-gradient(45deg, var(--tmd-text, #007780), var(--tmd-text, #00565c));
   border-radius: 50%;
-  border: 0.0625em solid #00adb5;
-  box-shadow: 0 0 0.1875em rgba(0, 173, 181, 0.8);
+  border: 0.0625em solid var(--tmd-accent, #00adb5);
+  box-shadow: 0 0 0.1875em var(--tmd-text, rgba(0, 173, 181, 0.8));
 }
 
 .tentacle::after {
@@ -193,7 +193,7 @@
   transform: translateY(-50%);
   width: 0.375em;
   height: 0.375em;
-  background: #00565c;
+  background: var(--tmd-text, #00565c);
   border-radius: 50% 50% 0 50%;
   clip-path: polygon(0 0, 100% 50%, 0 100%);
   opacity: 0.8;
@@ -224,7 +224,7 @@
 
 .tentacle-detail {
   position: absolute;
-  background: rgba(0, 173, 181, 0.3);
+  background: var(--tmd-text, rgba(0, 173, 181, 0.3));
   border-radius: 0.0625em;
   animation: detailPulse 3s ease-in-out infinite;
 }
@@ -247,9 +247,9 @@
 
 .tentacle-particle {
   position: absolute;
-  width: 0.0625em;
-  height: 0.0625em;
-  background: #00adb5;
+  width: 0.0825em;
+  height: 0.0825em;
+  background: var(--tmd-text, #00adb5);
   border-radius: 50%;
   animation: particleFloat 5s ease-in-out infinite;
   opacity: 0;

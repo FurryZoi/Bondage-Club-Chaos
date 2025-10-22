@@ -1,4 +1,23 @@
-import { IsIn, IsNumber, IsObject, IsString, ValidateIf, ValidateNested, Type } from "zois-core/validation";
+import { IsIn, IsNumber, IsObject, IsString, ValidateIf, ValidateNested, Type, registerDecorator, ValidationArguments, ValidationOptions } from "zois-core/validation";
+
+function ValidateCustom(validator: (object: ValidationArguments["object"]) => boolean, validationOptions?: ValidationOptions) {
+    return (object: Object, propertyName: string) => {
+        registerDecorator({
+            name: 'validateCustom',
+            target: object.constructor,
+            propertyName: propertyName,
+            options: validationOptions,
+            validator: {
+                validate(value: any, args: ValidationArguments) {
+                    return validator(args.object);
+                },
+                defaultMessage(args: ValidationArguments) {
+                    return "Params error";
+                }
+            },
+        });
+    };
+}
 
 class PosDto {
     @IsNumber()
@@ -14,20 +33,21 @@ export class AnimaFurtaMessageDto {
     public name: "toggleKneel" | "changeAppearance" | "publishAction" | "sendMessage" | "mapMove";
 
     @IsNumber()
-    @ValidateIf((o) => o.name === "changeAppearance")
+    @ValidateIf((o: AnimaFurtaMessageDto) => o.name === "changeAppearance")
     public target: number;
 
-    @ValidateIf((o) => o.name === "changeAppearance")
+    @ValidateIf((o: AnimaFurtaMessageDto) => o.name === "changeAppearance")
     public appearance: ServerItemBundle[];
 
-    @ValidateIf((o) => o.name === "publishAction")
+    @ValidateIf((o: AnimaFurtaMessageDto) => o.name === "publishAction")
     public params: unknown;
 
-    @ValidateIf((o) => o.name === "sendMessage")
+    @ValidateIf((o: AnimaFurtaMessageDto) => o.name === "sendMessage")
     @IsString()
+    @ValidateCustom((o: AnimaFurtaMessageDto) => !o.message.startsWith("("))
     public message: string;
 
-    @ValidateIf((o) => o.name === "mapMove")
+    @ValidateIf((o: AnimaFurtaMessageDto) => o.name === "mapMove")
     @ValidateNested()
     @Type(() => PosDto)
     public pos: PosDto;

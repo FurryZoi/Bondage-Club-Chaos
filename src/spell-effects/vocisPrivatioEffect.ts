@@ -14,7 +14,7 @@ export class VocisPrivatioEffect extends BaseEffect {
     }
 
     get atoms(): Atom[] {
-        return [Atom.IGNIS, Atom.RATIO];
+        return [Atom.RATIO];
     }
 
     get description(): string {
@@ -23,7 +23,7 @@ export class VocisPrivatioEffect extends BaseEffect {
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        this.hookFunction("ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        this.hookFunction(event, "ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];
             const params = args[1];
 

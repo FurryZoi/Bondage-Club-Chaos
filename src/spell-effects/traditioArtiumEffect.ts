@@ -10,7 +10,7 @@ export class TraditioArtiumEffect extends BaseEffect {
     }
 
     get atoms(): Atom[] {
-        return [Atom.IGNIS];
+        return [Atom.LUX];
     }
 
     get description(): string {
@@ -31,7 +31,6 @@ export class TraditioArtiumEffect extends BaseEffect {
                 list: spells.map((s) => ({text: s.name, value: s})),
             }
         }) as ModStorage["darkMagic"]["spells"][0][];
-        console.log("Result", result);
         modStorage.darkMagic ??= {};
         modStorage.darkMagic.spells ??= [];
         modStorage.darkMagic.spells.push(...result);

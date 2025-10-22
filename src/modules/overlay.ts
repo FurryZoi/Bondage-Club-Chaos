@@ -1,6 +1,7 @@
 import { callOriginal, hookFunction, HookPriority } from "zois-core/modsApi";
 import { type ModStorage, modStorage } from "./storage";
 import { getSpellIcon } from "./darkMagic";
+import { getThemedColorsModule } from "zois-core";
 
 export function loadOverlay(): void {
     hookFunction(
@@ -20,38 +21,45 @@ export function loadOverlay(): void {
                 bccData = C.BCC;
             }
 
-            // if (visorMode === visorsModes.aura) processEssencesAura(C, CharX, CharY, Zoom);
-
-            const displayTitles: string = "show";
+            const versionText = modStorage.overlay?.versionText ?? 2;
+            const effectsIcons = modStorage.overlay?.effectsIcons ?? 2;
 
             if (
                 (
                     MouseHovering(CharX, CharY, 500 * Zoom, 1000 * Zoom) &&
-                    displayTitles === "show on hover"
+                    versionText === 1
                 ) ||
-                displayTitles === "show"
+                versionText === 2
             ) {
                 DrawTextFit(
                     `BCC v${bccData?.version}`,
                     CharX + 250 * Zoom,
-                    CharY + 50 * Zoom,
+                    CharY + 60 * Zoom,
                     140 * Zoom,
-                    "#8337ff"
+                    "Black"
                 );
             }
 
-            let spellIconY = 200;
-            for (const spell of bccData?.darkMagic?.state?.spells ?? []) {
-                DrawCircle(CharX + 400 * Zoom, CharY + spellIconY * Zoom, 20 * Zoom, 2, "#c4b2e2ff", "#e6d6ffff");
-                DrawImageResize(getSpellIcon(spell.icon).dataurl, CharX + 400 * Zoom - 12 * Zoom, CharY + spellIconY * Zoom - 12 * Zoom, 25 * Zoom, 25 * Zoom);
-                if (MouseIn(CharX + 400 * Zoom - 20 * Zoom, CharY + spellIconY * Zoom - 20 * Zoom, 40 * Zoom, 40 * Zoom)) {
-                    DrawRect(CharX + 400 * Zoom - 100 * Zoom - 75 * Zoom, CharY + spellIconY * Zoom - 15 * Zoom, 150 * Zoom, 100 * Zoom, "#e6d6ffff");
-                    DrawTextFit(spell.name, CharX + 400 * Zoom - 100 * Zoom, CharY + 10 * Zoom + spellIconY * Zoom, 150 * Zoom, "Black");
-                    DrawTextFit(`Casted by: ${spell.castedBy?.name} (${spell.castedBy?.id})`, CharX + 400 * Zoom - 100 * Zoom, CharY + 40 * Zoom + spellIconY * Zoom, 150 * Zoom, "Black");
-                    DrawTextFit(`Created by: ${spell.createdBy?.name} (${spell.createdBy?.id})`, CharX + 400 * Zoom - 100 * Zoom, CharY + 70 * Zoom + spellIconY * Zoom, 150 * Zoom, "Black");
+            if (
+                (
+                    MouseHovering(CharX, CharY, 500 * Zoom, 1000 * Zoom) &&
+                    effectsIcons === 1
+                ) ||
+                effectsIcons === 2
+            ) {
+                let spellIconY = 200;
+                for (const spell of bccData?.darkMagic?.state?.spells ?? []) {
+                    DrawCircle(CharX + 400 * Zoom, CharY + spellIconY * Zoom, 20 * Zoom, 2, "#c4b2e2ff", "#e6d6ffff");
+                    DrawImageResize(getSpellIcon(spell.icon).dataurl, CharX + 400 * Zoom - 12 * Zoom, CharY + spellIconY * Zoom - 12 * Zoom, 25 * Zoom, 25 * Zoom);
+                    if (MouseIn(CharX + 400 * Zoom - 20 * Zoom, CharY + spellIconY * Zoom - 20 * Zoom, 40 * Zoom, 40 * Zoom)) {
+                        DrawRect(CharX + 200 * Zoom - 75 * Zoom, CharY + spellIconY * Zoom - 10 * Zoom, 240 * Zoom, 100 * Zoom, getThemedColorsModule()?.base?.element ?? "#e6d6ffff");
+                        callOriginal("DrawTextFit", [spell.name, CharX + 240 * Zoom, CharY + 10 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+                        callOriginal("DrawTextFit", [`Casted by: ${spell.castedBy?.name} (${spell.castedBy?.id})`, CharX + 240 * Zoom, CharY + 40 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+                        callOriginal("DrawTextFit", [`Created by: ${spell.createdBy?.name} (${spell.createdBy?.id})`, CharX + 240 * Zoom, CharY + 70 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+                    }
+                    spellIconY += 45;
+                    if (spellIconY >= 700) break;
                 }
-                spellIconY += 45;
-                if (spellIconY >= 700) break;
             }
         }
     );

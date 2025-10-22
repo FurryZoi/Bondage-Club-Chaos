@@ -11,7 +11,7 @@ export class VisioInversioEffect extends BaseEffect {
     }
 
     get atoms(): Atom[] {
-        return [Atom.LUX];
+        return [Atom.RATIO, Atom.MATERIA];
     }
 
     get description(): string {

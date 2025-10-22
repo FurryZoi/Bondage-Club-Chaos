@@ -2,8 +2,10 @@ import { version } from "@/../package.json";
 import type { Effect, MinimumRole, SpellIcon } from "./darkMagic";
 import { messagesManager } from "zois-core/messaging";
 import { SyncStorageMessageData } from "@/types/messages";
+import { removeQuickMenu } from "./quickAccessMenu";
+import { waitFor } from "zois-core";
 
-export let modStorage: ModStorage = { version: "" };
+export let modStorage: ModStorage = { version };
 
 export interface ModStorage {
     // Quick Access Menu
@@ -11,26 +13,27 @@ export interface ModStorage {
         enabled?: boolean
         enabledFeatures?: string
         cloneBackup?: {
-            nickName: string,
-            labelColor: string,
+            nickName: string
+            labelColor: string
             emoticon: {
-                expression: ExpressionName,
+                expression: ExpressionName
                 color: string
             },
             blush: {
                 expression: ExpressionName
             },
-            appearance: string,
+            appearance: string
             activePose: AssetPoseName[]
         }
+    },
+    overlay?: {
+        effectsIcons?: 0 | 1 | 2
+        versionText?: 0 | 1 | 2
     }
     chaosAura?: {
         enabled?: boolean
         retribution?: boolean
-        whiteList?: {
-            enabled?: boolean
-            value?: number[]
-        }
+        whiteList?: number[]
         triggers?: {
             itemsChange?: boolean
             clothesChange?: boolean
@@ -54,7 +57,7 @@ export interface ModStorage {
             name: string
             icon: SpellIcon
             effects: string
-            data?: Record<string, unknown>
+            data?: Record<string, Record<string, unknown>>
             createdBy: {
                 name: string
                 id: number
@@ -75,7 +78,15 @@ export function loadStorage(): void {
         modStorage = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.BCC)) ?? { version };
     } else modStorage = { version };
     if (!modStorage.version) modStorage.version = version;
-    if (modStorage.version === "1.8.7") modStorage = { version };
+    // Legacy BCC
+    if (modStorage.version === "1.8.7") {
+        modStorage = { version };
+        const legacyData = LZString.decompressFromBase64(Player.ExtensionSettings.BCC);
+        waitFor(() => !!document.getElementById("TextAreaChatLog")).then(() => {
+            messagesManager.sendLocal("Legacy BCC Data: " + legacyData);
+            messagesManager.sendLocal("I get a lot of legacy BCC's error reports, so I decided to release new version sooner than necessary. Most of the functions was migrated, and those that I did not manage to migrate will be added later.");
+        });
+    }
     syncStorage();
     messagesManager.onPacket("syncStorage", (data: SyncStorageMessageData, sender) => {
         if (!sender.BCC) {
@@ -97,6 +108,7 @@ export function syncStorage(): void {
 }
 
 export function resetStorage(): void {
+    removeQuickMenu();
     modStorage = {
         version
     };

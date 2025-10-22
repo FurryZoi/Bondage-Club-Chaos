@@ -13,7 +13,7 @@ export class SpatiumTransitusEffect extends BaseEffect {
     }
 
     get atoms(): Atom[] {
-        return [Atom.RATIO];
+        return [Atom.NOX, Atom.MOTUS];
     }
 
     get icon(): SVGElement {
@@ -32,12 +32,12 @@ export class SpatiumTransitusEffect extends BaseEffect {
                 label: "Lobby",
                 options: [
                     {
-                        name: "classic",
-                        text: "Classic"
-                    },
-                    {
                         name: "extended",
                         text: "Extended (Recommened)"
+                    },
+                    {
+                        name: "classic",
+                        text: "Classic"
                     }
                 ]
             },
@@ -56,10 +56,9 @@ export class SpatiumTransitusEffect extends BaseEffect {
 
     public trigger(event: TriggerEvent): void {
         super.trigger(event);
-        const roomName = event.data.roomName;
+        const roomName = event.data.roomName.trim();
         const isPrivate = event.data.isPrivate;
         const space = event.data.lobby;
-        if (!roomName?.trim()) return;
         ChatRoomLeave();
         CommonSetScreen("Online", "ChatSearch");
         ChatSearchLastQueryJoinTime = CommonTime();
