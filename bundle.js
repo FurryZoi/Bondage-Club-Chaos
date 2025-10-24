@@ -22977,10 +22977,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/index.ts
   var import_reflect_metadata = __toESM(require_Reflect());
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/styles.css
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/styles.css
   var styles_default = '*{margin:0;padding:0;box-sizing:border-box}.zcButton{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcButton:hover{background:var(--tmd-element-hover, #ebf7fe);border-color:var(--tmd-accent-hover, #7dd3fc);color:var(--tmd-accent-hover, #015a8c)}.zcButton .tooltip{position:absolute;color:#000;text-align:center;padding:4px;border-radius:4px;background:#ff8;border:2px solid #e7e787;width:max-content;min-height:100%;visibility:hidden;z-index:10}.zcButton .tooltip[position=left]{right:calc(100% + 1vw)}.zcButton .tooltip[position=right]{left:calc(100% + 1vw)}.zcButton:hover .tooltip{visibility:visible}.zcButton[data-zc-style=green]{background:#7cff7c;border-color:#52cc52;color:#000}.zcButton[data-zc-style=green]:hover{background:#5ec55e;color:#000}.zcButton[data-zc-style=inverted]{background:var(--tmd-accent, #303030);border:none;color:var(--tmd-text, white)}.zcButton[data-zc-style=inverted]:hover{background:var(--tmd-accent-hover, #474747)}.zcInput{background:var(--tmd-element, white);color:var(--tmd-text, black);padding:2vw;border:2px solid var(--tmd-accent, black);border-radius:4px}.zcInput::placeholder{color:var(--tmd-text, black)}.zcBackNextButton{display:flex;column-gap:2vw;justify-content:center;align-items:center;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcBackNextButton-btnDisabled{background:#ffa590;pointer-events:none}.zcTabs{display:flex}.zcTabs button{cursor:pointer;width:100%;color:var(--tmd-text, black);background:none;border:none;border-bottom:2px solid var(--tmd-element, rgb(214, 214, 214));padding:.25em}.zcTabs button[data-opened=true]{font-weight:700;border-bottom:2px solid var(--tmd-accent, rgb(81, 81, 231))!important}.zcTabs button:hover{background:var(--tmd-element, rgb(235, 235, 235));border-bottom:2px solid var(--tmd-element-hover, rgb(149, 149, 149))}.zcCard{border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;background:var(--tmd-element, white);color:var(--tmd-text, black);padding:.4em 2.5em .4em .4em}.zcCard:hover{border:2px solid var(--tmd-accent-hover, rgb(170, 170, 170))}.zcCard_name{font-size:.5em;color:var(--tmd-text, rgb(100, 100, 100))}.zcCard_value{color:var(--tmd-text, black);margin-top:.4em;font-weight:700}.zcSelect{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;padding:.45em;z-index:10}.zcSelect[opened=true]{border-color:var(--tmd-accent-hover, rgb(0, 96, 223))}.zcSelect[opened=false]:hover{border-color:var(--tmd-accent-hover, rgb(170, 170, 170))}.zcSelect>svg{position:absolute;right:.45em;top:50%;transform:translateY(-50%);width:1.5em;height:1.5em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div[data-zc-position=bottom]{position:absolute;top:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div[data-zc-position=top]{position:absolute;bottom:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6ed);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div>div{color:var(--tmd-text, black);width:100%;padding:.45em;border-radius:.25em}.zcSelect>div>div>svg{width:1.25em;height:1.25em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div>div:hover{background:var(--tmd-element-hover, #ededed)}.zcToastsContainer{display:flex;flex-direction:column;gap:.25vw;cursor:pointer;position:fixed;z-index:10}@keyframes zcToast-progress{0%{width:0}to{width:100%}}@keyframes zcSlideInFromLeft{0%{transform:translate(-100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes zcSlideOutToLeft{0%{transform:translate(0);opacity:1}to{transform:translate(-100%);opacity:0}}.zcToast{max-width:25vw;animation:zcSlideInFromLeft .3s ease-out forwards}.zcToast.exiting{animation:zcSlideOutToLeft .3s ease-out forwards}.zcToast p{color:#fff}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn:before{content:"";position:absolute;left:1vw;top:50%;transform:translateY(-50%);border:2px solid white;width:.5em;aspect-ratio:1/1;border-radius:50%}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn[data-zc-picked=true]:before{background:#fff}.zcDialogBtn{cursor:pointer;background:#ffffff17;border:none;font-size:clamp(6px,2vw,24px);color:#fff;padding:.2em;border-radius:.5em}.zcDialogBtn:hover{background:#ffffff24}@keyframes zcSpin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes zcCursorBlink{0%{border-right-color:transparent}to{border-right-color:#2a2a2a}}.zcCursor{border-right:2px solid var(--tmd-text, rgb(42, 42, 42));width:fit-content}.zcDisabled{pointer-events:none;opacity:.6}\n';
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/modsApi.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modsApi.js
   var import_bondage_club_mod_sdk = __toESM(require_bcmodsdk());
 
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/defaultAttributes.js
@@ -23317,7 +23317,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     ["path", { d: "M12.2 6.2 11 5" }]
   ];
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/modules.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modules.js
   var r = class {
     overrideProperties(e2, t4) {
       return e2;
@@ -23328,14 +23328,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/centerModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/centerModule.js
   var l = class extends r {
     overrideProperties(e2) {
       return e2.element.style.cssText += "transform: translate(-50%, -50%);", e2.x = 1e3, e2.y = 500, e2;
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/counterUpModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/counterUpModule.js
   function f(n5, a5, r5, e2) {
     if (!n5) throw new Error("Element not found");
     let s4 = 0, o4, t4;
@@ -23358,7 +23358,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/typeModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/typeModule.js
   function l2(e2, o4) {
     if (!e2) throw new Error("Element not found");
     const t4 = e2.textContent;
@@ -23383,7 +23383,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/styleModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/styleModule.js
   var y = class extends r {
     constructor(o4) {
       super();
@@ -23397,7 +23397,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/dynamicClassModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/dynamicClassModule.js
   var i = class extends r {
     constructor(t4) {
       super();
@@ -23408,7 +23408,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/attributesModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/attributesModule.js
   var c = class extends r {
     constructor(e2) {
       super();
@@ -23419,7 +23419,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui-modules/clickModule.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/clickModule.js
   var i2 = class extends r {
     constructor(t4) {
       super();
@@ -23430,7 +23430,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/ui.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui.js
   function N(g5) {
     return g5 * (MainCanvas.canvas.clientHeight / 1e3);
   }
@@ -23616,12 +23616,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const v3 = document.createElement("input");
       v3.style.cssText = "border: none; outline: none; background: none; height: fit-content; flex-grow: 1; padding: 0.8vw; width: 6vw; font-size: clamp(8px, 2vw, 20px);";
       const y5 = (x6, E4) => {
-        const w5 = this.createButton({ icon: x6, place: false, onClick: E4, style: "default", modules: { icon: [new y({ width: "70%", height: "70%" })] } });
-        w5.style.width = "2em", w5.style.aspectRatio = "1/1", p4.append(w5);
+        const w4 = this.createButton({ icon: x6, place: false, onClick: E4, style: "default", modules: { icon: [new y({ width: "70%", height: "70%" })] } });
+        w4.style.width = "2em", w4.style.aspectRatio = "1/1", p4.append(w4);
       }, L4 = (x6) => {
         const E4 = document.createElement("div");
-        E4.style.cssText = "cursor: pointer; background: var(--tmd-element-hover, rgb(206, 206, 206)); color: var(--tmd-text, black); height: fit-content; padding: 0.8vw; border-radius: 0.8vw; font-size: clamp(8px, 2vw, 20px);", E4.textContent = x6, b3.insertBefore(E4, v3), E4.addEventListener("click", (w5) => {
-          E4.style.border === "" ? E4.style.border = "2px solid red" : E4.style.border = "", w5.stopPropagation();
+        E4.style.cssText = "cursor: pointer; background: var(--tmd-element-hover, rgb(206, 206, 206)); color: var(--tmd-text, black); height: fit-content; padding: 0.8vw; border-radius: 0.8vw; font-size: clamp(8px, 2vw, 20px);", E4.textContent = x6, b3.insertBefore(E4, v3), E4.addEventListener("click", (w4) => {
+          E4.style.border === "" ? E4.style.border = "2px solid red" : E4.style.border = "", w4.stopPropagation();
         }), n5.push(x6);
       };
       return y5(createElement(CircleX), () => {
@@ -23739,7 +23739,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var T = {};
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/modsApi.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modsApi.js
   var a = ((o4) => (o4[o4.OBSERVE = 0] = "OBSERVE", o4[o4.ADD_BEHAVIOR = 1] = "ADD_BEHAVIOR", o4[o4.MODIFY_BEHAVIOR = 5] = "MODIFY_BEHAVIOR", o4[o4.OVERRIDE_BEHAVIOR = 10] = "OVERRIDE_BEHAVIOR", o4[o4.TOP = 100] = "TOP", o4))(a || {});
   var t;
   function h() {
@@ -23761,7 +23761,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return !!import_bondage_club_mod_sdk.default.getModsInfo().find((n5) => n5.name === e2);
   }
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/popups.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/popups.js
   var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
@@ -23929,7 +23929,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   ];
   var Info = createLucideIcon("info", __iconNode4);
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/popups.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/popups.js
   var import_jsx_runtime = __toESM(require_jsx_runtime());
   function I2({ children: o4 }) {
     const [e2, t4] = (0, import_react4.useState)({}), r5 = window.ZOISCORE.useToastsStore((s4) => s4.clearToasts);
@@ -24050,7 +24050,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var Q2 = new F();
   var ee2 = new N2();
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/index.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/index.js
   var m;
   function C(e2) {
     if (!window.ZOISCORE) {
@@ -24072,7 +24072,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function h2(e2, t4) {
     return e2 = Math.ceil(e2), t4 = Math.floor(t4), Math.floor(Math.random() * (t4 - e2 + 1)) + e2;
   }
-  function w2(e2) {
+  function D3(e2) {
     return typeof e2 == "string" ? Math.round(new TextEncoder().encode(e2).byteLength / 100) / 10 : Math.round(new TextEncoder().encode(JSON.stringify(e2)).byteLength / 100) / 10;
   }
   function T2(e2) {
@@ -24091,7 +24091,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     t4.innerHTML = e2, document.head.append(t4);
   }
   function P2(e2) {
-    p(() => typeof Player.MemberNumber == "number").then(() => setTimeout(e2, h2(3e3, 6e3)));
+    p(() => typeof window.Player?.MemberNumber == "number").then(() => setTimeout(e2, h2(3e3, 6e3)));
   }
 
   // src/styles.css
@@ -26423,7 +26423,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/validation.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/validation.js
   async function c4(e2, t4) {
     try {
       const r5 = plainToInstance(t4, e2), a5 = await validate(r5);
@@ -26433,7 +26433,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/messaging.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/messaging.js
   var q2 = class {
     sendBeep(n5, e2) {
       const u4 = { IsSecret: true, BeepType: "Leash", MemberNumber: e2, Message: JSON.stringify({ ...n5 }) };
@@ -26542,7 +26542,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/assets/game-icons/mouthWatering.svg
   var mouthWatering_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M87.75 30.72c-5.104.03-10.333.31-15.72.874c5.062 68.606 43.873 95.378 127.75 66.25c-26.35-43.13-62.692-67.418-112.03-67.125zm343.906 0c-49.338-.294-85.65 23.993-112 67.124c83.878 29.128 122.69 2.356 127.75-66.25a161 161 0 0 0-15.75-.875zM13.844 146.437c-.826 4.546-1.156 9.206-1.156 13.875c0 46.09 41.19 86.706 104.124 111.062c23.478 13.02 30.98 83.94 19.688 117.156c-2.47 7.262-12.906 26.75-12.906 35.626c0 12.032 9.75 21.97 21.78 21.97c12.033 0 21.75-9.938 21.75-21.97c0-8.93-11.05-28.19-13.093-35.625c-8.77-31.912-10.39-102.854 18.157-101.186c25.43 5.13 52.85 7.945 81.438 8h.094c19.003 1.767 24.585 30.437 15.843 56.156c-1.87 5.496-9.405 20.092-9.407 26.813c0 9.108 7.36 16.468 16.47 16.468c9.108 0 16.468-7.36 16.468-16.467c0-6.762-8.328-21.184-9.875-26.813c-5.86-26.52-4.616-39.726 12.81-41.656c19.96-2.21 28.955 77.376 17.283 111.72c-3.103 9.124-16 34-16 45.155a27.21 27.21 0 0 0 27.28 27.28a27.216 27.216 0 0 0 27.282-27.28c0-11.226-13.9-35.817-16.47-45.158c-11.062-40.25-6.928-130.344 18.533-138.093c.02-.008.04-.026.062-.033c.387-.097.77-.182 1.156-.28c.013-.01.02-.023.03-.032c2.284-.584 4.54-1.19 6.783-1.813c52.234-11.767 35.948 18 56.06 18c16.277 0 5.717-34.745 31.314-59.03c29.47-22.375 46.906-50.01 46.906-79.97c0-4.668-.36-9.328-1.188-13.875c-13.076 54.687-115.864 96.438-240.593 96.438c-124.73 0-227.55-41.75-240.626-96.438zM418 341.938c-12.01 0-21.75 9.74-21.75 21.75s9.74 21.718 21.75 21.718s21.72-9.71 21.72-21.72c0-12.008-9.71-21.748-21.72-21.748"/></svg>';
 
-  // node_modules/.pnpm/zois-core@1.1.6/node_modules/zois-core/dist/wardrobe.js
+  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/wardrobe.js
   function n(e2) {
     const s4 = AssetGroup.includes(e2) ? e2 : Asset.includes(e2) ? e2.Group : e2.Asset.Group;
     if (!AssetGroup.includes(s4)) throw new Error("Failed to convert item to group");
@@ -27466,7 +27466,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             case "text":
               if (!isString(parameterValue)) return false;
               if (parameterValue.trim() === "") return false;
-              if (w2(parameterValue) > 5) return false;
+              if (D3(parameterValue) > 5) return false;
               break;
             case "choice":
               if (!isString(parameterValue)) return false;
@@ -32049,18 +32049,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return { get: (t4, r5) => _P.get(`${e2}.${t4}`, r5), getMayOverride: (t4, r5) => _P.getMayOverride(`${e2}.${t4}`, r5), set: (t4, r5) => _P.set(`${e2}.${t4}`, r5), has: (t4) => _P.has(`${e2}.${t4}`), delete: (t4) => _P.delete(`${e2}.${t4}`) };
     }
   };
-  function w3(e2) {
+  function w2(e2) {
     return new Promise((t4) => setTimeout(t4, e2));
   }
   function M3(e2, t4 = 100) {
     return (async () => {
-      for (; !e2(); ) await w3(t4);
+      for (; !e2(); ) await w2(t4);
     })();
   }
   P3._namespace = "__BC_LUZI_GLOBALS__", P3.createNamespace("OnceFlag");
-  var D3;
+  var D4;
   var b = { exports: {} };
-  var F2 = (D3 || (D3 = 1, (function(e2) {
+  var F2 = (D4 || (D4 = 1, (function(e2) {
     var t4 = Object.prototype.hasOwnProperty, r5 = "~";
     function n5() {
     }
@@ -32407,8 +32407,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return O4 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t4, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
   }
   var C3;
-  var D4;
-  var w4;
+  var D5;
+  var w3;
   var F3;
   var P4;
   var G3;
@@ -32436,10 +32436,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     if (M4) return G3;
     M4 = 1;
     const t4 = S4(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i8 } = T4(), { safeRe: r5, t: s4 } = j3(), n5 = (function() {
-      if (w4) return D4;
-      w4 = 1;
+      if (w3) return D5;
+      w3 = 1;
       const t5 = Object.freeze({ loose: true }), e3 = Object.freeze({});
-      return D4 = (i9) => i9 ? "object" != typeof i9 ? t5 : i9 : e3;
+      return D5 = (i9) => i9 ? "object" != typeof i9 ? t5 : i9 : e3;
     })(), { compareIdentifiers: a5 } = (function() {
       if (P4) return F3;
       P4 = 1;
