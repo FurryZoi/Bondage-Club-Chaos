@@ -27,6 +27,6 @@
     "@sugarch/bc-mod-hook-manager": "^0.3.1",
     "lucide": "^0.541.0",
     "reflect-metadata": "^0.2.2",
-    "zois-core": "^1.1.6"
+    "zois-core": "^1.1.7"
   }
 }
