@@ -23880,10 +23880,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
   resize: both;
   width: 95%;
   max-width: 1250px;
-  min-width: 605px;
+  min-width: 360px;
   height: 80%;
   max-height: 600px;
-  min-height: 350px;
+  min-height: 360px;
   border-radius: 4px;
   background: rgb(255, 255, 255);
   border: 2px solid rgba(182 182 182 / 11%);
@@ -33668,11 +33668,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     gt.init();
   }
 
+  // src/constants.ts
+  var REPOSITORY_URL = "https://github.com/FurryZoi/Bondage-Club-Chaos";
+
   // src/index.ts
   function start() {
     C({
       name: "BCC",
       fullName: "Bondage Club Chaos",
+      repository: REPOSITORY_URL,
       key: "BCC",
       version,
       fontFamily: "Yusei Magic",
