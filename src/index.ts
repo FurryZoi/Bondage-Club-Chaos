@@ -14,6 +14,7 @@ import { loadQuickAccessMenu } from "./modules/quickAccessMenu";
 import { addActivities } from "./modules/activities";
 
 
+
 function start() {
     registerCore({
         name: "BCC",

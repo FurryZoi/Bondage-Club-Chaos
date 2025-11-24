@@ -150,12 +150,12 @@ export function loadCheats(): void {
     });
 
     hookFunction("DialogClick", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        const C = CharacterGetCurrent();
+        if (MouseX < 500 && modStorage.cheats?.allowActivities && !!C && !ServerChatRoomGetAllowItem(Player, C)) return;
         next(args);
         if (!modStorage.cheats?.allowActivities) return;
-        // CurrentCharacter instead of CharacterGetCurrent()
-        const C = (MouseX < 500) ? Player : CurrentCharacter;
         if (!C) return;
-        if (ServerChatRoomGetAllowItem(Player, CurrentCharacter)) return;
+        if (ServerChatRoomGetAllowItem(Player, C)) return;
 
         const X = MouseX < 500 ? 0 : 500;
         for (const Group of AssetGroup) {
@@ -169,7 +169,6 @@ export function loadCheats(): void {
         }
 
         const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
-        if (CharacterGetCurrent()?.IsPlayer() && isExitButtonExists) ElementRemove("bcc-exit-dialog-button");
         if (!isExitButtonExists) {
             const button = ElementButton.Create("bcc-exit-dialog-button", () => DialogChangeMode("dialog"), { tooltip: "(BCC) Back", image: "Icons/Exit.png" });
             document.body.append(button);
@@ -182,7 +181,14 @@ export function loadCheats(): void {
         }
     });
 
-    hookFunction("DialogResize", HookPriority.OBSERVE, (args, next) => {
+    hookFunction("DialogMenuBack", HookPriority.OBSERVE, (args, next) => {
+        const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
+        if (!isExitButtonExists) return next(args);
+        ElementRemove("bcc-exit-dialog-button");
+        DialogChangeFocusToGroup(CharacterGetCurrent(), null);
+    });
+
+    hookFunction("DialogMenuMapping.activities.Resize", HookPriority.OBSERVE, (args, next) => {
         if (!modStorage.cheats?.allowActivities) return next(args);
         const button = document.getElementById("bcc-exit-dialog-button");
         if (button) {
@@ -190,5 +196,10 @@ export function loadCheats(): void {
             ElementSetSize(button, 90, 90);
         }
         return next(args);
+    });
+
+    hookFunction("ChatRoomDrawArousalOverlay", HookPriority.OBSERVE, (args, next) => {
+        if (!modStorage.cheats?.disableArousalOverlay) return next(args);
+        return;
     });
 }

@@ -1,10 +1,48 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, HandCoins } from "lucide";
 import { toastsManager } from "zois-core/popups";
-import { modStorage } from "@/modules/storage";
+import { ModStorage, modStorage } from "@/modules/storage";
 import { refreshBonus } from "@/modules/cheats";
 import { StyleModule } from "zois-core/ui-modules";
 import { MainSubscreen } from "./mainSubscreen";
+
+const booleanCheats: {
+    name: string
+    storageKey: keyof ModStorage["cheats"]
+}[] = [
+        {
+            name: "Permanent skills boost",
+            storageKey: "permanentSkillsBoost"
+        },
+        {
+            name: "Auto tight restraint",
+            storageKey: "autoTight"
+        },
+        {
+            name: "Anonymous mode",
+            storageKey: "anonymousMode"
+        },
+        {
+            name: "Always allow interactions with activities",
+            storageKey: "allowActivities"
+        },
+        {
+            name: "Map super power",
+            storageKey: "mapSuperPower"
+        },
+        {
+            name: "Xray vision",
+            storageKey: "xray"
+        },
+        {
+            name: "Always show padlocks passwords",
+            storageKey: "showPadlocksPasswords"
+        },
+        {
+            name: "Disable arousal overlay",
+            storageKey: "disableArousalOverlay"
+        }
+    ]
 
 
 function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSubscreen): void {
@@ -124,93 +162,42 @@ export class CheatsSubscreen extends BaseSubscreen {
         });
         y += 90;
 
-        this.createCheckbox({
-            text: "Permanent skills boost",
+        const booleanCheatsContainer = this.createContainer({
             x: 200,
             y,
-            isChecked: modStorage.cheats?.permanentSkillsBoost,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.permanentSkillsBoost = !modStorage.cheats.permanentSkillsBoost;
-                refreshBonus();
-            },
+            width: 1000,
+            height: 650,
+            modules: {
+                base: [
+                    new StyleModule({
+                        display: "flex",
+                        flexDirection: "column",
+                        rowGap: "0.45em",
+                        overflowY: "scroll"
+                    })
+                ]
+            }
         });
-        y += 90;
 
-        this.createCheckbox({
-            text: "Auto tight restraints",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.autoTight,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.autoTight = !modStorage.cheats.autoTight;
-            },
-        });
-        y += 90;
-
-        this.createCheckbox({
-            text: "Anonymous mode",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.anonymousMode,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.anonymousMode = !modStorage.cheats.anonymousMode;
-            },
-        });
-        y += 90;
-
-        this.createCheckbox({
-            text: "Always allow interactions with activities",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.allowActivities,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.allowActivities = !modStorage.cheats.allowActivities;
-            },
-        });
-        y += 90;
-
-        this.createCheckbox({
-            text: "Map super power",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.mapSuperPower,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.mapSuperPower = !modStorage.cheats.mapSuperPower;
-            },
-
-        });
-        y += 90;
-
-        this.createCheckbox({
-            text: "Xray vision",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.xray,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.xray = !modStorage.cheats.xray;
-                ChatRoomCharacter.forEach((c) => {
-                    CharacterLoadCanvas(c);
-                });
-            },
-        });
-        y += 90;
-
-        this.createCheckbox({
-            text: "Always show padlocks passwords",
-            x: 200,
-            y,
-            isChecked: modStorage.cheats?.showPadlocksPasswords,
-            onChange() {
-                if (!modStorage.cheats) modStorage.cheats = {};
-                modStorage.cheats.showPadlocksPasswords = !modStorage.cheats.showPadlocksPasswords;
-            },
-        });
+        for (const cheat of booleanCheats) {
+            booleanCheatsContainer.append(
+                this.createCheckbox({
+                    text: cheat.name,
+                    place: false,
+                    isChecked: modStorage.cheats?.[cheat.storageKey],
+                    onChange() {
+                        if (!modStorage.cheats) modStorage.cheats = {};
+                        modStorage.cheats[cheat.storageKey] = !modStorage.cheats[cheat.storageKey];
+                        if (cheat.storageKey === "permanentSkillsBoost") refreshBonus();
+                        if (cheat.storageKey === "xray") {
+                            ChatRoomCharacter.forEach((c) => {
+                                CharacterLoadCanvas(c);
+                            });
+                        }
+                    }
+                })
+            );
+        }
 
         this.createButton({
             text: "Get All Items",

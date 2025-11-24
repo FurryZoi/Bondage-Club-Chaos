@@ -1,6 +1,6 @@
 {
   "name": "Bondage Club Chaos",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cheat addon with quality of life features, own activities and magical mechanics",
   "main": "index.js",
   "scripts": {
@@ -14,19 +14,18 @@
   "license": "MIT",
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
-    "@biomejs/biome": "2.2.5",
-    "bc-stubs": "^121.0.0",
-    "esbuild": "^0.25.11"
+    "@biomejs/biome": "2.3.7",
+    "bc-stubs": "^122.0.0",
+    "esbuild": "^0.27.0"
   },
   "pnpm": {
     "overrides": {}
   },
   "dependencies": {
-    "@iconify-json/game-icons": "^1.2.3",
-    "@sugarch/bc-activity-manager": "^1.0.2",
-    "@sugarch/bc-mod-hook-manager": "^0.3.1",
-    "lucide": "^0.541.0",
+    "@sugarch/bc-activity-manager": "^1.1.1",
+    "@sugarch/bc-mod-hook-manager": "^0.3.4",
+    "lucide": "^0.554.0",
     "reflect-metadata": "^0.2.2",
-    "zois-core": "^1.1.7"
+    "zois-core": "^1.1.8"
   }
 }

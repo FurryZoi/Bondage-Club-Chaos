@@ -1,7 +1,7 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, PanelsTopLeft } from "lucide";
 import { modStorage } from "@/modules/storage";
-import { createQuickMenu, isFeatureEnabled, quickMenuItems, removeQuickMenu, toggleFeature } from "@/modules/quickAccessMenu";
+import { createQAMButton, isFeatureEnabled, qamFeatures, removeQuickMenu, toggleFeature } from "@/modules/quickAccessMenu";
 import { StyleModule } from "zois-core/ui-modules";
 import qamImage from "@/assets/images/qam.png";
 import { MainSubscreen } from "./mainSubscreen";
@@ -26,7 +26,7 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
             onChange() {
                 modStorage.qam ??= {};
                 modStorage.qam.enabled = !modStorage.qam.enabled;
-                if (modStorage.qam.enabled) createQuickMenu();
+                if (modStorage.qam.enabled) createQAMButton();
                 else removeQuickMenu();
             }
         });
@@ -77,10 +77,10 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
             }
         });
 
-        quickMenuItems.forEach((i) => {
+        qamFeatures.forEach((i) => {
             container.append(
                 this.createCheckbox({
-                    text: i.name,
+                    text: i.subscreen.name,
                     isChecked: isFeatureEnabled(i.id),
                     place: false,
                     onChange: () => toggleFeature(i.id)

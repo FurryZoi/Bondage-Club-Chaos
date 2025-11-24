@@ -3,7 +3,8 @@ import type { Effect, MinimumRole, SpellIcon } from "./darkMagic";
 import { messagesManager } from "zois-core/messaging";
 import { SyncStorageMessageData } from "@/types/messages";
 import { removeQuickMenu } from "./quickAccessMenu";
-import { waitFor } from "zois-core";
+import { isVersionNewer, waitFor } from "zois-core";
+import { toastsManager } from "zois-core/popups";
 
 export let modStorage: ModStorage = { version };
 
@@ -51,6 +52,7 @@ export interface ModStorage {
         mapSuperPower?: boolean
         xray?: boolean
         showPadlocksPasswords?: boolean
+        disableArousalOverlay?: boolean
     }
     darkMagic?: {
         spells?: {
@@ -86,6 +88,14 @@ export function loadStorage(): void {
             messagesManager.sendLocal("Legacy BCC Data: " + legacyData);
             messagesManager.sendLocal("I get a lot of legacy BCC's error reports, so I decided to release new version sooner than necessary. Most of the functions was migrated, and those that I did not manage to migrate will be added later.");
         });
+    }
+    if (isVersionNewer(version, modStorage.version)) {
+        toastsManager.info({
+            title: "BCC was updated",
+            message: "You can read the changelog in QAM",
+            duration: 6000
+        })
+        modStorage.version = version;
     }
     syncStorage();
     messagesManager.onPacket("syncStorage", (data: SyncStorageMessageData, sender) => {
