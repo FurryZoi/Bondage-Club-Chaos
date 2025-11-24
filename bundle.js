@@ -26,8 +26,8 @@
   ));
   var __decorateClass = (decorators, target, key, kind) => {
     var result = kind > 1 ? void 0 : kind ? __getOwnPropDesc(target, key) : target;
-    for (var i8 = decorators.length - 1, decorator; i8 >= 0; i8--)
-      if (decorator = decorators[i8])
+    for (var i5 = decorators.length - 1, decorator; i5 >= 0; i5--)
+      if (decorator = decorators[i5])
         result = (kind ? decorator(target, key, result) : decorator(result)) || result;
     if (kind && result) __defProp(target, key, result);
     return result;
@@ -214,8 +214,8 @@
           }
           exporter("deleteMetadata", deleteMetadata);
           function DecorateConstructor(decorators, target) {
-            for (var i8 = decorators.length - 1; i8 >= 0; --i8) {
-              var decorator = decorators[i8];
+            for (var i5 = decorators.length - 1; i5 >= 0; --i5) {
+              var decorator = decorators[i5];
               var decorated = decorator(target);
               if (!IsUndefined(decorated) && !IsNull(decorated)) {
                 if (!IsConstructor(decorated))
@@ -226,8 +226,8 @@
             return target;
           }
           function DecorateProperty(decorators, target, propertyKey, descriptor) {
-            for (var i8 = decorators.length - 1; i8 >= 0; --i8) {
-              var decorator = decorators[i8];
+            for (var i5 = decorators.length - 1; i5 >= 0; --i5) {
+              var decorator = decorators[i5];
               var decorated = decorator(target, propertyKey, descriptor);
               if (!IsUndefined(decorated) && !IsNull(decorated)) {
                 if (!IsObject3(decorated))
@@ -237,61 +237,61 @@
             }
             return descriptor;
           }
-          function OrdinaryHasMetadata(MetadataKey, O5, P5) {
-            var hasOwn2 = OrdinaryHasOwnMetadata(MetadataKey, O5, P5);
+          function OrdinaryHasMetadata(MetadataKey, O5, P6) {
+            var hasOwn2 = OrdinaryHasOwnMetadata(MetadataKey, O5, P6);
             if (hasOwn2)
               return true;
             var parent = OrdinaryGetPrototypeOf(O5);
             if (!IsNull(parent))
-              return OrdinaryHasMetadata(MetadataKey, parent, P5);
+              return OrdinaryHasMetadata(MetadataKey, parent, P6);
             return false;
           }
-          function OrdinaryHasOwnMetadata(MetadataKey, O5, P5) {
+          function OrdinaryHasOwnMetadata(MetadataKey, O5, P6) {
             var provider = GetMetadataProvider(
               O5,
-              P5,
+              P6,
               /*Create*/
               false
             );
             if (IsUndefined(provider))
               return false;
-            return ToBoolean(provider.OrdinaryHasOwnMetadata(MetadataKey, O5, P5));
+            return ToBoolean(provider.OrdinaryHasOwnMetadata(MetadataKey, O5, P6));
           }
-          function OrdinaryGetMetadata(MetadataKey, O5, P5) {
-            var hasOwn2 = OrdinaryHasOwnMetadata(MetadataKey, O5, P5);
+          function OrdinaryGetMetadata(MetadataKey, O5, P6) {
+            var hasOwn2 = OrdinaryHasOwnMetadata(MetadataKey, O5, P6);
             if (hasOwn2)
-              return OrdinaryGetOwnMetadata(MetadataKey, O5, P5);
+              return OrdinaryGetOwnMetadata(MetadataKey, O5, P6);
             var parent = OrdinaryGetPrototypeOf(O5);
             if (!IsNull(parent))
-              return OrdinaryGetMetadata(MetadataKey, parent, P5);
+              return OrdinaryGetMetadata(MetadataKey, parent, P6);
             return void 0;
           }
-          function OrdinaryGetOwnMetadata(MetadataKey, O5, P5) {
+          function OrdinaryGetOwnMetadata(MetadataKey, O5, P6) {
             var provider = GetMetadataProvider(
               O5,
-              P5,
+              P6,
               /*Create*/
               false
             );
             if (IsUndefined(provider))
               return;
-            return provider.OrdinaryGetOwnMetadata(MetadataKey, O5, P5);
+            return provider.OrdinaryGetOwnMetadata(MetadataKey, O5, P6);
           }
-          function OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O5, P5) {
+          function OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O5, P6) {
             var provider = GetMetadataProvider(
               O5,
-              P5,
+              P6,
               /*Create*/
               true
             );
-            provider.OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O5, P5);
+            provider.OrdinaryDefineOwnMetadata(MetadataKey, MetadataValue, O5, P6);
           }
-          function OrdinaryMetadataKeys(O5, P5) {
-            var ownKeys = OrdinaryOwnMetadataKeys(O5, P5);
+          function OrdinaryMetadataKeys(O5, P6) {
+            var ownKeys = OrdinaryOwnMetadataKeys(O5, P6);
             var parent = OrdinaryGetPrototypeOf(O5);
             if (parent === null)
               return ownKeys;
-            var parentKeys = OrdinaryMetadataKeys(parent, P5);
+            var parentKeys = OrdinaryMetadataKeys(parent, P6);
             if (parentKeys.length <= 0)
               return ownKeys;
             if (ownKeys.length <= 0)
@@ -316,22 +316,22 @@
             }
             return keys;
           }
-          function OrdinaryOwnMetadataKeys(O5, P5) {
+          function OrdinaryOwnMetadataKeys(O5, P6) {
             var provider = GetMetadataProvider(
               O5,
-              P5,
+              P6,
               /*create*/
               false
             );
             if (!provider) {
               return [];
             }
-            return provider.OrdinaryOwnMetadataKeys(O5, P5);
+            return provider.OrdinaryOwnMetadataKeys(O5, P6);
           }
-          function Type2(x6) {
-            if (x6 === null)
+          function Type2(x5) {
+            if (x5 === null)
               return 1;
-            switch (typeof x6) {
+            switch (typeof x5) {
               case "undefined":
                 return 0;
               case "boolean":
@@ -343,22 +343,22 @@
               case "number":
                 return 5;
               case "object":
-                return x6 === null ? 1 : 6;
+                return x5 === null ? 1 : 6;
               default:
                 return 6;
             }
           }
-          function IsUndefined(x6) {
-            return x6 === void 0;
+          function IsUndefined(x5) {
+            return x5 === void 0;
           }
-          function IsNull(x6) {
-            return x6 === null;
+          function IsNull(x5) {
+            return x5 === null;
           }
-          function IsSymbol(x6) {
-            return typeof x6 === "symbol";
+          function IsSymbol(x5) {
+            return typeof x5 === "symbol";
           }
-          function IsObject3(x6) {
-            return typeof x6 === "object" ? x6 !== null : typeof x6 === "function";
+          function IsObject3(x5) {
+            return typeof x5 === "object" ? x5 !== null : typeof x5 === "function";
           }
           function ToPrimitive(input, PreferredType) {
             switch (Type2(input)) {
@@ -450,11 +450,11 @@
                 return false;
             }
           }
-          function SameValueZero(x6, y5) {
-            return x6 === y5 || x6 !== x6 && y5 !== y5;
+          function SameValueZero(x5, y5) {
+            return x5 === y5 || x5 !== x5 && y5 !== y5;
           }
-          function GetMethod(V4, P5) {
-            var func = V4[P5];
+          function GetMethod(V4, P6) {
+            var func = V4[P6];
             if (func === void 0 || func === null)
               return void 0;
             if (!IsCallable(func))
@@ -538,12 +538,12 @@
                   break;
               }
             }
-            function getProviderNoCache(O5, P5) {
+            function getProviderNoCache(O5, P6) {
               if (!IsUndefined(first)) {
-                if (first.isProviderFor(O5, P5))
+                if (first.isProviderFor(O5, P6))
                   return first;
                 if (!IsUndefined(second)) {
-                  if (second.isProviderFor(O5, P5))
+                  if (second.isProviderFor(O5, P6))
                     return first;
                   if (!IsUndefined(rest)) {
                     var iterator = GetIterator(rest);
@@ -553,7 +553,7 @@
                         return void 0;
                       }
                       var provider = IteratorValue(next);
-                      if (provider.isProviderFor(O5, P5)) {
+                      if (provider.isProviderFor(O5, P6)) {
                         IteratorClose(iterator);
                         return provider;
                       }
@@ -561,27 +561,27 @@
                   }
                 }
               }
-              if (!IsUndefined(fallback) && fallback.isProviderFor(O5, P5)) {
+              if (!IsUndefined(fallback) && fallback.isProviderFor(O5, P6)) {
                 return fallback;
               }
               return void 0;
             }
-            function getProvider(O5, P5) {
+            function getProvider(O5, P6) {
               var providerMap = targetProviderMap.get(O5);
               var provider;
               if (!IsUndefined(providerMap)) {
-                provider = providerMap.get(P5);
+                provider = providerMap.get(P6);
               }
               if (!IsUndefined(provider)) {
                 return provider;
               }
-              provider = getProviderNoCache(O5, P5);
+              provider = getProviderNoCache(O5, P6);
               if (!IsUndefined(provider)) {
                 if (IsUndefined(providerMap)) {
                   providerMap = new _Map();
                   targetProviderMap.set(O5, providerMap);
                 }
-                providerMap.set(P5, provider);
+                providerMap.set(P6, provider);
               }
               return provider;
             }
@@ -590,11 +590,11 @@
                 throw new TypeError();
               return first === provider || second === provider || !IsUndefined(rest) && rest.has(provider);
             }
-            function setProvider(O5, P5, provider) {
+            function setProvider(O5, P6, provider) {
               if (!hasProvider(provider)) {
                 throw new Error("Metadata provider not registered.");
               }
-              var existingProvider = getProvider(O5, P5);
+              var existingProvider = getProvider(O5, P6);
               if (existingProvider !== provider) {
                 if (!IsUndefined(existingProvider)) {
                   return false;
@@ -604,7 +604,7 @@
                   providerMap = new _Map();
                   targetProviderMap.set(O5, providerMap);
                 }
-                providerMap.set(P5, provider);
+                providerMap.set(P6, provider);
               }
               return true;
             }
@@ -630,11 +630,11 @@
           function CreateMetadataProvider(registry) {
             var metadata2 = new _WeakMap();
             var provider = {
-              isProviderFor: function(O5, P5) {
+              isProviderFor: function(O5, P6) {
                 var targetMetadata = metadata2.get(O5);
                 if (IsUndefined(targetMetadata))
                   return false;
-                return targetMetadata.has(P5);
+                return targetMetadata.has(P6);
               },
               OrdinaryDefineOwnMetadata: OrdinaryDefineOwnMetadata2,
               OrdinaryHasOwnMetadata: OrdinaryHasOwnMetadata2,
@@ -644,7 +644,7 @@
             };
             metadataRegistry.registerProvider(provider);
             return provider;
-            function GetOrCreateMetadataMap(O5, P5, Create) {
+            function GetOrCreateMetadataMap(O5, P6, Create) {
               var targetMetadata = metadata2.get(O5);
               var createdTargetMetadata = false;
               if (IsUndefined(targetMetadata)) {
@@ -654,14 +654,14 @@
                 metadata2.set(O5, targetMetadata);
                 createdTargetMetadata = true;
               }
-              var metadataMap = targetMetadata.get(P5);
+              var metadataMap = targetMetadata.get(P6);
               if (IsUndefined(metadataMap)) {
                 if (!Create)
                   return void 0;
                 metadataMap = new _Map();
-                targetMetadata.set(P5, metadataMap);
-                if (!registry.setProvider(O5, P5, provider)) {
-                  targetMetadata.delete(P5);
+                targetMetadata.set(P6, metadataMap);
+                if (!registry.setProvider(O5, P6, provider)) {
+                  targetMetadata.delete(P6);
                   if (createdTargetMetadata) {
                     metadata2.delete(O5);
                   }
@@ -670,10 +670,10 @@
               }
               return metadataMap;
             }
-            function OrdinaryHasOwnMetadata2(MetadataKey, O5, P5) {
+            function OrdinaryHasOwnMetadata2(MetadataKey, O5, P6) {
               var metadataMap = GetOrCreateMetadataMap(
                 O5,
-                P5,
+                P6,
                 /*Create*/
                 false
               );
@@ -681,10 +681,10 @@
                 return false;
               return ToBoolean(metadataMap.has(MetadataKey));
             }
-            function OrdinaryGetOwnMetadata2(MetadataKey, O5, P5) {
+            function OrdinaryGetOwnMetadata2(MetadataKey, O5, P6) {
               var metadataMap = GetOrCreateMetadataMap(
                 O5,
-                P5,
+                P6,
                 /*Create*/
                 false
               );
@@ -692,20 +692,20 @@
                 return void 0;
               return metadataMap.get(MetadataKey);
             }
-            function OrdinaryDefineOwnMetadata2(MetadataKey, MetadataValue, O5, P5) {
+            function OrdinaryDefineOwnMetadata2(MetadataKey, MetadataValue, O5, P6) {
               var metadataMap = GetOrCreateMetadataMap(
                 O5,
-                P5,
+                P6,
                 /*Create*/
                 true
               );
               metadataMap.set(MetadataKey, MetadataValue);
             }
-            function OrdinaryOwnMetadataKeys2(O5, P5) {
+            function OrdinaryOwnMetadataKeys2(O5, P6) {
               var keys = [];
               var metadataMap = GetOrCreateMetadataMap(
                 O5,
-                P5,
+                P6,
                 /*Create*/
                 false
               );
@@ -713,16 +713,16 @@
                 return keys;
               var keysObj = metadataMap.keys();
               var iterator = GetIterator(keysObj);
-              var k4 = 0;
+              var k5 = 0;
               while (true) {
                 var next = IteratorStep(iterator);
                 if (!next) {
-                  keys.length = k4;
+                  keys.length = k5;
                   return keys;
                 }
                 var nextValue = IteratorValue(next);
                 try {
-                  keys[k4] = nextValue;
+                  keys[k5] = nextValue;
                 } catch (e2) {
                   try {
                     IteratorClose(iterator);
@@ -730,13 +730,13 @@
                     throw e2;
                   }
                 }
-                k4++;
+                k5++;
               }
             }
-            function OrdinaryDeleteMetadata(MetadataKey, O5, P5) {
+            function OrdinaryDeleteMetadata(MetadataKey, O5, P6) {
               var metadataMap = GetOrCreateMetadataMap(
                 O5,
-                P5,
+                P6,
                 /*Create*/
                 false
               );
@@ -747,7 +747,7 @@
               if (metadataMap.size === 0) {
                 var targetMetadata = metadata2.get(O5);
                 if (!IsUndefined(targetMetadata)) {
-                  targetMetadata.delete(P5);
+                  targetMetadata.delete(P6);
                   if (targetMetadata.size === 0) {
                     metadata2.delete(targetMetadata);
                   }
@@ -760,17 +760,17 @@
             var defineMetadata2 = reflect.defineMetadata, hasOwnMetadata2 = reflect.hasOwnMetadata, getOwnMetadata2 = reflect.getOwnMetadata, getOwnMetadataKeys2 = reflect.getOwnMetadataKeys, deleteMetadata2 = reflect.deleteMetadata;
             var metadataOwner = new _WeakMap();
             var provider = {
-              isProviderFor: function(O5, P5) {
+              isProviderFor: function(O5, P6) {
                 var metadataPropertySet = metadataOwner.get(O5);
-                if (!IsUndefined(metadataPropertySet) && metadataPropertySet.has(P5)) {
+                if (!IsUndefined(metadataPropertySet) && metadataPropertySet.has(P6)) {
                   return true;
                 }
-                if (getOwnMetadataKeys2(O5, P5).length) {
+                if (getOwnMetadataKeys2(O5, P6).length) {
                   if (IsUndefined(metadataPropertySet)) {
                     metadataPropertySet = new _Set();
                     metadataOwner.set(O5, metadataPropertySet);
                   }
-                  metadataPropertySet.add(P5);
+                  metadataPropertySet.add(P6);
                   return true;
                 }
                 return false;
@@ -783,13 +783,13 @@
             };
             return provider;
           }
-          function GetMetadataProvider(O5, P5, Create) {
-            var registeredProvider = metadataRegistry.getProvider(O5, P5);
+          function GetMetadataProvider(O5, P6, Create) {
+            var registeredProvider = metadataRegistry.getProvider(O5, P6);
             if (!IsUndefined(registeredProvider)) {
               return registeredProvider;
             }
             if (Create) {
-              if (metadataRegistry.setProvider(O5, P5, metadataProvider)) {
+              if (metadataRegistry.setProvider(O5, P6, metadataProvider)) {
                 return metadataProvider;
               }
               throw new Error("Illegal state.");
@@ -896,9 +896,9 @@
                   );
                   if (index >= 0) {
                     var size = this._keys.length;
-                    for (var i8 = index + 1; i8 < size; i8++) {
-                      this._keys[i8 - 1] = this._keys[i8];
-                      this._values[i8 - 1] = this._values[i8];
+                    for (var i5 = index + 1; i5 < size; i5++) {
+                      this._keys[i5 - 1] = this._keys[i5];
+                      this._values[i5 - 1] = this._values[i5];
                     }
                     this._keys.length--;
                     this._values.length--;
@@ -934,9 +934,9 @@
                 Map3.prototype._find = function(key, insert) {
                   if (!SameValueZero(this._cacheKey, key)) {
                     this._cacheIndex = -1;
-                    for (var i8 = 0; i8 < this._keys.length; i8++) {
-                      if (SameValueZero(this._keys[i8], key)) {
-                        this._cacheIndex = i8;
+                    for (var i5 = 0; i5 < this._keys.length; i5++) {
+                      if (SameValueZero(this._keys[i5], key)) {
+                        this._cacheIndex = i5;
                         break;
                       }
                     }
@@ -1074,8 +1074,8 @@
               return target[rootKey];
             }
             function FillRandomBytes(buffer, size) {
-              for (var i8 = 0; i8 < size; ++i8)
-                buffer[i8] = Math.random() * 255 | 0;
+              for (var i5 = 0; i5 < size; ++i5)
+                buffer[i5] = Math.random() * 255 | 0;
               return buffer;
             }
             function GenRandomBytes(size) {
@@ -1123,158 +1123,158 @@
     "node_modules/.pnpm/bondage-club-mod-sdk@1.2.0/node_modules/bondage-club-mod-sdk/dist/bcmodsdk.js"(exports) {
       var bcModSdk = (function() {
         "use strict";
-        const o4 = "1.2.0";
-        function e2(o5) {
-          alert("Mod ERROR:\n" + o5);
-          const e3 = new Error(o5);
+        const o5 = "1.2.0";
+        function e2(o6) {
+          alert("Mod ERROR:\n" + o6);
+          const e3 = new Error(o6);
           throw console.error(e3), e3;
         }
-        const t4 = new TextEncoder();
-        function n5(o5) {
-          return !!o5 && "object" == typeof o5 && !Array.isArray(o5);
+        const t3 = new TextEncoder();
+        function n4(o6) {
+          return !!o6 && "object" == typeof o6 && !Array.isArray(o6);
         }
-        function r5(o5) {
+        function r5(o6) {
           const e3 = /* @__PURE__ */ new Set();
-          return o5.filter(((o6) => !e3.has(o6) && e3.add(o6)));
+          return o6.filter(((o7) => !e3.has(o7) && e3.add(o7)));
         }
-        const i8 = /* @__PURE__ */ new Map(), a5 = /* @__PURE__ */ new Set();
-        function c7(o5) {
-          a5.has(o5) || (a5.add(o5), console.warn(o5));
+        const i5 = /* @__PURE__ */ new Map(), a5 = /* @__PURE__ */ new Set();
+        function c7(o6) {
+          a5.has(o6) || (a5.add(o6), console.warn(o6));
         }
-        function s4(o5) {
-          const e3 = [], t5 = /* @__PURE__ */ new Map(), n6 = /* @__PURE__ */ new Set();
+        function s5(o6) {
+          const e3 = [], t4 = /* @__PURE__ */ new Map(), n5 = /* @__PURE__ */ new Set();
           for (const r7 of f6.values()) {
-            const i10 = r7.patching.get(o5.name);
-            if (i10) {
-              e3.push(...i10.hooks);
-              for (const [e4, a6] of i10.patches.entries()) t5.has(e4) && t5.get(e4) !== a6 && c7(`ModSDK: Mod '${r7.name}' is patching function ${o5.name} with same pattern that is already applied by different mod, but with different pattern:
+            const i7 = r7.patching.get(o6.name);
+            if (i7) {
+              e3.push(...i7.hooks);
+              for (const [e4, a6] of i7.patches.entries()) t4.has(e4) && t4.get(e4) !== a6 && c7(`ModSDK: Mod '${r7.name}' is patching function ${o6.name} with same pattern that is already applied by different mod, but with different pattern:
 Pattern:
 ${e4}
 Patch1:
-${t5.get(e4) || ""}
+${t4.get(e4) || ""}
 Patch2:
-${a6}`), t5.set(e4, a6), n6.add(r7.name);
+${a6}`), t4.set(e4, a6), n5.add(r7.name);
             }
           }
-          e3.sort(((o6, e4) => e4.priority - o6.priority));
-          const r6 = (function(o6, e4) {
-            if (0 === e4.size) return o6;
-            let t6 = o6.toString().replaceAll("\r\n", "\n");
-            for (const [n7, r7] of e4.entries()) t6.includes(n7) || c7(`ModSDK: Patching ${o6.name}: Patch ${n7} not applied`), t6 = t6.replaceAll(n7, r7);
-            return (0, eval)(`(${t6})`);
-          })(o5.original, t5);
-          let i9 = function(e4) {
-            var t6, i10;
-            const a6 = null === (i10 = (t6 = m5.errorReporterHooks).hookChainExit) || void 0 === i10 ? void 0 : i10.call(t6, o5.name, n6), c8 = r6.apply(this, e4);
+          e3.sort(((o7, e4) => e4.priority - o7.priority));
+          const r6 = (function(o7, e4) {
+            if (0 === e4.size) return o7;
+            let t5 = o7.toString().replaceAll("\r\n", "\n");
+            for (const [n6, r7] of e4.entries()) t5.includes(n6) || c7(`ModSDK: Patching ${o7.name}: Patch ${n6} not applied`), t5 = t5.replaceAll(n6, r7);
+            return (0, eval)(`(${t5})`);
+          })(o6.original, t4);
+          let i6 = function(e4) {
+            var t5, i7;
+            const a6 = null === (i7 = (t5 = m4.errorReporterHooks).hookChainExit) || void 0 === i7 ? void 0 : i7.call(t5, o6.name, n5), c8 = r6.apply(this, e4);
             return null == a6 || a6(), c8;
           };
-          for (let t6 = e3.length - 1; t6 >= 0; t6--) {
-            const n7 = e3[t6], r7 = i9;
-            i9 = function(e4) {
-              var t7, i10;
-              const a6 = null === (i10 = (t7 = m5.errorReporterHooks).hookEnter) || void 0 === i10 ? void 0 : i10.call(t7, o5.name, n7.mod), c8 = n7.hook.apply(this, [e4, (o6) => {
-                if (1 !== arguments.length || !Array.isArray(e4)) throw new Error(`Mod ${n7.mod} failed to call next hook: Expected args to be array, got ${typeof o6}`);
-                return r7.call(this, o6);
+          for (let t5 = e3.length - 1; t5 >= 0; t5--) {
+            const n6 = e3[t5], r7 = i6;
+            i6 = function(e4) {
+              var t6, i7;
+              const a6 = null === (i7 = (t6 = m4.errorReporterHooks).hookEnter) || void 0 === i7 ? void 0 : i7.call(t6, o6.name, n6.mod), c8 = n6.hook.apply(this, [e4, (o7) => {
+                if (1 !== arguments.length || !Array.isArray(e4)) throw new Error(`Mod ${n6.mod} failed to call next hook: Expected args to be array, got ${typeof o7}`);
+                return r7.call(this, o7);
               }]);
               return null == a6 || a6(), c8;
             };
           }
-          return { hooks: e3, patches: t5, patchesSources: n6, enter: i9, final: r6 };
+          return { hooks: e3, patches: t4, patchesSources: n5, enter: i6, final: r6 };
         }
-        function l6(o5, e3 = false) {
-          let r6 = i8.get(o5);
-          if (r6) e3 && (r6.precomputed = s4(r6));
+        function l6(o6, e3 = false) {
+          let r6 = i5.get(o6);
+          if (r6) e3 && (r6.precomputed = s5(r6));
           else {
             let e4 = window;
-            const a6 = o5.split(".");
-            for (let t5 = 0; t5 < a6.length - 1; t5++) if (e4 = e4[a6[t5]], !n5(e4)) throw new Error(`ModSDK: Function ${o5} to be patched not found; ${a6.slice(0, t5 + 1).join(".")} is not object`);
+            const a6 = o6.split(".");
+            for (let t4 = 0; t4 < a6.length - 1; t4++) if (e4 = e4[a6[t4]], !n4(e4)) throw new Error(`ModSDK: Function ${o6} to be patched not found; ${a6.slice(0, t4 + 1).join(".")} is not object`);
             const c8 = e4[a6[a6.length - 1]];
-            if ("function" != typeof c8) throw new Error(`ModSDK: Function ${o5} to be patched not found`);
-            const l7 = (function(o6) {
+            if ("function" != typeof c8) throw new Error(`ModSDK: Function ${o6} to be patched not found`);
+            const l7 = (function(o7) {
               let e5 = -1;
-              for (const n6 of t4.encode(o6)) {
-                let o7 = 255 & (e5 ^ n6);
-                for (let e6 = 0; e6 < 8; e6++) o7 = 1 & o7 ? -306674912 ^ o7 >>> 1 : o7 >>> 1;
-                e5 = e5 >>> 8 ^ o7;
+              for (const n5 of t3.encode(o7)) {
+                let o8 = 255 & (e5 ^ n5);
+                for (let e6 = 0; e6 < 8; e6++) o8 = 1 & o8 ? -306674912 ^ o8 >>> 1 : o8 >>> 1;
+                e5 = e5 >>> 8 ^ o8;
               }
               return ((-1 ^ e5) >>> 0).toString(16).padStart(8, "0").toUpperCase();
-            })(c8.toString().replaceAll("\r\n", "\n")), d5 = { name: o5, original: c8, originalHash: l7 };
-            r6 = Object.assign(Object.assign({}, d5), { precomputed: s4(d5), router: () => {
-            }, context: e4, contextProperty: a6[a6.length - 1] }), r6.router = /* @__PURE__ */ (function(o6) {
+            })(c8.toString().replaceAll("\r\n", "\n")), d7 = { name: o6, original: c8, originalHash: l7 };
+            r6 = Object.assign(Object.assign({}, d7), { precomputed: s5(d7), router: () => {
+            }, context: e4, contextProperty: a6[a6.length - 1] }), r6.router = /* @__PURE__ */ (function(o7) {
               return function(...e5) {
-                return o6.precomputed.enter.apply(this, [e5]);
+                return o7.precomputed.enter.apply(this, [e5]);
               };
-            })(r6), i8.set(o5, r6), e4[r6.contextProperty] = r6.router;
+            })(r6), i5.set(o6, r6), e4[r6.contextProperty] = r6.router;
           }
           return r6;
         }
-        function d4() {
-          for (const o5 of i8.values()) o5.precomputed = s4(o5);
+        function d6() {
+          for (const o6 of i5.values()) o6.precomputed = s5(o6);
         }
-        function p4() {
-          const o5 = /* @__PURE__ */ new Map();
-          for (const [e3, t5] of i8) o5.set(e3, { name: e3, original: t5.original, originalHash: t5.originalHash, sdkEntrypoint: t5.router, currentEntrypoint: t5.context[t5.contextProperty], hookedByMods: r5(t5.precomputed.hooks.map(((o6) => o6.mod))), patchedByMods: Array.from(t5.precomputed.patchesSources) });
-          return o5;
+        function p5() {
+          const o6 = /* @__PURE__ */ new Map();
+          for (const [e3, t4] of i5) o6.set(e3, { name: e3, original: t4.original, originalHash: t4.originalHash, sdkEntrypoint: t4.router, currentEntrypoint: t4.context[t4.contextProperty], hookedByMods: r5(t4.precomputed.hooks.map(((o7) => o7.mod))), patchedByMods: Array.from(t4.precomputed.patchesSources) });
+          return o6;
         }
         const f6 = /* @__PURE__ */ new Map();
-        function u4(o5) {
-          f6.get(o5.name) !== o5 && e2(`Failed to unload mod '${o5.name}': Not registered`), f6.delete(o5.name), o5.loaded = false, d4();
+        function u6(o6) {
+          f6.get(o6.name) !== o6 && e2(`Failed to unload mod '${o6.name}': Not registered`), f6.delete(o6.name), o6.loaded = false, d6();
         }
-        function g5(o5, t5) {
-          o5 && "object" == typeof o5 || e2("Failed to register mod: Expected info object, got " + typeof o5), "string" == typeof o5.name && o5.name || e2("Failed to register mod: Expected name to be non-empty string, got " + typeof o5.name);
-          let r6 = `'${o5.name}'`;
-          "string" == typeof o5.fullName && o5.fullName || e2(`Failed to register mod ${r6}: Expected fullName to be non-empty string, got ${typeof o5.fullName}`), r6 = `'${o5.fullName} (${o5.name})'`, "string" != typeof o5.version && e2(`Failed to register mod ${r6}: Expected version to be string, got ${typeof o5.version}`), o5.repository || (o5.repository = void 0), void 0 !== o5.repository && "string" != typeof o5.repository && e2(`Failed to register mod ${r6}: Expected repository to be undefined or string, got ${typeof o5.version}`), null == t5 && (t5 = {}), t5 && "object" == typeof t5 || e2(`Failed to register mod ${r6}: Expected options to be undefined or object, got ${typeof t5}`);
-          const i9 = true === t5.allowReplace, a6 = f6.get(o5.name);
-          a6 && (a6.allowReplace && i9 || e2(`Refusing to load mod ${r6}: it is already loaded and doesn't allow being replaced.
-Was the mod loaded multiple times?`), u4(a6));
-          const c8 = (o6) => {
-            let e3 = g6.patching.get(o6.name);
-            return e3 || (e3 = { hooks: [], patches: /* @__PURE__ */ new Map() }, g6.patching.set(o6.name, e3)), e3;
-          }, s5 = (o6, t6) => (...n6) => {
-            var i10, a7;
-            const c9 = null === (a7 = (i10 = m5.errorReporterHooks).apiEndpointEnter) || void 0 === a7 ? void 0 : a7.call(i10, o6, g6.name);
-            g6.loaded || e2(`Mod ${r6} attempted to call SDK function after being unloaded`);
-            const s6 = t6(...n6);
-            return null == c9 || c9(), s6;
-          }, p5 = { unload: s5("unload", (() => u4(g6))), hookFunction: s5("hookFunction", ((o6, t6, n6) => {
-            "string" == typeof o6 && o6 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o6}`);
-            const i10 = l6(o6), a7 = c8(i10);
-            "number" != typeof t6 && e2(`Mod ${r6} failed to hook function '${o6}': Expected priority number, got ${typeof t6}`), "function" != typeof n6 && e2(`Mod ${r6} failed to hook function '${o6}': Expected hook function, got ${typeof n6}`);
-            const s6 = { mod: g6.name, priority: t6, hook: n6 };
-            return a7.hooks.push(s6), d4(), () => {
-              const o7 = a7.hooks.indexOf(s6);
-              o7 >= 0 && (a7.hooks.splice(o7, 1), d4());
+        function g6(o6, t4) {
+          o6 && "object" == typeof o6 || e2("Failed to register mod: Expected info object, got " + typeof o6), "string" == typeof o6.name && o6.name || e2("Failed to register mod: Expected name to be non-empty string, got " + typeof o6.name);
+          let r6 = `'${o6.name}'`;
+          "string" == typeof o6.fullName && o6.fullName || e2(`Failed to register mod ${r6}: Expected fullName to be non-empty string, got ${typeof o6.fullName}`), r6 = `'${o6.fullName} (${o6.name})'`, "string" != typeof o6.version && e2(`Failed to register mod ${r6}: Expected version to be string, got ${typeof o6.version}`), o6.repository || (o6.repository = void 0), void 0 !== o6.repository && "string" != typeof o6.repository && e2(`Failed to register mod ${r6}: Expected repository to be undefined or string, got ${typeof o6.version}`), null == t4 && (t4 = {}), t4 && "object" == typeof t4 || e2(`Failed to register mod ${r6}: Expected options to be undefined or object, got ${typeof t4}`);
+          const i6 = true === t4.allowReplace, a6 = f6.get(o6.name);
+          a6 && (a6.allowReplace && i6 || e2(`Refusing to load mod ${r6}: it is already loaded and doesn't allow being replaced.
+Was the mod loaded multiple times?`), u6(a6));
+          const c8 = (o7) => {
+            let e3 = g7.patching.get(o7.name);
+            return e3 || (e3 = { hooks: [], patches: /* @__PURE__ */ new Map() }, g7.patching.set(o7.name, e3)), e3;
+          }, s6 = (o7, t5) => (...n5) => {
+            var i7, a7;
+            const c9 = null === (a7 = (i7 = m4.errorReporterHooks).apiEndpointEnter) || void 0 === a7 ? void 0 : a7.call(i7, o7, g7.name);
+            g7.loaded || e2(`Mod ${r6} attempted to call SDK function after being unloaded`);
+            const s7 = t5(...n5);
+            return null == c9 || c9(), s7;
+          }, p6 = { unload: s6("unload", (() => u6(g7))), hookFunction: s6("hookFunction", ((o7, t5, n5) => {
+            "string" == typeof o7 && o7 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o7}`);
+            const i7 = l6(o7), a7 = c8(i7);
+            "number" != typeof t5 && e2(`Mod ${r6} failed to hook function '${o7}': Expected priority number, got ${typeof t5}`), "function" != typeof n5 && e2(`Mod ${r6} failed to hook function '${o7}': Expected hook function, got ${typeof n5}`);
+            const s7 = { mod: g7.name, priority: t5, hook: n5 };
+            return a7.hooks.push(s7), d6(), () => {
+              const o8 = a7.hooks.indexOf(s7);
+              o8 >= 0 && (a7.hooks.splice(o8, 1), d6());
             };
-          })), patchFunction: s5("patchFunction", ((o6, t6) => {
-            "string" == typeof o6 && o6 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o6}`);
-            const i10 = l6(o6), a7 = c8(i10);
-            n5(t6) || e2(`Mod ${r6} failed to patch function '${o6}': Expected patches object, got ${typeof t6}`);
-            for (const [n6, i11] of Object.entries(t6)) "string" == typeof i11 ? a7.patches.set(n6, i11) : null === i11 ? a7.patches.delete(n6) : e2(`Mod ${r6} failed to patch function '${o6}': Invalid format of patch '${n6}'`);
-            d4();
-          })), removePatches: s5("removePatches", ((o6) => {
-            "string" == typeof o6 && o6 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o6}`);
-            const t6 = l6(o6);
-            c8(t6).patches.clear(), d4();
-          })), callOriginal: s5("callOriginal", ((o6, t6, n6) => {
-            "string" == typeof o6 && o6 || e2(`Mod ${r6} failed to call a function: Expected function name string, got ${typeof o6}`);
-            const i10 = l6(o6);
-            return Array.isArray(t6) || e2(`Mod ${r6} failed to call a function: Expected args array, got ${typeof t6}`), i10.original.apply(null != n6 ? n6 : globalThis, t6);
-          })), getOriginalHash: s5("getOriginalHash", ((o6) => {
-            "string" == typeof o6 && o6 || e2(`Mod ${r6} failed to get hash: Expected function name string, got ${typeof o6}`);
-            return l6(o6).originalHash;
-          })) }, g6 = { name: o5.name, fullName: o5.fullName, version: o5.version, repository: o5.repository, allowReplace: i9, api: p5, loaded: true, patching: /* @__PURE__ */ new Map() };
-          return f6.set(o5.name, g6), Object.freeze(p5);
+          })), patchFunction: s6("patchFunction", ((o7, t5) => {
+            "string" == typeof o7 && o7 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o7}`);
+            const i7 = l6(o7), a7 = c8(i7);
+            n4(t5) || e2(`Mod ${r6} failed to patch function '${o7}': Expected patches object, got ${typeof t5}`);
+            for (const [n5, i8] of Object.entries(t5)) "string" == typeof i8 ? a7.patches.set(n5, i8) : null === i8 ? a7.patches.delete(n5) : e2(`Mod ${r6} failed to patch function '${o7}': Invalid format of patch '${n5}'`);
+            d6();
+          })), removePatches: s6("removePatches", ((o7) => {
+            "string" == typeof o7 && o7 || e2(`Mod ${r6} failed to patch a function: Expected function name string, got ${typeof o7}`);
+            const t5 = l6(o7);
+            c8(t5).patches.clear(), d6();
+          })), callOriginal: s6("callOriginal", ((o7, t5, n5) => {
+            "string" == typeof o7 && o7 || e2(`Mod ${r6} failed to call a function: Expected function name string, got ${typeof o7}`);
+            const i7 = l6(o7);
+            return Array.isArray(t5) || e2(`Mod ${r6} failed to call a function: Expected args array, got ${typeof t5}`), i7.original.apply(null != n5 ? n5 : globalThis, t5);
+          })), getOriginalHash: s6("getOriginalHash", ((o7) => {
+            "string" == typeof o7 && o7 || e2(`Mod ${r6} failed to get hash: Expected function name string, got ${typeof o7}`);
+            return l6(o7).originalHash;
+          })) }, g7 = { name: o6.name, fullName: o6.fullName, version: o6.version, repository: o6.repository, allowReplace: i6, api: p6, loaded: true, patching: /* @__PURE__ */ new Map() };
+          return f6.set(o6.name, g7), Object.freeze(p6);
         }
-        function h6() {
-          const o5 = [];
-          for (const e3 of f6.values()) o5.push({ name: e3.name, fullName: e3.fullName, version: e3.version, repository: e3.repository });
-          return o5;
+        function h7() {
+          const o6 = [];
+          for (const e3 of f6.values()) o6.push({ name: e3.name, fullName: e3.fullName, version: e3.version, repository: e3.repository });
+          return o6;
         }
-        let m5;
+        let m4;
         const y5 = void 0 === window.bcModSdk ? window.bcModSdk = (function() {
-          const e3 = { version: o4, apiVersion: 1, registerMod: g5, getModsInfo: h6, getPatchingInfo: p4, errorReporterHooks: Object.seal({ apiEndpointEnter: null, hookEnter: null, hookChainExit: null }) };
-          return m5 = e3, Object.freeze(e3);
-        })() : (n5(window.bcModSdk) || e2("Failed to init Mod SDK: Name already in use"), 1 !== window.bcModSdk.apiVersion && e2(`Failed to init Mod SDK: Different version already loaded ('1.2.0' vs '${window.bcModSdk.version}')`), window.bcModSdk.version !== o4 && alert(`Mod SDK warning: Loading different but compatible versions ('1.2.0' vs '${window.bcModSdk.version}')
+          const e3 = { version: o5, apiVersion: 1, registerMod: g6, getModsInfo: h7, getPatchingInfo: p5, errorReporterHooks: Object.seal({ apiEndpointEnter: null, hookEnter: null, hookChainExit: null }) };
+          return m4 = e3, Object.freeze(e3);
+        })() : (n4(window.bcModSdk) || e2("Failed to init Mod SDK: Name already in use"), 1 !== window.bcModSdk.apiVersion && e2(`Failed to init Mod SDK: Different version already loaded ('1.2.0' vs '${window.bcModSdk.version}')`), window.bcModSdk.version !== o5 && alert(`Mod SDK warning: Loading different but compatible versions ('1.2.0' vs '${window.bcModSdk.version}')
 One of mods you are using is using an old version of SDK. It will work for now but please inform author to update`), window.bcModSdk);
         return "undefined" != typeof exports && (Object.defineProperty(exports, "__esModule", { value: true }), exports.default = y5), y5;
       })();
@@ -1391,7 +1391,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 type = type._init;
                 try {
                   return getComponentNameFromType(type(innerType));
-                } catch (x6) {
+                } catch (x5) {
                 }
             }
           return null;
@@ -1403,7 +1403,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           try {
             var name = getComponentNameFromType(type);
             return name ? "<" + name + ">" : "<...>";
-          } catch (x6) {
+          } catch (x5) {
             return "<...>";
           }
         }
@@ -1579,19 +1579,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
           invokeCallback = 0;
           childKey = "" === nameSoFar ? "." : nameSoFar + ":";
           if (isArrayImpl(children))
-            for (var i8 = 0; i8 < children.length; i8++)
-              nameSoFar = children[i8], type = childKey + getElementKey(nameSoFar, i8), invokeCallback += mapIntoArray(
+            for (var i5 = 0; i5 < children.length; i5++)
+              nameSoFar = children[i5], type = childKey + getElementKey(nameSoFar, i5), invokeCallback += mapIntoArray(
                 nameSoFar,
                 array,
                 escapedPrefix,
                 type,
                 callback
               );
-          else if (i8 = getIteratorFn(children), "function" === typeof i8)
-            for (i8 === children.entries && (didWarnAboutMaps || console.warn(
+          else if (i5 = getIteratorFn(children), "function" === typeof i5)
+            for (i5 === children.entries && (didWarnAboutMaps || console.warn(
               "Using Maps as children is not supported. Use an array of keyed ReactElements instead."
-            ), didWarnAboutMaps = true), children = i8.call(children), i8 = 0; !(nameSoFar = children.next()).done; )
-              nameSoFar = nameSoFar.value, type = childKey + getElementKey(nameSoFar, i8++), invokeCallback += mapIntoArray(
+            ), didWarnAboutMaps = true), children = i5.call(children), i5 = 0; !(nameSoFar = children.next()).done; )
+              nameSoFar = nameSoFar.value, type = childKey + getElementKey(nameSoFar, i5++), invokeCallback += mapIntoArray(
                 nameSoFar,
                 array,
                 escapedPrefix,
@@ -1724,17 +1724,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function flushActQueue(queue) {
           if (!isFlushing) {
             isFlushing = true;
-            var i8 = 0;
+            var i5 = 0;
             try {
-              for (; i8 < queue.length; i8++) {
-                var callback = queue[i8];
+              for (; i5 < queue.length; i5++) {
+                var callback = queue[i5];
                 do {
                   ReactSharedInternals.didUsePromise = false;
                   var continuation = callback(false);
                   if (null !== continuation) {
                     if (ReactSharedInternals.didUsePromise) {
-                      queue[i8] = callback;
-                      queue.splice(0, i8);
+                      queue[i5] = callback;
+                      queue.splice(0, i5);
                       return;
                     }
                     callback = continuation;
@@ -1743,7 +1743,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               }
               queue.length = 0;
             } catch (error) {
-              queue.splice(0, i8 + 1), ReactSharedInternals.thrownErrors.push(error);
+              queue.splice(0, i5 + 1), ReactSharedInternals.thrownErrors.push(error);
             } finally {
               isFlushing = false;
             }
@@ -1858,11 +1858,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
             );
           },
           count: function(children) {
-            var n5 = 0;
+            var n4 = 0;
             mapChildren(children, function() {
-              n5++;
+              n4++;
             });
-            return n5;
+            return n4;
           },
           toArray: function(children) {
             return mapChildren(children, function(child) {
@@ -2003,8 +2003,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (1 === propName) props.children = children;
           else if (1 < propName) {
             JSCompiler_inline_result = Array(propName);
-            for (var i8 = 0; i8 < propName; i8++)
-              JSCompiler_inline_result[i8] = arguments[i8 + 2];
+            for (var i5 = 0; i5 < propName; i5++)
+              JSCompiler_inline_result[i5] = arguments[i5 + 2];
             props.children = JSCompiler_inline_result;
           }
           props = ReactElement(
@@ -2038,35 +2038,35 @@ One of mods you are using is using an old version of SDK. It will work for now b
           return defaultValue;
         };
         exports.createElement = function(type, config, children) {
-          for (var i8 = 2; i8 < arguments.length; i8++)
-            validateChildKeys(arguments[i8]);
-          i8 = {};
+          for (var i5 = 2; i5 < arguments.length; i5++)
+            validateChildKeys(arguments[i5]);
+          i5 = {};
           var key = null;
           if (null != config)
             for (propName in didWarnAboutOldJSXRuntime || !("__self" in config) || "key" in config || (didWarnAboutOldJSXRuntime = true, console.warn(
               "Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform"
             )), hasValidKey(config) && (checkKeyStringCoercion(config.key), key = "" + config.key), config)
-              hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i8[propName] = config[propName]);
+              hasOwnProperty.call(config, propName) && "key" !== propName && "__self" !== propName && "__source" !== propName && (i5[propName] = config[propName]);
           var childrenLength = arguments.length - 2;
-          if (1 === childrenLength) i8.children = children;
+          if (1 === childrenLength) i5.children = children;
           else if (1 < childrenLength) {
             for (var childArray = Array(childrenLength), _i = 0; _i < childrenLength; _i++)
               childArray[_i] = arguments[_i + 2];
             Object.freeze && Object.freeze(childArray);
-            i8.children = childArray;
+            i5.children = childArray;
           }
           if (type && type.defaultProps)
             for (propName in childrenLength = type.defaultProps, childrenLength)
-              void 0 === i8[propName] && (i8[propName] = childrenLength[propName]);
+              void 0 === i5[propName] && (i5[propName] = childrenLength[propName]);
           key && defineKeyPropWarningGetter(
-            i8,
+            i5,
             "function" === typeof type ? type.displayName || type.name || "Unknown" : type
           );
           var propName = 1e4 > ReactSharedInternals.recentlyCreatedOwnerStacks++;
           return ReactElement(
             type,
             key,
-            i8,
+            i5,
             getOwner(),
             propName ? Error("react-stack-top-frame") : unknownOwnerDebugStack,
             propName ? createTask(getTaskName(type)) : unknownOwnerDebugTask
@@ -2813,8 +2813,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (oldPath.length !== newPath.length)
             console.warn("copyWithRename() expects paths of the same length");
           else {
-            for (var i8 = 0; i8 < newPath.length - 1; i8++)
-              if (oldPath[i8] !== newPath[i8]) {
+            for (var i5 = 0; i5 < newPath.length - 1; i5++)
+              if (oldPath[i5] !== newPath[i5]) {
                 console.warn(
                   "copyWithRename() expects paths to be the same except for the deepest key"
                 );
@@ -3056,7 +3056,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 type = type._init;
                 try {
                   return getComponentNameFromType(type(innerType));
-                } catch (x6) {
+                } catch (x5) {
                 }
             }
           return null;
@@ -3118,8 +3118,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
             case 29:
               type = fiber._debugInfo;
               if (null != type) {
-                for (var i8 = type.length - 1; 0 <= i8; i8--)
-                  if ("string" === typeof type[i8].name) return type[i8].name;
+                for (var i5 = type.length - 1; 0 <= i5; i5--)
+                  if ("string" === typeof type[i5].name) return type[i5].name;
               }
               if (null !== fiber.return)
                 return getComponentNameFromFiber(fiber.return);
@@ -3272,10 +3272,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (void 0 === prefix)
             try {
               throw Error();
-            } catch (x6) {
-              var match = x6.stack.trim().match(/\n( *(at )?)/);
+            } catch (x5) {
+              var match = x5.stack.trim().match(/\n( *(at )?)/);
               prefix = match && match[1] || "";
-              suffix = -1 < x6.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x6.stack.indexOf("@") ? "@unknown:0:0" : "";
+              suffix = -1 < x5.stack.indexOf("\n    at") ? " (<anonymous>)" : -1 < x5.stack.indexOf("@") ? "@unknown:0:0" : "";
             }
           return "\n" + prefix + name + suffix;
         }
@@ -3306,8 +3306,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     if ("object" === typeof Reflect && Reflect.construct) {
                       try {
                         Reflect.construct(Fake, []);
-                      } catch (x6) {
-                        var control = x6;
+                      } catch (x5) {
+                        var control = x5;
                       }
                       Reflect.construct(fn, [], Fake);
                     } else {
@@ -3415,8 +3415,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               info += describeFiber(workInProgress2, previous);
               var debugInfo = workInProgress2._debugInfo;
               if (debugInfo)
-                for (var i8 = debugInfo.length - 1; 0 <= i8; i8--) {
-                  var entry = debugInfo[i8];
+                for (var i5 = debugInfo.length - 1; 0 <= i5; i5--) {
+                  var entry = debugInfo[i5];
                   if ("string" === typeof entry.name) {
                     var JSCompiler_temp_const = info;
                     a: {
@@ -3439,8 +3439,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               workInProgress2 = workInProgress2.return;
             } while (workInProgress2);
             return info;
-          } catch (x6) {
-            return "\nError generating stack: " + x6.message + "\n" + x6.stack;
+          } catch (x5) {
+            return "\nError generating stack: " + x5.message + "\n" + x5.stack;
           }
         }
         function describeFunctionComponentFrameWithoutLineNumber(fn) {
@@ -3499,8 +3499,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 (workInProgress2 = workInProgress2.owner) && ownerStack && (info += "\n" + formatOwnerStack(ownerStack));
               } else break;
             var JSCompiler_inline_result = info;
-          } catch (x6) {
-            JSCompiler_inline_result = "\nError generating stack: " + x6.message + "\n" + x6.stack;
+          } catch (x5) {
+            JSCompiler_inline_result = "\nError generating stack: " + x5.message + "\n" + x5.stack;
           }
           return JSCompiler_inline_result;
         }
@@ -3586,9 +3586,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
               ));
             }
         }
-        function clz32Fallback(x6) {
-          x6 >>>= 0;
-          return 0 === x6 ? 32 : 31 - (log(x6) / LN2 | 0) | 0;
+        function clz32Fallback(x5) {
+          x5 >>>= 0;
+          return 0 === x5 ? 32 : 31 - (log(x5) / LN2 | 0) | 0;
         }
         function getHighestPriorityLanes(lanes) {
           var pendingSyncLanes = lanes & 42;
@@ -3709,7 +3709,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           return lane;
         }
         function createLaneMap(initial) {
-          for (var laneMap = [], i8 = 0; 31 > i8; i8++) laneMap.push(initial);
+          for (var laneMap = [], i5 = 0; 31 > i5; i5++) laneMap.push(initial);
           return laneMap;
         }
         function markRootUpdated$1(root2, updateLane) {
@@ -4157,20 +4157,20 @@ One of mods you are using is using an old version of SDK. It will work for now b
           node = node.options;
           if (multiple) {
             multiple = {};
-            for (var i8 = 0; i8 < propValue.length; i8++)
-              multiple["$" + propValue[i8]] = true;
+            for (var i5 = 0; i5 < propValue.length; i5++)
+              multiple["$" + propValue[i5]] = true;
             for (propValue = 0; propValue < node.length; propValue++)
-              i8 = multiple.hasOwnProperty("$" + node[propValue].value), node[propValue].selected !== i8 && (node[propValue].selected = i8), i8 && setDefaultSelected && (node[propValue].defaultSelected = true);
+              i5 = multiple.hasOwnProperty("$" + node[propValue].value), node[propValue].selected !== i5 && (node[propValue].selected = i5), i5 && setDefaultSelected && (node[propValue].defaultSelected = true);
           } else {
             propValue = "" + getToStringValue(propValue);
             multiple = null;
-            for (i8 = 0; i8 < node.length; i8++) {
-              if (node[i8].value === propValue) {
-                node[i8].selected = true;
-                setDefaultSelected && (node[i8].defaultSelected = true);
+            for (i5 = 0; i5 < node.length; i5++) {
+              if (node[i5].value === propValue) {
+                node[i5].selected = true;
+                setDefaultSelected && (node[i5].defaultSelected = true);
                 return;
               }
-              null !== multiple || node[i8].disabled || (multiple = node[i8]);
+              null !== multiple || node[i5].disabled || (multiple = node[i5]);
             }
             null !== multiple && (multiple.selected = true);
           }
@@ -4286,7 +4286,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           return indentation(indent) + describeTextNode(clientText, maxLength) + "\n";
         }
         function objectName(object) {
-          return Object.prototype.toString.call(object).replace(/^\[object (.*)\]$/, function(m5, p0) {
+          return Object.prototype.toString.call(object).replace(/^\[object (.*)\]$/, function(m4, p0) {
             return p0;
           });
         }
@@ -4432,21 +4432,21 @@ One of mods you are using is using an old version of SDK. It will work for now b
           skipToNode = "";
           var debugInfo = node.fiber._debugInfo;
           if (debugInfo)
-            for (var i8 = 0; i8 < debugInfo.length; i8++) {
-              var serverComponentName = debugInfo[i8].name;
+            for (var i5 = 0; i5 < debugInfo.length; i5++) {
+              var serverComponentName = debugInfo[i5].name;
               "string" === typeof serverComponentName && (skipToNode += indentation(indent) + "<" + serverComponentName + ">\n", indent++);
             }
           debugInfo = "";
-          i8 = node.fiber.pendingProps;
+          i5 = node.fiber.pendingProps;
           if (6 === node.fiber.tag)
-            debugInfo = describeTextDiff(i8, node.serverProps, indent), indent++;
+            debugInfo = describeTextDiff(i5, node.serverProps, indent), indent++;
           else if (serverComponentName = describeFiberType(node.fiber), null !== serverComponentName)
             if (void 0 === node.serverProps) {
               debugInfo = indent;
               var maxLength = 120 - 2 * debugInfo - serverComponentName.length - 2, content = "";
-              for (propName in i8)
-                if (i8.hasOwnProperty(propName) && "children" !== propName) {
-                  var propValue = describePropValue(i8[propName], 15);
+              for (propName in i5)
+                if (i5.hasOwnProperty(propName) && "children" !== propName) {
+                  var propValue = describePropValue(i5[propName], 15);
                   maxLength -= propName.length + propValue.length + 2;
                   if (0 > maxLength) {
                     content += " ...";
@@ -4459,25 +4459,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
             } else
               null === node.serverProps ? (debugInfo = describeExpandedElement(
                 serverComponentName,
-                i8,
+                i5,
                 added(indent)
               ), indent++) : "string" === typeof node.serverProps ? console.error(
                 "Should not have matched a non HostText fiber to a Text node. This is a bug in React."
               ) : (debugInfo = describeElementDiff(
                 serverComponentName,
-                i8,
+                i5,
                 node.serverProps,
                 indent
               ), indent++);
           var propName = "";
-          i8 = node.fiber.child;
-          for (serverComponentName = 0; i8 && serverComponentName < node.children.length; )
-            maxLength = node.children[serverComponentName], maxLength.fiber === i8 ? (propName += describeNode(maxLength, indent), serverComponentName++) : propName += describeSiblingFiber(i8, indent), i8 = i8.sibling;
-          i8 && 0 < node.children.length && (propName += indentation(indent) + "...\n");
-          i8 = node.serverTail;
+          i5 = node.fiber.child;
+          for (serverComponentName = 0; i5 && serverComponentName < node.children.length; )
+            maxLength = node.children[serverComponentName], maxLength.fiber === i5 ? (propName += describeNode(maxLength, indent), serverComponentName++) : propName += describeSiblingFiber(i5, indent), i5 = i5.sibling;
+          i5 && 0 < node.children.length && (propName += indentation(indent) + "...\n");
+          i5 = node.serverTail;
           null === node.serverProps && indent--;
-          for (node = 0; node < i8.length; node++)
-            serverComponentName = i8[node], propName = "string" === typeof serverComponentName ? propName + (removed(indent) + describeTextNode(serverComponentName, 120 - 2 * indent) + "\n") : propName + describeExpandedElement(
+          for (node = 0; node < i5.length; node++)
+            serverComponentName = i5[node], propName = "string" === typeof serverComponentName ? propName + (removed(indent) + describeTextNode(serverComponentName, 120 - 2 * indent) + "\n") : propName + describeExpandedElement(
               serverComponentName.type,
               serverComponentName.props,
               removed(indent)
@@ -4487,7 +4487,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function describeDiff(rootNode) {
           try {
             return "\n\n" + describeNode(rootNode, 0);
-          } catch (x6) {
+          } catch (x5) {
             return "";
           }
         }
@@ -4756,8 +4756,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               if (prevStyles) {
                 for (var key in prevStyles)
                   if (prevStyles.hasOwnProperty(key) && !styles.hasOwnProperty(key))
-                    for (var longhands = shorthandToLonghand[key] || [key], i8 = 0; i8 < longhands.length; i8++)
-                      expandedUpdates[longhands[i8]] = key;
+                    for (var longhands = shorthandToLonghand[key] || [key], i5 = 0; i5 < longhands.length; i5++)
+                      expandedUpdates[longhands[i5]] = key;
               }
               for (var _key in styles)
                 if (styles.hasOwnProperty(_key) && (!prevStyles || prevStyles[_key] !== styles[_key]))
@@ -4769,12 +4769,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   _key[key[longhands]] = key$jscomp$0;
               key$jscomp$0 = {};
               for (var _key2 in expandedUpdates)
-                if (key = expandedUpdates[_key2], (longhands = _key[_key2]) && key !== longhands && (i8 = key + "," + longhands, !key$jscomp$0[i8])) {
-                  key$jscomp$0[i8] = true;
-                  i8 = console;
+                if (key = expandedUpdates[_key2], (longhands = _key[_key2]) && key !== longhands && (i5 = key + "," + longhands, !key$jscomp$0[i5])) {
+                  key$jscomp$0[i5] = true;
+                  i5 = console;
                   var value = styles[key];
-                  i8.error.call(
-                    i8,
+                  i5.error.call(
+                    i5,
                     "%s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.",
                     null == value || "boolean" === typeof value || "" === value ? "Removing" : "Updating",
                     key,
@@ -5347,8 +5347,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if ("input" === domEventName || "change" === domEventName)
             return getInstIfValueChanged(targetInst);
         }
-        function is(x6, y5) {
-          return x6 === y5 && (0 !== x6 || 1 / x6 === 1 / y5) || x6 !== x6 && y5 !== y5;
+        function is(x5, y5) {
+          return x5 === y5 && (0 !== x5 || 1 / x5 === 1 / y5) || x5 !== x5 && y5 !== y5;
         }
         function shallowEqual(objA, objB) {
           if (objectIs(objA, objB)) return true;
@@ -5447,8 +5447,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           registerTwoPhaseEvent(reactName, [domEventName]);
         }
         function getArrayKind(array) {
-          for (var kind = EMPTY_ARRAY, i8 = 0; i8 < array.length; i8++) {
-            var value = array[i8];
+          for (var kind = EMPTY_ARRAY, i5 = 0; i5 < array.length; i5++) {
+            var value = array[i5];
             if ("object" === typeof value && null !== value)
               if (isArrayImpl(value) && 2 === value.length && "string" === typeof value[0]) {
                 if (kind !== EMPTY_ARRAY && kind !== ENTRIES_ARRAY)
@@ -5726,8 +5726,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (supportsUserTiming) {
             var name = getComponentNameFromFiber(fiber);
             if (null !== name) {
-              for (var debugTask = null, properties = [], i8 = 0; i8 < errors.length; i8++) {
-                var capturedValue = errors[i8];
+              for (var debugTask = null, properties = [], i5 = 0; i5 < errors.length; i5++) {
+                var capturedValue = errors[i5];
                 null == debugTask && null !== capturedValue.source && (debugTask = capturedValue.source._debugTask);
                 capturedValue = capturedValue.value;
                 properties.push([
@@ -5762,8 +5762,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               var name = getComponentNameFromFiber(fiber);
               if (null !== name) {
                 selfTime = [];
-                for (var i8 = 0; i8 < errors.length; i8++) {
-                  var error = errors[i8].value;
+                for (var i5 = 0; i5 < errors.length; i5++) {
+                  var error = errors[i5].value;
                   selfTime.push([
                     "Error",
                     "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error)
@@ -5879,8 +5879,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function logRecoveredRenderPhase(startTime, endTime, lanes, recoverableErrors, hydrationFailed, debugTask) {
           if (supportsUserTiming && !(endTime <= startTime)) {
             lanes = [];
-            for (var i8 = 0; i8 < recoverableErrors.length; i8++) {
-              var error = recoverableErrors[i8].value;
+            for (var i5 = 0; i5 < recoverableErrors.length; i5++) {
+              var error = recoverableErrors[i5].value;
               lanes.push([
                 "Recoverable Error",
                 "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error)
@@ -5946,8 +5946,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         function logCommitErrored(startTime, endTime, errors, passive, debugTask) {
           if (supportsUserTiming && !(endTime <= startTime)) {
-            for (var properties = [], i8 = 0; i8 < errors.length; i8++) {
-              var error = errors[i8].value;
+            for (var properties = [], i5 = 0; i5 < errors.length; i5++) {
+              var error = errors[i5].value;
               properties.push([
                 "Error",
                 "object" === typeof error && null !== error && "string" === typeof error.message ? String(error.message) : String(error)
@@ -5992,15 +5992,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
           ));
         }
         function finishQueueingConcurrentUpdates() {
-          for (var endIndex = concurrentQueuesIndex, i8 = concurrentlyUpdatedLanes = concurrentQueuesIndex = 0; i8 < endIndex; ) {
-            var fiber = concurrentQueues[i8];
-            concurrentQueues[i8++] = null;
-            var queue = concurrentQueues[i8];
-            concurrentQueues[i8++] = null;
-            var update = concurrentQueues[i8];
-            concurrentQueues[i8++] = null;
-            var lane = concurrentQueues[i8];
-            concurrentQueues[i8++] = null;
+          for (var endIndex = concurrentQueuesIndex, i5 = concurrentlyUpdatedLanes = concurrentQueuesIndex = 0; i5 < endIndex; ) {
+            var fiber = concurrentQueues[i5];
+            concurrentQueues[i5++] = null;
+            var queue = concurrentQueues[i5];
+            concurrentQueues[i5++] = null;
+            var update = concurrentQueues[i5];
+            concurrentQueues[i5++] = null;
+            var lane = concurrentQueues[i5];
+            concurrentQueues[i5++] = null;
             if (null !== queue && null !== update) {
               var pending = queue.pending;
               null === pending ? update.next = update : (update.next = pending.next, pending.next = update);
@@ -6634,8 +6634,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               a: for (; null !== list; ) {
                 var dependency = list;
                 list = fiber;
-                for (var i8 = 0; i8 < contexts.length; i8++)
-                  if (dependency.context === contexts[i8]) {
+                for (var i5 = 0; i5 < contexts.length; i5++)
+                  if (dependency.context === contexts[i5]) {
                     list.lanes |= renderLanes2;
                     dependency = list.alternate;
                     null !== dependency && (dependency.lanes |= renderLanes2);
@@ -6923,7 +6923,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             currentEntangledListeners = null;
             currentEntangledLane = 0;
             currentEntangledActionThenable = null;
-            for (var i8 = 0; i8 < listeners.length; i8++) (0, listeners[i8])();
+            for (var i5 = 0; i5 < listeners.length; i5++) (0, listeners[i5])();
           }
         }
         function chainThenableValue(thenable, result) {
@@ -6939,7 +6939,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             function() {
               thenableWithOverride.status = "fulfilled";
               thenableWithOverride.value = result;
-              for (var i8 = 0; i8 < listeners.length; i8++) (0, listeners[i8])(result);
+              for (var i5 = 0; i5 < listeners.length; i5++) (0, listeners[i5])(result);
             },
             function(error) {
               thenableWithOverride.status = "rejected";
@@ -7036,10 +7036,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function resolveLazy(lazyType) {
           try {
             return callLazyInitInDEV(lazyType);
-          } catch (x6) {
-            if (null !== x6 && "object" === typeof x6 && "function" === typeof x6.then)
-              throw suspendedThenable = x6, needsToResetSuspendedThenableDEV = true, SuspenseException;
-            throw x6;
+          } catch (x5) {
+            if (null !== x5 && "object" === typeof x5 && "function" === typeof x5.then)
+              throw suspendedThenable = x5, needsToResetSuspendedThenableDEV = true, SuspenseException;
+            throw x5;
           }
         }
         function getSuspendedThenable() {
@@ -7066,17 +7066,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function getCurrentDebugTask() {
           var debugInfo = currentDebugInfo;
           if (null != debugInfo) {
-            for (var i8 = debugInfo.length - 1; 0 <= i8; i8--)
-              if (null != debugInfo[i8].name) {
-                var debugTask = debugInfo[i8].debugTask;
+            for (var i5 = debugInfo.length - 1; 0 <= i5; i5--)
+              if (null != debugInfo[i5].name) {
+                var debugTask = debugInfo[i5].debugTask;
                 if (null != debugTask) return debugTask;
               }
           }
           return null;
         }
         function validateFragmentProps(element, fiber, returnFiber) {
-          for (var keys = Object.keys(element.props), i8 = 0; i8 < keys.length; i8++) {
-            var key = keys[i8];
+          for (var keys = Object.keys(element.props), i5 = 0; i5 < keys.length; i5++) {
+            var key = keys[i5];
             if ("children" !== key && "key" !== key) {
               null === fiber && (fiber = createFiberFromElement(element, returnFiber.mode, 0), fiber._debugInfo = currentDebugInfo, fiber.return = returnFiber);
               runWithFiberInDEV(
@@ -7756,19 +7756,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
               );
               thenableState$1 = null;
               return firstChildFiber;
-            } catch (x6) {
-              if (x6 === SuspenseException || x6 === SuspenseActionException) throw x6;
-              var fiber = createFiber(29, x6, null, returnFiber.mode);
+            } catch (x5) {
+              if (x5 === SuspenseException || x5 === SuspenseActionException) throw x5;
+              var fiber = createFiber(29, x5, null, returnFiber.mode);
               fiber.lanes = lanes;
               fiber.return = returnFiber;
               var debugInfo = fiber._debugInfo = currentDebugInfo;
               fiber._debugOwner = returnFiber._debugOwner;
               fiber._debugTask = returnFiber._debugTask;
               if (null != debugInfo) {
-                for (var i8 = debugInfo.length - 1; 0 <= i8; i8--)
-                  if ("string" === typeof debugInfo[i8].stack) {
-                    fiber._debugOwner = debugInfo[i8];
-                    fiber._debugTask = debugInfo[i8].debugTask;
+                for (var i5 = debugInfo.length - 1; 0 <= i5; i5--)
+                  if ("string" === typeof debugInfo[i5].stack) {
+                    fiber._debugOwner = debugInfo[i5];
+                    fiber._debugTask = debugInfo[i5].debugTask;
                     break;
                   }
               }
@@ -8098,9 +8098,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (null !== hookTypesDev && (hookTypesUpdateIndexDev++, hookTypesDev[hookTypesUpdateIndexDev] !== hookName)) {
             var componentName2 = getComponentNameFromFiber(currentlyRenderingFiber);
             if (!didWarnAboutMismatchedHooksForComponent.has(componentName2) && (didWarnAboutMismatchedHooksForComponent.add(componentName2), null !== hookTypesDev)) {
-              for (var table = "", i8 = 0; i8 <= hookTypesUpdateIndexDev; i8++) {
-                var oldHookName = hookTypesDev[i8], newHookName = i8 === hookTypesUpdateIndexDev ? hookName : oldHookName;
-                for (oldHookName = i8 + 1 + ". " + oldHookName; 30 > oldHookName.length; )
+              for (var table = "", i5 = 0; i5 <= hookTypesUpdateIndexDev; i5++) {
+                var oldHookName = hookTypesDev[i5], newHookName = i5 === hookTypesUpdateIndexDev ? hookName : oldHookName;
+                for (oldHookName = i5 + 1 + ". " + oldHookName; 30 > oldHookName.length; )
                   oldHookName += " ";
                 oldHookName += newHookName + "\n";
                 table += oldHookName;
@@ -8145,8 +8145,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
             "[" + prevDeps.join(", ") + "]",
             "[" + nextDeps.join(", ") + "]"
           );
-          for (var i8 = 0; i8 < prevDeps.length && i8 < nextDeps.length; i8++)
-            if (!objectIs(nextDeps[i8], prevDeps[i8])) return false;
+          for (var i5 = 0; i5 < prevDeps.length && i5 < nextDeps.length; i5++)
+            if (!objectIs(nextDeps[i5], prevDeps[i5])) return false;
           return true;
         }
         function renderWithHooks(current2, workInProgress2, Component, props, secondArg, nextRenderLanes) {
@@ -8770,7 +8770,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         function notifyActionListeners(actionNode) {
           actionNode = actionNode.listeners;
-          for (var i8 = 0; i8 < actionNode.length; i8++) (0, actionNode[i8])();
+          for (var i5 = 0; i5 < actionNode.length; i5++) (0, actionNode[i5])();
         }
         function actionStateReducer(oldState, newState) {
           return newState;
@@ -8872,9 +8872,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if ("object" === typeof currentStateHook && null !== currentStateHook && "function" === typeof currentStateHook.then)
             try {
               var state = useThenable(currentStateHook);
-            } catch (x6) {
-              if (x6 === SuspenseException) throw SuspenseActionException;
-              throw x6;
+            } catch (x5) {
+              if (x5 === SuspenseException) throw SuspenseActionException;
+              throw x5;
             }
           else state = currentStateHook;
           currentStateHook = updateWorkInProgressHook();
@@ -11933,10 +11933,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   addendum = null === lastEffect ? " You returned null. If your effect does not require clean up, return undefined (or nothing)." : "function" === typeof lastEffect.then ? "\n\nIt looks like you wrote " + hookName + "(async () => ...) or returned a Promise. Instead, write the async function inside your effect and call it immediately:\n\n" + hookName + "(() => {\n  async function fetchData() {\n    // You can await here\n    const response = await MyAPI.getData(someId);\n    // ...\n  }\n  fetchData();\n}, [someId]); // Or [] if effect doesn't need props or state\n\nLearn more about data fetching with Hooks: https://react.dev/link/hooks-data-fetching" : " You returned: " + lastEffect;
                   runWithFiberInDEV(
                     finishedWork,
-                    function(n5, a5) {
+                    function(n4, a5) {
                       console.error(
                         "%s must not return anything besides a function, which is used for clean-up.%s",
-                        n5,
+                        n4,
                         a5
                       );
                     },
@@ -12863,8 +12863,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function recursivelyTraverseMutationEffects(root$jscomp$0, parentFiber) {
           var deletions = parentFiber.deletions;
           if (null !== deletions)
-            for (var i8 = 0; i8 < deletions.length; i8++) {
-              var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i8], prevEffectStart = pushComponentEffectStart(), parent = returnFiber;
+            for (var i5 = 0; i5 < deletions.length; i5++) {
+              var root2 = root$jscomp$0, returnFiber = parentFiber, deletedFiber = deletions[i5], prevEffectStart = pushComponentEffectStart(), parent = returnFiber;
               a: for (; null !== parent; ) {
                 switch (parent.tag) {
                   case 27:
@@ -12976,9 +12976,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
                               existingHiddenCallbacks
                             ).get(flags + (current2.href || ""));
                             if (maybeNodes) {
-                              for (var i8 = 0; i8 < maybeNodes.length; i8++)
-                                if (currentResource = maybeNodes[i8], currentResource.getAttribute("href") === (null == current2.href || "" === current2.href ? null : current2.href) && currentResource.getAttribute("rel") === (null == current2.rel ? null : current2.rel) && currentResource.getAttribute("title") === (null == current2.title ? null : current2.title) && currentResource.getAttribute("crossorigin") === (null == current2.crossOrigin ? null : current2.crossOrigin)) {
-                                  maybeNodes.splice(i8, 1);
+                              for (var i5 = 0; i5 < maybeNodes.length; i5++)
+                                if (currentResource = maybeNodes[i5], currentResource.getAttribute("href") === (null == current2.href || "" === current2.href ? null : current2.href) && currentResource.getAttribute("rel") === (null == current2.rel ? null : current2.rel) && currentResource.getAttribute("title") === (null == current2.title ? null : current2.title) && currentResource.getAttribute("crossorigin") === (null == current2.crossOrigin ? null : current2.crossOrigin)) {
+                                  maybeNodes.splice(i5, 1);
                                   break b;
                                 }
                             }
@@ -12994,12 +12994,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
                               "content",
                               existingHiddenCallbacks
                             ).get(flags + (current2.content || ""))) {
-                              for (i8 = 0; i8 < maybeNodes.length; i8++)
-                                if (currentResource = maybeNodes[i8], checkAttributeStringCoercion(
+                              for (i5 = 0; i5 < maybeNodes.length; i5++)
+                                if (currentResource = maybeNodes[i5], checkAttributeStringCoercion(
                                   current2.content,
                                   "content"
                                 ), currentResource.getAttribute("content") === (null == current2.content ? null : "" + current2.content) && currentResource.getAttribute("name") === (null == current2.name ? null : current2.name) && currentResource.getAttribute("property") === (null == current2.property ? null : current2.property) && currentResource.getAttribute("http-equiv") === (null == current2.httpEquiv ? null : current2.httpEquiv) && currentResource.getAttribute("charset") === (null == current2.charSet ? null : current2.charSet)) {
-                                  maybeNodes.splice(i8, 1);
+                                  maybeNodes.splice(i5, 1);
                                   break b;
                                 }
                             }
@@ -13216,10 +13216,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     if (null === current2) {
                       wasHidden = root2;
                       try {
-                        i8 = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(
+                        i5 = wasHidden.stateNode, existingHiddenCallbacks ? runWithFiberInDEV(
                           wasHidden,
                           hideDehydratedBoundary,
-                          i8
+                          i5
                         ) : runWithFiberInDEV(
                           wasHidden,
                           unhideDehydratedBoundary,
@@ -13973,8 +13973,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           var deletions = parentFiber.deletions;
           if (0 !== (parentFiber.flags & 16)) {
             if (null !== deletions)
-              for (var i8 = 0; i8 < deletions.length; i8++) {
-                var childToDelete = deletions[i8], prevEffectStart = pushComponentEffectStart();
+              for (var i5 = 0; i5 < deletions.length; i5++) {
+                var childToDelete = deletions[i5], prevEffectStart = pushComponentEffectStart();
                 nextEffect = childToDelete;
                 commitPassiveUnmountEffectsInsideOfDeletedTree_begin(
                   childToDelete,
@@ -14045,8 +14045,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           var deletions = parentFiber.deletions;
           if (0 !== (parentFiber.flags & 16)) {
             if (null !== deletions)
-              for (var i8 = 0; i8 < deletions.length; i8++) {
-                var childToDelete = deletions[i8], prevEffectStart = pushComponentEffectStart();
+              for (var i5 = 0; i5 < deletions.length; i5++) {
+                var childToDelete = deletions[i5], prevEffectStart = pushComponentEffectStart();
                 nextEffect = childToDelete;
                 commitPassiveUnmountEffectsInsideOfDeletedTree_begin(
                   childToDelete,
@@ -14548,8 +14548,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           for (var node = finishedWork; ; ) {
             var tag = node.tag;
             if ((0 === tag || 11 === tag || 15 === tag) && node.flags & 16384 && (tag = node.updateQueue, null !== tag && (tag = tag.stores, null !== tag)))
-              for (var i8 = 0; i8 < tag.length; i8++) {
-                var check = tag[i8], getSnapshot = check.getSnapshot;
+              for (var i5 = 0; i5 < tag.length; i5++) {
+                var check = tag[i5], getSnapshot = check.getSnapshot;
                 check = check.value;
                 try {
                   if (!objectIs(getSnapshot(), check)) return false;
@@ -16141,8 +16141,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         function processDispatchQueue(dispatchQueue, eventSystemFlags) {
           eventSystemFlags = 0 !== (eventSystemFlags & 4);
-          for (var i8 = 0; i8 < dispatchQueue.length; i8++) {
-            var _dispatchQueue$i = dispatchQueue[i8];
+          for (var i5 = 0; i5 < dispatchQueue.length; i5++) {
+            var _dispatchQueue$i = dispatchQueue[i5];
             a: {
               var previousInstance = void 0, event = _dispatchQueue$i.event;
               _dispatchQueue$i = _dispatchQueue$i.listeners;
@@ -17591,8 +17591,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function getStylesObjectFromElement(domElement) {
           var serverValueInObjectForm = {};
           domElement = domElement.style;
-          for (var i8 = 0; i8 < domElement.length; i8++) {
-            var styleName = domElement[i8];
+          for (var i5 = 0; i5 < domElement.length; i5++) {
+            var styleName = domElement[i5];
             serverValueInObjectForm[styleName] = domElement.getPropertyValue(styleName);
           }
           return serverValueInObjectForm;
@@ -17728,8 +17728,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           warnForPropDifference(propKey, domElement, value, serverDifferences);
         }
         function diffHydratedProperties(domElement, tag, props, hostContext) {
-          for (var serverDifferences = {}, extraAttributes = /* @__PURE__ */ new Set(), attributes = domElement.attributes, i8 = 0; i8 < attributes.length; i8++)
-            switch (attributes[i8].name.toLowerCase()) {
+          for (var serverDifferences = {}, extraAttributes = /* @__PURE__ */ new Set(), attributes = domElement.attributes, i5 = 0; i5 < attributes.length; i5++)
+            switch (attributes[i5].name.toLowerCase()) {
               case "value":
                 break;
               case "checked":
@@ -17737,7 +17737,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               case "selected":
                 break;
               default:
-                extraAttributes.add(attributes[i8].name);
+                extraAttributes.add(attributes[i5].name);
             }
           if (isCustomElement(tag))
             for (var propKey in props) {
@@ -18040,11 +18040,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     case "capture":
                     case "download":
                       a: {
-                        i8 = domElement;
+                        i5 = domElement;
                         var attributeName = attributes = value, serverDifferences$jscomp$0 = serverDifferences;
                         extraAttributes.delete(attributeName);
-                        i8 = i8.getAttribute(attributeName);
-                        if (null === i8)
+                        i5 = i5.getAttribute(attributeName);
+                        if (null === i5)
                           switch (typeof propKey) {
                             case "undefined":
                             case "function":
@@ -18059,15 +18059,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
                             case "symbol":
                               break;
                             case "boolean":
-                              if (true === propKey && "" === i8) break a;
+                              if (true === propKey && "" === i5) break a;
                               break;
                             default:
-                              if (checkAttributeStringCoercion(propKey, attributes), i8 === "" + propKey)
+                              if (checkAttributeStringCoercion(propKey, attributes), i5 === "" + propKey)
                                 break a;
                           }
                         warnForPropDifference(
                           attributes,
-                          i8,
+                          i5,
                           propKey,
                           serverDifferences$jscomp$0
                         );
@@ -18078,12 +18078,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     case "size":
                     case "span":
                       a: {
-                        i8 = domElement;
+                        i5 = domElement;
                         attributeName = attributes = value;
                         serverDifferences$jscomp$0 = serverDifferences;
                         extraAttributes.delete(attributeName);
-                        i8 = i8.getAttribute(attributeName);
-                        if (null === i8)
+                        i5 = i5.getAttribute(attributeName);
+                        if (null === i5)
                           switch (typeof propKey) {
                             case "undefined":
                             case "function":
@@ -18100,12 +18100,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
                             case "boolean":
                               break;
                             default:
-                              if (!(isNaN(propKey) || 1 > propKey) && (checkAttributeStringCoercion(propKey, attributes), i8 === "" + propKey))
+                              if (!(isNaN(propKey) || 1 > propKey) && (checkAttributeStringCoercion(propKey, attributes), i5 === "" + propKey))
                                 break a;
                           }
                         warnForPropDifference(
                           attributes,
-                          i8,
+                          i5,
                           propKey,
                           serverDifferences$jscomp$0
                         );
@@ -18247,21 +18247,21 @@ One of mods you are using is using an old version of SDK. It will work for now b
                       continue;
                     default:
                       if (!(2 < value.length) || "o" !== value[0] && "O" !== value[0] || "n" !== value[1] && "N" !== value[1]) {
-                        i8 = getAttributeAlias(value);
+                        i5 = getAttributeAlias(value);
                         attributes = false;
-                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(i8.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(
+                        hostContext.context === HostContextNamespaceNone && "svg" !== tag && "math" !== tag ? extraAttributes.delete(i5.toLowerCase()) : (attributeName = value.toLowerCase(), attributeName = possibleStandardNames.hasOwnProperty(
                           attributeName
-                        ) ? possibleStandardNames[attributeName] || null : null, null !== attributeName && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i8));
-                        a: if (attributeName = domElement, serverDifferences$jscomp$0 = i8, i8 = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
+                        ) ? possibleStandardNames[attributeName] || null : null, null !== attributeName && attributeName !== value && (attributes = true, extraAttributes.delete(attributeName)), extraAttributes.delete(i5));
+                        a: if (attributeName = domElement, serverDifferences$jscomp$0 = i5, i5 = propKey, isAttributeNameSafe(serverDifferences$jscomp$0))
                           if (attributeName.hasAttribute(serverDifferences$jscomp$0))
                             attributeName = attributeName.getAttribute(
                               serverDifferences$jscomp$0
                             ), checkAttributeStringCoercion(
-                              i8,
+                              i5,
                               serverDifferences$jscomp$0
-                            ), i8 = attributeName === "" + i8 ? i8 : attributeName;
+                            ), i5 = attributeName === "" + i5 ? i5 : attributeName;
                           else {
-                            switch (typeof i8) {
+                            switch (typeof i5) {
                               case "function":
                               case "symbol":
                                 break a;
@@ -18269,12 +18269,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
                                 if (attributeName = serverDifferences$jscomp$0.toLowerCase().slice(0, 5), "data-" !== attributeName && "aria-" !== attributeName)
                                   break a;
                             }
-                            i8 = void 0 === i8 ? void 0 : null;
+                            i5 = void 0 === i5 ? void 0 : null;
                           }
-                        else i8 = void 0;
+                        else i5 = void 0;
                         attributes || warnForPropDifference(
                           value,
-                          i8,
+                          i5,
                           propKey,
                           serverDifferences
                         );
@@ -18312,18 +18312,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         function estimateBandwidth() {
           if ("function" === typeof performance.getEntriesByType) {
-            for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i8 = 0; i8 < resourceEntries.length; i8++) {
-              var entry = resourceEntries[i8], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
+            for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i5 = 0; i5 < resourceEntries.length; i5++) {
+              var entry = resourceEntries[i5], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
               if (transferSize && duration && isLikelyStaticResource(initiatorType)) {
                 initiatorType = 0;
                 duration = entry.responseEnd;
-                for (i8 += 1; i8 < resourceEntries.length; i8++) {
-                  var overlapEntry = resourceEntries[i8], overlapStartTime = overlapEntry.startTime;
+                for (i5 += 1; i5 < resourceEntries.length; i5++) {
+                  var overlapEntry = resourceEntries[i5], overlapStartTime = overlapEntry.startTime;
                   if (overlapStartTime > duration) break;
                   var overlapTransferSize = overlapEntry.transferSize, overlapInitiatorType = overlapEntry.initiatorType;
                   overlapTransferSize && isLikelyStaticResource(overlapInitiatorType) && (overlapEntry = overlapEntry.responseEnd, initiatorType += overlapTransferSize * (overlapEntry < duration ? 1 : (duration - overlapStartTime) / (overlapEntry - overlapStartTime)));
                 }
-                --i8;
+                --i5;
                 bits += 8 * (transferSize + initiatorType) / (entry.duration / 1e3);
                 count++;
                 if (10 < count) break;
@@ -18622,8 +18622,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         function describeHydratableInstanceForDevWarnings(instance) {
           if (1 === instance.nodeType) {
-            for (var JSCompiler_temp_const = instance.nodeName.toLowerCase(), serverDifferences = {}, attributes = instance.attributes, i8 = 0; i8 < attributes.length; i8++) {
-              var attr = attributes[i8];
+            for (var JSCompiler_temp_const = instance.nodeName.toLowerCase(), serverDifferences = {}, attributes = instance.attributes, i5 = 0; i5 < attributes.length; i5++) {
+              var attr = attributes[i5];
               serverDifferences[getPropNameFromAttributeName(attr.name)] = "style" === attr.name.toLowerCase() ? getStylesObjectFromElement(instance) : attr.value;
             }
             return { type: JSCompiler_temp_const, props: serverDifferences };
@@ -18923,8 +18923,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         function insertStylesheet(instance, precedence, root2) {
           for (var nodes = root2.querySelectorAll(
             'link[rel="stylesheet"][data-precedence],style[data-precedence]'
-          ), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i8 = 0; i8 < nodes.length; i8++) {
-            var node = nodes[i8];
+          ), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i5 = 0; i5 < nodes.length; i5++) {
+            var node = nodes[i5];
             if (node.dataset.precedence === precedence) prior = node;
             else if (prior !== last) break;
           }
@@ -19135,8 +19135,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
               precedencesByRoot.set(root2, precedences);
               for (var nodes = root2.querySelectorAll(
                 "link[data-precedence],style[data-precedence]"
-              ), i8 = 0; i8 < nodes.length; i8++) {
-                var node = nodes[i8];
+              ), i5 = 0; i5 < nodes.length; i5++) {
+                var node = nodes[i5];
                 if ("LINK" === node.nodeName || "not all" !== node.getAttribute("media"))
                   precedences.set(node.dataset.precedence, node), last = node;
               }
@@ -19144,14 +19144,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
             nodes = resource.instance;
             node = nodes.getAttribute("data-precedence");
-            i8 = precedences.get(node) || last;
-            i8 === last && precedences.set(LAST_PRECEDENCE, nodes);
+            i5 = precedences.get(node) || last;
+            i5 === last && precedences.set(LAST_PRECEDENCE, nodes);
             precedences.set(node, nodes);
             this.count++;
             last = onUnsuspend.bind(this);
             nodes.addEventListener("load", last);
             nodes.addEventListener("error", last);
-            i8 ? i8.parentNode.insertBefore(nodes, i8.nextSibling) : (root2 = 9 === root2.nodeType ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
+            i5 ? i5.parentNode.insertBefore(nodes, i5.nextSibling) : (root2 = 9 === root2.nodeType ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
             resource.state.loading |= Inserted;
           }
         }
@@ -19652,14 +19652,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
             Scheduler.unstable_NormalPriority,
             function() {
               lastScheduledReplayQueue === formReplayingQueue && (lastScheduledReplayQueue = null);
-              for (var i8 = 0; i8 < formReplayingQueue.length; i8 += 3) {
-                var form = formReplayingQueue[i8], submitterOrAction = formReplayingQueue[i8 + 1], formData = formReplayingQueue[i8 + 2];
+              for (var i5 = 0; i5 < formReplayingQueue.length; i5 += 3) {
+                var form = formReplayingQueue[i5], submitterOrAction = formReplayingQueue[i5 + 1], formData = formReplayingQueue[i5 + 2];
                 if ("function" !== typeof submitterOrAction)
                   if (null === findInstanceBlockingTarget(submitterOrAction || form))
                     continue;
                   else break;
                 var formInst = getInstanceFromNode(form);
-                null !== formInst && (formReplayingQueue.splice(i8, 3), i8 -= 3, form = {
+                null !== formInst && (formReplayingQueue.splice(i5, 3), i5 -= 3, form = {
                   pending: true,
                   data: formData,
                   method: form.method,
@@ -19683,18 +19683,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
           null !== queuedMouse && scheduleCallbackIfUnblocked(queuedMouse, unblocked);
           queuedPointers.forEach(unblock);
           queuedPointerCaptures.forEach(unblock);
-          for (var i8 = 0; i8 < queuedExplicitHydrationTargets.length; i8++) {
-            var queuedTarget = queuedExplicitHydrationTargets[i8];
+          for (var i5 = 0; i5 < queuedExplicitHydrationTargets.length; i5++) {
+            var queuedTarget = queuedExplicitHydrationTargets[i5];
             queuedTarget.blockedOn === unblocked && (queuedTarget.blockedOn = null);
           }
-          for (; 0 < queuedExplicitHydrationTargets.length && (i8 = queuedExplicitHydrationTargets[0], null === i8.blockedOn); )
-            attemptExplicitHydrationTarget(i8), null === i8.blockedOn && queuedExplicitHydrationTargets.shift();
-          i8 = (unblocked.ownerDocument || unblocked).$$reactFormReplay;
-          if (null != i8)
-            for (queuedTarget = 0; queuedTarget < i8.length; queuedTarget += 3) {
-              var form = i8[queuedTarget], submitterOrAction = i8[queuedTarget + 1], formProps = form[internalPropsKey] || null;
+          for (; 0 < queuedExplicitHydrationTargets.length && (i5 = queuedExplicitHydrationTargets[0], null === i5.blockedOn); )
+            attemptExplicitHydrationTarget(i5), null === i5.blockedOn && queuedExplicitHydrationTargets.shift();
+          i5 = (unblocked.ownerDocument || unblocked).$$reactFormReplay;
+          if (null != i5)
+            for (queuedTarget = 0; queuedTarget < i5.length; queuedTarget += 3) {
+              var form = i5[queuedTarget], submitterOrAction = i5[queuedTarget + 1], formProps = form[internalPropsKey] || null;
               if ("function" === typeof submitterOrAction)
-                formProps || scheduleReplayQueueIfNeeded(i8);
+                formProps || scheduleReplayQueueIfNeeded(i5);
               else if (formProps) {
                 var action = null;
                 if (submitterOrAction && submitterOrAction.hasAttribute("formAction"))
@@ -19704,8 +19704,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     if (null !== findInstanceBlockingTarget(form)) continue;
                   }
                 else action = formProps.action;
-                "function" === typeof action ? i8[queuedTarget + 1] = action : (i8.splice(queuedTarget, 3), queuedTarget -= 3);
-                scheduleReplayQueueIfNeeded(i8);
+                "function" === typeof action ? i5[queuedTarget + 1] = action : (i5.splice(queuedTarget, 3), queuedTarget -= 3);
+                scheduleReplayQueueIfNeeded(i5);
               }
             }
         }
@@ -22244,8 +22244,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         var didWarnAboutUpdateInRenderForAnotherComponent = /* @__PURE__ */ new Set();
         var fakeActCallbackNode$1 = {}, firstScheduledRoot = null, lastScheduledRoot = null, didScheduleMicrotask = false, didScheduleMicrotask_act = false, mightHavePendingSyncWork = false, isFlushingWork = false, currentEventTransitionLane = 0, fakeActCallbackNode = {};
         (function() {
-          for (var i8 = 0; i8 < simpleEventPluginEvents.length; i8++) {
-            var eventName = simpleEventPluginEvents[i8], domEventName = eventName.toLowerCase();
+          for (var i5 = 0; i5 < simpleEventPluginEvents.length; i5++) {
+            var eventName = simpleEventPluginEvents[i5], domEventName = eventName.toLowerCase();
             eventName = eventName[0].toUpperCase() + eventName.slice(1);
             registerSimpleEvent(domEventName, "on" + eventName);
           }
@@ -22559,9 +22559,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (target) {
             var updatePriority = resolveUpdatePriority();
             target = { blockedOn: null, target, priority: updatePriority };
-            for (var i8 = 0; i8 < queuedExplicitHydrationTargets.length && 0 !== updatePriority && updatePriority < queuedExplicitHydrationTargets[i8].priority; i8++) ;
-            queuedExplicitHydrationTargets.splice(i8, 0, target);
-            0 === i8 && attemptExplicitHydrationTarget(target);
+            for (var i5 = 0; i5 < queuedExplicitHydrationTargets.length && 0 !== updatePriority && updatePriority < queuedExplicitHydrationTargets[i5].priority; i5++) ;
+            queuedExplicitHydrationTargets.splice(i5, 0, target);
+            0 === i5 && attemptExplicitHydrationTarget(target);
           }
         };
         (function() {
@@ -22751,7 +22751,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 type = type._init;
                 try {
                   return getComponentNameFromType(type(innerType));
-                } catch (x6) {
+                } catch (x5) {
                 }
             }
           return null;
@@ -22785,7 +22785,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           try {
             var name = getComponentNameFromType(type);
             return name ? "<" + name + ">" : "<...>";
-          } catch (x6) {
+          } catch (x5) {
             return "<...>";
           }
         }
@@ -22880,8 +22880,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
             else validateChildKeys(children);
           if (hasOwnProperty.call(config, "key")) {
             children = getComponentNameFromType(type);
-            var keys = Object.keys(config).filter(function(k4) {
-              return "key" !== k4;
+            var keys = Object.keys(config).filter(function(k5) {
+              return "key" !== k5;
             });
             isStaticChildren = 0 < keys.length ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
             didWarnAboutKeySpread[children + isStaticChildren] || (keys = 0 < keys.length ? "{" + keys.join(": ..., ") + ": ...}" : "{}", console.error(
@@ -22977,10 +22977,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/index.ts
   var import_reflect_metadata = __toESM(require_Reflect());
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/styles.css
-  var styles_default = '*{margin:0;padding:0;box-sizing:border-box}.zcButton{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcButton:hover{background:var(--tmd-element-hover, #ebf7fe);border-color:var(--tmd-accent-hover, #7dd3fc);color:var(--tmd-accent-hover, #015a8c)}.zcButton .tooltip{position:absolute;color:#000;text-align:center;padding:4px;border-radius:4px;background:#ff8;border:2px solid #e7e787;width:max-content;min-height:100%;visibility:hidden;z-index:10}.zcButton .tooltip[position=left]{right:calc(100% + 1vw)}.zcButton .tooltip[position=right]{left:calc(100% + 1vw)}.zcButton:hover .tooltip{visibility:visible}.zcButton[data-zc-style=green]{background:#7cff7c;border-color:#52cc52;color:#000}.zcButton[data-zc-style=green]:hover{background:#5ec55e;color:#000}.zcButton[data-zc-style=inverted]{background:var(--tmd-accent, #303030);border:none;color:var(--tmd-text, white)}.zcButton[data-zc-style=inverted]:hover{background:var(--tmd-accent-hover, #474747)}.zcInput{background:var(--tmd-element, white);color:var(--tmd-text, black);padding:2vw;border:2px solid var(--tmd-accent, black);border-radius:4px}.zcInput::placeholder{color:var(--tmd-text, black)}.zcBackNextButton{display:flex;column-gap:2vw;justify-content:center;align-items:center;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcBackNextButton-btnDisabled{background:#ffa590;pointer-events:none}.zcTabs{display:flex}.zcTabs button{cursor:pointer;width:100%;color:var(--tmd-text, black);background:none;border:none;border-bottom:2px solid var(--tmd-element, rgb(214, 214, 214));padding:.25em}.zcTabs button[data-opened=true]{font-weight:700;border-bottom:2px solid var(--tmd-accent, rgb(81, 81, 231))!important}.zcTabs button:hover{background:var(--tmd-element, rgb(235, 235, 235));border-bottom:2px solid var(--tmd-element-hover, rgb(149, 149, 149))}.zcCard{border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;background:var(--tmd-element, white);color:var(--tmd-text, black);padding:.4em 2.5em .4em .4em}.zcCard:hover{border:2px solid var(--tmd-accent-hover, rgb(170, 170, 170))}.zcCard_name{font-size:.5em;color:var(--tmd-text, rgb(100, 100, 100))}.zcCard_value{color:var(--tmd-text, black);margin-top:.4em;font-weight:700}.zcSelect{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;padding:.45em;z-index:10}.zcSelect[opened=true]{border-color:var(--tmd-accent-hover, rgb(0, 96, 223))}.zcSelect[opened=false]:hover{border-color:var(--tmd-accent-hover, rgb(170, 170, 170))}.zcSelect>svg{position:absolute;right:.45em;top:50%;transform:translateY(-50%);width:1.5em;height:1.5em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div[data-zc-position=bottom]{position:absolute;top:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div[data-zc-position=top]{position:absolute;bottom:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6ed);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div>div{color:var(--tmd-text, black);width:100%;padding:.45em;border-radius:.25em}.zcSelect>div>div>svg{width:1.25em;height:1.25em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div>div:hover{background:var(--tmd-element-hover, #ededed)}.zcToastsContainer{display:flex;flex-direction:column;gap:.25vw;cursor:pointer;position:fixed;z-index:10}@keyframes zcToast-progress{0%{width:0}to{width:100%}}@keyframes zcSlideInFromLeft{0%{transform:translate(-100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes zcSlideOutToLeft{0%{transform:translate(0);opacity:1}to{transform:translate(-100%);opacity:0}}.zcToast{max-width:25vw;animation:zcSlideInFromLeft .3s ease-out forwards}.zcToast.exiting{animation:zcSlideOutToLeft .3s ease-out forwards}.zcToast p{color:#fff}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn:before{content:"";position:absolute;left:1vw;top:50%;transform:translateY(-50%);border:2px solid white;width:.5em;aspect-ratio:1/1;border-radius:50%}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn[data-zc-picked=true]:before{background:#fff}.zcDialogBtn{cursor:pointer;background:#ffffff17;border:none;font-size:clamp(6px,2vw,24px);color:#fff;padding:.2em;border-radius:.5em}.zcDialogBtn:hover{background:#ffffff24}@keyframes zcSpin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes zcCursorBlink{0%{border-right-color:transparent}to{border-right-color:#2a2a2a}}.zcCursor{border-right:2px solid var(--tmd-text, rgb(42, 42, 42));width:fit-content}.zcDisabled{pointer-events:none;opacity:.6}\n';
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/styles.css
+  var styles_default = '*{margin:0;padding:0;box-sizing:border-box}.zcButton{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcButton:hover{background:var(--tmd-element-hover, #ebf7fe);border-color:var(--tmd-accent-hover, #7dd3fc);color:var(--tmd-accent-hover, #015a8c)}.zcButton .tooltip{position:absolute;color:#000;text-align:center;padding:4px;border-radius:4px;background:#ff8;border:2px solid #e7e787;width:max-content;min-height:100%;visibility:hidden;z-index:10}.zcButton .tooltip[position=left]{right:calc(100% + 1vw)}.zcButton .tooltip[position=right]{left:calc(100% + 1vw)}.zcButton:hover .tooltip{visibility:visible}.zcButton[data-zc-style=green]{background:#7cff7c;border-color:#52cc52;color:#000}.zcButton[data-zc-style=green]:hover{background:#5ec55e;color:#000}.zcButton[data-zc-style=inverted]{background:var(--tmd-accent, #303030);border:none;color:var(--tmd-text, white)}.zcButton[data-zc-style=inverted]:hover{background:var(--tmd-accent-hover, #474747)}.zcInput{background:var(--tmd-element, white);color:var(--tmd-text, black);padding:2vw;border:2px solid var(--tmd-accent, black);border-radius:4px}.zcInput::placeholder{color:var(--tmd-text, black)}.zcBackNextButton{display:flex;column-gap:2vw;justify-content:center;align-items:center;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, black);border-radius:4px}.zcBackNextButton-btnDisabled{background:#ffa590;pointer-events:none}.zcTabs{display:flex}.zcTabs button{cursor:pointer;width:100%;color:var(--tmd-text, black);background:none;border:none;border-bottom:2px solid var(--tmd-element, rgb(214, 214, 214));padding:.25em}.zcTabs button[data-opened=true]{font-weight:700;border-bottom:2px solid var(--tmd-accent, rgb(81, 81, 231))!important}.zcTabs button:hover{background:var(--tmd-element, rgb(235, 235, 235));border-bottom:2px solid var(--tmd-element-hover, rgb(149, 149, 149))}.zcCard{border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;background:var(--tmd-element, white);color:var(--tmd-text, black);padding:.4em 2.5em .4em .4em}.zcCard:hover{border:2px solid var(--tmd-accent-hover, rgb(170, 170, 170))}.zcCard_name{font-size:.5em;color:var(--tmd-text, rgb(100, 100, 100))}.zcCard_value{color:var(--tmd-text, black);margin-top:.4em;font-weight:700}.zcSelect{cursor:pointer;background:var(--tmd-element, white);color:var(--tmd-text, black);border:2px solid var(--tmd-accent, rgb(195, 195, 195));border-radius:.4em;padding:.45em;z-index:10}.zcSelect[opened=true]{border-color:var(--tmd-accent-hover, rgb(0, 96, 223))}.zcSelect[opened=false]:hover{border-color:var(--tmd-accent-hover, rgb(170, 170, 170))}.zcSelect>svg{position:absolute;right:.45em;top:50%;transform:translateY(-50%);width:1.5em;height:1.5em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div[data-zc-position=bottom]{position:absolute;top:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div[data-zc-position=top]{position:absolute;bottom:calc(100% + .45em);left:0;width:100%;background:var(--tmd-element, #f6f6f6ed);border:2px solid var(--tmd-element-hover, rgb(235 235 235));border-radius:.4em}.zcSelect>div>div{color:var(--tmd-text, black);width:100%;padding:.45em;border-radius:.25em}.zcSelect>div>div>svg{width:1.25em;height:1.25em;color:var(--tmd-accent, rgb(0, 96, 223))}.zcSelect>div>div:hover{background:var(--tmd-element-hover, #ededed)}.zcToastsContainer{display:flex;flex-direction:column;gap:.25vw;cursor:pointer;position:fixed;z-index:30}@keyframes zcToast-progress{0%{width:0}to{width:100%}}@keyframes zcSlideInFromLeft{0%{transform:translate(-100%);opacity:0}to{transform:translate(0);opacity:1}}@keyframes zcSlideOutToLeft{0%{transform:translate(0);opacity:1}to{transform:translate(-100%);opacity:0}}.zcToast{max-width:25vw;animation:zcSlideInFromLeft .3s ease-out forwards}.zcToast.exiting{animation:zcSlideOutToLeft .3s ease-out forwards}.zcToast p{color:#fff}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn:before{content:"";position:absolute;left:1vw;top:50%;transform:translateY(-50%);border:2px solid white;width:.5em;aspect-ratio:1/1;border-radius:50%}dialog[data-zc-dialog-type=choice_multiple] .zcDialogBtn[data-zc-picked=true]:before{background:#fff}.zcDialogBtn{cursor:pointer;background:#ffffff17;border:none;font-size:clamp(6px,2vw,24px);color:#fff;padding:.2em;border-radius:.5em}.zcDialogBtn:hover{background:#ffffff24}@keyframes zcSpin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes zcCursorBlink{0%{border-right-color:transparent}to{border-right-color:#2a2a2a}}.zcCursor{border-right:2px solid var(--tmd-text, rgb(42, 42, 42));width:fit-content}.zcDisabled{pointer-events:none;opacity:.6}\n';
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modsApi.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/modsApi.js
   var import_bondage_club_mod_sdk = __toESM(require_bcmodsdk());
 
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/defaultAttributes.js
@@ -23019,280 +23019,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return createSVGElement([tag, attrs, iconNode]);
   };
 
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/arrow-down.js
-  var ArrowDown = [
-    ["path", { d: "M12 5v14" }],
-    ["path", { d: "m19 12-7 7-7-7" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/arrow-up.js
-  var ArrowUp = [
-    ["path", { d: "m5 12 7-7 7 7" }],
-    ["path", { d: "M12 19V5" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/ban.js
-  var Ban = [
-    ["path", { d: "M4.929 4.929 19.07 19.071" }],
-    ["circle", { cx: "12", cy: "12", r: "10" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/book-heart.js
-  var BookHeart = [
-    [
-      "path",
-      { d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" }
-    ],
-    [
-      "path",
-      {
-        d: "M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"
-      }
-    ]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/bug.js
-  var Bug = [
-    ["path", { d: "m8 2 1.88 1.88" }],
-    ["path", { d: "M14.12 3.88 16 2" }],
-    ["path", { d: "M9 7.13v-1a3.003 3.003 0 1 1 6 0v1" }],
-    ["path", { d: "M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" }],
-    ["path", { d: "M12 20v-9" }],
-    ["path", { d: "M6.53 9C4.6 8.8 3 7.1 3 5" }],
-    ["path", { d: "M6 13H2" }],
-    ["path", { d: "M3 21c0-2.1 1.7-3.9 3.8-4" }],
-    ["path", { d: "M20.97 5c0 2.1-1.6 3.8-3.5 4" }],
-    ["path", { d: "M22 13h-4" }],
-    ["path", { d: "M17.2 17c2.1.1 3.8 1.9 3.8 4" }]
-  ];
-
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/check.js
   var Check = [["path", { d: "M20 6 9 17l-5-5" }]];
 
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/chevron-down.js
   var ChevronDown = [["path", { d: "m6 9 6 6 6-6" }]];
 
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/chevron-left.js
-  var ChevronLeft = [["path", { d: "m15 18-6-6 6-6" }]];
-
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/circle-x.js
   var CircleX = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "m15 9-6 6" }],
     ["path", { d: "m9 9 6 6" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/clipboard-copy.js
-  var ClipboardCopy = [
-    ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1" }],
-    ["path", { d: "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" }],
-    ["path", { d: "M16 4h2a2 2 0 0 1 2 2v4" }],
-    ["path", { d: "M21 14H11" }],
-    ["path", { d: "m15 10-4 4 4 4" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/clipboard-paste.js
-  var ClipboardPaste = [
-    ["path", { d: "M11 14h10" }],
-    ["path", { d: "M16 4h2a2 2 0 0 1 2 2v1.344" }],
-    ["path", { d: "m17 18 4-4-4-4" }],
-    ["path", { d: "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113" }],
-    ["rect", { x: "8", y: "2", width: "8", height: "4", rx: "1" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/code-xml.js
-  var CodeXml = [
-    ["path", { d: "m18 16 4-4-4-4" }],
-    ["path", { d: "m6 8-4 4 4 4" }],
-    ["path", { d: "m14.5 4-5 16" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/copy-plus.js
-  var CopyPlus = [
-    ["line", { x1: "15", x2: "15", y1: "12", y2: "18" }],
-    ["line", { x1: "12", x2: "18", y1: "15", y2: "15" }],
-    ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2" }],
-    ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/eye.js
-  var Eye = [
-    [
-      "path",
-      {
-        d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
-      }
-    ],
-    ["circle", { cx: "12", cy: "12", r: "3" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/git-pull-request.js
-  var GitPullRequest = [
-    ["circle", { cx: "18", cy: "18", r: "3" }],
-    ["circle", { cx: "6", cy: "6", r: "3" }],
-    ["path", { d: "M13 6h3a2 2 0 0 1 2 2v7" }],
-    ["line", { x1: "6", x2: "6", y1: "9", y2: "21" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/hand-coins.js
-  var HandCoins = [
-    ["path", { d: "M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" }],
-    [
-      "path",
-      {
-        d: "m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"
-      }
-    ],
-    ["path", { d: "m2 16 6 6" }],
-    ["circle", { cx: "16", cy: "9", r: "2.9" }],
-    ["circle", { cx: "6", cy: "5", r: "3" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/hat-glasses.js
-  var HatGlasses = [
-    ["path", { d: "M14 18a2 2 0 0 0-4 0" }],
-    [
-      "path",
-      {
-        d: "m19 11-2.11-6.657a2 2 0 0 0-2.752-1.148l-1.276.61A2 2 0 0 1 12 4H8.5a2 2 0 0 0-1.925 1.456L5 11"
-      }
-    ],
-    ["path", { d: "M2 11h20" }],
-    ["circle", { cx: "17", cy: "18", r: "3" }],
-    ["circle", { cx: "7", cy: "18", r: "3" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/heart.js
-  var Heart = [
-    [
-      "path",
-      {
-        d: "M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
-      }
-    ]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/lock.js
-  var Lock = [
-    ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }],
-    ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/lock-open.js
-  var LockOpen = [
-    ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }],
-    ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/log-out.js
-  var LogOut = [
-    ["path", { d: "m16 17 5-5-5-5" }],
-    ["path", { d: "M21 12H9" }],
-    ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/map-pinned.js
-  var MapPinned = [
-    [
-      "path",
-      {
-        d: "M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0"
-      }
-    ],
-    ["circle", { cx: "12", cy: "8", r: "2" }],
-    [
-      "path",
-      {
-        d: "M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712"
-      }
-    ]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/panels-top-left.js
-  var PanelsTopLeft = [
-    ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2" }],
-    ["path", { d: "M3 9h18" }],
-    ["path", { d: "M9 21V9" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/person-standing.js
-  var PersonStanding = [
-    ["circle", { cx: "12", cy: "5", r: "1" }],
-    ["path", { d: "m9 20 3-6 3 6" }],
-    ["path", { d: "m6 8 6 2 6-2" }],
-    ["path", { d: "M12 10v4" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/send-to-back.js
-  var SendToBack = [
-    ["rect", { x: "14", y: "14", width: "8", height: "8", rx: "2" }],
-    ["rect", { x: "2", y: "2", width: "8", height: "8", rx: "2" }],
-    ["path", { d: "M7 14v1a2 2 0 0 0 2 2h1" }],
-    ["path", { d: "M14 7h1a2 2 0 0 1 2 2v1" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/settings.js
-  var Settings = [
-    [
-      "path",
-      {
-        d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
-      }
-    ],
-    ["circle", { cx: "12", cy: "12", r: "3" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/shell.js
-  var Shell = [
-    [
-      "path",
-      {
-        d: "M14 11a2 2 0 1 1-4 0 4 4 0 0 1 8 0 6 6 0 0 1-12 0 8 8 0 0 1 16 0 10 10 0 1 1-20 0 11.93 11.93 0 0 1 2.42-7.22 2 2 0 1 1 3.16 2.44"
-      }
-    ]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/shield-alert.js
-  var ShieldAlert = [
-    [
-      "path",
-      {
-        d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
-      }
-    ],
-    ["path", { d: "M12 8v4" }],
-    ["path", { d: "M12 16h.01" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/shield-minus.js
-  var ShieldMinus = [
-    [
-      "path",
-      {
-        d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
-      }
-    ],
-    ["path", { d: "M9 12h6" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/skull.js
-  var Skull = [
-    ["path", { d: "m12.5 17-.5-1-.5 1h1z" }],
-    [
-      "path",
-      {
-        d: "M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z"
-      }
-    ],
-    ["circle", { cx: "15", cy: "12", r: "1" }],
-    ["circle", { cx: "9", cy: "12", r: "1" }]
-  ];
-
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/target.js
-  var Target = [
-    ["circle", { cx: "12", cy: "12", r: "10" }],
-    ["circle", { cx: "12", cy: "12", r: "6" }],
-    ["circle", { cx: "12", cy: "12", r: "2" }]
   ];
 
   // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/trash-2.js
@@ -23304,49 +23041,36 @@ One of mods you are using is using an old version of SDK. It will work for now b
     ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }]
   ];
 
-  // node_modules/.pnpm/lucide@0.541.0/node_modules/lucide/dist/esm/icons/wand.js
-  var Wand = [
-    ["path", { d: "M15 4V2" }],
-    ["path", { d: "M15 16v-2" }],
-    ["path", { d: "M8 9h2" }],
-    ["path", { d: "M20 9h2" }],
-    ["path", { d: "M17.8 11.8 19 13" }],
-    ["path", { d: "M15 9h.01" }],
-    ["path", { d: "M17.8 6.2 19 5" }],
-    ["path", { d: "m3 21 9-9" }],
-    ["path", { d: "M12.2 6.2 11 5" }]
-  ];
-
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modules.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/modules.js
   var r = class {
-    overrideProperties(e2, t4) {
+    overrideProperties(e2, t3) {
       return e2;
     }
-    layoutEffect(e2, t4) {
+    layoutEffect(e2, t3) {
     }
-    effect(e2, t4) {
+    effect(e2, t3) {
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/centerModule.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/centerModule.js
   var l = class extends r {
     overrideProperties(e2) {
       return e2.element.style.cssText += "transform: translate(-50%, -50%);", e2.x = 1e3, e2.y = 500, e2;
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/counterUpModule.js
-  function f(n5, a5, r5, e2) {
-    if (!n5) throw new Error("Element not found");
-    let s4 = 0, o4, t4;
-    const i8 = (m5) => {
-      o4 || (o4 = m5);
-      const l6 = m5 - o4;
-      let u4 = Math.min(l6 / r5, 1);
-      const c7 = u4 * (2 - u4), p4 = parseInt(s4 + (a5 - s4) * c7);
-      n5.textContent = typeof e2 == "function" ? e2(p4) : p4.toString(), u4 < 1 && (t4 = requestAnimationFrame(i8));
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/counterUpModule.js
+  function f(n4, a5, r5, e2) {
+    if (!n4) throw new Error("Element not found");
+    let s5 = 0, o5, t3;
+    const i5 = (m4) => {
+      o5 || (o5 = m4);
+      const l6 = m4 - o5;
+      let u6 = Math.min(l6 / r5, 1);
+      const c7 = u6 * (2 - u6), p5 = parseInt(s5 + (a5 - s5) * c7);
+      n4.textContent = typeof e2 == "function" ? e2(p5) : p5.toString(), u6 < 1 && (t3 = requestAnimationFrame(i5));
     };
-    t4 && cancelAnimationFrame(t4), t4 = requestAnimationFrame(i8);
+    t3 && cancelAnimationFrame(t3), t3 = requestAnimationFrame(i5);
   }
   var x = class extends r {
     constructor(r5) {
@@ -23358,177 +23082,177 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/typeModule.js
-  function l2(e2, o4) {
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/typeModule.js
+  function l2(e2, o5) {
     if (!e2) throw new Error("Element not found");
-    const t4 = e2.textContent;
+    const t3 = e2.textContent;
     e2.textContent = "\xA0", e2.classList.add("zcCursor");
-    let r5, n5;
-    const s4 = (u4) => {
-      r5 || (r5 = u4);
-      const c7 = u4 - r5;
-      let a5 = Math.min(c7 / o4, 1);
-      const i8 = t4.slice(0, parseInt(t4.length * a5));
-      i8.trim() !== "" && (e2.textContent = i8), a5 < 1 ? n5 = requestAnimationFrame(s4) : setTimeout(() => e2.classList.remove("zcCursor"), o4 / t4.length);
+    let r5, n4;
+    const s5 = (u6) => {
+      r5 || (r5 = u6);
+      const c7 = u6 - r5;
+      let a5 = Math.min(c7 / o5, 1);
+      const i5 = t3.slice(0, parseInt(t3.length * a5));
+      i5.trim() !== "" && (e2.textContent = i5), a5 < 1 ? n4 = requestAnimationFrame(s5) : setTimeout(() => e2.classList.remove("zcCursor"), o5 / t3.length);
     };
-    n5 = requestAnimationFrame(s4);
+    n4 = requestAnimationFrame(s5);
   }
   var x2 = class extends r {
-    constructor(t4) {
+    constructor(t3) {
       super();
-      this.props = t4;
+      this.props = t3;
     }
-    effect(t4, r5) {
+    effect(t3, r5) {
       l2(r5, this.props.duration);
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/styleModule.js
-  var y = class extends r {
-    constructor(o4) {
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/styleModule.js
+  var u = class extends r {
+    constructor(o5) {
       super();
-      this.style = o4;
+      this.style = o5;
     }
-    applyStyle(o4, t4) {
-      for (const e2 of Object.keys(t4)) !isNaN(e2) || typeof t4[e2] == "function" || (o4.style[e2] = t4[e2]);
+    applyStyle(o5, t3) {
+      for (const e2 of Object.keys(t3)) !isNaN(e2) || typeof t3[e2] == "function" || (o5.style[e2] = t3[e2]);
     }
-    layoutEffect(o4, t4) {
-      this.applyStyle(t4, this.style);
+    layoutEffect(o5, t3) {
+      this.applyStyle(t3, this.style);
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/dynamicClassModule.js
-  var i = class extends r {
-    constructor(t4) {
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/dynamicClassModule.js
+  var y = class extends r {
+    constructor(t3) {
       super();
-      this.style = t4;
+      this.style = t3;
     }
-    layoutEffect(t4, e2) {
+    layoutEffect(t3, e2) {
       Q(e2, this.style);
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/attributesModule.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/attributesModule.js
   var c = class extends r {
     constructor(e2) {
       super();
       this.attributes = e2;
     }
     layoutEffect(e2, r5) {
-      for (const t4 of Object.keys(this.attributes)) r5.setAttribute(t4, this.attributes[t4]);
+      for (const t3 of Object.keys(this.attributes)) r5.setAttribute(t3, this.attributes[t3]);
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui-modules/clickModule.js
-  var i2 = class extends r {
-    constructor(t4) {
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui-modules/clickModule.js
+  var i = class extends r {
+    constructor(t3) {
       super();
-      this.callback = t4;
+      this.callback = t3;
     }
-    layoutEffect(t4, e2) {
+    layoutEffect(t3, e2) {
       e2.addEventListener("click", () => this.callback(e2));
     }
   };
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/ui.js
-  function N(g5) {
-    return g5 * (MainCanvas.canvas.clientHeight / 1e3);
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/ui.js
+  function D(b3) {
+    return b3 * (MainCanvas.canvas.clientHeight / 1e3);
   }
-  function D(g5) {
-    return g5 * (MainCanvas.canvas.clientWidth / 2e3);
+  function P(b3) {
+    return b3 * (MainCanvas.canvas.clientWidth / 2e3);
   }
-  function W(g5, e2 = "top") {
-    const o4 = MainCanvas.canvas.clientHeight / 1e3;
-    return e2 === "top" ? MainCanvas.canvas.offsetTop + g5 * o4 : window.innerHeight - (MainCanvas.canvas.offsetTop + MainCanvas.canvas.clientHeight) + g5 * o4;
+  function V(b3, e2 = "top") {
+    const o5 = MainCanvas.canvas.clientHeight / 1e3;
+    return e2 === "top" ? MainCanvas.canvas.offsetTop + b3 * o5 : window.innerHeight - (MainCanvas.canvas.offsetTop + MainCanvas.canvas.clientHeight) + b3 * o5;
   }
-  function V(g5, e2 = "left") {
-    const o4 = MainCanvas.canvas.clientWidth / 2e3;
-    return e2 === "left" ? MainCanvas.canvas.offsetLeft + g5 * o4 : window.innerWidth - (MainCanvas.canvas.offsetLeft + MainCanvas.canvas.clientWidth) + g5 * o4;
+  function R(b3, e2 = "left") {
+    const o5 = MainCanvas.canvas.clientWidth / 2e3;
+    return e2 === "left" ? MainCanvas.canvas.offsetLeft + b3 * o5 : window.innerWidth - (MainCanvas.canvas.offsetLeft + MainCanvas.canvas.clientWidth) + b3 * o5;
   }
-  function O(g5, e2, o4, l6 = "top-left") {
-    const i8 = l6 === "top-left" || l6 === "top-right" ? "top" : "bottom", s4 = l6 === "top-left" || l6 === "bottom-left" ? "left" : "right", t4 = W(o4, i8), f6 = V(e2, s4);
-    Object.assign(g5.style, { position: "fixed", [s4]: f6 + "px", [i8]: t4 + "px" });
+  function O(b3, e2, o5, l6 = "top-left") {
+    const i5 = l6 === "top-left" || l6 === "top-right" ? "top" : "bottom", n4 = l6 === "top-left" || l6 === "bottom-left" ? "left" : "right", t3 = V(o5, i5), m4 = R(e2, n4);
+    Object.assign(b3.style, { position: "fixed", [n4]: m4 + "px", [i5]: t3 + "px" });
   }
-  function j(g5, e2) {
-    const o4 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, i8 = Math.min(o4, l6) / 100, s4 = e2 * i8;
-    Object.assign(g5.style, { fontSize: s4 + "px" });
+  function j(b3, e2) {
+    const o5 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, i5 = Math.min(o5, l6) / 100, n4 = e2 * i5;
+    Object.assign(b3.style, { fontSize: n4 + "px" });
   }
-  function k(g5, e2) {
-    g5.style.fontFamily = e2 ?? "sans-serif";
+  function L(b3, e2) {
+    b3.style.fontFamily = e2 ?? "sans-serif";
   }
-  function G(g5, e2) {
-    const o4 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, i8 = Math.min(o4, l6) / 100, s4 = e2 * i8;
-    Object.assign(g5.style, { padding: s4 + "px" });
+  function G(b3, e2) {
+    const o5 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, i5 = Math.min(o5, l6) / 100, n4 = e2 * i5;
+    Object.assign(b3.style, { padding: n4 + "px" });
   }
-  function X(g5) {
+  function X(b3) {
     const e2 = MainCanvas.canvas.clientWidth <= MainCanvas.canvas.clientHeight * 2 ? MainCanvas.canvas.clientWidth / 50 : MainCanvas.canvas.clientHeight / 25;
-    Object.assign(g5.style, { fontSize: e2 + "px" });
+    Object.assign(b3.style, { fontSize: e2 + "px" });
   }
-  var S2 = [];
-  function _(g5) {
-    const e2 = (o4) => o4 ? JSON.stringify(Object.keys(o4).sort().reduce((l6, i8) => (l6[i8] = o4[i8], l6), {})) : "null";
-    return `base:${e2(g5.base)}|hover:${e2(g5.hover)}|active:${e2(g5.active)}`;
+  var B = [];
+  function _(b3) {
+    const e2 = (o5) => o5 ? JSON.stringify(Object.keys(o5).sort().reduce((l6, i5) => (l6[i5] = o5[i5], l6), {})) : "null";
+    return `base:${e2(b3.base)}|hover:${e2(b3.hover)}|active:${e2(b3.active)}|before:${e2(b3.before)}|after:${e2(b3.after)}`;
   }
-  function Q(g5, e2) {
-    const o4 = _(e2), l6 = S2.find((h6) => h6.key === o4);
-    if (l6) return g5.classList.add(l6.className);
-    let i8;
+  function Q(b3, e2) {
+    const o5 = _(e2), l6 = B.find((h7) => h7.key === o5);
+    if (l6) return b3.classList.add(l6.className);
+    let i5;
     do
-      i8 = "dynamic-" + Math.random().toString(36).substring(2, 10);
-    while (S2.find((h6) => h6.className === i8));
-    S2.push({ key: o4, className: i8 });
-    const s4 = (h6, m5) => {
-      let d4 = `${h6} {`;
-      for (const [r5, c7] of Object.entries(m5)) d4 += `${r5.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase()}: ${c7};`;
-      return d4 += "}", d4;
+      i5 = "dynamic-" + Math.random().toString(36).substring(2, 10);
+    while (B.find((h7) => h7.className === i5));
+    B.push({ key: o5, className: i5 });
+    const n4 = (h7, f6) => {
+      let d6 = `${h7} {`;
+      for (const [r5, c7] of Object.entries(f6)) d6 += `${r5.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase()}: ${c7};`;
+      return d6 += "}", d6;
     };
-    let t4 = "";
-    e2.base && (t4 += s4(`.${i8}`, e2.base)), e2.hover && (t4 += s4(`.${i8}:hover`, e2.hover)), e2.active && (t4 += s4(`.${i8}:active`, e2.active)), e2.focus && (t4 += s4(`.${i8}:focus`, e2.focus)), e2.disabled && (t4 += s4(`.${i8}:disabled`, e2.disabled));
-    let f6 = document.getElementById(`${m.key ?? ""}-dynamic-classes`);
-    f6 ? f6.textContent += t4 : (f6 = document.createElement("style"), f6.id = `${m.key ?? ""}-dynamic-classes`, f6.textContent = t4, document.head.appendChild(f6)), g5.classList.add(i8);
+    let t3 = "";
+    e2.base && (t3 += n4(`.${i5}`, e2.base)), e2.hover && (t3 += n4(`.${i5}:hover`, e2.hover)), e2.active && (t3 += n4(`.${i5}:active`, e2.active)), e2.focus && (t3 += n4(`.${i5}:focus`, e2.focus)), e2.disabled && (t3 += n4(`.${i5}:disabled`, e2.disabled)), e2.before && (t3 += n4(`.${i5}:before`, e2.before)), e2.after && (t3 += n4(`.${i5}:after`, e2.after));
+    let m4 = document.getElementById(`${c2.key ?? ""}-dynamic-classes`);
+    m4 ? m4.textContent += t3 : (m4 = document.createElement("style"), m4.id = `${c2.key ?? ""}-dynamic-classes`, m4.textContent = t3, document.head.appendChild(m4)), b3.classList.add(i5);
   }
   function U() {
-    R(M);
+    $(w);
   }
-  function R(g5) {
-    M = A, A = g5, A && A.load(), M && M.unload();
+  function $(b3) {
+    w = k, k = b3, k && k.load(), w && w.unload();
   }
   function ee() {
-    return A;
+    return k;
   }
-  var A;
-  var M = null;
+  var k;
+  var w = null;
   var te = class {
     htmlElements = [];
     resizeEventListeners = [];
     tabHandlers = {};
-    addElement(e2, { x: o4, y: l6, width: i8, height: s4, padding: t4, fontSize: f6 = "auto", anchor: h6, place: m5, modules: d4 = {}, modulesMap: r5 }) {
-      k(e2, m.fontFamily);
-      const c7 = { anchor: h6, x: o4, y: l6, width: i8, height: s4, padding: t4, fontSize: f6, place: m5, element: e2 };
-      Object.keys(d4)?.forEach((a5) => {
-        d4[a5].forEach((p4) => {
-          const u4 = p4.overrideProperties(c7, r5[a5]);
-          h6 = u4.anchor, o4 = u4.x, l6 = u4.y, i8 = u4.width, s4 = u4.height, t4 = u4.padding, f6 = u4.fontSize, m5 = u4.place, e2 = u4.element;
+    addElement(e2, { x: o5, y: l6, width: i5, height: n4, padding: t3, fontSize: m4 = "auto", anchor: h7, place: f6, modules: d6 = {}, modulesMap: r5 }) {
+      L(e2, c2.fontFamily);
+      const c7 = { anchor: h7, x: o5, y: l6, width: i5, height: n4, padding: t3, fontSize: m4, place: f6, element: e2 };
+      Object.keys(d6)?.forEach((s5) => {
+        d6[s5].forEach((p5) => {
+          const u6 = p5.overrideProperties(c7, r5[s5]);
+          h7 = u6.anchor, o5 = u6.x, l6 = u6.y, i5 = u6.width, n4 = u6.height, t3 = u6.padding, m4 = u6.fontSize, f6 = u6.place, e2 = u6.element;
         });
       });
-      const n5 = () => {
-        typeof o4 == "number" && typeof l6 == "number" && O(e2, o4, l6, h6), f6 === "auto" ? X(e2) : j(e2, f6), t4 && G(e2, t4), i8 && (e2.style.width = D(i8) + "px"), s4 && (e2.style.height = N(s4) + "px");
+      const a5 = () => {
+        typeof o5 == "number" && typeof l6 == "number" && O(e2, o5, l6, h7), m4 === "auto" ? X(e2) : j(e2, m4), t3 && G(e2, t3), i5 && (e2.style.width = P(i5) + "px"), n4 && (e2.style.height = D(n4) + "px");
       };
-      n5(), window.addEventListener("resize", n5), Object.keys(d4)?.forEach((a5) => {
-        d4[a5].forEach((p4) => {
-          p4.layoutEffect(c7, r5[a5]);
+      a5(), window.addEventListener("resize", a5), Object.keys(d6)?.forEach((s5) => {
+        d6[s5].forEach((p5) => {
+          p5.layoutEffect(c7, r5[s5]);
         });
-      }), m5 && document.body.append(e2), this.resizeEventListeners.push(n5), this.htmlElements.push(e2), Object.keys(d4)?.forEach((a5) => {
-        d4[a5].forEach((p4) => {
-          p4.effect(c7, r5[a5]);
+      }), f6 && document.body.append(e2), this.resizeEventListeners.push(a5), this.htmlElements.push(e2), Object.keys(d6)?.forEach((s5) => {
+        d6[s5].forEach((p5) => {
+          p5.effect(c7, r5[s5]);
         });
       });
     }
     get currentSubscreen() {
-      return A;
+      return k;
     }
     get previousSubscreen() {
-      return M;
+      return w;
     }
     get name() {
       return "";
@@ -23537,7 +23261,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.tabHandlers.run?.();
     }
     load() {
-      this.createButton({ x: 1815, y: 75, width: 90, height: 90, icon: "Icons/Exit.png", modules: { base: [new y({ zIndex: "10" })] } }).addEventListener("click", () => this.exit()), this.name && (this.createText({ text: this.name, x: 100, y: 60, fontSize: 8 }).style.cssText += "max-width: 85%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0.1em;"), T[this.constructor.name] && T[this.name].forEach((e2) => e2(this));
+      this.createButton({ x: 1815, y: 75, width: 90, height: 90, icon: "Icons/Exit.png", modules: { base: [new u({ zIndex: "10" })] } }).addEventListener("click", () => this.exit()), this.name && (this.createText({ text: this.name, x: 100, y: 60, fontSize: 8 }).style.cssText += "max-width: 85%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0.1em;"), M[this.constructor.name] && M[this.name].forEach((e2) => e2(this));
     }
     unload() {
       this.tabHandlers.unload?.(), this.htmlElements.forEach((e2) => {
@@ -23557,211 +23281,214 @@ One of mods you are using is using an old version of SDK. It will work for now b
       U();
     }
     setSubscreen(e2) {
-      R(e2);
+      $(e2);
     }
-    createButton({ text: e2, x: o4, y: l6, width: i8, height: s4, fontSize: t4 = "auto", anchor: f6 = "top-left", padding: h6, style: m5 = "default", place: d4 = true, icon: r5, iconAbsolutePosition: c7 = true, tooltip: n5, onClick: a5, isDisabled: p4, modules: u4 }) {
-      let b3, v3;
+    createButton({ text: e2, x: o5, y: l6, width: i5, height: n4, fontSize: t3 = "auto", anchor: m4 = "top-left", padding: h7, style: f6 = "default", place: d6 = true, icon: r5, iconAbsolutePosition: c7 = true, tooltip: a5, onClick: s5, isDisabled: p5, modules: u6 }) {
+      let g6, v4;
       const y5 = document.createElement("button");
-      if (y5.classList.add("zcButton"), y5.setAttribute("data-zc-style", m5), y5.style.display = "flex", y5.style.alignItems = "center", y5.style.justifyContent = "center", y5.style.columnGap = "1.25vw", k(y5, m.fontFamily), r5 && (typeof r5 == "string" ? (b3 = document.createElement("img"), b3.src = r5) : b3 = r5, b3.style.height = "80%", b3.style.width = "auto", e2 && c7 && (b3.style.position = "absolute", b3.style.left = "1vw"), e2 && !c7 && (y5.style.justifyContent = ""), y5.append(b3)), e2 && (v3 = document.createElement("span"), v3.textContent = e2, y5.append(v3)), n5) {
-        const L4 = document.createElement("span");
-        L4.classList.add("tooltip"), L4.setAttribute("position", n5.position), L4.textContent = n5.text, y5.append(L4);
+      if (y5.classList.add("zcButton"), y5.setAttribute("data-zc-style", f6), y5.style.display = "flex", y5.style.alignItems = "center", y5.style.justifyContent = "center", y5.style.columnGap = "1.25vw", L(y5, c2.fontFamily), r5 && (typeof r5 == "string" ? (g6 = document.createElement("img"), g6.src = r5) : g6 = r5, g6.style.height = "80%", g6.style.width = "auto", e2 && c7 && (g6.style.position = "absolute", g6.style.left = "1vw"), e2 && !c7 && (y5.style.justifyContent = ""), y5.append(g6)), e2 && (v4 = document.createElement("span"), v4.textContent = e2, y5.append(v4)), a5) {
+        const S4 = document.createElement("span");
+        S4.classList.add("tooltip"), S4.setAttribute("position", a5.position), S4.textContent = a5.text, y5.append(S4);
       }
-      return typeof p4 == "function" && p4() && y5.classList.add("zcDisabled"), y5.addEventListener("click", () => {
-        if (typeof p4 == "function" && p4()) return y5.classList.add("zcDisabled");
-        typeof a5 == "function" && a5();
-      }), this.addElement(y5, { x: o4, y: l6, width: i8, height: s4, anchor: f6, place: d4, fontSize: t4, padding: h6, modules: u4, modulesMap: { base: y5, text: v3, icon: b3 } }), y5;
+      return typeof p5 == "function" && p5() && y5.classList.add("zcDisabled"), y5.addEventListener("click", () => {
+        if (typeof p5 == "function" && p5()) return y5.classList.add("zcDisabled");
+        typeof s5 == "function" && s5();
+      }), this.addElement(y5, { x: o5, y: l6, width: i5, height: n4, anchor: m4, place: d6, fontSize: t3, padding: h7, modules: u6, modulesMap: { base: y5, text: v4, icon: g6 } }), y5;
     }
-    createText({ text: e2, color: o4, x: l6, y: i8, width: s4, height: t4, withBackground: f6 = false, withBorder: h6 = false, fontSize: m5 = "auto", anchor: d4 = "top-left", padding: r5, place: c7 = true, modules: n5 }) {
-      const a5 = document.createElement("p");
-      return a5.innerHTML = e2, a5.style.color = o4 ?? "var(--tmd-text, black)", f6 && (a5.style.background = "var(--tmd-element,rgb(239, 239, 239))"), h6 && (a5.style.border = "2px solid var(--tmd-accent, rgb(236, 236, 236))"), k(a5, m.fontFamily), this.addElement(a5, { x: l6, y: i8, width: s4, height: t4, anchor: d4, place: c7, fontSize: m5, padding: r5, modules: n5, modulesMap: { base: a5 } }), a5;
+    createText({ text: e2, color: o5, x: l6, y: i5, width: n4, height: t3, withBackground: m4 = false, withBorder: h7 = false, fontSize: f6 = "auto", anchor: d6 = "top-left", padding: r5, place: c7 = true, modules: a5 }) {
+      const s5 = document.createElement("p");
+      return s5.innerHTML = e2, s5.style.color = o5 ?? "var(--tmd-text, black)", m4 && (s5.style.background = "var(--tmd-element,rgb(239, 239, 239))"), h7 && (s5.style.border = "2px solid var(--tmd-accent, rgb(236, 236, 236))"), L(s5, c2.fontFamily), this.addElement(s5, { x: l6, y: i5, width: n4, height: t3, anchor: d6, place: c7, fontSize: f6, padding: r5, modules: a5, modulesMap: { base: s5 } }), s5;
     }
-    createInput({ value: e2, placeholder: o4, x: l6, y: i8, width: s4, height: t4, textArea: f6 = false, fontSize: h6 = "auto", anchor: m5 = "top-left", padding: d4, place: r5 = true, onChange: c7, onInput: n5, isDisabled: a5, modules: p4 }) {
-      const u4 = document.createElement(f6 ? "textarea" : "input");
-      return u4.classList.add("zcInput"), o4 && (u4.placeholder = o4), e2 && (u4.value = e2), k(u4, m.fontFamily), typeof a5 == "function" && a5() && u4.classList.add("zcDisabled"), u4.addEventListener("change", () => {
-        if (typeof a5 == "function" && a5()) return u4.classList.add("zcDisabled");
+    createInput({ value: e2, placeholder: o5, x: l6, y: i5, width: n4, height: t3, textArea: m4 = false, fontSize: h7 = "auto", anchor: f6 = "top-left", padding: d6, place: r5 = true, onChange: c7, onInput: a5, isDisabled: s5, modules: p5 }) {
+      const u6 = document.createElement(m4 ? "textarea" : "input");
+      return u6.classList.add("zcInput"), o5 && (u6.placeholder = o5), e2 && (u6.value = e2), L(u6, c2.fontFamily), typeof s5 == "function" && s5() && u6.classList.add("zcDisabled"), u6.addEventListener("change", () => {
+        if (typeof s5 == "function" && s5()) return u6.classList.add("zcDisabled");
         typeof c7 == "function" && c7();
-      }), u4.addEventListener("input", () => {
-        if (typeof a5 == "function" && a5()) return u4.classList.add("zcDisabled");
-        typeof n5 == "function" && n5();
-      }), this.addElement(u4, { x: l6, y: i8, width: s4, height: t4, anchor: m5, place: r5, fontSize: h6, padding: d4, modules: p4, modulesMap: { base: u4 } }), u4;
+      }), u6.addEventListener("input", () => {
+        if (typeof s5 == "function" && s5()) return u6.classList.add("zcDisabled");
+        typeof a5 == "function" && a5();
+      }), this.addElement(u6, { x: l6, y: i5, width: n4, height: t3, anchor: f6, place: r5, fontSize: h7, padding: d6, modules: p5, modulesMap: { base: u6 } }), u6;
     }
-    createCheckbox({ text: e2, x: o4, y: l6, isChecked: i8, width: s4, modules: t4, anchor: f6 = "top-left", place: h6 = true, isDisabled: m5, onChange: d4 }) {
+    createCheckbox({ text: e2, x: o5, y: l6, isChecked: i5, width: n4, modules: t3, anchor: m4 = "top-left", place: h7 = true, isDisabled: f6, onChange: d6 }) {
       const r5 = document.createElement("div");
       r5.style.display = "flex", r5.style.alignItems = "center", r5.style.columnGap = "1vw";
       const c7 = document.createElement("input");
-      c7.type = "checkbox", c7.checked = i8, c7.style.borderRadius = "min(0.8dvh, 0.3dvw)", c7.style.aspectRatio = "1/1", c7.classList.add("zcCheckbox", "checkbox");
-      const n5 = document.createElement("p");
-      return n5.textContent = e2, n5.style.color = "var(--tmd-text, black)", k(n5, m.fontFamily), typeof m5 == "function" && m5() && r5.classList.add("zcDisabled"), r5.addEventListener("change", () => {
-        if (typeof m5 == "function" && m5()) return r5.classList.add("zcDisabled");
-        typeof d4 == "function" && d4();
-      }), r5.append(c7, n5), this.addElement(r5, { x: o4, y: l6, width: s4, anchor: f6, place: h6, modules: t4, modulesMap: { base: r5, checkbox: c7, label: n5 } }), r5;
+      c7.type = "checkbox", c7.checked = i5, c7.style.borderRadius = "min(0.8dvh, 0.3dvw)", c7.style.aspectRatio = "1/1", c7.classList.add("zcCheckbox", "checkbox");
+      const a5 = document.createElement("p");
+      return a5.textContent = e2, a5.style.color = "var(--tmd-text, black)", L(a5, c2.fontFamily), typeof f6 == "function" && f6() && r5.classList.add("zcDisabled"), r5.addEventListener("change", () => {
+        if (typeof f6 == "function" && f6()) return r5.classList.add("zcDisabled");
+        typeof d6 == "function" && d6();
+      }), r5.append(c7, a5), this.addElement(r5, { x: o5, y: l6, width: n4, anchor: m4, place: h7, modules: t3, modulesMap: { base: r5, checkbox: c7, label: a5 } }), r5;
     }
-    createScrollView({ scroll: e2, x: o4, y: l6, width: i8, height: s4, anchor: t4 = "top-left", modules: f6, place: h6 = true }) {
-      const m5 = document.createElement("div");
-      return e2 === "all" && (m5.style.overflow = "scroll"), e2 === "x" && (m5.style.overflowX = "scroll"), e2 === "y" && (m5.style.overflowY = "scroll"), this.addElement(m5, { x: o4, y: l6, width: i8, height: s4, anchor: t4, place: h6, modules: f6, modulesMap: { base: m5 } }), m5;
+    createScrollView({ scroll: e2, x: o5, y: l6, width: i5, height: n4, anchor: t3 = "top-left", modules: m4, place: h7 = true }) {
+      const f6 = document.createElement("div");
+      return e2 === "all" && (f6.style.overflow = "scroll"), e2 === "x" && (f6.style.overflowX = "scroll"), e2 === "y" && (f6.style.overflowY = "scroll"), this.addElement(f6, { x: o5, y: l6, width: i5, height: n4, anchor: t3, place: h7, modules: m4, modulesMap: { base: f6 } }), f6;
     }
-    createInputList({ x: e2, y: o4, width: l6, height: i8, title: s4, value: t4, modules: f6, anchor: h6 = "top-left", place: m5 = true, numbersOnly: d4 = false, isDisabled: r5, onChange: c7 }) {
-      const n5 = [], a5 = document.createElement("div");
-      a5.style.cssText = `
+    createInputList({ x: e2, y: o5, width: l6, height: i5, title: n4, value: t3, modules: m4, anchor: h7 = "top-left", place: f6 = true, numbersOnly: d6 = false, isDisabled: r5, onChange: c7 }) {
+      const a5 = [], s5 = document.createElement("div");
+      s5.style.cssText = `
         display: flex; flex-direction: column; gap: 1vw; border: 2px solid var(--tmd-accent, black);
         border-radius: 4px; padding: 0.75vw; background: var(--tmd-element, none);
-        `, k(a5, m.fontFamily);
-      const p4 = document.createElement("div");
-      p4.style.cssText = "display: flex; justify-content: center; column-gap: 1vw; width: 100%;";
-      const u4 = document.createElement("b");
-      u4.textContent = s4 + ":", u4.style.cssText = "width: 100%; font-size: clamp(10px, 2.4vw, 24px); color: var(--tmd-text, black);";
-      const b3 = document.createElement("div");
-      b3.style.cssText = `display: flex; gap: 1vw; flex-wrap: wrap; align-content: flex-start;
+        `, L(s5, c2.fontFamily);
+      const p5 = document.createElement("div");
+      p5.style.cssText = "display: flex; justify-content: center; column-gap: 1vw; width: 100%;";
+      const u6 = document.createElement("b");
+      u6.textContent = n4 + ":", u6.style.cssText = "width: 100%; font-size: clamp(10px, 2.4vw, 24px); color: var(--tmd-text, black);";
+      const g6 = document.createElement("div");
+      g6.style.cssText = `display: flex; gap: 1vw; flex-wrap: wrap; align-content: flex-start;
         overflow-y: scroll;`;
-      const v3 = document.createElement("input");
-      v3.style.cssText = "border: none; outline: none; background: none; height: fit-content; flex-grow: 1; padding: 0.8vw; width: 6vw; font-size: clamp(8px, 2vw, 20px);";
-      const y5 = (x6, E4) => {
-        const w4 = this.createButton({ icon: x6, place: false, onClick: E4, style: "default", modules: { icon: [new y({ width: "70%", height: "70%" })] } });
-        w4.style.width = "2em", w4.style.aspectRatio = "1/1", p4.append(w4);
-      }, L4 = (x6) => {
+      const v4 = document.createElement("input");
+      v4.style.cssText = "border: none; outline: none; background: none; height: fit-content; flex-grow: 1; padding: 0.8vw; width: 6vw; font-size: clamp(8px, 2vw, 20px);";
+      const y5 = (x5, E4) => {
+        const A4 = this.createButton({ icon: x5, place: false, onClick: E4, style: "default", modules: { icon: [new u({ width: "70%", height: "70%" })] } });
+        A4.style.width = "2em", A4.style.aspectRatio = "1/1", p5.append(A4);
+      }, S4 = (x5) => {
         const E4 = document.createElement("div");
-        E4.style.cssText = "cursor: pointer; background: var(--tmd-element-hover, rgb(206, 206, 206)); color: var(--tmd-text, black); height: fit-content; padding: 0.8vw; border-radius: 0.8vw; font-size: clamp(8px, 2vw, 20px);", E4.textContent = x6, b3.insertBefore(E4, v3), E4.addEventListener("click", (w4) => {
-          E4.style.border === "" ? E4.style.border = "2px solid red" : E4.style.border = "", w4.stopPropagation();
-        }), n5.push(x6);
+        E4.style.cssText = "cursor: pointer; background: var(--tmd-element-hover, rgb(206, 206, 206)); color: var(--tmd-text, black); height: fit-content; padding: 0.8vw; border-radius: 0.8vw; font-size: clamp(8px, 2vw, 20px);", E4.textContent = x5, g6.insertBefore(E4, v4), E4.addEventListener("click", (A4) => {
+          E4.style.border === "" ? E4.style.border = "2px solid red" : E4.style.border = "", A4.stopPropagation();
+        }), a5.push(x5);
       };
       return y5(createElement(CircleX), () => {
-        if (typeof r5 == "function" && r5()) return a5.classList.add("zcDisabled");
-        b3.innerHTML = "", n5.splice(0, n5.length), b3.append(v3), t4.forEach((x6) => L4(String(x6))), typeof c7 == "function" && c7(d4 ? n5.map((x6) => parseInt(x6)) : n5);
+        if (typeof r5 == "function" && r5()) return s5.classList.add("zcDisabled");
+        g6.innerHTML = "", a5.splice(0, a5.length), g6.append(v4), t3.forEach((x5) => S4(String(x5))), typeof c7 == "function" && c7(d6 ? a5.map((x5) => parseInt(x5)) : a5);
       }), y5(createElement(Trash2), () => {
-        if (typeof r5 == "function" && r5()) return a5.classList.add("zcDisabled");
-        for (const x6 of [...b3.children]) x6.getAttribute("style").includes("border: 2px solid red;") && (n5.splice(n5.indexOf(x6.textContent), 1), x6.remove());
-        typeof c7 == "function" && c7(d4 ? n5.map((x6) => parseInt(x6)) : n5);
-      }), typeof r5 == "function" && r5() && a5.classList.add("zcDisabled"), v3.addEventListener("keypress", (x6) => {
-        if (document.activeElement === v3) switch (x6.key) {
+        if (typeof r5 == "function" && r5()) return s5.classList.add("zcDisabled");
+        for (const x5 of [...g6.children]) x5.getAttribute("style").includes("border: 2px solid red;") && (a5.splice(a5.indexOf(x5.textContent), 1), x5.remove());
+        typeof c7 == "function" && c7(d6 ? a5.map((x5) => parseInt(x5)) : a5);
+      }), typeof r5 == "function" && r5() && s5.classList.add("zcDisabled"), v4.addEventListener("keypress", (x5) => {
+        if (document.activeElement === v4) switch (x5.key) {
           case "Enter":
-            if (d4 && Number.isNaN(parseInt(v3.value)) || v3.value.trim() === "") return;
-            if (typeof r5 == "function" && r5()) return a5.classList.add("zcDisabled");
-            L4(v3.value), v3.value = "", typeof c7 == "function" && c7(d4 ? n5.map((E4) => parseInt(E4)) : n5);
+            if (d6 && Number.isNaN(parseInt(v4.value)) || v4.value.trim() === "") return;
+            if (typeof r5 == "function" && r5()) return s5.classList.add("zcDisabled");
+            S4(v4.value), v4.value = "", typeof c7 == "function" && c7(d6 ? a5.map((E4) => parseInt(E4)) : a5);
             break;
         }
-      }), a5.addEventListener("click", (x6) => {
-        x6.currentTarget == a5 && v3.focus();
-      }), b3.append(v3), a5.append(p4, u4, b3), this.addElement(a5, { x: e2, y: o4, width: l6, height: i8, anchor: h6, place: m5, modules: f6, modulesMap: { base: a5, input: v3 } }), t4.forEach((x6) => L4(String(x6))), a5;
+      }), s5.addEventListener("click", (x5) => {
+        x5.currentTarget == s5 && v4.focus();
+      }), g6.append(v4), s5.append(p5, u6, g6), this.addElement(s5, { x: e2, y: o5, width: l6, height: i5, anchor: h7, place: f6, modules: m4, modulesMap: { base: s5, input: v4 } }), t3.forEach((x5) => S4(String(x5))), s5;
     }
-    createImage({ x: e2, y: o4, width: l6, src: i8, place: s4 = true, anchor: t4 = "top-left", modules: f6 }) {
-      const h6 = document.createElement("img");
-      return h6.style.height = "auto", h6.src = i8, this.addElement(h6, { x: e2, y: o4, width: l6, height: 0, anchor: t4, place: s4, modules: f6, modulesMap: { base: h6 } }), h6;
+    createImage({ x: e2, y: o5, width: l6, src: i5, place: n4 = true, anchor: t3 = "top-left", modules: m4 }) {
+      const h7 = document.createElement("img");
+      return h7.style.height = "auto", h7.src = i5, this.addElement(h7, { x: e2, y: o5, width: l6, height: 0, anchor: t3, place: n4, modules: m4, modulesMap: { base: h7 } }), h7;
     }
-    createSvg({ x: e2, y: o4, size: l6, dataurl: i8, place: s4 = true, anchor: t4 = "top-left", fill: f6 = "var(--tmd-accent, black)", stroke: h6 = "var(--tmd-accent-hover, black)", strokeWidth: m5 = "2px", modules: d4 }) {
-      function r5(a5) {
-        const p4 = a5.replace("data:image/svg+xml,", ""), u4 = decodeURIComponent(p4), b3 = document.createElement("div");
-        return b3.innerHTML = u4, b3.firstElementChild;
+    createSvg({ x: e2, y: o5, size: l6, dataurl: i5, place: n4 = true, anchor: t3 = "top-left", fill: m4 = "var(--tmd-accent, black)", stroke: h7 = "var(--tmd-accent-hover, black)", strokeWidth: f6 = "2px", modules: d6 }) {
+      function r5(s5) {
+        const p5 = s5.replace("data:image/svg+xml,", ""), u6 = decodeURIComponent(p5), g6 = document.createElement("div");
+        return g6.innerHTML = u6, g6.firstElementChild;
       }
-      function c7(a5, { fill: p4, stroke: u4 }) {
-        return a5.querySelectorAll("*").forEach((v3) => {
-          v3.getAttribute("fill") !== "none" && v3.setAttribute("fill", p4), v3.getAttribute("stroke") !== "none" && v3.setAttribute("stroke", u4);
-        }), a5.getAttribute("fill") !== "none" && a5.setAttribute("fill", p4), a5.getAttribute("stroke") !== "none" && a5.setAttribute("stroke", u4), a5;
+      function c7(s5, { fill: p5, stroke: u6 }) {
+        return s5.querySelectorAll("*").forEach((v4) => {
+          v4.getAttribute("fill") !== "none" && v4.setAttribute("fill", p5), v4.getAttribute("stroke") !== "none" && v4.setAttribute("stroke", u6);
+        }), s5.getAttribute("fill") !== "none" && s5.setAttribute("fill", p5), s5.getAttribute("stroke") !== "none" && s5.setAttribute("stroke", u6), s5;
       }
-      const n5 = r5(i8);
-      return c7(n5, { fill: f6, stroke: h6 }), n5.setAttribute("stroke-width", m5), this.addElement(n5, { x: e2, y: o4, width: l6, height: l6, anchor: t4, place: s4, modules: d4, modulesMap: { base: n5 } }), n5;
+      const a5 = r5(i5);
+      return c7(a5, { fill: m4, stroke: h7 }), a5.setAttribute("stroke-width", f6), this.addElement(a5, { x: e2, y: o5, width: l6, height: l6, anchor: t3, place: n4, modules: d6, modulesMap: { base: a5 } }), a5;
     }
-    createBackNextButton({ x: e2, y: o4, width: l6, height: i8, items: s4, currentIndex: t4, modules: f6, isBold: h6 = false, anchor: m5 = "top-left", place: d4 = true, onChange: r5, isDisabled: c7 }) {
-      const n5 = document.createElement("div");
-      n5.classList.add("zcBackNextButton"), k(n5, m.fontFamily);
-      const a5 = () => {
-        t4 === 0 || typeof c7 == "function" && c7(s4[t4 - 1][1]) ? p4.classList.add("zcBackNextButton-btnDisabled") : p4.classList.remove("zcBackNextButton-btnDisabled"), t4 === s4.length - 1 || typeof c7 == "function" && c7(s4[t4 + 1][1]) ? u4.classList.add("zcBackNextButton-btnDisabled") : u4.classList.remove("zcBackNextButton-btnDisabled");
-      }, p4 = document.createElement("button");
-      p4.style.cssText = `
+    createBackNextButton({ x: e2, y: o5, width: l6, height: i5, items: n4, currentIndex: t3, modules: m4, isBold: h7 = false, anchor: f6 = "top-left", place: d6 = true, onChange: r5, isDisabled: c7 }) {
+      const a5 = document.createElement("div");
+      a5.classList.add("zcBackNextButton"), L(a5, c2.fontFamily);
+      const s5 = () => {
+        t3 === 0 || typeof c7 == "function" && c7(n4[t3 - 1][1]) ? p5.classList.add("zcBackNextButton-btnDisabled") : p5.classList.remove("zcBackNextButton-btnDisabled"), t3 === n4.length - 1 || typeof c7 == "function" && c7(n4[t3 + 1][1]) ? u6.classList.add("zcBackNextButton-btnDisabled") : u6.classList.remove("zcBackNextButton-btnDisabled");
+      }, p5 = document.createElement("button");
+      p5.style.cssText = `
         position: absolute; left: 1vw; font-size: 3.5vw; aspect-ratio: 1/1;
         height: 140%; background-image: url("Icons/Prev.png"); background-size: 100%;
-        `, p4.classList.add("zcButton"), p4.addEventListener("click", () => {
-        if (t4 === 0 || typeof c7 == "function" && c7(s4[t4 - 1][1])) return p4.classList.add("zcDisabled");
-        t4--, b3.textContent = s4[t4][0], typeof r5 == "function" && r5(s4[t4][1]), a5();
+        `, p5.classList.add("zcButton"), p5.addEventListener("click", () => {
+        if (t3 === 0 || typeof c7 == "function" && c7(n4[t3 - 1][1])) return p5.classList.add("zcDisabled");
+        t3--, g6.textContent = n4[t3][0], typeof r5 == "function" && r5(n4[t3][1]), s5();
       });
-      const u4 = document.createElement("button");
-      u4.style.cssText = `
+      const u6 = document.createElement("button");
+      u6.style.cssText = `
         position: absolute; right: 1vw; font-size: 3.5vw; aspect-ratio: 1/1;
         height: 140%; background-image: url("Icons/Next.png"); background-size: 100%;
-        `, u4.classList.add("zcButton"), u4.addEventListener("click", () => {
-        if (t4 === s4.length - 1 || typeof c7 == "function" && c7(s4[t4 + 1][1])) return u4.classList.add("zcDisabled");
-        t4++, b3.textContent = s4[t4][0], typeof r5 == "function" && r5(s4[t4][1]), a5();
-      }), a5();
-      const b3 = document.createElement("p");
-      return h6 && (b3.style.fontWeight = "bold"), b3.textContent = s4[t4][0], n5.append(p4, b3, u4), this.addElement(n5, { x: e2, y: o4, width: l6, height: i8, anchor: m5, place: d4, modules: f6, modulesMap: { base: n5, backButton: p4, nextButton: u4, text: b3 } }), n5;
+        `, u6.classList.add("zcButton"), u6.addEventListener("click", () => {
+        if (t3 === n4.length - 1 || typeof c7 == "function" && c7(n4[t3 + 1][1])) return u6.classList.add("zcDisabled");
+        t3++, g6.textContent = n4[t3][0], typeof r5 == "function" && r5(n4[t3][1]), s5();
+      }), s5();
+      const g6 = document.createElement("p");
+      return h7 && (g6.style.fontWeight = "bold"), g6.textContent = n4[t3][0], a5.append(p5, g6, u6), this.addElement(a5, { x: e2, y: o5, width: l6, height: i5, anchor: f6, place: d6, modules: m4, modulesMap: { base: a5, backButton: p5, nextButton: u6, text: g6 } }), a5;
     }
-    createTabs({ x: e2, y: o4, width: l6, tabs: i8, anchor: s4 = "top-left", place: t4 = true, currentTabName: f6, modules: h6 }) {
-      let m5 = [];
-      const d4 = document.createElement("div");
-      return d4.classList.add("zcTabs"), k(d4, m.fontFamily), i8.forEach((r5) => {
+    createTabs({ x: e2, y: o5, width: l6, tabs: i5, anchor: n4 = "top-left", place: t3 = true, currentTabName: m4, modules: h7 }) {
+      let f6 = [];
+      const d6 = document.createElement("div");
+      return d6.classList.add("zcTabs"), L(d6, c2.fontFamily), i5.forEach((r5) => {
         const c7 = () => {
-          for (const p4 of d4.children) p4.removeAttribute("data-opened");
-          for (const p4 of m5) p4 instanceof Node && document.body.removeChild(p4);
-          m5 = [], n5.setAttribute("data-opened", "true");
-          const a5 = document.body.append.bind(document.body);
-          document.body.append = (...p4) => {
-            m5.push(...p4), a5(...p4);
-          }, this.tabHandlers.unload?.(), this.tabHandlers.exit?.(), r5.load(), this.tabHandlers = { run: r5.run, load: r5.load, unload: r5.unload, exit: r5.exit }, document.body.append = a5;
-        }, n5 = document.createElement("button");
-        n5.textContent = r5.name, r5.name === f6 && c7(), n5.addEventListener("click", c7), d4.append(n5);
-      }), this.addElement(d4, { x: e2, y: o4, width: l6, anchor: s4, place: t4, modules: h6, modulesMap: { base: d4 } }), d4;
+          for (const p5 of d6.children) p5.removeAttribute("data-opened");
+          for (const p5 of f6) p5 instanceof Node && document.body.removeChild(p5);
+          f6 = [], a5.setAttribute("data-opened", "true");
+          const s5 = document.body.append.bind(document.body);
+          document.body.append = (...p5) => {
+            f6.push(...p5), s5(...p5);
+          }, this.tabHandlers.unload?.(), this.tabHandlers.exit?.(), r5.load(), this.tabHandlers = { run: r5.run, load: r5.load, unload: r5.unload, exit: r5.exit }, document.body.append = s5;
+        }, a5 = document.createElement("button");
+        a5.textContent = r5.name, r5.name === m4 && c7(), a5.addEventListener("click", c7), d6.append(a5);
+      }), this.addElement(d6, { x: e2, y: o5, width: l6, anchor: n4, place: t3, modules: h7, modulesMap: { base: d6 } }), d6;
     }
-    drawPolylineArrow({ points: e2, strokeColor: o4 = S()?.base?.text ?? "black", lineWidth: l6 = 2, circleRadius: i8 = 5, circleColor: s4 = S()?.base?.text ?? "black" }) {
+    drawPolylineArrow({ points: e2, strokeColor: o5 = S()?.base?.text ?? "black", lineWidth: l6 = 2, circleRadius: i5 = 5, circleColor: n4 = S()?.base?.text ?? "black" }) {
       if (e2.length < 2) return;
-      const t4 = MainCanvas.canvas.getContext("2d");
-      t4.save(), t4.strokeStyle = o4, t4.lineWidth = l6, t4.fillStyle = s4, t4.beginPath(), t4.moveTo(e2[0].x, e2[0].y);
-      for (let f6 = 1; f6 < e2.length; f6++) t4.lineTo(e2[f6].x, e2[f6].y);
-      t4.stroke(), t4.beginPath(), t4.arc(e2[0].x, e2[0].y, i8, 0, Math.PI * 2), t4.fill(), t4.beginPath(), t4.arc(e2[e2.length - 1].x, e2[e2.length - 1].y, i8, 0, Math.PI * 2), t4.fill(), t4.restore();
+      const t3 = MainCanvas.canvas.getContext("2d");
+      t3.save(), t3.strokeStyle = o5, t3.lineWidth = l6, t3.fillStyle = n4, t3.beginPath(), t3.moveTo(e2[0].x, e2[0].y);
+      for (let m4 = 1; m4 < e2.length; m4++) t3.lineTo(e2[m4].x, e2[m4].y);
+      t3.stroke(), t3.beginPath(), t3.arc(e2[0].x, e2[0].y, i5, 0, Math.PI * 2), t3.fill(), t3.beginPath(), t3.arc(e2[e2.length - 1].x, e2[e2.length - 1].y, i5, 0, Math.PI * 2), t3.fill(), t3.restore();
     }
-    createCard({ x: e2, y: o4, name: l6, value: i8, icon: s4, anchor: t4 = "top-left", place: f6 = true, modules: h6 }) {
-      const m5 = document.createElement("div");
-      m5.classList.add("zcCard");
-      const d4 = document.createElement("p");
-      d4.classList.add("zcCard_name"), d4.textContent = l6;
+    createCard({ x: e2, y: o5, name: l6, value: i5, icon: n4, anchor: t3 = "top-left", place: m4 = true, modules: h7 }) {
+      const f6 = document.createElement("div");
+      f6.classList.add("zcCard");
+      const d6 = document.createElement("p");
+      d6.classList.add("zcCard_name"), d6.textContent = l6;
       const r5 = document.createElement("p");
-      return r5.classList.add("zcCard_value"), r5.textContent = `${i8}`, s4 && (s4.style.cssText += "position: absolute; top: 0.4em; right: 0.4em; width: 1.2em; height: 1.2em;", m5.append(s4)), m5.append(d4, r5), this.addElement(m5, { x: e2, y: o4, anchor: t4, place: f6, modules: h6, modulesMap: { name: d4, value: r5, base: m5, icon: null } }), m5;
+      return r5.classList.add("zcCard_value"), r5.textContent = `${i5}`, n4 && (n4.style.cssText += "position: absolute; top: 0.4em; right: 0.4em; width: 1.2em; height: 1.2em;", f6.append(n4)), f6.append(d6, r5), this.addElement(f6, { x: e2, y: o5, anchor: t3, place: m4, modules: h7, modulesMap: { name: d6, value: r5, base: f6, icon: null } }), f6;
     }
-    createSelect({ x: e2, y: o4, width: l6, options: i8, currentOption: s4, anchor: t4 = "top-left", place: f6 = true, modules: h6, onChange: m5, isDisabled: d4 }) {
+    createSelect({ x: e2, y: o5, width: l6, options: i5, currentOption: n4, anchor: t3 = "top-left", place: m4 = true, modules: h7, onChange: f6, isDisabled: d6 }) {
       let r5 = false, c7;
-      const n5 = document.createElement("div");
-      n5.classList.add("zcSelect"), n5.setAttribute("opened", false), n5.addEventListener("click", () => {
-        if (d4 && d4()) return n5.classList.add("zcDisabled");
-        r5 ? (r5 = false, c7.remove()) : (r5 = true, c7 = document.createElement("div"), c7.setAttribute("data-zc-position", typeof o4 == "number" && o4 > 500 - n5.offsetHeight / 2 ? "top" : "bottom"), i8.forEach((b3) => {
-          const v3 = document.createElement("div");
-          v3.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;", b3.icon && (b3.icon.style.cssText = "color: #bcbcbc;", v3.append(b3.icon)), v3.append(b3.text), b3.name === s4 && v3.append(u4), v3.addEventListener("click", () => {
-            s4 = b3.name, a5.textContent = b3.text, c7.remove(), m5 && m5(b3.name);
-          }), c7.append(v3);
-        }), n5.append(c7));
+      const a5 = document.createElement("div");
+      a5.classList.add("zcSelect"), a5.setAttribute("opened", false), a5.addEventListener("click", () => {
+        if (d6 && d6()) return a5.classList.add("zcDisabled");
+        r5 ? (r5 = false, c7.remove()) : (r5 = true, c7 = document.createElement("div"), c7.setAttribute("data-zc-position", typeof o5 == "number" && o5 > 500 - a5.offsetHeight / 2 ? "top" : "bottom"), i5.forEach((g6) => {
+          const v4 = document.createElement("div");
+          v4.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;", g6.icon && (g6.icon.style.cssText = "color: #bcbcbc;", v4.append(g6.icon)), v4.append(g6.text), g6.name === n4 && v4.append(u6), v4.addEventListener("click", () => {
+            n4 = g6.name, s5.textContent = g6.text, c7.remove(), f6 && f6(g6.name);
+          }), c7.append(v4);
+        }), a5.append(c7));
       });
-      const a5 = document.createElement("p");
-      a5.textContent = i8.find((b3) => b3.name === s4).text;
-      const p4 = createElement(ChevronDown), u4 = createElement(Check);
-      return u4.style.cssText = "position: absolute; right: 0.25em;", n5.append(a5, p4), d4 && d4() && n5.classList.add("zcDisabled"), this.addElement(n5, { x: e2, y: o4, width: l6, anchor: t4, place: f6, modules: h6, modulesMap: { base: n5 } }), n5;
+      const s5 = document.createElement("p");
+      s5.textContent = i5.find((g6) => g6.name === n4).text;
+      const p5 = createElement(ChevronDown), u6 = createElement(Check);
+      return u6.style.cssText = "position: absolute; right: 0.25em;", a5.append(s5, p5), d6 && d6() && a5.classList.add("zcDisabled"), this.addElement(a5, { x: e2, y: o5, width: l6, anchor: t3, place: m4, modules: h7, modulesMap: { base: a5 } }), a5;
     }
-    createContainer({ x: e2, y: o4, anchor: l6 = "top-left", place: i8 = true, modules: s4 }) {
-      const t4 = document.createElement("div");
-      return this.addElement(t4, { x: e2, y: o4, anchor: l6, place: i8, modules: s4, modulesMap: { base: t4 } }), t4;
+    createContainer({ x: e2, y: o5, anchor: l6 = "top-left", place: i5 = true, modules: n4 }) {
+      const t3 = document.createElement("div");
+      return this.addElement(t3, { x: e2, y: o5, anchor: l6, place: i5, modules: n4, modulesMap: { base: t3 } }), t3;
     }
   };
-  var T = {};
+  var M = {};
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/modsApi.js
-  var a = ((o4) => (o4[o4.OBSERVE = 0] = "OBSERVE", o4[o4.ADD_BEHAVIOR = 1] = "ADD_BEHAVIOR", o4[o4.MODIFY_BEHAVIOR = 5] = "MODIFY_BEHAVIOR", o4[o4.OVERRIDE_BEHAVIOR = 10] = "OVERRIDE_BEHAVIOR", o4[o4.TOP = 100] = "TOP", o4))(a || {});
-  var t;
-  function h() {
-    t = import_bondage_club_mod_sdk.default.registerMod({ name: m.name, fullName: m.fullName, version: m.version, repository: m.repository }), c2("GameKeyDown", 1, (e2, n5) => CommonKey.IsPressed(e2[0], "Escape") && ee() ? ee().exit() : n5(e2));
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/modsApi.js
+  var d = ((n4) => (n4[n4.OBSERVE = 0] = "OBSERVE", n4[n4.ADD_BEHAVIOR = 1] = "ADD_BEHAVIOR", n4[n4.MODIFY_BEHAVIOR = 5] = "MODIFY_BEHAVIOR", n4[n4.OVERRIDE_BEHAVIOR = 10] = "OVERRIDE_BEHAVIOR", n4[n4.TOP = 100] = "TOP", n4))(d || {});
+  var o;
+  function T() {
+    o = import_bondage_club_mod_sdk.default.registerMod({ name: c2.name, fullName: c2.fullName, version: c2.version, repository: c2.repository }), c3("GameKeyDown", 1, (e2, t3) => {
+      const r5 = ee();
+      return CommonKey.IsPressed(e2[0], "Escape") && r5 ? (r5.exit(), false) : t3(e2);
+    });
   }
-  function c2(e2, n5, d4) {
-    if (!t) throw new Error("zois-core is not registered");
-    return t.hookFunction(e2, n5, d4);
+  function c3(e2, t3, r5) {
+    if (!o) throw new Error("zois-core is not registered");
+    return o.hookFunction(e2, t3, r5);
   }
-  function I(e2, n5) {
-    if (!t) throw new Error("zois-core is not registered");
-    t.patchFunction(e2, n5);
+  function h(e2, t3) {
+    if (!o) throw new Error("zois-core is not registered");
+    o.patchFunction(e2, t3);
   }
-  function E(e2, n5, d4) {
-    if (!t) throw new Error("zois-core is not registered");
-    return t.callOriginal(e2, n5);
+  function I(e2, t3, r5) {
+    if (!o) throw new Error("zois-core is not registered");
+    return o.callOriginal(e2, t3);
   }
-  function x3(e2) {
-    return !!import_bondage_club_mod_sdk.default.getModsInfo().find((n5) => n5.name === e2);
+  function E(e2) {
+    return !!import_bondage_club_mod_sdk.default.getModsInfo().find((t3) => t3.name === e2);
   }
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/popups.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/popups.js
   var import_react4 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
@@ -23929,25 +23656,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
   ];
   var Info = createLucideIcon("info", __iconNode4);
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/popups.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/popups.js
   var import_jsx_runtime = __toESM(require_jsx_runtime());
-  function I2({ children: o4 }) {
-    const [e2, t4] = (0, import_react4.useState)({}), r5 = window.ZOISCORE.useToastsStore((s4) => s4.clearToasts);
+  function I2({ children: o5 }) {
+    const [e2, t3] = (0, import_react4.useState)({}), r5 = window.ZOISCORE.useToastsStore((s5) => s5.clearToasts);
     return (0, import_react4.useEffect)(() => {
-      const s4 = () => {
-        t4({ fontFamily: CommonGetFontName(), bottom: W(5) + "px", left: V(5) + "px" });
+      const s5 = () => {
+        t3({ fontFamily: CommonGetFontName(), bottom: V(5) + "px", left: R(5) + "px" });
       };
-      return window.addEventListener("resize", s4), s4(), () => {
-        window.removeEventListener("resize", s4);
+      return window.addEventListener("resize", s5), s5(), () => {
+        window.removeEventListener("resize", s5);
       };
     }, []), (0, import_jsx_runtime.jsx)("div", { className: "zcToastsContainer", style: e2, onClick: () => {
-      document.querySelectorAll(".zcToast").forEach((s4) => {
-        s4.classList.add("exiting");
+      document.querySelectorAll(".zcToast").forEach((s5) => {
+        s5.classList.add("exiting");
       }), setTimeout(r5, 300);
-    }, children: o4 });
+    }, children: o5 });
   }
-  var P = ({ type: o4, theme: e2 }) => {
-    switch (o4) {
+  var P2 = ({ type: o5, theme: e2 }) => {
+    switch (o5) {
       case "info":
         return (0, import_jsx_runtime.jsx)(Info, { style: { flexShrink: 0, width: "1.65em", height: "1.65em", fill: e2 ? e2.iconFillColor : "#addbff", stroke: e2 ? e2.iconStrokeColor : "#385073" } });
       case "success":
@@ -23960,138 +23687,150 @@ One of mods you are using is using an old version of SDK. It will work for now b
         return (0, import_jsx_runtime.jsx)("div", { style: { flexShrink: 0, width: "1.65em", height: "1.65em", boxSizing: "border-box", border: "2px solid", borderRadius: "100%", borderColor: `transparent ${e2 ? e2.iconFillColor : "rgb(154 154 255)"}`, animation: "zcSpin 0.65s linear infinite" } });
     }
   };
-  function R2({ title: o4, message: e2, type: t4, duration: r5, id: s4, theme: i8 }) {
-    const [n5, c7] = (0, import_react4.useState)({}), [l6, m5] = (0, import_react4.useState)(false);
+  function R2({ title: o5, message: e2, type: t3, duration: r5, id: s5, theme: i5 }) {
+    const [n4, c7] = (0, import_react4.useState)({}), [l6, m4] = (0, import_react4.useState)(false);
     return (0, import_react4.useEffect)(() => {
-      const u4 = () => {
-        const h6 = MainCanvas.canvas.clientWidth, b3 = MainCanvas.canvas.clientHeight, v3 = Math.min(h6, b3) / 100;
-        c7({ position: "relative", width: "100%", borderRadius: "0.1em", fontSize: 3 * v3 + "px", padding: 1.5 * v3 + "px", background: i8 ? i8.backgroundColor : t4 === "success" ? "#3ece7e" : t4 === "warning" ? "#debf72" : t4 === "error" ? "rgb(212, 46, 107)" : "rgb(80, 80, 223)" });
+      const u6 = () => {
+        const h7 = MainCanvas.canvas.clientWidth, b3 = MainCanvas.canvas.clientHeight, v4 = Math.min(h7, b3) / 100;
+        c7({ position: "relative", width: "100%", borderRadius: "0.1em", fontSize: 3 * v4 + "px", padding: 1.5 * v4 + "px", background: i5 ? i5.backgroundColor : t3 === "success" ? "#3ece7e" : t3 === "warning" ? "#debf72" : t3 === "error" ? "rgb(212, 46, 107)" : "rgb(80, 80, 223)" });
       };
-      window.addEventListener("resize", u4), u4();
-      const S5 = setTimeout(() => m5(true), r5);
+      window.addEventListener("resize", u6), u6();
+      const S4 = setTimeout(() => m4(true), r5);
       return () => {
-        clearTimeout(S5), window.removeEventListener("resize", u4);
+        clearTimeout(S4), window.removeEventListener("resize", u6);
       };
-    }, []), (0, import_jsx_runtime.jsxs)("div", { className: `zcToast ${l6 && "exiting"}`, "data-zc-toast-type": t4, style: n5, children: [(0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: "1vw", position: "relative", zIndex: 5 }, children: [(0, import_jsx_runtime.jsx)(P, { type: t4, theme: i8 }), (0, import_jsx_runtime.jsxs)("div", { children: [o4 && e2 && (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [(0, import_jsx_runtime.jsx)("p", { style: { color: i8 ? i8.titleColor : "white" }, children: o4 }), (0, import_jsx_runtime.jsx)("p", { style: { color: i8 ? i8.messageColor : t4 === "info" || t4 === "spinner" ? "#b8b8ff" : t4 === "success" ? "#c7f9c7" : t4 === "error" ? "#f8bcbc" : "#ffeec5", fontSize: "70%", overflowWrap: "anywhere", marginTop: "0.25em" }, children: e2 })] }), (!o4 && e2 || o4 && !e2) && (0, import_jsx_runtime.jsx)("p", { style: { position: "relative", zIndex: 5 }, children: o4 || e2 })] })] }), t4 !== "spinner" && (0, import_jsx_runtime.jsx)("div", { className: "zcToast-ProgressBar", style: { animation: `zcToast-progress ${r5}ms linear 0s 1 alternate none`, position: "absolute", top: 0, left: 0, height: "100%", background: i8 ? i8.progressBarColor : t4 === "info" ? "rgb(103, 103, 234)" : t4 === "success" ? "#34bc71" : t4 === "warning" ? "#d0af5e" : "rgb(183, 40, 92)" } })] });
+    }, []), (0, import_jsx_runtime.jsxs)("div", { className: `zcToast ${l6 && "exiting"}`, "data-zc-toast-type": t3, style: n4, children: [(0, import_jsx_runtime.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: "1vw", position: "relative", zIndex: 5 }, children: [(0, import_jsx_runtime.jsx)(P2, { type: t3, theme: i5 }), (0, import_jsx_runtime.jsxs)("div", { children: [o5 && e2 && (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [(0, import_jsx_runtime.jsx)("p", { style: { color: i5 ? i5.titleColor : "white" }, children: o5 }), (0, import_jsx_runtime.jsx)("p", { style: { color: i5 ? i5.messageColor : t3 === "info" || t3 === "spinner" ? "#b8b8ff" : t3 === "success" ? "#c7f9c7" : t3 === "error" ? "#f8bcbc" : "#ffeec5", fontSize: "70%", overflowWrap: "anywhere", marginTop: "0.25em" }, children: e2 })] }), (!o5 && e2 || o5 && !e2) && (0, import_jsx_runtime.jsx)("p", { style: { position: "relative", zIndex: 5 }, children: o5 || e2 })] })] }), t3 !== "spinner" && (0, import_jsx_runtime.jsx)("div", { className: "zcToast-ProgressBar", style: { animation: `zcToast-progress ${r5}ms linear 0s 1 alternate none`, position: "absolute", top: 0, left: 0, height: "100%", background: i5 ? i5.progressBarColor : t3 === "info" ? "rgb(103, 103, 234)" : t3 === "success" ? "#34bc71" : t3 === "warning" ? "#d0af5e" : "rgb(183, 40, 92)" } })] });
   }
-  function M2({ dialog: o4 }) {
-    const e2 = window.ZOISCORE.useDialogStore((n5) => n5.clearDialog), [t4, r5] = (0, import_react4.useState)({}), [s4, i8] = (0, import_react4.useState)([]);
+  function M2({ dialog: o5 }) {
+    const e2 = window.ZOISCORE.useDialogStore((n4) => n4.clearDialog), [t3, r5] = (0, import_react4.useState)({}), [s5, i5] = (0, import_react4.useState)([]);
     return (0, import_react4.useEffect)(() => {
-      const n5 = () => {
-        const c7 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, m5 = Math.min(c7, l6) / 100;
-        r5({ width: D(o4.width), position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "rgba(36, 36, 36, 0.96)", zIndex: 20, fontFamily: CommonGetFontName(), border: "none", padding: 2 * m5 });
+      const n4 = () => {
+        const c7 = MainCanvas.canvas.clientWidth, l6 = MainCanvas.canvas.clientHeight, m4 = Math.min(c7, l6) / 100;
+        r5({ width: P(o5.width), position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", background: "rgba(36, 36, 36, 0.96)", zIndex: 20, fontFamily: CommonGetFontName(), border: "none", padding: 2 * m4 });
       };
-      return window.addEventListener("resize", n5), n5(), () => {
-        window.removeEventListener("resize", n5);
+      return window.addEventListener("resize", n4), n4(), () => {
+        window.removeEventListener("resize", n4);
       };
-    }, []), (0, import_jsx_runtime.jsxs)("dialog", { open: Object.keys(t4).length > 0, "data-zc-dialog-type": o4.type, style: t4, children: [o4.title && (0, import_jsx_runtime.jsx)("p", { style: { position: "absolute", top: 0, left: 0, fontWeight: "bold", color: "white", fontSize: "clamp(6px, 2vw, 24px)", padding: "0.25em", background: "#2d2d2d", width: "100%" }, children: o4.title }), (0, import_jsx_runtime.jsx)("p", { style: { padding: "1em", marginTop: "2vw", fontSize: "clamp(6px, 2vw, 24px)", color: "white" }, children: o4.body }), (0, import_jsx_runtime.jsx)("div", { style: { display: "flex", flexDirection: o4.buttons.direction, justifyContent: "center", gap: "0.5vw" }, children: o4.buttons?.list?.map((n5, c7) => (0, import_jsx_runtime.jsx)("button", { className: "zcDialogBtn", "data-zc-picked": s4.includes(c7), style: { width: "100%", position: "relative" }, onClick: () => {
-      o4.type === "choice_one" ? (e2(), o4.promise.resolve(n5.value)) : s4.includes(c7) ? i8(s4.filter((l6) => l6 !== c7)) : i8([...s4, c7]);
-    }, children: n5.text })) }), o4.type === "choice_multiple" && (0, import_jsx_runtime.jsx)("button", { style: { cursor: "pointer", color: "white", background: "#4d4d4d", border: "none", marginTop: "1vw", fontSize: "clamp(8px,2.5vw,28px)", padding: "0.2em", borderRadius: "4px" }, onClick: () => {
-      e2(), o4.promise.resolve(o4.buttons.list.filter((n5, c7) => s4.includes(c7)).map((n5) => n5.value));
+    }, []), (0, import_jsx_runtime.jsxs)("dialog", { open: Object.keys(t3).length > 0, "data-zc-dialog-type": o5.type, style: t3, children: [o5.title && (0, import_jsx_runtime.jsx)("p", { style: { position: "absolute", top: 0, left: 0, fontWeight: "bold", color: "white", fontSize: "clamp(6px, 2vw, 24px)", padding: "0.25em", background: "#2d2d2d", width: "100%" }, children: o5.title }), (0, import_jsx_runtime.jsx)("p", { style: { padding: "1em", marginTop: "2vw", fontSize: "clamp(6px, 2vw, 24px)", color: "white" }, children: o5.body }), (0, import_jsx_runtime.jsx)("div", { style: { display: "flex", flexDirection: o5.buttons.direction, justifyContent: "center", gap: "0.5vw" }, children: o5.buttons?.list?.map((n4, c7) => (0, import_jsx_runtime.jsx)("button", { className: "zcDialogBtn", "data-zc-picked": s5.includes(c7), style: { width: "100%", position: "relative" }, onClick: () => {
+      o5.type === "choice_one" ? (e2(), o5.promise.resolve(n4.value)) : s5.includes(c7) ? i5(s5.filter((l6) => l6 !== c7)) : i5([...s5, c7]);
+    }, children: n4.text })) }), o5.type === "choice_multiple" && (0, import_jsx_runtime.jsx)("button", { style: { cursor: "pointer", color: "white", background: "#4d4d4d", border: "none", marginTop: "1vw", fontSize: "clamp(8px,2.5vw,28px)", padding: "0.2em", borderRadius: "4px" }, onClick: () => {
+      e2(), o5.promise.resolve(o5.buttons.list.filter((n4, c7) => s5.includes(c7)).map((n4) => n4.value));
     }, children: "Confirm" })] });
   }
   var F = class {
     generateToastId() {
       return crypto.randomUUID();
     }
-    process({ title: e2, message: t4, duration: r5, type: s4, id: i8, theme: n5 }) {
+    process({ title: e2, message: t3, duration: r5, type: s5, id: i5, theme: n4 }) {
       const { addToast: c7, removeToast: l6 } = window.ZOISCORE.useToastsStore.getState();
-      c7({ id: i8, title: e2, message: t4, duration: r5, type: s4, theme: n5 }), setTimeout(() => l6(i8), r5 + 300);
+      c7({ id: i5, title: e2, message: t3, duration: r5, type: s5, theme: n4 }), setTimeout(() => l6(i5), r5 + 300);
     }
-    info({ title: e2, message: t4, duration: r5 }) {
-      const s4 = this.generateToastId(), i8 = m.singleToastsTheme;
-      this.process({ title: e2, message: t4, duration: r5, type: "info", id: s4, theme: i8 });
+    info({ title: e2, message: t3, duration: r5 }) {
+      const s5 = this.generateToastId(), i5 = c2.singleToastsTheme;
+      this.process({ title: e2, message: t3, duration: r5, type: "info", id: s5, theme: i5 });
     }
-    success({ title: e2, message: t4, duration: r5 }) {
-      const s4 = this.generateToastId(), i8 = m.singleToastsTheme;
-      this.process({ title: e2, message: t4, duration: r5, type: "success", id: s4, theme: i8 });
+    success({ title: e2, message: t3, duration: r5 }) {
+      const s5 = this.generateToastId(), i5 = c2.singleToastsTheme;
+      this.process({ title: e2, message: t3, duration: r5, type: "success", id: s5, theme: i5 });
     }
-    warn({ title: e2, message: t4, duration: r5 }) {
-      const s4 = this.generateToastId(), i8 = m.singleToastsTheme;
-      this.process({ title: e2, message: t4, duration: r5, type: "warning", id: s4, theme: i8 });
+    warn({ title: e2, message: t3, duration: r5 }) {
+      const s5 = this.generateToastId(), i5 = c2.singleToastsTheme;
+      this.process({ title: e2, message: t3, duration: r5, type: "warning", id: s5, theme: i5 });
     }
-    error({ title: e2, message: t4, duration: r5 }) {
-      const s4 = this.generateToastId(), i8 = m.singleToastsTheme;
-      this.process({ title: e2, message: t4, duration: r5, type: "error", id: s4, theme: i8 });
+    error({ title: e2, message: t3, duration: r5 }) {
+      const s5 = this.generateToastId(), i5 = c2.singleToastsTheme;
+      this.process({ title: e2, message: t3, duration: r5, type: "error", id: s5, theme: i5 });
     }
-    spinner({ title: e2, message: t4 }) {
-      const r5 = this.generateToastId(), s4 = m.singleToastsTheme;
-      return this.process({ title: e2, message: t4, duration: 1e6, type: "spinner", id: r5, theme: s4 }), r5;
+    spinner({ title: e2, message: t3 }) {
+      const r5 = this.generateToastId(), s5 = c2.singleToastsTheme;
+      return this.process({ title: e2, message: t3, duration: 1e6, type: "spinner", id: r5, theme: s5 }), r5;
     }
     removeSpinner(e2) {
-      const { removeToast: t4 } = window.ZOISCORE.useToastsStore.getState();
-      t4(e2);
+      const { removeToast: t3 } = window.ZOISCORE.useToastsStore.getState();
+      t3(e2);
     }
   };
-  var N2 = class {
-    showDialog({ type: e2, title: t4, body: r5, buttons: s4, width: i8 }) {
-      const { setDialog: n5 } = window.ZOISCORE.useDialogStore.getState();
+  var N = class {
+    showDialog({ type: e2, title: t3, body: r5, buttons: s5, width: i5 }) {
+      const { setDialog: n4 } = window.ZOISCORE.useDialogStore.getState();
       return new Promise((c7, l6) => {
-        n5({ width: i8, type: e2, title: t4, body: r5, buttons: s4, promise: { resolve: c7, reject: l6 } });
+        n4({ width: i5, type: e2, title: t3, body: r5, buttons: s5, promise: { resolve: c7, reject: l6 } });
       });
     }
   };
-  function L() {
-    const o4 = window.ZOISCORE.useToastsStore((t4) => t4.toasts), e2 = window.ZOISCORE.useDialogStore((t4) => t4.dialog);
-    return (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [(0, import_jsx_runtime.jsx)(I2, { children: o4.map(({ title: t4, message: r5, type: s4, duration: i8, id: n5, theme: c7 }) => (0, import_jsx_runtime.jsx)(R2, { id: n5, title: t4, message: r5, type: s4, duration: i8, theme: c7 }, n5)) }), e2 && (0, import_jsx_runtime.jsx)(M2, { dialog: e2 })] });
+  function L2() {
+    const o5 = window.ZOISCORE.useToastsStore((t3) => t3.toasts), e2 = window.ZOISCORE.useDialogStore((t3) => t3.dialog);
+    return (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [(0, import_jsx_runtime.jsx)(I2, { children: o5.map(({ title: t3, message: r5, type: s5, duration: i5, id: n4, theme: c7 }) => (0, import_jsx_runtime.jsx)(R2, { id: n4, title: t3, message: r5, type: s5, duration: i5, theme: c7 }, n4)) }), e2 && (0, import_jsx_runtime.jsx)(M2, { dialog: e2 })] });
   }
-  var W2 = class extends HTMLElement {
+  var W = class extends HTMLElement {
     disconnectedCallback() {
       ServerShowBeep("VirtualDOM was removed, chaos is coming...", 5e3, {});
     }
   };
-  var q = create((o4) => ({ toasts: [], addToast: (e2) => o4((t4) => ({ toasts: [...t4.toasts, e2] })), removeToast: (e2) => o4((t4) => ({ toasts: t4.toasts.filter((r5) => r5.id !== e2) })), clearToasts: () => o4({ toasts: [] }) }));
-  var Y = create((o4) => ({ dialog: null, setDialog: (e2) => o4({ dialog: e2 }), clearDialog: () => o4({ dialog: null }) }));
+  var q = create((o5) => ({ toasts: [], addToast: (e2) => o5((t3) => ({ toasts: [...t3.toasts, e2] })), removeToast: (e2) => o5((t3) => ({ toasts: t3.toasts.filter((r5) => r5.id !== e2) })), clearToasts: () => o5({ toasts: [] }) }));
+  var Y = create((o5) => ({ dialog: null, setDialog: (e2) => o5({ dialog: e2 }), clearDialog: () => o5({ dialog: null }) }));
   function K() {
-    customElements.define("zc-virtual-dom", W2);
-    const o4 = document.createElement("zc-virtual-dom");
-    document.body.append(o4), import_client.default.createRoot(document.getElementsByTagName("zc-virtual-dom")[0]).render((0, import_jsx_runtime.jsx)(L, {}));
+    customElements.define("zc-virtual-dom", W);
+    const o5 = document.createElement("zc-virtual-dom");
+    document.body.append(o5), import_client.default.createRoot(document.getElementsByTagName("zc-virtual-dom")[0]).render((0, import_jsx_runtime.jsx)(L2, {}));
   }
   var Q2 = new F();
-  var ee2 = new N2();
+  var ee2 = new N();
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/index.js
-  var m;
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/index.js
+  var c2;
   function C(e2) {
     if (!window.ZOISCORE) {
-      const t4 = document.createElement("style");
-      t4.innerHTML = styles_default, document.head.append(t4), window.ZOISCORE = Object.freeze({ loaded: true, useToastsStore: q, useDialogStore: Y }), K();
+      const t3 = document.createElement("style");
+      t3.innerHTML = styles_default, document.head.append(t3), window.ZOISCORE = Object.freeze({ loaded: true, useToastsStore: q, useDialogStore: Y }), K();
     }
-    m = { ...e2 }, h();
+    c2 = { ...e2 }, T();
   }
-  function c3(e2) {
-    return new Promise((t4) => setTimeout(t4, e2));
+  function p(e2) {
+    return new Promise((t3) => setTimeout(t3, e2));
   }
-  async function p(e2, t4 = () => false) {
+  async function h2(e2, t3 = () => false) {
     for (; !e2(); ) {
-      if (t4()) return false;
-      await c3(10);
+      if (t3()) return false;
+      await p(10);
     }
     return true;
   }
-  function h2(e2, t4) {
-    return e2 = Math.ceil(e2), t4 = Math.floor(t4), Math.floor(Math.random() * (t4 - e2 + 1)) + e2;
+  function y2(e2, t3) {
+    return e2 = Math.ceil(e2), t3 = Math.floor(t3), Math.floor(Math.random() * (t3 - e2 + 1)) + e2;
   }
-  function D3(e2) {
-    return typeof e2 == "string" ? Math.round(new TextEncoder().encode(e2).byteLength / 100) / 10 : Math.round(new TextEncoder().encode(JSON.stringify(e2)).byteLength / 100) / 10;
+  function w3(e2, t3) {
+    const r5 = e2.split("."), o5 = t3.split(".");
+    for (let n4 = 0; n4 < Math.max(r5.length, o5.length); n4++) {
+      const i5 = parseInt(r5[n4] || "0", 10), s5 = parseInt(o5[n4] || "0", 10);
+      if (i5 > s5) return true;
+      if (i5 < s5) return false;
+    }
+    return false;
   }
   function T2(e2) {
-    if (e2) return ChatRoomCharacter.find((t4) => t4.MemberNumber == e2 || t4.Name.toLowerCase() === e2 || t4.Nickname?.toLowerCase() === e2);
+    return typeof e2 == "string" ? Math.round(new TextEncoder().encode(e2).byteLength / 100) / 10 : Math.round(new TextEncoder().encode(JSON.stringify(e2)).byteLength / 100) / 10;
   }
-  function N3(e2) {
+  function N2(e2) {
+    if (e2) return ChatRoomCharacter.find((t3) => t3.MemberNumber == e2 || t3.Name.toLowerCase() === e2 || t3.Nickname?.toLowerCase() === e2);
+  }
+  function O2(e2) {
     return CharacterNickname(e2);
   }
   function S() {
-    if (!x3("Themed")) return null;
+    if (!E("Themed")) return null;
     const e2 = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.Themed ?? ""));
     return !e2?.GlobalModule?.themedEnabled || !e2?.GlobalModule?.doVanillaGuiOverhaul ? null : e2.ColorsModule;
   }
-  function O2(e2) {
-    const t4 = document.createElement("style");
-    t4.innerHTML = e2, document.head.append(t4);
+  function k2(e2) {
+    const t3 = document.createElement("style");
+    t3.innerHTML = e2, document.head.append(t3);
   }
-  function P2(e2) {
-    p(() => typeof window.Player?.MemberNumber == "number").then(() => setTimeout(e2, h2(3e3, 6e3)));
+  function P3(e2) {
+    h2(() => typeof window.Player?.MemberNumber == "number").then(() => setTimeout(e2, y2(3e3, 6e3)));
+  }
+  function a2(e2) {
+    return typeof e2 != "object" || e2 === null ? e2 : Array.isArray(e2) ? e2.map(a2).sort() : Object.keys(e2).sort().reduce((t3, r5) => (t3[r5] = a2(e2[r5]), t3), {});
   }
 
   // src/styles.css
@@ -24103,22 +23842,54 @@ One of mods you are using is using an old version of SDK. It will work for now b
   box-sizing: border-box;
 }
 
+@media (max-width: 750px) {
+  .bccQAM .bccQAM_sidebar>input {
+    display: none;
+  }
+
+  .bccQAM .bccQAM_sidebar {
+    width: auto !important;
+  }
+
+  .bccQAM>div:first-of-type>div:first-of-type>svg:first-of-type {
+    display: none;
+  }
+
+  .bccQAM .bccQAM_sidebar>div>button>div {
+    display: none !important;
+  }
+}
+
+.bccQAM .bccQAM_sidebar[data-minimized]>input {
+  display: none;
+}
+
+.bccQAM .bccQAM_sidebar[data-minimized] {
+  width: auto !important;
+}
+
+.bccQAM .bccQAM_sidebar[data-minimized]>div>button>div {
+  display: none !important;
+}
+
 .bccQAM {
   display: flex;
   flex-direction: column;
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding-top: 0.25em;
-  max-width: 360px;
-  width: 90%;
+  overflow: hidden;
+  resize: both;
+  width: 95%;
+  max-width: 1250px;
+  min-width: 605px;
+  height: 80%;
+  max-height: 600px;
+  min-height: 350px;
   border-radius: 4px;
   background: rgb(255, 255, 255);
   border: 2px solid rgba(182 182 182 / 11%);
   box-shadow: 0 0px 6px 0 rgb(168 168 168);
   font-family: "Yusei Magic";
-  z-index: 10;
+  z-index: 25;
 }
 
 .bccQAMButton {
@@ -24211,7 +23982,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
 .bccChangelog {
   font-family: "Yusei Magic";
-  padding: 0.25em;
+  padding: 0.5em;
+  font-size: 1.25em;
 }
 
 .bccChangelog ul {
@@ -24517,7 +24289,395 @@ One of mods you are using is using an old version of SDK. It will work for now b
 }`;
 
   // package.json
-  var version = "2.0.0";
+  var version = "2.0.1";
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/defaultAttributes.js
+  var defaultAttributes3 = {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: 24,
+    height: 24,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    "stroke-width": 2,
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round"
+  };
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/createElement.js
+  var createSVGElement2 = ([tag, attrs, children]) => {
+    const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    Object.keys(attrs).forEach((name) => {
+      element.setAttribute(name, String(attrs[name]));
+    });
+    if (children?.length) {
+      children.forEach((child) => {
+        const childElement = createSVGElement2(child);
+        element.appendChild(childElement);
+      });
+    }
+    return element;
+  };
+  var createElement4 = (iconNode, customAttrs = {}) => {
+    const tag = "svg";
+    const attrs = {
+      ...defaultAttributes3,
+      ...customAttrs
+    };
+    return createSVGElement2([tag, attrs, iconNode]);
+  };
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/align-vertical-space-around.js
+  var AlignVerticalSpaceAround = [
+    ["rect", { width: "10", height: "6", x: "7", y: "9", rx: "2" }],
+    ["path", { d: "M22 20H2" }],
+    ["path", { d: "M22 4H2" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/arrow-down.js
+  var ArrowDown = [
+    ["path", { d: "M12 5v14" }],
+    ["path", { d: "m19 12-7 7-7-7" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/arrow-up.js
+  var ArrowUp = [
+    ["path", { d: "m5 12 7-7 7 7" }],
+    ["path", { d: "M12 19V5" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/ban.js
+  var Ban = [
+    ["path", { d: "M4.929 4.929 19.07 19.071" }],
+    ["circle", { cx: "12", cy: "12", r: "10" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/book-heart.js
+  var BookHeart = [
+    [
+      "path",
+      { d: "M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" }
+    ],
+    [
+      "path",
+      {
+        d: "M8.62 9.8A2.25 2.25 0 1 1 12 6.836a2.25 2.25 0 1 1 3.38 2.966l-2.626 2.856a.998.998 0 0 1-1.507 0z"
+      }
+    ]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/bug.js
+  var Bug = [
+    ["path", { d: "M12 20v-9" }],
+    ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z" }],
+    ["path", { d: "M14.12 3.88 16 2" }],
+    ["path", { d: "M21 21a4 4 0 0 0-3.81-4" }],
+    ["path", { d: "M21 5a4 4 0 0 1-3.55 3.97" }],
+    ["path", { d: "M22 13h-4" }],
+    ["path", { d: "M3 21a4 4 0 0 1 3.81-4" }],
+    ["path", { d: "M3 5a4 4 0 0 0 3.55 3.97" }],
+    ["path", { d: "M6 13H2" }],
+    ["path", { d: "m8 2 1.88 1.88" }],
+    ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/check.js
+  var Check2 = [["path", { d: "M20 6 9 17l-5-5" }]];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/chevron-down.js
+  var ChevronDown2 = [["path", { d: "m6 9 6 6 6-6" }]];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/clipboard-copy.js
+  var ClipboardCopy = [
+    ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1" }],
+    ["path", { d: "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" }],
+    ["path", { d: "M16 4h2a2 2 0 0 1 2 2v4" }],
+    ["path", { d: "M21 14H11" }],
+    ["path", { d: "m15 10-4 4 4 4" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/clipboard-paste.js
+  var ClipboardPaste = [
+    ["path", { d: "M11 14h10" }],
+    ["path", { d: "M16 4h2a2 2 0 0 1 2 2v1.344" }],
+    ["path", { d: "m17 18 4-4-4-4" }],
+    ["path", { d: "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113" }],
+    ["rect", { x: "8", y: "2", width: "8", height: "4", rx: "1" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/code-xml.js
+  var CodeXml = [
+    ["path", { d: "m18 16 4-4-4-4" }],
+    ["path", { d: "m6 8-4 4 4 4" }],
+    ["path", { d: "m14.5 4-5 16" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/copy-plus.js
+  var CopyPlus = [
+    ["line", { x1: "15", x2: "15", y1: "12", y2: "18" }],
+    ["line", { x1: "12", x2: "18", y1: "15", y2: "15" }],
+    ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2" }],
+    ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/eye.js
+  var Eye = [
+    [
+      "path",
+      {
+        d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+      }
+    ],
+    ["circle", { cx: "12", cy: "12", r: "3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/git-commit-vertical.js
+  var GitCommitVertical = [
+    ["path", { d: "M12 3v6" }],
+    ["circle", { cx: "12", cy: "12", r: "3" }],
+    ["path", { d: "M12 15v6" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/git-compare-arrows.js
+  var GitCompareArrows = [
+    ["circle", { cx: "5", cy: "6", r: "3" }],
+    ["path", { d: "M12 6h5a2 2 0 0 1 2 2v7" }],
+    ["path", { d: "m15 9-3-3 3-3" }],
+    ["circle", { cx: "19", cy: "18", r: "3" }],
+    ["path", { d: "M12 18H7a2 2 0 0 1-2-2V9" }],
+    ["path", { d: "m9 15 3 3-3 3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/git-pull-request-arrow.js
+  var GitPullRequestArrow = [
+    ["circle", { cx: "5", cy: "6", r: "3" }],
+    ["path", { d: "M5 9v12" }],
+    ["circle", { cx: "19", cy: "18", r: "3" }],
+    ["path", { d: "m15 9-3-3 3-3" }],
+    ["path", { d: "M12 6h5a2 2 0 0 1 2 2v7" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/git-pull-request-closed.js
+  var GitPullRequestClosed = [
+    ["circle", { cx: "6", cy: "6", r: "3" }],
+    ["path", { d: "M6 9v12" }],
+    ["path", { d: "m21 3-6 6" }],
+    ["path", { d: "m21 9-6-6" }],
+    ["path", { d: "M18 11.5V15" }],
+    ["circle", { cx: "18", cy: "18", r: "3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/git-pull-request.js
+  var GitPullRequest = [
+    ["circle", { cx: "18", cy: "18", r: "3" }],
+    ["circle", { cx: "6", cy: "6", r: "3" }],
+    ["path", { d: "M13 6h3a2 2 0 0 1 2 2v7" }],
+    ["line", { x1: "6", x2: "6", y1: "9", y2: "21" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/hand-coins.js
+  var HandCoins = [
+    ["path", { d: "M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17" }],
+    [
+      "path",
+      {
+        d: "m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"
+      }
+    ],
+    ["path", { d: "m2 16 6 6" }],
+    ["circle", { cx: "16", cy: "9", r: "2.9" }],
+    ["circle", { cx: "6", cy: "5", r: "3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/hat-glasses.js
+  var HatGlasses = [
+    ["path", { d: "M14 18a2 2 0 0 0-4 0" }],
+    [
+      "path",
+      {
+        d: "m19 11-2.11-6.657a2 2 0 0 0-2.752-1.148l-1.276.61A2 2 0 0 1 12 4H8.5a2 2 0 0 0-1.925 1.456L5 11"
+      }
+    ],
+    ["path", { d: "M2 11h20" }],
+    ["circle", { cx: "17", cy: "18", r: "3" }],
+    ["circle", { cx: "7", cy: "18", r: "3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/heart.js
+  var Heart = [
+    [
+      "path",
+      {
+        d: "M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+      }
+    ]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/lock-open.js
+  var LockOpen = [
+    ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }],
+    ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/lock.js
+  var Lock = [
+    ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2" }],
+    ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/log-out.js
+  var LogOut = [
+    ["path", { d: "m16 17 5-5-5-5" }],
+    ["path", { d: "M21 12H9" }],
+    ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/map-pinned.js
+  var MapPinned = [
+    [
+      "path",
+      {
+        d: "M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 0 1-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0 1 12 0"
+      }
+    ],
+    ["circle", { cx: "12", cy: "8", r: "2" }],
+    [
+      "path",
+      {
+        d: "M8.714 14h-3.71a1 1 0 0 0-.948.683l-2.004 6A1 1 0 0 0 3 22h18a1 1 0 0 0 .948-1.316l-2-6a1 1 0 0 0-.949-.684h-3.712"
+      }
+    ]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/maximize.js
+  var Maximize = [
+    ["path", { d: "M8 3H5a2 2 0 0 0-2 2v3" }],
+    ["path", { d: "M21 8V5a2 2 0 0 0-2-2h-3" }],
+    ["path", { d: "M3 16v3a2 2 0 0 0 2 2h3" }],
+    ["path", { d: "M16 21h3a2 2 0 0 0 2-2v-3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/panel-left-close.js
+  var PanelLeftClose = [
+    ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2" }],
+    ["path", { d: "M9 3v18" }],
+    ["path", { d: "m16 15-3-3 3-3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/panels-top-left.js
+  var PanelsTopLeft = [
+    ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2" }],
+    ["path", { d: "M3 9h18" }],
+    ["path", { d: "M9 21V9" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/person-standing.js
+  var PersonStanding = [
+    ["circle", { cx: "12", cy: "5", r: "1" }],
+    ["path", { d: "m9 20 3-6 3 6" }],
+    ["path", { d: "m6 8 6 2 6-2" }],
+    ["path", { d: "M12 10v4" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/send-to-back.js
+  var SendToBack = [
+    ["rect", { x: "14", y: "14", width: "8", height: "8", rx: "2" }],
+    ["rect", { x: "2", y: "2", width: "8", height: "8", rx: "2" }],
+    ["path", { d: "M7 14v1a2 2 0 0 0 2 2h1" }],
+    ["path", { d: "M14 7h1a2 2 0 0 1 2 2v1" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/settings.js
+  var Settings = [
+    [
+      "path",
+      {
+        d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+      }
+    ],
+    ["circle", { cx: "12", cy: "12", r: "3" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/shell.js
+  var Shell = [
+    [
+      "path",
+      {
+        d: "M14 11a2 2 0 1 1-4 0 4 4 0 0 1 8 0 6 6 0 0 1-12 0 8 8 0 0 1 16 0 10 10 0 1 1-20 0 11.93 11.93 0 0 1 2.42-7.22 2 2 0 1 1 3.16 2.44"
+      }
+    ]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/shield-alert.js
+  var ShieldAlert = [
+    [
+      "path",
+      {
+        d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+      }
+    ],
+    ["path", { d: "M12 8v4" }],
+    ["path", { d: "M12 16h.01" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/shield-minus.js
+  var ShieldMinus = [
+    [
+      "path",
+      {
+        d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+      }
+    ],
+    ["path", { d: "M9 12h6" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/skull.js
+  var Skull = [
+    ["path", { d: "m12.5 17-.5-1-.5 1h1z" }],
+    [
+      "path",
+      {
+        d: "M15 22a1 1 0 0 0 1-1v-1a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20v1a1 1 0 0 0 1 1z"
+      }
+    ],
+    ["circle", { cx: "15", cy: "12", r: "1" }],
+    ["circle", { cx: "9", cy: "12", r: "1" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/target.js
+  var Target = [
+    ["circle", { cx: "12", cy: "12", r: "10" }],
+    ["circle", { cx: "12", cy: "12", r: "6" }],
+    ["circle", { cx: "12", cy: "12", r: "2" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/trash-2.js
+  var Trash22 = [
+    ["path", { d: "M10 11v6" }],
+    ["path", { d: "M14 11v6" }],
+    ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" }],
+    ["path", { d: "M3 6h18" }],
+    ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/wand.js
+  var Wand = [
+    ["path", { d: "M15 4V2" }],
+    ["path", { d: "M15 16v-2" }],
+    ["path", { d: "M8 9h2" }],
+    ["path", { d: "M20 9h2" }],
+    ["path", { d: "M17.8 11.8 19 13" }],
+    ["path", { d: "M15 9h.01" }],
+    ["path", { d: "M17.8 6.2 19 5" }],
+    ["path", { d: "m3 21 9-9" }],
+    ["path", { d: "M12.2 6.2 11 5" }]
+  ];
+
+  // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/x.js
+  var X2 = [
+    ["path", { d: "M18 6 6 18" }],
+    ["path", { d: "m6 6 12 12" }]
+  ];
 
   // src/ui-modules/tentaclesModule.ts
   var TentaclesModule = class extends r {
@@ -24806,16 +24966,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
 
   // node_modules/.pnpm/class-transformer@0.5.1/node_modules/class-transformer/esm5/utils/is-promise.util.js
-  function isPromise(p4) {
-    return p4 !== null && typeof p4 === "object" && typeof p4.then === "function";
+  function isPromise(p5) {
+    return p5 !== null && typeof p5 === "object" && typeof p5.then === "function";
   }
 
   // node_modules/.pnpm/class-transformer@0.5.1/node_modules/class-transformer/esm5/TransformOperationExecutor.js
   var __spreadArray = function(to, from, pack) {
-    if (pack || arguments.length === 2) for (var i8 = 0, l6 = from.length, ar; i8 < l6; i8++) {
-      if (ar || !(i8 in from)) {
-        if (!ar) ar = Array.prototype.slice.call(from, 0, i8);
-        ar[i8] = from[i8];
+    if (pack || arguments.length === 2) for (var i5 = 0, l6 = from.length, ar; i5 < l6; i5++) {
+      if (ar || !(i5 in from)) {
+        if (!ar) ar = Array.prototype.slice.call(from, 0, i5);
+        ar[i5] = from[i5];
       }
     }
     return to.concat(ar || Array.prototype.slice.call(from));
@@ -25225,13 +25385,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/class-transformer@0.5.1/node_modules/class-transformer/esm5/ClassTransformer.js
   var __assign = function() {
-    __assign = Object.assign || function(t4) {
-      for (var s4, i8 = 1, n5 = arguments.length; i8 < n5; i8++) {
-        s4 = arguments[i8];
-        for (var p4 in s4) if (Object.prototype.hasOwnProperty.call(s4, p4))
-          t4[p4] = s4[p4];
+    __assign = Object.assign || function(t3) {
+      for (var s5, i5 = 1, n4 = arguments.length; i5 < n4; i5++) {
+        s5 = arguments[i5];
+        for (var p5 in s5) if (Object.prototype.hasOwnProperty.call(s5, p5))
+          t3[p5] = s5[p5];
       }
-      return t4;
+      return t3;
     };
     return __assign.apply(this, arguments);
   };
@@ -25302,7 +25462,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return classTransformer.plainToInstance(cls, plain, options);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/metadata/ValidationMetadata.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/metadata/ValidationMetadata.js
   var ValidationMetadata = (
     /** @class */
     /* @__PURE__ */ (function() {
@@ -25329,7 +25489,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation-schema/ValidationSchemaToMetadataTransformer.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation-schema/ValidationSchemaToMetadataTransformer.js
   var ValidationSchemaToMetadataTransformer = (
     /** @class */
     (function() {
@@ -25363,7 +25523,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/utils/convert-to-array.util.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/utils/convert-to-array.util.js
   function convertToArray(val) {
     if (val instanceof Map) {
       return Array.from(val.values());
@@ -25371,7 +25531,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return Array.isArray(val) ? val : Array.from(val);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/utils/get-global.util.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/utils/get-global.util.js
   function getGlobal2() {
     if (typeof globalThis !== "undefined") {
       return globalThis;
@@ -25387,34 +25547,34 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/utils/is-promise.util.js
-  function isPromise2(p4) {
-    return p4 !== null && typeof p4 === "object" && typeof p4.then === "function";
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/utils/is-promise.util.js
+  function isPromise2(p5) {
+    return p5 !== null && typeof p5 === "object" && typeof p5.then === "function";
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/metadata/MetadataStorage.js
-  var __values = function(o4) {
-    var s4 = typeof Symbol === "function" && Symbol.iterator, m5 = s4 && o4[s4], i8 = 0;
-    if (m5) return m5.call(o4);
-    if (o4 && typeof o4.length === "number") return {
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/metadata/MetadataStorage.js
+  var __values = function(o5) {
+    var s5 = typeof Symbol === "function" && Symbol.iterator, m4 = s5 && o5[s5], i5 = 0;
+    if (m4) return m4.call(o5);
+    if (o5 && typeof o5.length === "number") return {
       next: function() {
-        if (o4 && i8 >= o4.length) o4 = void 0;
-        return { value: o4 && o4[i8++], done: !o4 };
+        if (o5 && i5 >= o5.length) o5 = void 0;
+        return { value: o5 && o5[i5++], done: !o5 };
       }
     };
-    throw new TypeError(s4 ? "Object is not iterable." : "Symbol.iterator is not defined.");
+    throw new TypeError(s5 ? "Object is not iterable." : "Symbol.iterator is not defined.");
   };
-  var __read = function(o4, n5) {
-    var m5 = typeof Symbol === "function" && o4[Symbol.iterator];
-    if (!m5) return o4;
-    var i8 = m5.call(o4), r5, ar = [], e2;
+  var __read = function(o5, n4) {
+    var m4 = typeof Symbol === "function" && o5[Symbol.iterator];
+    if (!m4) return o5;
+    var i5 = m4.call(o5), r5, ar = [], e2;
     try {
-      while ((n5 === void 0 || n5-- > 0) && !(r5 = i8.next()).done) ar.push(r5.value);
+      while ((n4 === void 0 || n4-- > 0) && !(r5 = i5.next()).done) ar.push(r5.value);
     } catch (error) {
       e2 = { error };
     } finally {
       try {
-        if (r5 && !r5.done && (m5 = i8["return"])) m5.call(i8);
+        if (r5 && !r5.done && (m4 = i5["return"])) m4.call(i5);
       } finally {
         if (e2) throw e2.error;
       }
@@ -25422,10 +25582,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return ar;
   };
   var __spreadArray2 = function(to, from, pack) {
-    if (pack || arguments.length === 2) for (var i8 = 0, l6 = from.length, ar; i8 < l6; i8++) {
-      if (ar || !(i8 in from)) {
-        if (!ar) ar = Array.prototype.slice.call(from, 0, i8);
-        ar[i8] = from[i8];
+    if (pack || arguments.length === 2) for (var i5 = 0, l6 = from.length, ar; i5 < l6; i5++) {
+      if (ar || !(i5 in from)) {
+        if (!ar) ar = Array.prototype.slice.call(from, 0, i5);
+        ar[i5] = from[i5];
       }
     }
     return to.concat(ar || Array.prototype.slice.call(from));
@@ -25563,7 +25723,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return global2.classValidatorMetadataStorage;
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation/ValidationError.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation/ValidationError.js
   var ValidationError = (
     /** @class */
     (function() {
@@ -25611,7 +25771,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation/ValidationTypes.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation/ValidationTypes.js
   var ValidationTypes = (
     /** @class */
     (function() {
@@ -25633,7 +25793,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation/ValidationUtils.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation/ValidationUtils.js
   function constraintToString(constraint) {
     if (Array.isArray(constraint)) {
       return constraint.join(", ");
@@ -25672,18 +25832,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation/ValidationExecutor.js
-  var __read2 = function(o4, n5) {
-    var m5 = typeof Symbol === "function" && o4[Symbol.iterator];
-    if (!m5) return o4;
-    var i8 = m5.call(o4), r5, ar = [], e2;
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation/ValidationExecutor.js
+  var __read2 = function(o5, n4) {
+    var m4 = typeof Symbol === "function" && o5[Symbol.iterator];
+    if (!m4) return o5;
+    var i5 = m4.call(o5), r5, ar = [], e2;
     try {
-      while ((n5 === void 0 || n5-- > 0) && !(r5 = i8.next()).done) ar.push(r5.value);
+      while ((n4 === void 0 || n4-- > 0) && !(r5 = i5.next()).done) ar.push(r5.value);
     } catch (error) {
       e2 = { error };
     } finally {
       try {
-        if (r5 && !r5.done && (m5 = i8["return"])) m5.call(i8);
+        if (r5 && !r5.done && (m4 = i5["return"])) m4.call(i5);
       } finally {
         if (e2) throw e2.error;
       }
@@ -25982,14 +26142,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/validation/Validator.js
-  var __awaiter = function(thisArg, _arguments, P5, generator) {
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/validation/Validator.js
+  var __awaiter = function(thisArg, _arguments, P6, generator) {
     function adopt(value) {
-      return value instanceof P5 ? value : new P5(function(resolve) {
+      return value instanceof P6 ? value : new P6(function(resolve) {
         resolve(value);
       });
     }
-    return new (P5 || (P5 = Promise))(function(resolve, reject) {
+    return new (P6 || (P6 = Promise))(function(resolve, reject) {
       function fulfilled(value) {
         try {
           step(generator.next(value));
@@ -26012,26 +26172,26 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var __generator = function(thisArg, body) {
     var _4 = { label: 0, sent: function() {
-      if (t4[0] & 1) throw t4[1];
-      return t4[1];
-    }, trys: [], ops: [] }, f6, y5, t4, g5;
-    return g5 = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g5[Symbol.iterator] = function() {
+      if (t3[0] & 1) throw t3[1];
+      return t3[1];
+    }, trys: [], ops: [] }, f6, y5, t3, g6;
+    return g6 = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g6[Symbol.iterator] = function() {
       return this;
-    }), g5;
-    function verb(n5) {
-      return function(v3) {
-        return step([n5, v3]);
+    }), g6;
+    function verb(n4) {
+      return function(v4) {
+        return step([n4, v4]);
       };
     }
     function step(op) {
       if (f6) throw new TypeError("Generator is already executing.");
-      while (g5 && (g5 = 0, op[0] && (_4 = 0)), _4) try {
-        if (f6 = 1, y5 && (t4 = op[0] & 2 ? y5["return"] : op[0] ? y5["throw"] || ((t4 = y5["return"]) && t4.call(y5), 0) : y5.next) && !(t4 = t4.call(y5, op[1])).done) return t4;
-        if (y5 = 0, t4) op = [op[0] & 2, t4.value];
+      while (g6 && (g6 = 0, op[0] && (_4 = 0)), _4) try {
+        if (f6 = 1, y5 && (t3 = op[0] & 2 ? y5["return"] : op[0] ? y5["throw"] || ((t3 = y5["return"]) && t3.call(y5), 0) : y5.next) && !(t3 = t3.call(y5, op[1])).done) return t3;
+        if (y5 = 0, t3) op = [op[0] & 2, t3.value];
         switch (op[0]) {
           case 0:
           case 1:
-            t4 = op;
+            t3 = op;
             break;
           case 4:
             _4.label++;
@@ -26046,25 +26206,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
             _4.trys.pop();
             continue;
           default:
-            if (!(t4 = _4.trys, t4 = t4.length > 0 && t4[t4.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+            if (!(t3 = _4.trys, t3 = t3.length > 0 && t3[t3.length - 1]) && (op[0] === 6 || op[0] === 2)) {
               _4 = 0;
               continue;
             }
-            if (op[0] === 3 && (!t4 || op[1] > t4[0] && op[1] < t4[3])) {
+            if (op[0] === 3 && (!t3 || op[1] > t3[0] && op[1] < t3[3])) {
               _4.label = op[1];
               break;
             }
-            if (op[0] === 6 && _4.label < t4[1]) {
-              _4.label = t4[1];
-              t4 = op;
+            if (op[0] === 6 && _4.label < t3[1]) {
+              _4.label = t3[1];
+              t3 = op;
               break;
             }
-            if (t4 && _4.label < t4[2]) {
-              _4.label = t4[2];
+            if (t3 && _4.label < t3[2]) {
+              _4.label = t3[2];
               _4.ops.push(op);
               break;
             }
-            if (t4[2]) _4.ops.pop();
+            if (t3[2]) _4.ops.pop();
             _4.trys.pop();
             continue;
         }
@@ -26073,7 +26233,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         op = [6, e2];
         y5 = 0;
       } finally {
-        f6 = t4 = 0;
+        f6 = t3 = 0;
       }
       if (op[0] & 5) throw op[1];
       return { value: op[0] ? op[1] : void 0, done: true };
@@ -26131,7 +26291,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/container.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/container.js
   var defaultContainer = new /** @class */
   ((function() {
     function class_1() {
@@ -26167,7 +26327,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return defaultContainer.get(someClass);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/metadata/ConstraintMetadata.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/metadata/ConstraintMetadata.js
   var ConstraintMetadata = (
     /** @class */
     (function() {
@@ -26196,7 +26356,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     })()
   );
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/register-decorator.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/register-decorator.js
   function registerDecorator(options) {
     var constraintCls;
     if (options.validator instanceof Function) {
@@ -26236,7 +26396,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     getMetadataStorage().addValidationMetadata(new ValidationMetadata(validationMetadataArgs));
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/common/ValidateBy.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/common/ValidateBy.js
   function buildMessage(impl, validationOptions) {
     return function(validationArguments) {
       var eachPrefix = validationOptions && validationOptions.each ? "each value in " : "";
@@ -26256,7 +26416,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     };
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/common/ValidateIf.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/common/ValidateIf.js
   function ValidateIf(condition, validationOptions) {
     return function(object, propertyName) {
       var args = {
@@ -26270,15 +26430,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     };
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/common/ValidateNested.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/common/ValidateNested.js
   var __assign2 = function() {
-    __assign2 = Object.assign || function(t4) {
-      for (var s4, i8 = 1, n5 = arguments.length; i8 < n5; i8++) {
-        s4 = arguments[i8];
-        for (var p4 in s4) if (Object.prototype.hasOwnProperty.call(s4, p4))
-          t4[p4] = s4[p4];
+    __assign2 = Object.assign || function(t3) {
+      for (var s5, i5 = 1, n4 = arguments.length; i5 < n4; i5++) {
+        s5 = arguments[i5];
+        for (var p5 in s5) if (Object.prototype.hasOwnProperty.call(s5, p5))
+          t3[p5] = s5[p5];
       }
-      return t4;
+      return t3;
     };
     return __assign2.apply(this, arguments);
   };
@@ -26297,7 +26457,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     };
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/common/IsIn.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/common/IsIn.js
   var IS_IN = "isIn";
   function isIn(value, possibleValues) {
     return Array.isArray(possibleValues) && possibleValues.some(function(possibleValue) {
@@ -26319,12 +26479,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }, validationOptions);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/typechecker/IsBoolean.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/typechecker/IsBoolean.js
   function isBoolean(value) {
     return value instanceof Boolean || typeof value === "boolean";
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/typechecker/IsNumber.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/typechecker/IsNumber.js
   var IS_NUMBER = "isNumber";
   function isNumber(value, options) {
     if (options === void 0) {
@@ -26368,15 +26528,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }, validationOptions);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/typechecker/IsEnum.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/typechecker/IsEnum.js
   function isEnum(value, entity) {
-    var enumValues = Object.keys(entity).map(function(k4) {
-      return entity[k4];
+    var enumValues = Object.keys(entity).map(function(k5) {
+      return entity[k5];
     });
     return enumValues.includes(value);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/typechecker/IsString.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/typechecker/IsString.js
   var IS_STRING = "isString";
   function isString(value) {
     return value instanceof String || typeof value === "string";
@@ -26395,7 +26555,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }, validationOptions);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/decorator/typechecker/IsObject.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/decorator/typechecker/IsObject.js
   var IS_OBJECT = "isObject";
   function isObject(value) {
     return value != null && (typeof value === "object" || typeof value === "function") && !Array.isArray(value);
@@ -26414,7 +26574,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }, validationOptions);
   }
 
-  // node_modules/.pnpm/class-validator@0.14.2/node_modules/class-validator/esm5/index.js
+  // node_modules/.pnpm/class-validator@0.14.3/node_modules/class-validator/esm5/index.js
   function validate(schemaNameOrObject, objectOrValidationOptions, maybeValidatorOptions) {
     if (typeof schemaNameOrObject === "string") {
       return getFromContainer(Validator).validate(schemaNameOrObject, objectOrValidationOptions, maybeValidatorOptions);
@@ -26423,117 +26583,117 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/validation.js
-  async function c4(e2, t4) {
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/validation.js
+  async function c4(e2, t3) {
     try {
-      const r5 = plainToInstance(t4, e2), a5 = await validate(r5);
-      return a5.length > 0 ? { isValid: false, errors: a5.flatMap((s4) => Object.values(s4.constraints || {})) } : { isValid: true, validatedData: r5 };
+      const r5 = plainToInstance(t3, e2), a5 = await validate(r5);
+      return a5.length > 0 ? { isValid: false, errors: a5.flatMap((s5) => Object.values(s5.constraints || {})) } : { isValid: true, validatedData: r5 };
     } catch (r5) {
       return { isValid: false, errors: ["Validation error: " + r5.message] };
     }
   }
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/messaging.js
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/messaging.js
   var q2 = class {
-    sendBeep(n5, e2) {
-      const u4 = { IsSecret: true, BeepType: "Leash", MemberNumber: e2, Message: JSON.stringify({ ...n5 }) };
-      ServerSend("AccountBeep", u4);
+    sendBeep(n4, e2) {
+      const u6 = { IsSecret: true, BeepType: "Leash", MemberNumber: e2, Message: JSON.stringify({ ...n4 }) };
+      ServerSend("AccountBeep", u6);
     }
-    sendPacket(n5, e2, u4) {
-      const r5 = { Content: m.key, Dictionary: { msg: n5 }, Type: "Hidden" };
-      e2 && (r5.Dictionary.data = e2), u4 && (r5.Target = u4), ServerSend("ChatRoomChat", r5);
+    sendPacket(n4, e2, u6) {
+      const r5 = { Content: c2.key, Dictionary: { msg: n4 }, Type: "Hidden" };
+      e2 && (r5.Dictionary.data = e2), u6 && (r5.Target = u6), ServerSend("ChatRoomChat", r5);
     }
-    sendAction(n5, e2 = void 0, u4 = []) {
-      if (!n5 || !ServerPlayerIsInChatRoom()) return;
-      const r5 = CharacterPronounDescription(Player) === "She/Her", i8 = r5 ? "Her" : "His", p4 = r5 ? "Her" : "Him", c7 = r5 ? "Herself" : "Himself", t4 = r5 ? "She" : "He";
-      n5 = n5.replaceAll("<Possessive>", i8).replaceAll("<possessive>", i8.toLocaleLowerCase()).replaceAll("<Intensive>", p4).replaceAll("<intensive>", p4.toLocaleLowerCase()).replaceAll("<SelfIntensive>", c7).replaceAll("<selfIntensive>", c7.toLocaleLowerCase()).replaceAll("<Pronoun>", t4).replaceAll("<pronoun>", t4.toLocaleLowerCase()), ServerSend("ChatRoomChat", { Content: "ZC_CUSTOM_ACTION", Type: "Action", Target: e2 ?? void 0, Dictionary: [{ Tag: 'MISSING TEXT IN "Interface.csv": ZC_CUSTOM_ACTION', Text: n5 }, ...u4] });
+    sendAction(n4, e2 = void 0, u6 = []) {
+      if (!n4 || !ServerPlayerIsInChatRoom()) return;
+      const r5 = CharacterPronounDescription(Player) === "She/Her", i5 = r5 ? "Her" : "His", p5 = r5 ? "Her" : "Him", c7 = r5 ? "Herself" : "Himself", t3 = r5 ? "She" : "He";
+      n4 = n4.replaceAll("<Possessive>", i5).replaceAll("<possessive>", i5.toLocaleLowerCase()).replaceAll("<Intensive>", p5).replaceAll("<intensive>", p5.toLocaleLowerCase()).replaceAll("<SelfIntensive>", c7).replaceAll("<selfIntensive>", c7.toLocaleLowerCase()).replaceAll("<Pronoun>", t3).replaceAll("<pronoun>", t3.toLocaleLowerCase()), ServerSend("ChatRoomChat", { Content: "ZC_CUSTOM_ACTION", Type: "Action", Target: e2 ?? void 0, Dictionary: [{ Tag: 'MISSING TEXT IN "Interface.csv": ZC_CUSTOM_ACTION', Text: n4 }, ...u6] });
     }
-    sendRequest({ message: n5, data: e2 = {}, target: u4, type: r5 = "packet" }) {
-      const i8 = crypto.randomUUID();
-      return new Promise((p4) => {
+    sendRequest({ message: n4, data: e2 = {}, target: u6, type: r5 = "packet" }) {
+      const i5 = crypto.randomUUID();
+      return new Promise((p5) => {
         let c7;
-        r5 === "packet" ? (g2.sendPacket("request", { requestId: i8, message: n5, data: e2 }, u4), c7 = c2("ChatRoomMessage", a.ADD_BEHAVIOR, (t4, o4) => {
-          const a5 = t4[0], s4 = T2(a5.Sender);
-          if (!s4) return o4(t4);
-          if (a5.Content === m.key && !s4.IsPlayer()) {
-            const m5 = a5.Dictionary.msg, l6 = a5.Dictionary.data;
-            m5 === "requestResponse" && l6.requestId === i8 && (c7(), p4({ data: l6.data, isError: false }));
+        r5 === "packet" ? (g2.sendPacket("request", { requestId: i5, message: n4, data: e2 }, u6), c7 = c3("ChatRoomMessage", d.ADD_BEHAVIOR, (t3, o5) => {
+          const a5 = t3[0], s5 = N2(a5.Sender);
+          if (!s5) return o5(t3);
+          if (a5.Content === c2.key && !s5.IsPlayer()) {
+            const m4 = a5.Dictionary.msg, l6 = a5.Dictionary.data;
+            m4 === "requestResponse" && l6.requestId === i5 && (c7(), p5({ data: l6.data, isError: false }));
           }
-          return o4(t4);
-        })) : (g2.sendBeep({ type: `${m.key}_request`, requestId: i8, message: n5, data: e2 }, u4), c7 = c2("ServerAccountBeep", a.ADD_BEHAVIOR, (t4, o4) => {
-          const a5 = t4[0];
-          if (a5.BeepType !== "Leash") return o4(t4);
-          let s4;
+          return o5(t3);
+        })) : (g2.sendBeep({ type: `${c2.key}_request`, requestId: i5, message: n4, data: e2 }, u6), c7 = c3("ServerAccountBeep", d.ADD_BEHAVIOR, (t3, o5) => {
+          const a5 = t3[0];
+          if (a5.BeepType !== "Leash") return o5(t3);
+          let s5;
           try {
-            s4 = JSON.parse(a5.Message);
+            s5 = JSON.parse(a5.Message);
           } catch {
-            return o4(t4);
+            return o5(t3);
           }
-          return s4.type === `${m.key}_requestResponse` && s4.requestId === i8 && (c7(), p4({ data: s4.data, isError: false })), o4(t4);
+          return s5.type === `${c2.key}_requestResponse` && s5.requestId === i5 && (c7(), p5({ data: s5.data, isError: false })), o5(t3);
         })), setTimeout(() => {
-          c7(), p4({ isError: true });
+          c7(), p5({ isError: true });
         }, 6e3);
       });
     }
-    sendLocal(n5) {
+    sendLocal(n4) {
       if (!ServerPlayerIsInChatRoom()) return;
       const e2 = document.createElement("div");
-      e2.setAttribute("class", "ChatMessage ChatMessageLocalMessage"), e2.setAttribute("data-time", ChatRoomCurrentTime()), e2.setAttribute("data-sender", `${Player.MemberNumber}`), k(e2, m.fontFamily), e2.style.background = m.chatMessageBackground ?? "#55edc095", e2.style.color = m.chatMessageColor ?? "black", e2.style.margin = "0.15em 0", typeof n5 == "string" ? e2.innerHTML = n5 : e2.appendChild(n5), document.querySelector("#TextAreaChatLog").appendChild(e2), ElementScrollToEnd("TextAreaChatLog");
+      e2.setAttribute("class", "ChatMessage ChatMessageLocalMessage"), e2.setAttribute("data-time", ChatRoomCurrentTime()), e2.setAttribute("data-sender", `${Player.MemberNumber}`), L(e2, c2.fontFamily), e2.style.background = c2.chatMessageBackground ?? "#55edc095", e2.style.color = c2.chatMessageColor ?? "black", e2.style.margin = "0.15em 0", typeof n4 == "string" ? e2.innerHTML = n4 : e2.appendChild(n4), document.querySelector("#TextAreaChatLog").appendChild(e2), ElementScrollToEnd("TextAreaChatLog");
     }
-    sendChat(n5) {
-      ServerSend("ChatRoomChat", { Type: "Chat", Content: n5 });
+    sendChat(n4) {
+      ServerSend("ChatRoomChat", { Type: "Chat", Content: n4 });
     }
-    onRequest(n5, e2, u4) {
-      let r5, i8;
-      typeof e2 == "function" && e2.prototype?.constructor == e2 ? (i8 = e2, r5 = u4) : r5 = e2;
-      const p4 = c2("ChatRoomMessage", a.ADD_BEHAVIOR, async (t4, o4) => {
-        const a5 = t4[0], s4 = T2(a5.Sender);
-        if (!s4) return o4(t4);
-        if (a5.Content === m.key && !s4.IsPlayer()) {
-          const m5 = a5.Dictionary?.msg, l6 = a5.Dictionary?.data;
-          if (m5 === "request" && l6.message === n5) {
+    onRequest(n4, e2, u6) {
+      let r5, i5;
+      typeof e2 == "function" && e2.prototype?.constructor == e2 ? (i5 = e2, r5 = u6) : r5 = e2;
+      const p5 = c3("ChatRoomMessage", d.ADD_BEHAVIOR, async (t3, o5) => {
+        const a5 = t3[0], s5 = N2(a5.Sender);
+        if (!s5) return o5(t3);
+        if (a5.Content === c2.key && !s5.IsPlayer()) {
+          const m4 = a5.Dictionary?.msg, l6 = a5.Dictionary?.data;
+          if (m4 === "request" && l6.message === n4) {
             if (typeof l6.requestId != "string" || typeof l6.message != "string") return;
-            const h6 = await c4(l6.data, i8);
-            if (i8 && !h6.isValid) return console.warn(`${m.name} DTO Failure:`, h6), o4(t4);
-            const k4 = r5(l6.data, s4);
-            k4 !== void 0 && g2.sendPacket("requestResponse", { requestId: l6.requestId, message: l6.message, data: k4 }, s4.MemberNumber);
+            const h7 = await c4(l6.data, i5);
+            if (i5 && !h7.isValid) return console.warn(`${c2.name} DTO Failure:`, h7), o5(t3);
+            const k5 = r5(l6.data, s5);
+            k5 !== void 0 && g2.sendPacket("requestResponse", { requestId: l6.requestId, message: l6.message, data: k5 }, s5.MemberNumber);
           }
         }
-        return o4(t4);
-      }), c7 = c2("ServerAccountBeep", a.ADD_BEHAVIOR, async (t4, o4) => {
-        const a5 = t4[0];
-        if (a5.BeepType !== "Leash") return o4(t4);
-        let s4;
+        return o5(t3);
+      }), c7 = c3("ServerAccountBeep", d.ADD_BEHAVIOR, async (t3, o5) => {
+        const a5 = t3[0];
+        if (a5.BeepType !== "Leash") return o5(t3);
+        let s5;
         try {
-          s4 = JSON.parse(a5.Message);
+          s5 = JSON.parse(a5.Message);
         } catch {
-          return o4(t4);
+          return o5(t3);
         }
-        if (s4.type === `${m.key}_request` && s4.message === n5) {
-          if (typeof s4.requestId != "string") return;
-          const m5 = await c4(s4.data, i8);
-          if (i8 && !m5.isValid) return console.warn(`${m.name} DTO Failure:`, m5), o4(t4);
-          const l6 = r5(s4.data, a5.MemberNumber, a5.MemberName);
-          l6 !== void 0 && g2.sendBeep({ type: `${m.key}_requestResponse`, requestId: s4.requestId, message: s4.message, data: l6 }, a5.MemberNumber);
+        if (s5.type === `${c2.key}_request` && s5.message === n4) {
+          if (typeof s5.requestId != "string") return;
+          const m4 = await c4(s5.data, i5);
+          if (i5 && !m4.isValid) return console.warn(`${c2.name} DTO Failure:`, m4), o5(t3);
+          const l6 = r5(s5.data, a5.MemberNumber, a5.MemberName);
+          l6 !== void 0 && g2.sendBeep({ type: `${c2.key}_requestResponse`, requestId: s5.requestId, message: s5.message, data: l6 }, a5.MemberNumber);
         }
-        return o4(t4);
+        return o5(t3);
       });
       return () => {
-        p4(), c7();
+        p5(), c7();
       };
     }
-    onPacket(n5, e2, u4) {
-      return c2("ChatRoomMessage", a.ADD_BEHAVIOR, async (r5, i8) => {
-        let p4, c7;
-        typeof e2 == "function" && e2.prototype?.constructor == e2 ? (c7 = e2, p4 = u4) : p4 = e2;
-        const t4 = r5[0], o4 = T2(t4.Sender);
-        if (!o4) return i8(r5);
-        if (t4.Content === m.key && t4.Dictionary.msg === n5 && !o4.IsPlayer()) {
-          const a5 = await c4(t4.Dictionary.data, c7);
-          if (c7 && !a5.isValid) return console.warn(`${m.name} DTO Failure:`, a5), i8(r5);
-          p4(t4.Dictionary.data, o4);
+    onPacket(n4, e2, u6) {
+      return c3("ChatRoomMessage", d.ADD_BEHAVIOR, async (r5, i5) => {
+        let p5, c7;
+        typeof e2 == "function" && e2.prototype?.constructor == e2 ? (c7 = e2, p5 = u6) : p5 = e2;
+        const t3 = r5[0], o5 = N2(t3.Sender);
+        if (!o5) return i5(r5);
+        if (t3.Content === c2.key && t3.Dictionary.msg === n4 && !o5.IsPlayer()) {
+          const a5 = await c4(t3.Dictionary.data, c7);
+          if (c7 && !a5.isValid) return console.warn(`${c2.name} DTO Failure:`, a5), i5(r5);
+          p5(t3.Dictionary.data, o5);
         }
-        return i8(r5);
+        return i5(r5);
       });
     }
   };
@@ -26542,50 +26702,1003 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/assets/game-icons/mouthWatering.svg
   var mouthWatering_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M87.75 30.72c-5.104.03-10.333.31-15.72.874c5.062 68.606 43.873 95.378 127.75 66.25c-26.35-43.13-62.692-67.418-112.03-67.125zm343.906 0c-49.338-.294-85.65 23.993-112 67.124c83.878 29.128 122.69 2.356 127.75-66.25a161 161 0 0 0-15.75-.875zM13.844 146.437c-.826 4.546-1.156 9.206-1.156 13.875c0 46.09 41.19 86.706 104.124 111.062c23.478 13.02 30.98 83.94 19.688 117.156c-2.47 7.262-12.906 26.75-12.906 35.626c0 12.032 9.75 21.97 21.78 21.97c12.033 0 21.75-9.938 21.75-21.97c0-8.93-11.05-28.19-13.093-35.625c-8.77-31.912-10.39-102.854 18.157-101.186c25.43 5.13 52.85 7.945 81.438 8h.094c19.003 1.767 24.585 30.437 15.843 56.156c-1.87 5.496-9.405 20.092-9.407 26.813c0 9.108 7.36 16.468 16.47 16.468c9.108 0 16.468-7.36 16.468-16.467c0-6.762-8.328-21.184-9.875-26.813c-5.86-26.52-4.616-39.726 12.81-41.656c19.96-2.21 28.955 77.376 17.283 111.72c-3.103 9.124-16 34-16 45.155a27.21 27.21 0 0 0 27.28 27.28a27.216 27.216 0 0 0 27.282-27.28c0-11.226-13.9-35.817-16.47-45.158c-11.062-40.25-6.928-130.344 18.533-138.093c.02-.008.04-.026.062-.033c.387-.097.77-.182 1.156-.28c.013-.01.02-.023.03-.032c2.284-.584 4.54-1.19 6.783-1.813c52.234-11.767 35.948 18 56.06 18c16.277 0 5.717-34.745 31.314-59.03c29.47-22.375 46.906-50.01 46.906-79.97c0-4.668-.36-9.328-1.188-13.875c-13.076 54.687-115.864 96.438-240.593 96.438c-124.73 0-227.55-41.75-240.626-96.438zM418 341.938c-12.01 0-21.75 9.74-21.75 21.75s9.74 21.718 21.75 21.718s21.72-9.71 21.72-21.72c0-12.008-9.71-21.748-21.72-21.748"/></svg>';
 
-  // node_modules/.pnpm/zois-core@1.1.7/node_modules/zois-core/dist/wardrobe.js
-  function n(e2) {
-    const s4 = AssetGroup.includes(e2) ? e2 : Asset.includes(e2) ? e2.Group : e2.Asset.Group;
-    if (!AssetGroup.includes(s4)) throw new Error("Failed to convert item to group");
-    return s4;
+  // node_modules/.pnpm/zois-core@1.1.8/node_modules/zois-core/dist/wardrobe.js
+  var m = class {
+    seedsCache = /* @__PURE__ */ new Map();
+    getSeed(e2) {
+      const r5 = a2(ServerAppearanceBundle(e2)), o5 = JSON.stringify(r5);
+      return this.seedsCache.has(o5) || this.seedsCache.set(o5, this.generateSeed(o5)), this.seedsCache.get(o5);
+    }
+    generateSeed(e2) {
+      let r5 = 0;
+      for (let o5 = 0; o5 < e2.length; o5++) {
+        const a5 = e2.charCodeAt(o5);
+        r5 = (r5 << 5) - r5 + a5, r5 = r5 & r5;
+      }
+      return r5;
+    }
+    compare(e2, r5) {
+      return this.getSeed(e2) === this.getSeed(r5);
+    }
+    getDifference(e2, r5) {
+      const o5 = { added: [], modified: [], removed: [] };
+      if (this.compare(e2, r5)) return o5;
+      const a5 = ServerBuildAppearanceDiff("Female3DCG", e2, ServerAppearanceBundle(r5));
+      for (const [i5, s5] of Object.entries(a5)) {
+        if (s5[0] === null && s5[1] !== null) {
+          o5.added.push(s5[1].Asset.Description);
+          continue;
+        }
+        if (s5[0] !== null && s5[1] === null) {
+          o5.removed.push(s5[0].Asset.Description);
+          continue;
+        }
+        if (s5[0].Asset.Name !== s5[1].Asset.Name) {
+          o5.removed.push(s5[0].Asset.Description), o5.added.push(s5[1].Asset.Description);
+          continue;
+        }
+        this.compare([s5[0]], [s5[1]]) || o5.modified.push(s5[0].Asset.Description);
+      }
+      return o5;
+    }
+  };
+  var I3 = new m();
+  function p2(t3) {
+    const e2 = AssetGroup.includes(t3) ? t3 : Asset.includes(t3) ? t3.Group : t3.Asset.Group;
+    if (!AssetGroup.includes(e2)) throw new Error("Failed to convert item to group");
+    return e2;
   }
-  function y2(e2, s4 = false) {
-    const r5 = n(e2);
-    return r5.Category === "Appearance" && r5.AllowNone && r5.Clothing && (s4 || !r5.BodyCosplay);
+  function g3(t3, e2 = false) {
+    const r5 = p2(t3);
+    return r5.Category === "Appearance" && r5.AllowNone && r5.Clothing && (e2 || !r5.BodyCosplay);
   }
-  function m2(e2) {
-    const s4 = n(e2);
-    return s4.Category === "Appearance" && s4.AllowNone && s4.Clothing && s4.BodyCosplay;
+  function f3(t3) {
+    const e2 = p2(t3);
+    return e2.Category === "Appearance" && e2.AllowNone && e2.Clothing && e2.BodyCosplay;
   }
-  function i4(e2) {
-    const s4 = n(e2);
-    return s4.Category === "Appearance" && !s4.Clothing;
+  function u2(t3) {
+    const e2 = p2(t3);
+    return e2.Category === "Appearance" && !e2.Clothing;
   }
-  function A2(e2, s4 = ["ItemNeck", "ItemNeckAccessories", "ItemNeckRestraints"]) {
-    const r5 = n(e2);
-    return r5.Category !== "Item" || r5.BodyCosplay ? false : !s4.includes(r5.Name);
+  function A(t3, e2 = ["ItemNeck", "ItemNeckAccessories", "ItemNeckRestraints"]) {
+    const r5 = p2(t3);
+    return r5.Category !== "Item" || r5.BodyCosplay ? false : !e2.includes(r5.Name);
   }
-  function I3(e2, s4, r5 = ["Cosplay", "Binds", "Collar", "Locks"], a5 = e2, u4 = false) {
-    s4 = s4.filter((t4) => !!t4 && !i4(t4)), r5.includes("Cosplay") || (s4 = s4.filter((t4) => !m2(t4))), r5.includes("Binds") || (s4 = s4.filter((t4) => !A2(t4))), r5.includes("Collar") || (s4 = s4.filter((t4) => t4.Asset.Group.Name !== "ItemNeck")), r5.includes("Locks") || (s4 = s4.map((t4) => (t4.Property?.LockedBy && delete t4.Property.LockedBy, t4)));
-    const p4 = [];
-    if (u4) e2.Appearance = e2.Appearance.filter((t4) => i4(t4));
+  function h3(t3, e2, r5 = ["Cosplay", "Binds", "Collar", "Locks"], o5 = t3, a5 = false) {
+    e2 = e2.filter((s5) => !!s5 && !u2(s5)), r5.includes("Cosplay") || (e2 = e2.filter((s5) => !f3(s5))), r5.includes("Binds") || (e2 = e2.filter((s5) => !A(s5))), r5.includes("Collar") || (e2 = e2.filter((s5) => s5.Asset.Group.Name !== "ItemNeck")), r5.includes("Locks") || (e2 = e2.map((s5) => (s5.Property?.LockedBy && delete s5.Property.LockedBy, s5)));
+    const i5 = [];
+    if (a5) t3.Appearance = t3.Appearance.filter((s5) => u2(s5));
     else {
-      const t4 = ValidationCreateDiffParams(a5, Player.MemberNumber);
-      e2.Appearance = e2.Appearance.filter((o4) => i4(o4) || !ValidationCanRemoveItem(o4, t4, !!s4.find((l6) => l6?.Asset?.Group?.Name === o4?.Asset?.Group?.Name)) || o4.Property?.LockedBy && !DialogCanUnlock(a5, o4) || o4.Asset.Name === "SlaveCollar" && a5.IsPlayer() ? (p4.push(o4.Asset.Group.Name), true) : false);
+      const s5 = ValidationCreateDiffParams(o5, Player.MemberNumber);
+      t3.Appearance = t3.Appearance.filter((n4) => u2(n4) || !ValidationCanRemoveItem(n4, s5, !!e2.find((c7) => c7?.Asset?.Group?.Name === n4?.Asset?.Group?.Name)) || n4.Property?.LockedBy && !DialogCanUnlock(o5, n4) || n4.Asset.Name === "SlaveCollar" && o5.IsPlayer() ? (i5.push(n4.Asset.Group.Name), true) : false);
     }
-    for (const t4 of s4) {
-      if (!u4 && (!f3(a5, t4.Asset.Group.Name, t4.Asset) || p4.includes(t4.Asset.Group.Name))) continue;
-      CharacterAppearanceSetItem(e2, t4.Asset.Group.Name, t4.Asset, t4.Color);
-      const o4 = InventoryGet(e2, t4.Asset.Group.Name);
-      t4.Craft && CraftingValidate(t4.Craft, t4.Asset) !== CraftingStatusType.CRITICAL_ERROR && (o4.Craft = t4.Craft), t4.Property && (ValidationSanitizeProperties(e2, t4), o4.Property = t4.Property);
+    for (const s5 of e2) {
+      if (!a5 && (!d3(o5, s5.Asset.Group.Name, s5.Asset) || i5.includes(s5.Asset.Group.Name))) continue;
+      CharacterAppearanceSetItem(t3, s5.Asset.Group.Name, s5.Asset, s5.Color);
+      const n4 = InventoryGet(t3, s5.Asset.Group.Name);
+      s5.Craft && CraftingValidate(s5.Craft, s5.Asset) !== CraftingStatusType.CRITICAL_ERROR && (n4.Craft = s5.Craft), s5.Property && (ValidationSanitizeProperties(t3, s5), n4.Property = s5.Property);
     }
-    CharacterRefresh(e2), e2.IsNpc() || ChatRoomCharacterUpdate(e2);
+    CharacterRefresh(t3), t3.IsNpc() || ChatRoomCharacterUpdate(t3);
   }
-  function f3(e2, s4, r5) {
-    return !ValidationIsItemBlockedOrLimited(e2, Player.MemberNumber, s4, r5.Name) && ServerChatRoomGetAllowItem(Player, e2);
+  function d3(t3, e2, r5) {
+    return !ValidationIsItemBlockedOrLimited(t3, Player.MemberNumber, e2, r5.Name) && ServerChatRoomGetAllowItem(Player, t3);
   }
-  function N4(e2, s4) {
-    return s4.map((r5) => ServerBundledItemToAppearanceItem(e2, r5));
+  function v(t3, e2) {
+    return e2.map((r5) => ServerBundledItemToAppearanceItem(t3, r5));
   }
+
+  // src/qam-subscreens/baseQAMSubscreen.ts
+  var BaseQAMSubscreen = class {
+    name;
+    description;
+    isFeatureSubscreen() {
+      return !!qamFeatures.find((f6) => f6.subscreen.constructor.name === this.constructor.name);
+    }
+    load(container) {
+      const header = document.createElement("div");
+      header.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
+      container.append(header);
+      const title = document.createElement("p");
+      title.style.cssText = "font-weight: bold; font-size: 1.15em;";
+      title.textContent = this.name;
+      header.append(title);
+      if (!this.description) return;
+      const description = document.createElement("p");
+      description.style.cssText = "color: #424242; font-size: 0.75em;";
+      description.textContent = this.description;
+      header.append(description);
+    }
+    buildButton(text) {
+      const btn = document.createElement("button");
+      Q(btn, {
+        base: {
+          cursor: "pointer",
+          border: "none",
+          padding: "0.65em",
+          margin: "0.25em 1em",
+          background: "#7e00ff",
+          borderRadius: "4px",
+          color: "white"
+        },
+        hover: {
+          background: "rgb(143, 82, 255)"
+        }
+      });
+      btn.textContent = text;
+      return btn;
+    }
+    buildSelect({
+      onChange,
+      options,
+      currentOption
+    }) {
+      let isOpened = false;
+      let optionsContainer;
+      const select = document.createElement("div");
+      select.classList.add("bccQAMSelect");
+      select.style.margin = "0.25em 1em";
+      select.style.position = "relative";
+      select.setAttribute("opened", false);
+      select.addEventListener("click", () => {
+        if (options.length === 0) return;
+        if (isOpened) {
+          isOpened = false;
+          select.style.zIndex = "10";
+          optionsContainer.remove();
+        } else {
+          isOpened = true;
+          select.style.zIndex = "100";
+          optionsContainer = document.createElement("div");
+          optionsContainer.setAttribute(
+            "data-position",
+            select.offsetTop > window.innerHeight / 2 - select.offsetHeight / 2 ? "top" : "bottom"
+          );
+          options.forEach((option) => {
+            const e2 = document.createElement("div");
+            e2.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;";
+            if (option.icon) {
+              option.icon.style.cssText = "color: #bcbcbc;";
+              e2.append(option.icon);
+            }
+            e2.append(option.text);
+            if (option.name === currentOption) {
+              e2.append(checkmark);
+            }
+            e2.addEventListener("click", () => {
+              currentOption = option.name;
+              p5.textContent = option.text;
+              optionsContainer.remove();
+              if (onChange) onChange(option.name);
+            });
+            optionsContainer.append(e2);
+          });
+          select.append(optionsContainer);
+        }
+      });
+      const p5 = document.createElement("p");
+      p5.style.paddingRight = "2em";
+      if (options.length === 0) {
+        p5.textContent = "No options";
+      } else {
+        p5.textContent = options.find((option) => option.name === currentOption)?.text ?? "Unknown";
+      }
+      const arrow = createElement4(ChevronDown2);
+      const checkmark = createElement4(Check2);
+      checkmark.style.cssText = "position: absolute; right: 0.25em;";
+      select.append(p5, arrow);
+      return select;
+    }
+    buildCharacterSelect(onChange, currentCharacter = Player) {
+      const select = this.buildSelect({
+        onChange: (value) => {
+          const target = N2(parseInt(value, 10));
+          if (onChange && target) onChange(target);
+        },
+        options: (ChatRoomCharacter.length === 0 ? [Player] : ChatRoomCharacter).map((c7) => {
+          return {
+            name: c7.MemberNumber.toString(),
+            text: c7.Name + `(${c7.MemberNumber})`,
+            icon: createElement4(Target, { stroke: "red" })
+          };
+        }),
+        currentOption: currentCharacter.MemberNumber.toString()
+      });
+      return select;
+    }
+    buildInput(placeholder) {
+      const input = document.createElement("input");
+      input.style.cssText = "border: none; background: #ebebeb; padding: 0.65em; margin: 0.25em 1em; border-radius: 5px;";
+      input.placeholder = placeholder;
+      return input;
+    }
+  };
+
+  // src/qam-subscreens/welcomeQAMSubscreen.ts
+  var WelcomeQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Welcome to QAM";
+    // public description: string = "Teleport to certain character on map";
+    load(container) {
+      super.load(container);
+      const text = document.createElement("p");
+      text.style.cssText = "margin: 0 auto; width: 95%; text-align: center; font-size: 1.45em;";
+      text.textContent = "Report errors and visual bugs if you encounter them, this will help make QAM even more convenient and powerful";
+      const githubPageButton = document.createElement("a");
+      githubPageButton.textContent = "Github Page";
+      githubPageButton.href = "https://github.com/FurryZoi/Bondage-Club-Chaos";
+      githubPageButton.target = "_blank";
+      Q(githubPageButton, {
+        base: {
+          padding: "0.45em",
+          borderRadius: "6px",
+          background: "rgb(227, 210, 255)",
+          width: "fit-content",
+          margin: "1em auto",
+          textDecoration: "none"
+        },
+        hover: {
+          background: "rgb(209 181 255)"
+        }
+      });
+      const changelog = document.createElement("div");
+      changelog.classList.add("bccChangelog");
+      changelog.innerHTML = `<p>-- BCC v${version} -- Changes:</p><br><ul><li>Fixed bugs with QAM and other</li><li>Redesigned QAM</li><li>Added adaptation for mobile devices</li><li>"Disable arousal overlay" cheat</li><li>"Appearance Version Control System" QAM feature (Improved version of undo)</li></ul>`;
+      container.append(text, githubPageButton, changelog);
+    }
+  };
+
+  // src/qam-subscreens/mainQAMSubscreen.ts
+  function getServer() {
+    if (window.location.host === "www.bondageprojects.elementfx.com") return "America";
+    if (window.location.host === "www.bondage-europe.com") return "Europe";
+    if (window.location.host === "www.bondage-asia.com") return "Asia";
+    return "Not defined";
+  }
+  var MainQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "BONDAGE CLUB CHAOS";
+    load(container) {
+      const header = document.createElement("div");
+      header.style.cssText = "cursor: grab; user-select: none; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(229, 229, 229); background: rgb(247 242 255 / 75%); padding: 0 0.15em;";
+      const headerLeftButtonsContainer = document.createElement("div");
+      const headerRightButtonsContainer = document.createElement("div");
+      const _4 = "display: flex; align-items: center; column-gap: 0.2em;";
+      headerLeftButtonsContainer.style.cssText = _4;
+      headerRightButtonsContainer.style.cssText = _4;
+      const headerButtonStyle = {
+        base: {
+          flexShrink: "0",
+          width: "2em",
+          height: "2em",
+          cursor: "pointer",
+          padding: "0.25em",
+          color: "#8e75af",
+          borderRadius: "4px"
+        },
+        hover: {
+          background: "#94949424"
+        }
+      };
+      const minimizeSidebarButton = createElement4(PanelLeftClose);
+      Q(minimizeSidebarButton, headerButtonStyle);
+      minimizeSidebarButton.addEventListener("click", () => {
+        document.getElementsByClassName("bccQAM_sidebar")[0].toggleAttribute("data-minimized");
+      });
+      const centerQAMButton = createElement4(AlignVerticalSpaceAround);
+      Q(centerQAMButton, headerButtonStyle);
+      centerQAMButton.addEventListener("click", () => {
+        container.style.left = (window.innerWidth - container.offsetWidth) / 2 + "px";
+        container.style.top = (window.innerHeight - container.offsetHeight) / 2 + "px";
+      });
+      const maximizeQAMButton = createElement4(Maximize);
+      Q(maximizeQAMButton, headerButtonStyle);
+      maximizeQAMButton.addEventListener("click", () => {
+        container.style.width = "95%";
+        container.style.height = "80%";
+      });
+      const closeQAMButton = createElement4(X2);
+      Q(closeQAMButton, headerButtonStyle);
+      closeQAMButton.addEventListener("click", () => {
+        document.getElementsByClassName("bccQAM")[0].style.display = "none";
+      });
+      headerLeftButtonsContainer.append(minimizeSidebarButton);
+      headerRightButtonsContainer.append(centerQAMButton, maximizeQAMButton, closeQAMButton);
+      const title = document.createElement("p");
+      title.textContent = this.name;
+      title.style.cssText = "font-weight: bold; padding: 0.25em 1em; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
+      title.style.textShadow = "rgb(102, 0, 218) -0.095em -0.05em 0px";
+      title.style.letterSpacing = "0.05em";
+      title.style.fontFamily = "Finger Paint";
+      const sidebar = document.createElement("div");
+      sidebar.classList.add("bccQAM_sidebar");
+      sidebar.style.cssText = "display: flex; flex-direction: column; width: 40%; height: 100%;";
+      const contentArea = document.createElement("div");
+      contentArea.style.cssText = "width: 100%; display: flex; flex-direction: column; overflow: auto; margin: 0 auto; padding-bottom: 0.5em; border-left: 1px solid #e5e5e5;";
+      const searchInput = document.createElement("input");
+      searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
+      searchInput.placeholder = "Search...";
+      searchInput.addEventListener("input", () => {
+        setItems(
+          qamFeatures.filter((i5) => isFeatureEnabled(i5.id) && i5.subscreen.name.toLowerCase().includes(searchInput.value.toLowerCase()))
+        );
+      });
+      const sidebarButtons = document.createElement("div");
+      sidebarButtons.style.cssText = "overflow-y: auto; scrollbar-width: none;";
+      let sidebarActiveButton;
+      const setItems = (items2) => {
+        sidebarButtons.innerHTML = "";
+        items2.forEach((b3) => {
+          const btn = document.createElement("button");
+          Q(btn, {
+            base: {
+              display: "flex",
+              alignItems: "center",
+              columnGap: "0.45em",
+              cursor: "pointer",
+              fontSize: "clamp(10px, 10vw, 30px)",
+              background: "none",
+              border: "none",
+              padding: "0.25em",
+              borderTop: "1px solid #e5e5e5",
+              width: "100%"
+            },
+            hover: {
+              background: "#eeeeee"
+            }
+          });
+          const detailsContainer = document.createElement("div");
+          detailsContainer.style.cssText = "display: flex; flex-direction: column; align-items: flex-start; row-gap: 4px;";
+          const name = document.createElement("span");
+          name.style.fontSize = "clamp(10px, 5vw, 22px)";
+          if (b3.isBeta) {
+            name.innerHTML = b3.subscreen.name + "<span style='position: relative; bottom: 0.75em; margin-left: 0.45em; padding: 0 0.35em; border-radius: 6px; background: #62ffe6; font-size: 0.5em; color: #b201ff; border: 1px solid #d2d2d2;'>Beta</span>";
+          } else {
+            name.textContent = b3.subscreen.name;
+          }
+          const description = document.createElement("span");
+          description.style.fontSize = "clamp(8px, 1vw, 16px)";
+          description.style.color = "#878787";
+          description.style.maxWidth = "calc(340px - clamp(10px, 8vw, 35px) - 0.45em)";
+          description.style.whiteSpace = "nowrap";
+          description.style.overflow = "clip";
+          description.style.textOverflow = "ellipsis";
+          description.style.padding = "2px";
+          description.textContent = b3.subscreen.description;
+          const icon = createElement4(b3.icon);
+          icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
+          btn.addEventListener("click", () => {
+            contentArea.innerHTML = "";
+            b3.subscreen.load(contentArea);
+            if (sidebarActiveButton) sidebarActiveButton.style.borderLeft = "";
+            sidebarActiveButton = btn;
+            sidebarActiveButton.style.borderLeft = "3px solid rgb(219 201 255)";
+          });
+          detailsContainer.append(name, description);
+          btn.append(icon, detailsContainer);
+          sidebarButtons.append(btn);
+        });
+      };
+      const items = qamFeatures.filter((i5) => isFeatureEnabled(i5.id));
+      if (items.length === 0) {
+        const p5 = document.createElement("p");
+        p5.innerHTML = "You don't have any features enabled.<br>Configure it in QAM settings.";
+        p5.style.margin = "1.5em auto";
+        p5.style.background = "#f6f1ff";
+        p5.style.padding = "0.65em";
+        p5.style.border = "2px solid #eee5ff";
+        p5.style.borderRadius = "4px";
+        container.append(p5);
+      } else setItems(items);
+      const footer = document.createElement("div");
+      footer.style.cssText = "position: absolute; left: 0; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.65em; background: rgb(247 242 255 / 75%); border-top: 2px solid #e8e8e8;";
+      const server = document.createElement("div");
+      server.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; background: rgb(227, 210, 255); border-radius: 0.65em; padding: 0.65em; font-weight: bold;";
+      const ping = document.createElement("div");
+      ping.style.cssText = "padding: 4px; background: #cabaefe8; border-radius: 6px; font-size: 0.8em;";
+      ping.textContent = serverPing + "ms";
+      const settingsBtn = createElement4(Settings, { stroke: "rgb(126, 99, 182)", height: "2em", width: "2em" });
+      Q(settingsBtn, {
+        base: {
+          cursor: "pointer",
+          background: "rgb(229, 208, 255)",
+          padding: "0.25em",
+          borderRadius: "4px"
+        },
+        hover: {
+          background: "rgb(223, 199, 252)"
+        }
+      });
+      settingsBtn.addEventListener("click", async () => {
+        await PreferenceOpenSubscreen("Extensions");
+        await PreferenceSubscreenExtensionsOpen(c2.key, ["Online", "ChatRoom"]);
+        $(new MainSubscreen(true));
+      });
+      header.append(headerLeftButtonsContainer, title, headerRightButtonsContainer);
+      sidebar.append(searchInput, sidebarButtons);
+      server.append(getServer(), ping);
+      footer.append(server, settingsBtn);
+      const flexContainer = document.createElement("div");
+      flexContainer.style.cssText = "display: flex; width: 100%; height: calc(100% - 6.6em);";
+      flexContainer.append(sidebar, contentArea);
+      container.append(header, flexContainer, footer);
+      new QAMWindow(container, header);
+      new WelcomeQAMSubscreen().load(contentArea);
+      container.style.left = (window.innerWidth - container.offsetWidth) / 2 + "px";
+      container.style.top = (window.innerHeight - container.offsetHeight) / 2 + "px";
+    }
+  };
+
+  // src/qam-subscreens/toggleInvisibilityQAMSubscreen.ts
+  var ToggleInvisibilityQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Toggle Invisibility";
+    description = "Toggle target's invisibility state";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const btn = this.buildButton("Toggle Invisibility");
+      btn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        if (!isAllowScripts(target).hide) {
+          if (target.IsPlayer()) {
+            return Q2.error({
+              title: "You don't allow to use scripts on yourself",
+              message: `Enable "hide" option in the scripts settings`,
+              duration: 7e3
+            });
+          } else {
+            return Q2.error({
+              message: `${O2(
+                target
+              )} doesn't allow you to modify appearance using scripts`,
+              duration: 6e3
+            });
+          }
+        }
+        if (!InventoryGet(target, "ItemScript")) {
+          const itemScript = InventoryWear(target, "Script", "ItemScript");
+          itemScript.Property = {
+            Hide: AssetGroup.filter((a5) => a5.Name !== "ItemScript").map((a5) => a5.Name)
+          };
+          ChatRoomCharacterUpdate(target);
+          Q2.success({
+            message: `You have successfully activated invisibility for ${O2(
+              target
+            )}!`,
+            duration: 6e3
+          });
+        } else {
+          InventoryRemove(target, "ItemScript");
+          ChatRoomCharacterUpdate(target);
+          Q2.success({
+            message: `You have successfully deactivated invisibility for ${O2(
+              target
+            )}!`,
+            duration: 6e3
+          });
+        }
+      });
+      container.append(select, btn);
+    }
+  };
+
+  // src/qam-subscreens/posesManagerQAMSubscreen.ts
+  var PosesManagerQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Poses Manager";
+    description = "Change target's pose, y position";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+        I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
+        I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
+          createPosesContainer("BodyUpper"),
+          createPosesContainer("BodyLower"),
+          createPosesContainer("BodyFull")
+        );
+      });
+      const createPosesContainer = (category) => {
+        const container2 = document.createElement("div");
+        container2.style.cssText = "display: flex; gap: calc(0.5 * min(2dvh, 1dvw)); margin: 0.25em 1em;";
+        PoseFemale3DCG.filter((p5) => p5.Category === category && (p5.AllowMenu || p5.AllowMenuTransient)).forEach((p5) => {
+          const btn = document.createElement("button");
+          Q(btn, {
+            base: {
+              cursor: "pointer",
+              width: "3em",
+              aspectRatio: "1/1",
+              background: "none",
+              border: "2px solid #d2d2d2",
+              borderRadius: "8px"
+            },
+            hover: {
+              borderColor: "#ad68ff"
+            }
+          });
+          if (target.Pose.includes(p5.Name)) {
+            btn.style.borderColor = "#ad68ff";
+          }
+          btn.addEventListener("click", () => {
+            if (!ServerChatRoomGetAllowItem(Player, target)) {
+              return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+            }
+            PoseSetActive(target, p5.Name);
+            ChatRoomCharacterUpdate(target);
+            I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
+            I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
+              createPosesContainer("BodyUpper"),
+              createPosesContainer("BodyLower"),
+              createPosesContainer("BodyFull")
+            );
+          });
+          const image = document.createElement("img");
+          image.src = `Icons/Poses/${p5.Name}.png`;
+          image.style.cssText = "width: 80%; height: auto;";
+          btn.append(image);
+          container2.append(btn);
+        });
+        return container2;
+      };
+      const I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE = document.createElement("div");
+      I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
+        createPosesContainer("BodyUpper"),
+        createPosesContainer("BodyLower"),
+        createPosesContainer("BodyFull")
+      );
+      const suspenseBtn = this.buildButton("Suspense");
+      ;
+      suspenseBtn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        PoseSetActive(target, "Suspension");
+        ChatRoomCharacterUpdate(target);
+        I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
+        I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
+          createPosesContainer("BodyUpper"),
+          createPosesContainer("BodyLower"),
+          createPosesContainer("BodyFull")
+        );
+      });
+      const overrideHeight = (h7) => {
+        const emoticon = InventoryGet(target, "Emoticon");
+        if (h7 === null) {
+          delete emoticon.Property?.OverrideHeight;
+        } else {
+          emoticon.Property ??= {};
+          const height = emoticon.Property.OverrideHeight?.Height ?? 0;
+          emoticon.Property.OverrideHeight = { Height: height + h7 };
+        }
+        ChatRoomCharacterUpdate(target);
+      };
+      const heightOverrideControls = document.createElement("div");
+      heightOverrideControls.style.cssText = "display: flex; justify-content: center; column-gap: 0.65em; flex-shrink: 0; margin-top: 0.25em; margin-bottom: 0.65em; height: 2.5em;";
+      const dynamicClass = {
+        base: {
+          cursor: "pointer",
+          aspectRatio: "1/1",
+          height: "100%",
+          background: "white",
+          border: "2px solid #d2d2d2",
+          borderRadius: "50%"
+        },
+        hover: {
+          borderColor: "#ad68ff"
+        }
+      };
+      const downBtn = document.createElement("button");
+      Q(downBtn, dynamicClass);
+      downBtn.append(createElement4(ArrowDown));
+      downBtn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        overrideHeight(-10);
+      });
+      const resetBtn = document.createElement("button");
+      Q(resetBtn, {
+        base: {
+          cursor: "pointer",
+          padding: "0.25em 0.75em",
+          height: "100%",
+          border: "none",
+          background: "#d3d3d3ff",
+          borderRadius: "4px"
+        },
+        hover: {
+          background: "#c3c3c3ff"
+        }
+      });
+      resetBtn.textContent = "Reset";
+      resetBtn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        overrideHeight(null);
+      });
+      const upBtn = document.createElement("button");
+      Q(upBtn, dynamicClass);
+      upBtn.append(createElement4(ArrowUp));
+      upBtn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        overrideHeight(10);
+      });
+      heightOverrideControls.append(downBtn, resetBtn, upBtn);
+      container.append(select, I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE, suspenseBtn, heightOverrideControls);
+    }
+  };
+
+  // src/qam-subscreens/importAppearanceQAMSubscreen.ts
+  var ImportAppearanceQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Import Appearance";
+    description = "Import appearance on target using base64 outfit code";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const input = this.buildInput("Code");
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const btn = this.buildButton("Import Appearance");
+      btn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        try {
+          h3(
+            target,
+            v(target.AssetFamily, JSON.parse(LZString.decompressFromBase64(input.value)))
+          );
+          Q2.success({
+            message: `Appearance was successfully imported on ${O2(target)}`,
+            duration: 4e3
+          });
+        } catch {
+          Q2.error({
+            title: "Oops!",
+            message: "Error occurred while trying to import appearance",
+            duration: 5e3
+          });
+        }
+      });
+      container.append(input, select, btn);
+    }
+  };
+
+  // src/qam-subscreens/exportAppearanceQAMSubscreen.ts
+  var ExportAppearanceQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Export Appearance";
+    description = "Copy target's appearance to clipboard in utf-16 or base64 format";
+    load(container) {
+      super.load(container);
+      let format = "base64";
+      let target = Player;
+      const formatSelect = this.buildSelect({
+        options: [
+          {
+            name: "utf-16",
+            text: "UTF-16 (Not safe)"
+          },
+          {
+            name: "btoa",
+            text: "BTOA (UBC)"
+          },
+          {
+            name: "base64",
+            text: "Base64 (Most mods)"
+          }
+        ],
+        currentOption: "base64",
+        onChange: (value) => {
+          format = value;
+        }
+      });
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const btn = this.buildButton("Copy to clipboard");
+      btn.addEventListener("click", async () => {
+        if (isBannedBy(target)) return Q2.error({
+          title: "Denied",
+          message: "You are blacklisted or ghosted by this player",
+          duration: 4500
+        });
+        const stringifiedAppearance = JSON.stringify(ServerAppearanceBundle(target.Appearance));
+        let clipboardResult;
+        if (format === "base64") {
+          clipboardResult = LZString.compressToBase64(stringifiedAppearance);
+        } else if (format === "utf-16") {
+          clipboardResult = LZString.compressToUTF16(stringifiedAppearance);
+        } else {
+          clipboardResult = btoa(encodeURI(stringifiedAppearance));
+        }
+        try {
+          await navigator.clipboard.writeText(clipboardResult);
+          Q2.success({
+            message: "Code was copied to your clipboard",
+            duration: 3e3
+          });
+        } catch (e2) {
+          const error = e2;
+          Q2.error({
+            title: error.name,
+            message: error.message,
+            duration: 8e3
+          });
+        }
+      });
+      container.append(formatSelect, select, btn);
+    }
+  };
+
+  // src/qam-subscreens/leaveRoomQAMSubscreen.ts
+  var LeaveRoomQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Leave Room";
+    description = "Forcibly leave chat room";
+    load(container) {
+      super.load(container);
+      const btn = this.buildButton("Leave Room");
+      btn.addEventListener("click", () => {
+        if (!ServerPlayerIsInChatRoom()) return;
+        ChatRoomLeave();
+        CommonSetScreen("Online", "ChatSearch");
+      });
+      container.append(btn);
+    }
+  };
+
+  // src/qam-subscreens/totalReleaseQAMSubscreen.ts
+  var TotalReleaseQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Total Release";
+    description = "Release target from all items except for clothing and slave collar";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const btn = this.buildButton("Total Release");
+      btn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        CharacterReleaseTotal(target, true);
+        Q2.success({
+          message: `${O2(target)} was completely released`,
+          duration: 4e3
+        });
+      });
+      container.append(select, btn);
+    }
+  };
+
+  // src/qam-subscreens/releaseQAMSubscreen.ts
+  var ReleaseQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Release";
+    description = "Release target from certain items";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      let itemGroup = "ItemNeck";
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+        itemSelectContainer.innerHTML = "";
+        createItemSelect();
+      });
+      const itemSelectContainer = document.createElement("div");
+      const createItemSelect = () => {
+        const options = target.Appearance.filter((a5) => a5.Asset.Group.Name.startsWith("Item") && !!InventoryGet(target, a5.Asset.Group.Name)).map((a5) => ({ name: a5.Asset.Group.Name, text: a5.Asset.Description }));
+        const select2 = this.buildSelect({
+          options,
+          currentOption: options[0]?.name,
+          onChange: (value) => {
+            itemGroup = value;
+          }
+        });
+        itemSelectContainer.append(select2);
+      };
+      const btn = this.buildButton("Release");
+      btn.addEventListener("click", () => {
+        if (!ServerChatRoomGetAllowItem(Player, target)) {
+          return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
+        }
+        InventoryRemove(target, itemGroup, true);
+        ChatRoomCharacterUpdate(target);
+        Q2.success({
+          message: `Successfully released ${O2(target)}'s ${itemGroup}`,
+          duration: 4e3
+        });
+      });
+      createItemSelect();
+      container.append(select, itemSelectContainer, btn);
+    }
+  };
+
+  // src/qam-subscreens/mapTeleportQAMSubscreen.ts
+  var MapTeleportQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Map Teleport";
+    description = "Teleport to certain character on map";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const btn = this.buildButton("Map Teleport");
+      btn.addEventListener("click", () => {
+        if (!Player.MapData) Player.MapData = {};
+        const x5 = target.MapData?.Pos?.X;
+        const y5 = target.MapData?.Pos?.Y;
+        if (!x5 || !y5) return;
+        ;
+        Player.MapData.Pos = {
+          X: x5,
+          Y: y5
+        };
+        ChatRoomMapViewMovement = {
+          X: x5,
+          Y: y5,
+          TimeStart: CommonTime(),
+          TimeEnd: CommonTime(),
+          Direction: "East"
+        };
+        g2.sendLocal(
+          `You were successfully teleported to ${O2(target)}`
+        );
+      });
+      container.append(select, btn);
+    }
+  };
+
+  // src/qam-subscreens/cloneQAMSubscreen.ts
+  var CloneQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Clone";
+    description = "Copy target's appearance, nickname, label's color and expressions. With the opportunity to return to your original appearance";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((C4) => {
+        target = C4;
+      });
+      const cloneBtn = this.buildButton("Clone");
+      const backupBtn = this.buildButton("Backup");
+      backupBtn.addEventListener("click", () => {
+        if (!modStorage.qam?.cloneBackup) return Q2.error({
+          message: "You don't have backup",
+          duration: 3e3
+        });
+        Player.Nickname = modStorage.qam.cloneBackup.nickName;
+        Player.LabelColor = modStorage.qam.cloneBackup.labelColor;
+        PoseSetActive(Player, modStorage.qam.cloneBackup.activePose[0]);
+        CharacterSetFacialExpression(Player, "Emoticon", modStorage.qam.cloneBackup.emoticon?.expression, null, modStorage.qam.cloneBackup.emoticon?.color);
+        CharacterSetFacialExpression(Player, "Blush", modStorage.qam.cloneBackup.blush?.expression);
+        ServerAppearanceLoadFromBundle(
+          Player,
+          Player.AssetFamily,
+          JSON.parse(LZString.decompressFromBase64(modStorage.qam.cloneBackup.appearance)),
+          Player.MemberNumber
+        );
+        ServerSend("AccountUpdate", {
+          Nickname: Player.Nickname,
+          LabelColor: Player.LabelColor
+        });
+        ChatRoomCharacterUpdate(Player);
+        Q2.success({
+          message: `You have successfully canceled the cloning effect!`,
+          duration: 4500
+        });
+        delete modStorage.qam.cloneBackup;
+        syncStorage();
+      });
+      cloneBtn.addEventListener("click", () => {
+        if (isBannedBy(target)) return Q2.error({
+          title: "Denied",
+          message: "You are blacklisted or ghosted by this player",
+          duration: 4500
+        });
+        modStorage.qam ??= {};
+        if (!modStorage.qam.cloneBackup) {
+          modStorage.qam.cloneBackup = {
+            nickName: O2(Player),
+            labelColor: Player.LabelColor,
+            emoticon: {
+              expression: InventoryGet(Player, "Emoticon")?.Property?.Expression,
+              // color: InventoryGet(Player, "Emoticon")?.Property?.Color
+              color: ""
+            },
+            blush: {
+              expression: InventoryGet(Player, "Blush")?.Property?.Expression
+            },
+            appearance: LZString.compressToBase64(JSON.stringify(ServerAppearanceBundle(Player.Appearance))),
+            activePose: [...Player.ActivePose]
+          };
+          syncStorage();
+        }
+        Player.Nickname = O2(target);
+        Player.LabelColor = target.LabelColor;
+        PoseSetActive(Player, target.ActivePose[0]);
+        CharacterSetFacialExpression(Player, "Emoticon", InventoryGet(target, "Emoticon")?.Property?.Expression, null, InventoryGet(target, "Emoticon")?.Property?.Color);
+        CharacterSetFacialExpression(Player, "Blush", InventoryGet(target, "Blush")?.Property?.Expression);
+        ServerAppearanceLoadFromBundle(
+          Player,
+          Player.AssetFamily,
+          ServerAppearanceBundle(target.Appearance),
+          Player.MemberNumber
+        );
+        ServerSend("AccountUpdate", {
+          Nickname: Player.Nickname,
+          LabelColor: Player.LabelColor
+        });
+        ChatRoomCharacterUpdate(Player);
+        Q2.success({
+          message: `You were successfully cloned ${O2(target)}`,
+          duration: 4500
+        });
+      });
+      container.append(select, cloneBtn, backupBtn);
+    }
+  };
+
+  // src/qam-subscreens/viewCardDecksQAMSubscreen.ts
+  var ViewCardDecksQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "View Card Decks";
+    description = "View target's decks of cards";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      let deckIndex = 0;
+      const select = this.buildCharacterSelect((_target) => {
+        target = _target;
+        refreshContent();
+      });
+      const contentContainer = document.createElement("div");
+      const createCard = (card) => {
+        const cardName = card.Name;
+        const requiredLevel = card.RequiredLevel ? card.RequiredLevel : 1;
+        const colors = ["", "white", "#a6a4a4", "#9be09b", "#b4b4f0", "#ed8e8e"];
+        const img = document.createElement("img");
+        img.style.cssText = `width: 2.5em; height: 5em; background: ${colors[requiredLevel]}; padding: 4px; border: 2px solid black;`;
+        img.src = card.Type === "Event" ? `https://www.bondage-europe.com/${GameVersion}/BondageClub/Screens/MiniGame/ClubCard/Event/${cardName}.png` : `https://www.bondage-europe.com/${GameVersion}/BondageClub/Screens/MiniGame/ClubCard/Member/${cardName}.png`;
+        return img;
+      };
+      const undoBundle = (bundle) => {
+        const result = [];
+        for (const entrie of bundle.split("")) {
+          const cardId = entrie.charCodeAt(0);
+          const card = ClubCardList.find((c7) => c7.ID === cardId);
+          if (!card) continue;
+          result.push(card);
+        }
+        return result;
+      };
+      const refreshContent = () => {
+        contentContainer.innerHTML = "";
+        deckIndex = 0;
+        const select2 = this.buildSelect({
+          options: target.Game.ClubCard?.Deck?.map((_4, i5) => ({ name: i5.toString(), text: target?.Game?.ClubCard?.DeckName?.[i5] || `Deck #${i5}` }))?.filter((n4) => !!target?.Game?.ClubCard?.Deck?.[parseInt(n4.name, 10)]),
+          currentOption: deckIndex.toString(),
+          onChange: (value) => {
+            deckIndex = parseInt(value, 10);
+            const selectedDeck2 = undoBundle(target.Game?.ClubCard?.Deck?.[deckIndex] ?? "");
+            cardsContainer.innerHTML = "";
+            cardsContainer.append(...selectedDeck2.map(createCard));
+          }
+        });
+        const cardsContainer = document.createElement("div");
+        cardsContainer.style.cssText = "display: flex; flex-wrap: wrap; gap: 0.25em; overflow-y: scroll; max-height: 50vh; margin: 0.25em 1em;";
+        const selectedDeck = undoBundle(target.Game?.ClubCard?.Deck?.[deckIndex] ?? "");
+        cardsContainer.append(...selectedDeck.map(createCard));
+        contentContainer.append(select2, cardsContainer);
+      };
+      refreshContent();
+      container.append(select, contentContainer);
+    }
+  };
 
   // src/spell-effects/baseEffect.ts
   var BaseEffect = class {
@@ -26622,7 +27735,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (this.isInstant) return false;
       const charCode = this.id;
       if (!charCode) return false;
-      return modStorage.darkMagic?.state?.spells?.some((s4) => s4.effects.includes(String.fromCharCode(charCode)));
+      return modStorage.darkMagic?.state?.spells?.some((s5) => s5.effects.includes(String.fromCharCode(charCode)));
     }
     isActiveOn(C4) {
       if (this.isInstant) return false;
@@ -26630,7 +27743,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (!C4.BCC) return false;
       const charCode = this.id;
       if (!charCode) return false;
-      return C4.BCC?.darkMagic?.state?.spells?.some((s4) => s4.effects.includes(String.fromCharCode(charCode)));
+      return C4.BCC?.darkMagic?.state?.spells?.some((s5) => s5.effects.includes(String.fromCharCode(charCode)));
     }
     getSpellsWithEffect(C4 = Player) {
       const spells = [];
@@ -26647,7 +27760,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (!this.isActiveOn(C4)) return null;
       const spells = this.getSpellsWithEffect(C4);
       if (spells.length === 0) return null;
-      const parameter = this.parameters.find((p4) => p4.name === name);
+      const parameter = this.parameters.find((p5) => p5.name === name);
       let parameterValue = spells[0].data?.[String.fromCharCode(this.id)]?.[name];
       if (parameter) {
         if (parameter.type === "boolean") parameterValue ??= false;
@@ -26657,14 +27770,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     setParameter(name, value, spellName) {
       if (!this.isActive) return;
-      const spell = modStorage.darkMagic.state.spells.find((s4) => s4.name === spellName);
+      const spell = modStorage.darkMagic.state.spells.find((s5) => s5.name === spellName);
       if (!spell) return;
       spell.data ??= {};
       spell.data[String.fromCharCode(this.id)] ??= {};
       spell.data[String.fromCharCode(this.id)][name] = value;
     }
     hookFunction(event, fnName, hookPriority, fn) {
-      const removeHook = c2(fnName, hookPriority, fn);
+      const removeHook = c3(fnName, hookPriority, fn);
       this.removeCallbacks[event.spellName].hooks.push(removeHook);
     }
     setInterval(event, callback, ms) {
@@ -26683,10 +27796,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
       for (const cb of this.removeCallbacks[event.targetSpellName].intervals) cb();
       delete this.removeCallbacks[event.targetSpellName];
       const spells = modStorage.darkMagic.state.spells;
-      const spell = spells.find((s4) => s4.name === event.targetSpellName);
+      const spell = spells.find((s5) => s5.name === event.targetSpellName);
       spell.effects = spell.effects.replaceAll(String.fromCharCode(this.id), "");
       if (spell.effects.length === 0) {
-        spells.splice(spells.findIndex((s4) => s4.name === event.targetSpellName), 1);
+        spells.splice(spells.findIndex((s5) => s5.name === event.targetSpellName), 1);
       }
       if (push) syncStorage();
     }
@@ -26793,19 +27906,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
       CharacterSetFacialExpression(Player, "Eyes", "Closed");
       CharacterSetFacialExpression(Player, "Emoticon", "Sleep");
       ChatRoomCharacterUpdate(Player);
-      this.hookFunction(event, "ChatRoomSendChat", a.OVERRIDE_BEHAVIOR, () => {
+      this.hookFunction(event, "ChatRoomSendChat", d.OVERRIDE_BEHAVIOR, () => {
         return g2.sendLocal("You lost control of yourself");
       });
-      this.hookFunction(event, "Player.CanWalk", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "Player.CanChangeToPose", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "Player.CanChangeOwnClothes", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "PoseCanChangeUnaidedStatus", a.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
-      this.hookFunction(event, "ChatRoomCanAttemptStand", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "ChatRoomCanAttemptKneel", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "Player.CanInteract", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "InventoryGroupIsBlockedForCharacter", a.OVERRIDE_BEHAVIOR, () => true);
-      this.hookFunction(event, "DialogClickExpressionMenu", a.OVERRIDE_BEHAVIOR, () => false);
-      this.hookFunction(event, "ChatRoomMapViewMove", a.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "Player.CanWalk", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "Player.CanChangeToPose", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "Player.CanChangeOwnClothes", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "PoseCanChangeUnaidedStatus", d.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
+      this.hookFunction(event, "ChatRoomCanAttemptStand", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "ChatRoomCanAttemptKneel", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "Player.CanInteract", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "InventoryGroupIsBlockedForCharacter", d.OVERRIDE_BEHAVIOR, () => true);
+      this.hookFunction(event, "DialogClickExpressionMenu", d.OVERRIDE_BEHAVIOR, () => false);
+      this.hookFunction(event, "ChatRoomMapViewMove", d.OVERRIDE_BEHAVIOR, () => false);
     }
     remove(event, push) {
       super.remove(event, push);
@@ -26827,7 +27940,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
         wordPunctuation = wordPunctuation.split("").toReversed().join("");
       }
-      newText += garbleWords[h2(0, garbleWords.length - 1)] + wordPunctuation + " ";
+      newText += garbleWords[y2(0, garbleWords.length - 1)] + wordPunctuation + " ";
     }
     return newText.trim();
   }
@@ -26880,7 +27993,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     trigger(event) {
       super.trigger(event);
-      this.hookFunction(event, "ServerSend", a.OVERRIDE_BEHAVIOR, (args, next) => {
+      this.hookFunction(event, "ServerSend", d.OVERRIDE_BEHAVIOR, (args, next) => {
         const message = args[0];
         const params = args[1];
         const speechType = this.getParameter("speechType");
@@ -27066,21 +28179,21 @@ One of mods you are using is using an old version of SDK. It will work for now b
   ], AnimaFurtaMessageDto.prototype, "name", 2);
   __decorateClass([
     IsNumber(),
-    ValidateIf((o4) => o4.name === "changeAppearance")
+    ValidateIf((o5) => o5.name === "changeAppearance")
   ], AnimaFurtaMessageDto.prototype, "target", 2);
   __decorateClass([
-    ValidateIf((o4) => o4.name === "changeAppearance")
+    ValidateIf((o5) => o5.name === "changeAppearance")
   ], AnimaFurtaMessageDto.prototype, "appearance", 2);
   __decorateClass([
-    ValidateIf((o4) => o4.name === "publishAction")
+    ValidateIf((o5) => o5.name === "publishAction")
   ], AnimaFurtaMessageDto.prototype, "params", 2);
   __decorateClass([
-    ValidateIf((o4) => o4.name === "sendMessage"),
+    ValidateIf((o5) => o5.name === "sendMessage"),
     IsString(),
-    ValidateCustom((o4) => !o4.message.startsWith("("))
+    ValidateCustom((o5) => !o5.message.startsWith("("))
   ], AnimaFurtaMessageDto.prototype, "message", 2);
   __decorateClass([
-    ValidateIf((o4) => o4.name === "mapMove"),
+    ValidateIf((o5) => o5.name === "mapMove"),
     ValidateNested(),
     Type(() => PosDto)
   ], AnimaFurtaMessageDto.prototype, "pos", 2);
@@ -27115,7 +28228,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     trigger(event) {
       super.trigger(event);
       if (event.init) {
-        this.hookFunction(event, "ChatRoomLeave", a.OBSERVE, (args, next) => {
+        this.hookFunction(event, "ChatRoomLeave", d.OBSERVE, (args, next) => {
           this.remove({
             sourceCharacter: event.sourceCharacter,
             sourceSpellName: null,
@@ -27123,7 +28236,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           });
           return next(args);
         });
-        this.hookFunction(event, "ChatRoomSyncMemberLeave", a.OBSERVE, (args, next) => {
+        this.hookFunction(event, "ChatRoomSyncMemberLeave", d.OBSERVE, (args, next) => {
           const data = args[0];
           if (data.SourceMemberNumber === event.sourceCharacter?.MemberNumber) {
             this.remove({
@@ -27134,19 +28247,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
           }
           return next(args);
         });
-        this.hookFunction(event, "ChatRoomSendChat", a.OVERRIDE_BEHAVIOR, () => {
+        this.hookFunction(event, "ChatRoomSendChat", d.OVERRIDE_BEHAVIOR, () => {
           return g2.sendLocal("You lost control of yourself");
         });
-        this.hookFunction(event, "Player.CanWalk", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "Player.CanChangeToPose", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "Player.CanChangeOwnClothes", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "PoseCanChangeUnaidedStatus", a.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
-        this.hookFunction(event, "ChatRoomCanAttemptStand", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "ChatRoomCanAttemptKneel", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "Player.CanInteract", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "InventoryGroupIsBlockedForCharacter", a.OVERRIDE_BEHAVIOR, () => true);
-        this.hookFunction(event, "DialogClickExpressionMenu", a.OVERRIDE_BEHAVIOR, () => false);
-        this.hookFunction(event, "ChatRoomMapViewMove", a.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "Player.CanWalk", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "Player.CanChangeToPose", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "Player.CanChangeOwnClothes", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "PoseCanChangeUnaidedStatus", d.OVERRIDE_BEHAVIOR, () => PoseChangeStatus.NEVER);
+        this.hookFunction(event, "ChatRoomCanAttemptStand", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "ChatRoomCanAttemptKneel", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "Player.CanInteract", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "InventoryGroupIsBlockedForCharacter", d.OVERRIDE_BEHAVIOR, () => true);
+        this.hookFunction(event, "DialogClickExpressionMenu", d.OVERRIDE_BEHAVIOR, () => false);
+        this.hookFunction(event, "ChatRoomMapViewMove", d.OVERRIDE_BEHAVIOR, () => false);
         this.removePacketListener = g2.onPacket("animaFurtaCommand", AnimaFurtaMessageDto, (data, sender) => {
           if (!sender.BCC) return;
           if (!getSpellEffect(1e3 /* ANIMA_FURTA */).isActive) return;
@@ -27159,12 +28272,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
           }
           if (data.name === "changeAppearance") {
             ServerAppearanceLoadFromBundle(
-              T2(data.target),
-              T2(data.target).AssetFamily,
+              N2(data.target),
+              N2(data.target).AssetFamily,
               data.appearance,
               data.target
             );
-            ChatRoomCharacterUpdate(T2(data.target));
+            ChatRoomCharacterUpdate(N2(data.target));
           }
           if (data.name === "publishAction") {
             ServerSend("ChatRoomChat", data.params);
@@ -27260,12 +28373,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     trigger(event) {
       super.trigger(event);
-      this.hookFunction(event, "ChatRoomMessage", a.OVERRIDE_BEHAVIOR, (args, next) => {
+      this.hookFunction(event, "ChatRoomMessage", d.OVERRIDE_BEHAVIOR, (args, next) => {
         const message = args[0];
-        const sender = T2(message.Sender);
+        const sender = N2(message.Sender);
         if (!sender) return next(args);
         if (!sender.IsPlayer() && message.Type === "Chat") {
-          const randomPlayer = ChatRoomCharacter[h2(0, ChatRoomCharacter.length - 1)];
+          const randomPlayer = ChatRoomCharacter[y2(0, ChatRoomCharacter.length - 1)];
           message.Sender = randomPlayer.MemberNumber;
         }
         return next(args);
@@ -27396,109 +28509,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     trigger(event) {
       super.trigger(event);
-      this.hookFunction(event, "ServerSend", a.OVERRIDE_BEHAVIOR, (args, next) => {
+      this.hookFunction(event, "ServerSend", d.OVERRIDE_BEHAVIOR, (args, next) => {
         const message = args[0];
         const params = args[1];
         if (message === "ChatRoomChat" && ["Chat", "Whisper"].includes(params.Type)) {
           if (params.Content[0] !== "(") {
-            return g2.sendAction(`${N3(Player)} tries to say something, but <pronoun> doesn't have a voice`);
+            return g2.sendAction(`${O2(Player)} tries to say something, but <pronoun> doesn't have a voice`);
           }
         }
         return next(args);
       });
     }
   };
-
-  // src/dto/castSpellMessageDto.ts
-  function ValidateCustom2(validator, validationOptions) {
-    return (object, propertyName) => {
-      registerDecorator({
-        name: "validateCustom",
-        target: object.constructor,
-        propertyName,
-        options: validationOptions,
-        validator: {
-          validate(value, args) {
-            return validator(args.object);
-          },
-          defaultMessage(args) {
-            return "Params error";
-          }
-        }
-      });
-    };
-  }
-  var SpellDto = class {
-    name;
-    icon;
-    effects;
-    data;
-    createdBy;
-  };
-  __decorateClass([
-    IsString({ message: "tytg" })
-  ], SpellDto.prototype, "name", 2);
-  __decorateClass([
-    ValidateIf((dto) => isEnum(dto.icon, SpellIcon))
-  ], SpellDto.prototype, "icon", 2);
-  __decorateClass([
-    IsString(),
-    ValidateCustom2((dto) => dto.effects?.split("")?.every((e2) => getSpellEffect(e2.charCodeAt(0)) instanceof BaseEffect))
-  ], SpellDto.prototype, "effects", 2);
-  __decorateClass([
-    IsObject(),
-    ValidateCustom2((dto) => {
-      addDefaultParametersIfNeeds(dto);
-      for (const effectChar of dto.effects.split("")) {
-        const effect = getSpellEffect(effectChar.charCodeAt(0));
-        for (const parameter of effect.parameters) {
-          const parameterValue = dto.data?.[effectChar]?.[parameter.name];
-          if (parameterValue === void 0 || parameterValue === null) return false;
-          switch (parameter.type) {
-            case "boolean":
-              if (!isBoolean(parameterValue)) return false;
-              break;
-            case "number":
-              if (!isNumber(parameterValue)) return false;
-              if (parameter.max && parameterValue > parameter.max) return false;
-              if (parameter.min && parameterValue < parameter.min) return false;
-              break;
-            case "text":
-              if (!isString(parameterValue)) return false;
-              if (parameterValue.trim() === "") return false;
-              if (D3(parameterValue) > 5) return false;
-              break;
-            case "choice":
-              if (!isString(parameterValue)) return false;
-              if (!parameter.options.map((o4) => o4.name).includes(parameterValue)) return false;
-              break;
-          }
-        }
-      }
-      return true;
-    })
-  ], SpellDto.prototype, "data", 2);
-  __decorateClass([
-    Type(() => CreatedByDto),
-    ValidateNested()
-  ], SpellDto.prototype, "createdBy", 2);
-  var CastSpellMessageDto = class {
-    spell;
-  };
-  __decorateClass([
-    Type(() => SpellDto),
-    ValidateNested()
-  ], CastSpellMessageDto.prototype, "spell", 2);
-  var CreatedByDto = class {
-    name;
-    id;
-  };
-  __decorateClass([
-    IsString()
-  ], CreatedByDto.prototype, "name", 2);
-  __decorateClass([
-    IsNumber()
-  ], CreatedByDto.prototype, "id", 2);
 
   // src/spell-effects/traditioArtiumEffect.ts
   var TraditioArtiumEffect = class extends BaseEffect {
@@ -27522,14 +28544,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 600,
         buttons: {
           direction: "column",
-          list: spells.map((s4) => ({ text: s4.name, value: s4 }))
+          list: spells.map((s5) => ({ text: s5.name, value: s5 }))
         }
       });
       modStorage.darkMagic ??= {};
       modStorage.darkMagic.spells ??= [];
       modStorage.darkMagic.spells.push(...result);
       Q2.success({
-        message: `Learned spells: ${result.map((s4) => s4.name).join(", ")}`,
+        message: `Learned spells: ${result.map((s5) => s5.name).join(", ")}`,
         duration: 5e3
       });
       syncStorage();
@@ -27549,7 +28571,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     trigger(event) {
       super.trigger(event);
-      DialogChangeReputation("Dominant", h2(-5, -1));
+      DialogChangeReputation("Dominant", y2(-5, -1));
       ServerPlayerReputationSync();
     }
   };
@@ -27571,10 +28593,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     trigger(event) {
       super.trigger(event);
       this.setInterval(event, () => {
-        if (h2(1, 2) === 1) {
+        if (y2(1, 2) === 1) {
           if (typeof Player.ArousalSettings.Progress !== "number") Player.ArousalSettings.Progress = 0;
           if (Player.ArousalSettings.Progress >= 100) return;
-          Player.ArousalSettings.Progress += h2(1, 4);
+          Player.ArousalSettings.Progress += y2(1, 4);
         }
       }, 2e3);
     }
@@ -27765,7 +28787,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   ];
   function getSpellIcon(name) {
-    return spellIcons.find((s4) => s4.name === name);
+    return spellIcons.find((s5) => s5.name === name);
   }
   function getSpellIcons() {
     return spellIcons;
@@ -27812,7 +28834,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     let search;
     if (attempt === 1) search = name;
     else search = `${name} (${attempt - 1})`;
-    if (modStorage.darkMagic?.state?.spells.find((s4) => s4.name === search)) {
+    if (modStorage.darkMagic?.state?.spells.find((s5) => s5.name === search)) {
       return generateSpellName(name, attempt + 1);
     }
     return search;
@@ -27843,7 +28865,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         data: JSON.parse(JSON.stringify(spell.data ?? {})),
         createdBy: spell.createdBy,
         castedBy: {
-          name: N3(castedBy),
+          name: O2(castedBy),
           id: castedBy.MemberNumber
         }
       });
@@ -27858,10 +28880,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
     }
     syncStorage();
-    g2.sendAction(`Effects of "${spell.name}" spell was applied to ${N3(Player)}`);
+    g2.sendAction(`Effects of "${spell.name}" spell was applied to ${O2(Player)}`);
   }
   function castSpell(target, spell) {
-    g2.sendAction(`${N3(Player)} casts "${spell.name}" spell on ${N3(target)}`);
+    g2.sendAction(`${O2(Player)} casts "${spell.name}" spell on ${O2(target)}`);
     if (target.IsPlayer()) {
       processSpell(target, spell);
     } else {
@@ -27885,7 +28907,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (allow.result === false) return;
       processSpell(sender, data.spell);
     });
-    c2("ChatRoomToggleKneel", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomToggleKneel", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       if (controllableCharacter.CanChangeToPose(controllableCharacter.IsKneeling() ? "BaseLower" : "Kneel")) {
@@ -27899,7 +28921,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       return next(args);
     });
-    c2("ChatRoomSendChat", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomSendChat", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       g2.sendPacket("animaFurtaCommand", {
@@ -27908,7 +28930,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }, controllableCharacter.MemberNumber);
       document.getElementById("InputChat").value = "";
     });
-    c2("ChatRoomAllowItem", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomAllowItem", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       const data = args[0];
@@ -27920,7 +28942,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       }
     });
-    c2("DialogCanUnlock", a.OBSERVE, (args, next) => {
+    c3("DialogCanUnlock", d.OBSERVE, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       const [target, item] = args;
@@ -27937,70 +28959,70 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (lock.Asset.FamilyOnly && target.IsInFamilyOfMemberNumber(controllableCharacter.MemberNumber)) return true;
       return false;
     });
-    c2("InventoryLock", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("InventoryLock", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       args[3] = controllableCharacter.MemberNumber;
       return next(args);
     });
-    c2("Player.CanChangeOwnClothes", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.CanChangeOwnClothes", d.OVERRIDE_BEHAVIOR, (args, next) => {
       if (getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter()) return false;
       return next(args);
     });
-    c2("Player.IsDeaf", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.IsDeaf", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (controllableCharacter) {
         return controllableCharacter.IsDeaf();
       }
       return next(args);
     });
-    c2("Player.IsBlind", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.IsBlind", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (controllableCharacter) return controllableCharacter.IsBlind();
       return next(args);
     });
-    c2("Player.GetDeafLevel", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.GetDeafLevel", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (controllableCharacter) return controllableCharacter.GetDeafLevel();
       return next(args);
     });
-    c2("Player.GetBlindLevel", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.GetBlindLevel", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (controllableCharacter) return controllableCharacter.GetBlindLevel();
       return next(args);
     });
-    c2("Player.HasTints", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.HasTints", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const effect = getSpellEffect(1e3 /* ANIMA_FURTA */);
       const controllableCharacter = effect.getControllableCharacter();
       if (controllableCharacter || effect.isActive) return true;
       return next(args);
     });
-    c2("Player.GetTints", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.GetTints", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const effect = getSpellEffect(1e3 /* ANIMA_FURTA */);
       const controllableCharacter = effect.getControllableCharacter();
       if (controllableCharacter || effect.isActive) return [{ r: 0, g: 0, b: 100, a: 0.5 }];
       return next(args);
     });
     window.getControllableC = () => getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
-    I(
+    h(
       "DrawCharacter",
       {
         "if (!C.IsPlayer() && !OverrideDark && (Player.IsBlind() || Player.HasTints())) {": `if (((getControllableC() && C.MemberNumber !== getControllableC().MemberNumber) || (!getControllableC() && !C.IsPlayer())) && !OverrideDark && (Player.IsBlind() || Player.HasTints())) {`
       }
     );
-    c2("PoseCanChangeUnaidedStatus", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("PoseCanChangeUnaidedStatus", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       if (!args[0].IsPlayer()) return next(args);
       args[0] = controllableCharacter;
       return next(args);
     });
-    c2("Player.CanInteract", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("Player.CanInteract", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       return controllableCharacter.CanInteract();
     });
-    c2("DialogInventoryAdd", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("DialogInventoryAdd", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       const [C4, item, isWorn, sortOrder] = args;
@@ -28016,7 +29038,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       DialogInventory.push(inventoryItem);
     });
-    c2("ChatRoomOpenWardrobeScreen", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomOpenWardrobeScreen", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       if (controllableCharacter?.CanInteract()) {
@@ -28045,14 +29067,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       return next(args);
     });
-    c2("ChatRoomOpenInformationScreen", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomOpenInformationScreen", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       ChatRoomHideElements();
       ChatRoomStatusUpdate("Preference");
       InformationSheetLoadCharacter(controllableCharacter);
     });
-    c2("ChatRoomPublishAction", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomPublishAction", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
       const [C4, Action, PrevItem, NextItem] = args;
@@ -28078,7 +29100,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }, controllableCharacter.MemberNumber);
       return true;
     });
-    c2("ChatRoomMapViewMove", a.OVERRIDE_BEHAVIOR, async (args, next) => {
+    c3("ChatRoomMapViewMove", d.OVERRIDE_BEHAVIOR, async (args, next) => {
       if (showAnimaFurtaWaitingButton) return;
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (!controllableCharacter) return next(args);
@@ -28093,7 +29115,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         pos: { x: controllableCharacter.MapData.Pos.X, y: controllableCharacter.MapData.Pos.Y }
       }, controllableCharacter.MemberNumber);
     });
-    c2("ChatRoomViews.Map.DrawUi", a.OBSERVE, (args, next) => {
+    c3("ChatRoomViews.Map.DrawUi", d.OBSERVE, (args, next) => {
       const controllableCharacter = getSpellEffect(1e3 /* ANIMA_FURTA */).getControllableCharacter();
       if (controllableCharacter && showAnimaFurtaWaitingButton) {
         DrawButton(790, 790, 200, 60, "Waiting...", "White");
@@ -28101,58 +29123,596 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return next(args);
     });
     window.bccDrawGridCharacter = () => window.getControllableC() ?? Player;
-    I("ChatRoomMapViewDrawGrid", {
+    h("ChatRoomMapViewDrawGrid", {
       "let ScreenX = (X - Player.MapData.Pos.X) * TileWidth + ChatRoomMapViewPerceptionRange * TileWidth;": "let ScreenX = (X - bccDrawGridCharacter().MapData.Pos.X) * TileWidth + ChatRoomMapViewPerceptionRange * TileWidth;",
       "let ScreenY = (Y - Player.MapData.Pos.Y) * TileHeight + ChatRoomMapViewPerceptionRange * TileWidth;": "let ScreenY = (Y - bccDrawGridCharacter().MapData.Pos.Y) * TileHeight + ChatRoomMapViewPerceptionRange * TileWidth;",
       "let MaxRange = Math.max(Math.abs(X - Player.MapData.Pos.X), Math.abs(Y - Player.MapData.Pos.Y));": "let MaxRange = Math.max(Math.abs(X - bccDrawGridCharacter().MapData.Pos.X), Math.abs(Y - bccDrawGridCharacter().MapData.Pos.Y));"
     });
-    I("ChatRoomMapViewCalculatePerceptionMasks", {
+    h("ChatRoomMapViewCalculatePerceptionMasks", {
       "if (ChatRoomMapViewHasSuperPowers()) {": "if (ChatRoomMapViewHasSuperPowers() || !bccDrawGridCharacter().IsPlayer()) {"
     });
   }
 
+  // src/dto/castSpellMessageDto.ts
+  function ValidateCustom2(validator, validationOptions) {
+    return (object, propertyName) => {
+      registerDecorator({
+        name: "validateCustom",
+        target: object.constructor,
+        propertyName,
+        options: validationOptions,
+        validator: {
+          validate(value, args) {
+            return validator(args.object);
+          },
+          defaultMessage(args) {
+            return "Params error";
+          }
+        }
+      });
+    };
+  }
+  var SpellDto = class {
+    name;
+    icon;
+    effects;
+    data;
+    createdBy;
+  };
+  __decorateClass([
+    IsString({ message: "tytg" })
+  ], SpellDto.prototype, "name", 2);
+  __decorateClass([
+    ValidateIf((dto) => isEnum(dto.icon, SpellIcon))
+  ], SpellDto.prototype, "icon", 2);
+  __decorateClass([
+    IsString(),
+    ValidateCustom2((dto) => dto.effects?.split("")?.every((e2) => getSpellEffect(e2.charCodeAt(0)) instanceof BaseEffect))
+  ], SpellDto.prototype, "effects", 2);
+  __decorateClass([
+    IsObject(),
+    ValidateCustom2((dto) => {
+      addDefaultParametersIfNeeds(dto);
+      for (const effectChar of dto.effects.split("")) {
+        const effect = getSpellEffect(effectChar.charCodeAt(0));
+        for (const parameter of effect.parameters) {
+          const parameterValue = dto.data?.[effectChar]?.[parameter.name];
+          if (parameterValue === void 0 || parameterValue === null) return false;
+          switch (parameter.type) {
+            case "boolean":
+              if (!isBoolean(parameterValue)) return false;
+              break;
+            case "number":
+              if (!isNumber(parameterValue)) return false;
+              if (parameter.max && parameterValue > parameter.max) return false;
+              if (parameter.min && parameterValue < parameter.min) return false;
+              break;
+            case "text":
+              if (!isString(parameterValue)) return false;
+              if (parameterValue.trim() === "") return false;
+              if (T2(parameterValue) > 5) return false;
+              break;
+            case "choice":
+              if (!isString(parameterValue)) return false;
+              if (!parameter.options.map((o5) => o5.name).includes(parameterValue)) return false;
+              break;
+          }
+        }
+      }
+      return true;
+    })
+  ], SpellDto.prototype, "data", 2);
+  __decorateClass([
+    Type(() => CreatedByDto),
+    ValidateNested()
+  ], SpellDto.prototype, "createdBy", 2);
+  var CastSpellMessageDto = class {
+    spell;
+  };
+  __decorateClass([
+    Type(() => SpellDto),
+    ValidateNested()
+  ], CastSpellMessageDto.prototype, "spell", 2);
+  var CreatedByDto = class {
+    name;
+    id;
+  };
+  __decorateClass([
+    IsString()
+  ], CreatedByDto.prototype, "name", 2);
+  __decorateClass([
+    IsNumber()
+  ], CreatedByDto.prototype, "id", 2);
+
+  // src/qam-subscreens/castSpellQAMSubscreen.ts
+  var CastSpellQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Cast Spell";
+    description = "Cast dark magic spell";
+    load(container) {
+      super.load(container);
+      if ((modStorage.darkMagic?.spells ?? []).length === 0) {
+        const message = document.createElement("p");
+        message.style.cssText = "margin: 1.65em auto; font-weight: bold;";
+        message.textContent = "You don't have any spells to cast";
+        container.append(message);
+        return;
+      }
+      function dataURLToSVGElement(dataURL) {
+        const svgEncoded = dataURL.replace("data:image/svg+xml,", "");
+        const svgString = decodeURIComponent(svgEncoded);
+        const div = document.createElement("div");
+        div.innerHTML = svgString;
+        return div.firstElementChild;
+      }
+      let target = Player;
+      let spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells[0]));
+      const select = this.buildCharacterSelect((_target) => {
+        target = _target;
+      });
+      const _select = this.buildSelect({
+        options: modStorage.darkMagic?.spells?.map((s5) => ({ name: s5.name, text: s5.name, icon: dataURLToSVGElement(getSpellIcon(s5.icon).dataurl) })),
+        currentOption: modStorage.darkMagic?.spells?.[0]?.name,
+        onChange: (value) => {
+          spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells.find((s5) => s5.name === value)));
+          addDefaultParametersIfNeeds(spell);
+          this.refreshParamtersContainer(paramters, spell);
+        }
+      });
+      const paramters = document.createElement("div");
+      paramters.style.cssText = "display: flex; flex-direction: column; row-gap: 0.5em; border: 3px dashed #dcccffff; border-radius: 4px; padding: 0.5em 0; margin: 0.5em auto; width: 90%;";
+      const btn = this.buildButton("Cast Spell");
+      btn.addEventListener("click", async () => {
+        if (!spell) return;
+        if (!Player.CanInteract()) {
+          return Q2.error({ message: "You can't interact", duration: 3e3 });
+        }
+        if (!isMagicItem(InventoryGet(Player, "ItemHandheld"))) {
+          return Q2.error({
+            message: "You should hold magic item in your hand to cast spells",
+            duration: 5e3
+          });
+        }
+        const allow = allowSpellCast(Player, target, spell);
+        if (allow.result === false) {
+          return Q2.error({
+            title: "Can't cast this spell",
+            message: allow.reason,
+            duration: 5e3
+          });
+        }
+        const { isValid } = await c4({
+          spell
+        }, CastSpellMessageDto);
+        if (!isValid) {
+          return Q2.error({
+            title: "Spell validation failed",
+            message: "Check spell's settings and make sure that everything is specified correctly",
+            duration: 5e3
+          });
+        }
+        castSpell(target, spell);
+      });
+      this.refreshParamtersContainer(paramters, spell);
+      container.append(select, _select, paramters, btn);
+    }
+    refreshParamtersContainer(paramters, spell) {
+      paramters.innerHTML = "";
+      const title = document.createElement("p");
+      title.style.cssText = "margin: 0.65em auto; width: 90%; font-weight: bold; font-size: 0.85em; color: #9977d0;";
+      title.textContent = "Parameters";
+      paramters.append(title);
+      for (const c7 of spell.effects.split("")) {
+        const effect = getSpellEffect(c7.charCodeAt(0));
+        if (effect.parameters.length === 0) continue;
+        const effectName = document.createElement("p");
+        effectName.style.cssText = "margin: 0.6em auto 0 auto; width: 90%;";
+        effectName.textContent = effect.name;
+        paramters.append(effectName);
+        for (const parameter of effect.parameters) {
+          const value = spell.data?.[c7]?.[parameter.name];
+          switch (parameter.type) {
+            case "boolean": {
+              const checkbox = document.createElement("label");
+              checkbox.style.cssText = "margin: auto; width: 90%;";
+              const input = document.createElement("input");
+              input.type = "checkbox";
+              if (typeof value === "boolean") input.checked = value;
+              input.addEventListener("change", () => {
+                spell.data[c7][parameter.name] = input.checked;
+              });
+              checkbox.append(input, parameter.label);
+              paramters.append(checkbox);
+              break;
+            }
+            case "choice":
+              paramters.append(
+                this.buildSelect({
+                  options: parameter.options,
+                  currentOption: parameter.options.find((o5) => o5.name === value)?.name ?? parameter.options[0].name,
+                  onChange: (_value) => {
+                    spell.data[c7][parameter.name] = _value;
+                  }
+                })
+              );
+              break;
+            case "number": {
+              const input = this.buildInput(parameter.label);
+              input.type = "number";
+              if (typeof value === "number") input.value = value.toString();
+              if (parameter.min) input.min = parameter.min.toString();
+              if (parameter.min) input.max = parameter.max.toString();
+              input.addEventListener("input", () => {
+                spell.data[c7][parameter.name] = parseInt(input.value, 10);
+              });
+              paramters.append(input);
+              break;
+            }
+            case "text": {
+              const input = this.buildInput(parameter.label);
+              if (typeof value === "string") input.value = value;
+              input.addEventListener("input", () => {
+                spell.data[c7][parameter.name] = input.value;
+              });
+              paramters.append(input);
+              break;
+            }
+          }
+        }
+      }
+      if (paramters.children.length === 1) paramters.style.display = "none";
+      else paramters.style.display = "flex";
+    }
+  };
+
+  // src/qam-subscreens/putLocksQAMSubscreen.ts
+  var PutLocksQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Put Locks";
+    description = "Put lock on target's all items";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const locks = AssetGroupGet(Player.AssetFamily, "ItemMisc").Asset.filter((item) => item.Name?.endsWith("Padlock"));
+      let lock = locks[0].Name;
+      const select = this.buildCharacterSelect((_target) => {
+        target = _target;
+      });
+      const _select = this.buildSelect({
+        options: locks.map((l6) => ({ name: l6.Name, text: l6.Description })),
+        currentOption: locks[0].Name,
+        onChange: (value) => {
+          lock = value;
+        }
+      });
+      const btn = this.buildButton("Put Locks");
+      btn.addEventListener("click", () => {
+        InventoryFullLock(target, lock);
+        ChatRoomCharacterUpdate(target);
+        Q2.success({
+          message: `You have successfully locked every item on ${O2(target)}'s body`,
+          duration: 4500
+        });
+      });
+      container.append(select, _select, btn);
+    }
+  };
+
+  // src/qam-subscreens/removeLocksQAMSubscreen.ts
+  var RemoveLocksQAMSubscreen = class extends BaseQAMSubscreen {
+    name = "Remove Locks";
+    description = "Remove all locks from target's body";
+    load(container) {
+      super.load(container);
+      let target = Player;
+      const select = this.buildCharacterSelect((_target) => {
+        target = _target;
+      });
+      const btn = this.buildButton("Remove Locks");
+      btn.addEventListener("click", () => {
+        for (const a5 of Player.Appearance) {
+          if (InventoryGetLock(a5)) InventoryUnlock(target, a5);
+        }
+        ChatRoomCharacterUpdate(target);
+        Q2.success({
+          message: `You have successfully unlocked every item on ${O2(target)}'s body`,
+          duration: 4500
+        });
+      });
+      container.append(select, btn);
+    }
+  };
+
+  // src/qam-subscreens/avcsQAMSubscreen.ts
+  function formatMilliseconds(ms) {
+    const seconds = Math.floor(ms / 1e3);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const remainingSeconds = seconds % 60;
+    const remainingMinutes = minutes % 60;
+    const remainingHours = hours % 24;
+    if (days > 0) {
+      return `${days} ${days === 1 ? "day" : "days"} ${remainingHours} ${remainingHours === 1 ? "hour" : "hours"}`;
+    } else if (hours > 0) {
+      return `${hours} ${hours === 1 ? "hour" : "hours"} ${remainingMinutes} ${remainingMinutes === 1 ? "minute" : "minutes"}`;
+    } else if (minutes > 0) {
+      return `${minutes} ${minutes === 1 ? "minute" : "minutes"} ${remainingSeconds} ${remainingSeconds === 1 ? "second" : "seconds"}`;
+    } else {
+      return `${seconds} ${seconds === 1 ? "second" : "seconds"}`;
+    }
+  }
+  var AVQS_QAMSubscreen = class extends BaseQAMSubscreen {
+    name = "AVCS";
+    description = "Appearance Version Control System - System that registers all the changes in appearance that occur in room and allows you to manipulate them. Don't associate this with GIT and other VCS";
+    load(container) {
+      super.load(container);
+      this.loadCommitsList(container);
+    }
+    createPreviewCanvas(commit) {
+      const previewCanvas = document.createElement("canvas");
+      previewCanvas.style = "width: auto; height: 100%; margin: 0; background: white; position: relative; border-radius: 6px; border: 2px solid #d7d7d7;";
+      previewCanvas.width = 400;
+      previewCanvas.height = 400;
+      const previewCharacter = CharacterCreate("Female3DCG", CharacterType.NPC, "BCC_COMMIT_PROFILE_PREVIEW");
+      previewCharacter.Appearance = v("Female3DCG", commit.bundle.content);
+      CharacterRefresh(previewCharacter);
+      if (previewCharacter.IsKneeling()) {
+        DrawCharacter(previewCharacter, 90, -60, 0.4, false, previewCanvas.getContext("2d"));
+      } else {
+        DrawCharacter(previewCharacter, 90, 0, 0.4, false, previewCanvas.getContext("2d"));
+      }
+      return previewCanvas;
+    }
+    loadCommitsList(container, target = Player) {
+      const select = this.buildCharacterSelect((_target) => {
+        target = _target;
+        commitsContainer.innerHTML = "";
+        createCommits();
+      }, target);
+      const createCommits = () => {
+        for (const commit of commits.get(target.MemberNumber)) {
+          const commitElement = document.createElement("div");
+          commitElement.addEventListener("click", () => {
+            select.remove();
+            commitsContainer.remove();
+            updateButton.remove();
+            this.loadCommitProfile(container, commit, target);
+          });
+          const icon = document.createElement("div");
+          Q(icon, {
+            base: {
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              columnGap: "0.2em",
+              padding: "0 0.5em",
+              fontSize: "0.8em",
+              border: "1px solid #dedede",
+              borderRadius: "8px",
+              boxSizing: "content-box",
+              height: "65%"
+            },
+            before: {
+              content: '""',
+              position: "absolute",
+              top: "100%",
+              bottom: "-50%",
+              left: "1em",
+              width: "0.15em",
+              background: "#c6c6c6c7"
+            }
+          });
+          const text = document.createElement("p");
+          text.style.cssText = "font-size: 0.8em;";
+          let timeAgo;
+          const differenceContainer = document.createElement("p");
+          differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em;";
+          if (commit.type === "initial") {
+            const iconImg = createElement4(GitCommitVertical);
+            iconImg.style.cssText = "height: 80%; width: auto; color: rgb(72 72 123 / 70%);";
+            const iconText = document.createElement("span");
+            iconText.textContent = "Initial";
+            icon.style.background = "rgb(193 193 255 / 45%)";
+            iconText.style.color = "rgb(72 72 123 / 70%)";
+            text.textContent = "Initial Commit";
+            icon.append(iconImg, iconText);
+          } else {
+            const iconImg = createElement4(commit.type === "push" ? GitPullRequestArrow : GitPullRequestClosed);
+            iconImg.style.cssText = `height: 80%; width: auto; color: ${commit.type === "push" ? "rgb(102 152 130)" : "rgb(129 36 36 / 70%)"};`;
+            const iconText = document.createElement("span");
+            iconText.textContent = commit.type === "push" ? "Push" : "Revert";
+            icon.style.background = commit.type === "push" ? "rgb(172 255 220 / 50%)" : "rgb(255 0 0 / 30%)";
+            iconText.style.color = commit.type === "push" ? "rgb(102 152 130)" : "rgb(129 36 36 / 70%)";
+            text.textContent = `${commit.sourceCharacter.name} (${commit.sourceCharacter.memberNumber})`;
+            icon.append(iconImg, iconText);
+            timeAgo = document.createElement("p");
+            timeAgo.style.cssText = "color: #526378; font-size: 0.75em;";
+            timeAgo.textContent = formatMilliseconds(Date.now() - commit.timestamp) + " ago";
+            const added = document.createElement("p");
+            added.textContent = "+" + commit.bundle.difference.added.length.toString();
+            added.style.color = "#57d157";
+            const modified = document.createElement("p");
+            modified.textContent = commit.bundle.difference.modified.length.toString();
+            modified.style.color = "#ffa705";
+            const removed = document.createElement("p");
+            removed.textContent = "-" + commit.bundle.difference.removed.length.toString();
+            removed.style.color = "#ff0000";
+            differenceContainer.append(added, modified, removed);
+          }
+          Q(commitElement, {
+            base: {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              cursor: "pointer",
+              fontSize: "0.8em",
+              height: "2.5em",
+              padding: "0 0.5em"
+            },
+            hover: {
+              background: "#e7e4ef"
+            }
+          });
+          commitElement.append(icon, text, timeAgo ? timeAgo : "", differenceContainer);
+          commitsContainer.append(commitElement);
+        }
+      };
+      const commitsContainer = document.createElement("div");
+      Q(commitsContainer, {
+        base: {
+          display: "flex",
+          flexDirection: "column",
+          width: "90%",
+          // height: "60vh",
+          overflowY: "scroll",
+          margin: "0 auto",
+          padding: "0.5em 0"
+        }
+      });
+      createCommits();
+      const updateButton = this.buildButton("Update");
+      updateButton.addEventListener("click", () => {
+        commitsContainer.innerHTML = "";
+        createCommits();
+      });
+      container.append(select, commitsContainer, updateButton);
+    }
+    loadCommitProfile(container, commit, target) {
+      const exitButton = createElement4(X2);
+      Q(exitButton, {
+        base: {
+          cursor: "pointer",
+          color: "#454545",
+          margin: "0.5em",
+          padding: "0.15em",
+          width: "2.85em",
+          height: "2.85em",
+          borderRadius: "6px",
+          flexShrink: "0"
+        },
+        hover: {
+          background: "#00000014"
+        }
+      });
+      if (commit.type === "initial") {
+        const previewCanvas = this.createPreviewCanvas(commit);
+        previewCanvas.style.margin = "auto";
+        previewCanvas.style.width = "50%";
+        previewCanvas.style.height = "auto";
+        exitButton.addEventListener("click", () => {
+          exitButton.remove();
+          previewCanvas.remove();
+          text.remove();
+          this.loadCommitsList(container, target);
+        });
+        const text = document.createElement("p");
+        text.style.cssText = "margin: auto; text-align: center;";
+        text.textContent = "Just initial commit, nothing interesting. What are you doing here?";
+        container.append(exitButton, previewCanvas, text);
+      } else {
+        const unload = () => {
+          flexContainer.remove();
+          details.remove();
+          seed.remove();
+          revertCommitButton.remove();
+          revertCommitDescription.remove();
+          exitButton.remove();
+        };
+        exitButton.addEventListener("click", () => {
+          unload();
+          this.loadCommitsList(container, target);
+        });
+        const flexContainer = document.createElement("div");
+        flexContainer.style.cssText = "display: flex; justify-content: space-evenly; column-gap: 0.25em; height: 15em;";
+        const previewCanvas = this.createPreviewCanvas(commit);
+        const diffsContainer = document.createElement("div");
+        diffsContainer.style.cssText = "font-size: clamp(8px, 1.5vw, 12px); overflow-y: scroll;";
+        commit.bundle.difference.added.forEach((added) => {
+          const t3 = document.createElement("div");
+          t3.style.color = "rgb(87, 209, 87)";
+          t3.textContent = "+ " + added;
+          diffsContainer.append(t3);
+        });
+        commit.bundle.difference.modified.forEach((modified) => {
+          const t3 = document.createElement("div");
+          t3.style.color = "rgb(255, 167, 5)";
+          t3.textContent = modified;
+          diffsContainer.append(t3);
+        });
+        commit.bundle.difference.removed.forEach((removed) => {
+          const t3 = document.createElement("div");
+          t3.style.color = "rgb(255, 0, 0)";
+          t3.textContent = "- " + removed;
+          diffsContainer.append(t3);
+        });
+        const details = document.createElement("p");
+        details.style.margin = "0.25em 1em";
+        details.style.marginTop = "1em";
+        details.innerHTML = `Commited by <span style="color: #3b3b4eff;">${commit.sourceCharacter.name} (${commit.sourceCharacter.memberNumber})</span> at <span style="color: #3b3b4eff;">${new Date(commit.timestamp).toLocaleString()}</span>`;
+        const seed = document.createElement("p");
+        seed.style.margin = "0.25em 1em";
+        seed.textContent = `Appearance Seed: ${commit.bundle.seed}`;
+        const revertCommitButton = this.buildButton("Revert");
+        revertCommitButton.style.marginTop = "1em";
+        revertCommitButton.addEventListener("click", () => {
+          ServerAppearanceLoadFromBundle(target, target.AssetFamily, commit.bundle.content, Player.MemberNumber);
+          ChatRoomCharacterUpdate(target);
+          unload();
+          this.loadCommitsList(container, target);
+        });
+        const revertCommitDescription = document.createElement("p");
+        revertCommitDescription.style.cssText = "width: 95%; margin: 0 auto; text-align: center; font-size: 0.75em; color: #484848;";
+        revertCommitDescription.textContent = "Will send revert commit that will revert all commits following this commit, or send push commit if it is impossible to set exactly the same appearance due to validation";
+        flexContainer.append(previewCanvas, diffsContainer);
+        container.append(exitButton, flexContainer, details, seed, revertCommitButton, revertCommitDescription);
+      }
+    }
+  };
+
   // src/modules/quickAccessMenu.ts
   var serverPing;
   var currentSubscreen;
-  var qamScrollTop;
   var LOCAL_STORAGE_POS_KEY = "BCC_QAMButton_Pos";
+  var commitHashGenerationToken = Date.now().toString(16);
   var Draggable = class {
-    element;
-    isReadyForDragging;
-    isDragging;
-    wasDragged;
-    offset;
-    constructor(element) {
-      this.element = element;
-      this.isDragging = false;
+    constructor(draggableElement, captureElement) {
+      this.draggableElement = draggableElement;
+      this.captureElement = captureElement;
       this.offset = { x: 0, y: 0 };
       this.init();
     }
+    isReadyForDragging = false;
+    isDragging = false;
+    wasDragged = false;
+    offset;
+    previousMousePositionX;
+    previousMousePositionY;
     init() {
-      this.element.addEventListener("mousedown", this.onMouseDown.bind(this));
+      this.captureElement.addEventListener("mousedown", this.onMouseDown.bind(this));
       document.addEventListener("mousemove", this.onMouseMove.bind(this));
       document.addEventListener("mouseup", this.onMouseUp.bind(this));
-      this.element.addEventListener("touchstart", this.onTouchStart.bind(this));
+      this.captureElement.addEventListener("touchstart", this.onTouchStart.bind(this));
       document.addEventListener("touchmove", this.onTouchMove.bind(this));
       document.addEventListener("touchend", this.onTouchEnd.bind(this));
-      this.element.addEventListener("click", this.onClick.bind(this));
+      this.captureElement.addEventListener("click", this.onClick.bind(this));
     }
     onMouseDown(e2) {
-      if (e2.target === this.element) {
+      if (e2.currentTarget === this.captureElement) {
         this.isReadyForDragging = true;
         this.offset = {
-          x: e2.clientX - this.element.getBoundingClientRect().left,
-          y: e2.clientY - this.element.getBoundingClientRect().top
+          x: e2.clientX - this.draggableElement.getBoundingClientRect().left,
+          y: e2.clientY - this.draggableElement.getBoundingClientRect().top
         };
-        e2.preventDefault();
       }
     }
     onMouseMove(e2) {
+      if (this.previousMousePositionX === e2.clientX && this.previousMousePositionY === e2.clientY) return;
+      this.previousMousePositionX = e2.clientX;
+      this.previousMousePositionY = e2.clientY;
       if (!this.isReadyForDragging) return;
-      const x6 = e2.clientX - this.offset.x;
+      const x5 = e2.clientX - this.offset.x;
       const y5 = e2.clientY - this.offset.y;
-      if (x6 >= 0 && x6 + this.element.offsetWidth <= window.innerWidth) this.element.style.left = x6 + "px";
-      if (y5 >= 0 && y5 + this.element.offsetHeight <= window.innerHeight) this.element.style.top = y5 + "px";
+      if (x5 >= 0 && x5 + this.draggableElement.offsetWidth <= window.innerWidth) this.draggableElement.style.left = x5 + "px";
+      if (y5 >= 0 && y5 + this.draggableElement.offsetHeight <= window.innerHeight) this.draggableElement.style.top = y5 + "px";
       this.isDragging = true;
     }
     onMouseUp() {
@@ -28160,39 +29720,36 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (this.isDragging) {
         this.isDragging = false;
         this.wasDragged = true;
-        if (typeof localStorage.setItem === "function") {
-          const { top, left } = this.element.getBoundingClientRect();
-          localStorage.setItem(LOCAL_STORAGE_POS_KEY, `${top}:${left}`);
-        }
         setTimeout(() => {
           this.wasDragged = false;
         }, 100);
       }
     }
     onTouchStart(e2) {
-      if (e2.target === this.element) {
+      if (e2.currentTarget === this.captureElement) {
         this.isReadyForDragging = true;
         const touch = e2.touches[0];
         this.offset = {
-          x: touch.clientX - this.element.getBoundingClientRect().left,
-          y: touch.clientY - this.element.getBoundingClientRect().top
+          x: touch.clientX - this.draggableElement.getBoundingClientRect().left,
+          y: touch.clientY - this.draggableElement.getBoundingClientRect().top
         };
-        e2.preventDefault();
       }
     }
     onTouchMove(e2) {
-      if (!this.isReadyForDragging) return;
       const touch = e2.touches[0];
-      const x6 = touch.clientX - this.offset.x;
+      if (this.previousMousePositionX === touch.clientX && this.previousMousePositionY === touch.clientY) return;
+      this.previousMousePositionX = touch.clientX;
+      this.previousMousePositionY = touch.clientY;
+      if (!this.isReadyForDragging) return;
+      const x5 = touch.clientX - this.offset.x;
       const y5 = touch.clientY - this.offset.y;
-      this.element.style.left = x6 + "px";
-      this.element.style.top = y5 + "px";
-      e2.preventDefault();
+      if (x5 >= 0 && x5 + this.draggableElement.offsetWidth <= window.innerWidth) this.draggableElement.style.left = x5 + "px";
+      if (y5 >= 0 && y5 + this.draggableElement.offsetHeight <= window.innerHeight) this.draggableElement.style.top = y5 + "px";
       this.isDragging = true;
     }
     onTouchEnd() {
+      if (this.isReadyForDragging) this.isReadyForDragging = false;
       if (this.isDragging) {
-        this.isReadyForDragging = false;
         this.isDragging = false;
         this.wasDragged = true;
         setTimeout(() => {
@@ -28201,24 +29758,36 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
     }
     onClick() {
-      if (this.isDragging || this.wasDragged) return;
-      if (document.querySelector(".bccQAM")) {
-        document.querySelector(".bccQAM").remove();
-        currentSubscreen = null;
-        return;
-      }
-      const d4 = document.createElement("div");
-      d4.classList.add("bccQAM");
-      document.body.append(d4);
-      setQAMSubscreen(quickMenuSubscreens[0]);
     }
   };
-  function getServer() {
-    if (window.location.host === "www.bondageprojects.elementfx.com") return "America";
-    if (window.location.host === "www.bondage-europe.com") return "Europe";
-    if (window.location.host === "www.bondage-asia.com") return "Asia";
-    return "Not defined";
-  }
+  var QAMButton = class extends Draggable {
+    onMouseUp() {
+      super.onMouseUp();
+      if (this.wasDragged && typeof localStorage.setItem === "function") {
+        const { top, left } = this.draggableElement.getBoundingClientRect();
+        localStorage.setItem(LOCAL_STORAGE_POS_KEY, `${top}:${left}`);
+      }
+    }
+    onClick() {
+      if (this.isDragging || this.wasDragged) return;
+      const qam = document.querySelector(".bccQAM");
+      if (qam) {
+        qam.style.display = qam.style.display === "none" ? "flex" : "none";
+        currentSubscreen = null;
+      } else {
+        const d6 = document.createElement("div");
+        d6.classList.add("bccQAM");
+        document.body.append(d6);
+        setQAMSubscreen4(new MainQAMSubscreen());
+      }
+    }
+  };
+  var QAMWindow = class extends Draggable {
+    onMouseMove(e2) {
+      this.draggableElement.style.transform = "none";
+      super.onMouseMove(e2);
+    }
+  };
   function isBannedBy(C4) {
     return C4.HasOnBlacklist(Player);
   }
@@ -28318,144 +29887,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
       block: allowBlock
     };
   }
-  var quickMenuBuilder = {
-    buildButton(text) {
-      const btn = document.createElement("button");
-      Q(btn, {
-        base: {
-          cursor: "pointer",
-          border: "none",
-          padding: "0.65em",
-          margin: "0.25em 1em",
-          background: "#7e00ff",
-          borderRadius: "4px",
-          color: "white"
-        },
-        hover: {
-          background: "rgb(143, 82, 255)"
-        }
-      });
-      btn.textContent = text;
-      return btn;
-    },
-    buildDescription(content) {
-      const text = document.createElement("p");
-      text.style.cssText = "padding: 0.65em; border-radius: 5px; border: 2px solid #d5d5d5; background: #f8f8f8; margin: 0.25em 1em;";
-      text.textContent = content;
-      return text;
-    },
-    buildSelect({
-      onChange,
-      options,
-      currentOption
-    }) {
-      let isOpened = false;
-      let optionsContainer;
-      const select = document.createElement("div");
-      select.classList.add("bccQAMSelect");
-      select.style.margin = "0.25em 1em";
-      select.style.position = "relative";
-      select.setAttribute("opened", false);
-      select.addEventListener("click", () => {
-        if (options.length === 0) return;
-        if (isOpened) {
-          isOpened = false;
-          select.style.zIndex = "10";
-          optionsContainer.remove();
-        } else {
-          isOpened = true;
-          select.style.zIndex = "100";
-          optionsContainer = document.createElement("div");
-          optionsContainer.setAttribute(
-            "data-position",
-            select.offsetTop > window.innerHeight / 2 - select.offsetHeight / 2 ? "top" : "bottom"
-          );
-          options.forEach((option) => {
-            const e2 = document.createElement("div");
-            e2.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;";
-            if (option.icon) {
-              option.icon.style.cssText = "color: #bcbcbc;";
-              e2.append(option.icon);
-            }
-            e2.append(option.text);
-            if (option.name === currentOption) {
-              e2.append(checkmark);
-            }
-            e2.addEventListener("click", () => {
-              currentOption = option.name;
-              p4.textContent = option.text;
-              optionsContainer.remove();
-              if (onChange) onChange(option.name);
-            });
-            optionsContainer.append(e2);
-          });
-          select.append(optionsContainer);
-        }
-      });
-      const p4 = document.createElement("p");
-      p4.style.paddingRight = "2em";
-      if (options.length === 0) {
-        p4.textContent = "No options";
-      } else {
-        p4.textContent = options.find((option) => option.name === currentOption)?.text ?? "Unknown";
-      }
-      const arrow = createElement(ChevronDown);
-      const checkmark = createElement(Check);
-      checkmark.style.cssText = "position: absolute; right: 0.25em;";
-      select.append(p4, arrow);
-      return select;
-    },
-    buildCharacterSelect(onChange) {
-      const select = quickMenuBuilder.buildSelect({
-        onChange: (value) => {
-          const target = T2(parseInt(value, 10));
-          if (onChange && target) onChange(target);
-        },
-        options: (ChatRoomCharacter.length === 0 ? [Player] : ChatRoomCharacter).map((c7) => {
-          return {
-            name: c7.MemberNumber.toString(),
-            text: c7.Name + `(${c7.MemberNumber})`,
-            icon: createElement(Target, { stroke: "red" })
-          };
-        }),
-        currentOption: Player.MemberNumber.toString()
-      });
-      return select;
-    },
-    buildInput(placeholder) {
-      const input = document.createElement("input");
-      input.style.cssText = "border: none; background: #ebebeb; padding: 0.65em; margin: 0.25em 1em; border-radius: 5px;";
-      input.placeholder = placeholder;
-      return input;
-    }
-  };
-  function setQAMSubscreen(s4) {
+  function setQAMSubscreen4(s5) {
     if (!document.querySelector(".bccQAM")) return;
     const container = document.querySelector(".bccQAM");
     container.innerHTML = "";
-    const header = document.createElement("div");
-    header.style.cssText = "display: flex; align-items: center; justify-content: space-between;";
-    const title = document.createElement("p");
-    title.textContent = s4.name;
-    title.style.cssText = "font-weight: bold; padding: 0.5em 1em; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
-    if (s4.name === "BONDAGE CLUB CHAOS") {
-      title.style.textShadow = "rgb(102, 0, 218) -0.095em -0.05em 0px";
-      title.style.letterSpacing = "0.05em";
-      title.style.fontFamily = "Finger Paint";
-    } else {
-      const backBtn = document.createElement("button");
-      backBtn.style.cssText = "cursor: pointer; background: none; border: none;";
-      backBtn.append(createElement(ChevronLeft));
-      backBtn.addEventListener("click", () => {
-        setQAMSubscreen(quickMenuSubscreens[0]);
-      });
-      header.append(backBtn);
-    }
-    header.append(title);
-    container.append(header);
-    if (s4.description) container.append(quickMenuBuilder.buildDescription(s4.description));
-    s4.load(container);
-    currentSubscreen = s4;
+    s5.load(container);
+    currentSubscreen = s5;
   }
   function toggleFeature(id) {
     modStorage.qam ??= {};
@@ -28464,924 +29901,93 @@ One of mods you are using is using an old version of SDK. It will work for now b
     if (modStorage.qam.enabledFeatures.includes(char)) {
       modStorage.qam.enabledFeatures = modStorage.qam.enabledFeatures.replaceAll(char, "");
     } else modStorage.qam.enabledFeatures += String.fromCharCode(id);
-    setQAMSubscreen(quickMenuSubscreens[0]);
+    setQAMSubscreen4(new MainQAMSubscreen());
   }
   function isFeatureEnabled(id) {
     const char = String.fromCharCode(id);
     return modStorage.qam?.enabledFeatures?.includes(char);
   }
-  var quickMenuSubscreens = [
-    {
-      name: "BONDAGE CLUB CHAOS",
-      load: (container) => {
-        const searchInput = document.createElement("input");
-        searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
-        searchInput.placeholder = "Search...";
-        searchInput.addEventListener("input", () => {
-          setItems(
-            quickMenuItems.filter((i8) => isFeatureEnabled(i8.id) && i8.name.toLowerCase().includes(searchInput.value.toLowerCase()))
-          );
-        });
-        container.append(searchInput);
-        const buttonsContainer = document.createElement("div");
-        buttonsContainer.style.cssText = "max-height: 50vh; overflow-y: auto; scrollbar-width: none;";
-        container.append(buttonsContainer);
-        const setItems = (items2) => {
-          buttonsContainer.innerHTML = "";
-          items2.forEach((b3) => {
-            const btn = document.createElement("button");
-            Q(btn, {
-              base: {
-                display: "flex",
-                alignItems: "center",
-                columnGap: "0.45em",
-                cursor: "pointer",
-                fontSize: "clamp(10px, 10vw, 30px)",
-                background: "none",
-                border: "none",
-                padding: "0.25em",
-                borderTop: "1px solid #e5e5e5",
-                width: "100%"
-              },
-              hover: {
-                background: "#eeeeee"
-              }
-            });
-            const detailsContainer = document.createElement("div");
-            detailsContainer.style.cssText = "display: flex; flex-direction: column; align-items: flex-start; row-gap: 4px;";
-            const name = document.createElement("span");
-            name.style.fontSize = "clamp(10px, 5vw, 22px)";
-            name.textContent = b3.name;
-            const description = document.createElement("span");
-            description.style.fontSize = "clamp(8px, 1vw, 16px)";
-            description.style.color = "#878787";
-            description.style.maxWidth = "calc(340px - clamp(10px, 8vw, 35px) - 0.45em)";
-            description.style.whiteSpace = "nowrap";
-            description.style.overflow = "clip";
-            description.style.textOverflow = "ellipsis";
-            description.style.padding = "2px";
-            description.textContent = quickMenuSubscreens.find((s4) => s4.name === b3.name)?.description;
-            const icon = createElement(b3.icon);
-            icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
-            btn.addEventListener("click", () => {
-              const subscreen = quickMenuSubscreens.find((s4) => s4.name === b3.name);
-              if (!subscreen) return console.warn(`Subscreen "${b3.name}" is not exists`);
-              qamScrollTop = buttonsContainer.scrollTop;
-              setQAMSubscreen(subscreen);
-            });
-            detailsContainer.append(name, description);
-            btn.append(icon, detailsContainer);
-            buttonsContainer.append(btn);
-          });
-        };
-        const items = quickMenuItems.filter((i8) => isFeatureEnabled(i8.id));
-        if (items.length === 0) {
-          const p4 = document.createElement("p");
-          p4.innerHTML = "You don't have any features enabled.<br>Configure it in QAM settings.";
-          p4.style.margin = "1.5em auto";
-          p4.style.background = "#f6f1ff";
-          p4.style.padding = "0.65em";
-          p4.style.border = "2px solid #eee5ff";
-          p4.style.borderRadius = "4px";
-          container.append(p4);
-        } else setItems(items);
-        const footer = document.createElement("div");
-        footer.style.cssText = "display: flex; align-items: center; justify-content: space-between; padding: 0.65em; background: rgb(247, 242, 255); border-top: 2px solid #e8e8e8;";
-        const server = document.createElement("div");
-        server.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; background: rgb(227, 210, 255); border-radius: 0.65em; padding: 0.65em; font-weight: bold;";
-        const ping = document.createElement("div");
-        ping.style.cssText = "padding: 4px; background: #cabaefe8; border-radius: 6px; font-size: 0.8em;";
-        ping.textContent = serverPing + "ms";
-        const settingsBtn = createElement(Settings, { stroke: "rgb(126, 99, 182)", height: "2em", width: "2em" });
-        Q(settingsBtn, {
-          base: {
-            cursor: "pointer",
-            background: "rgb(229, 208, 255)",
-            padding: "0.25em",
-            borderRadius: "4px"
-          },
-          hover: {
-            background: "rgb(223, 199, 252)"
-          }
-        });
-        settingsBtn.addEventListener("click", async () => {
-          await PreferenceOpenSubscreen("Extensions");
-          await PreferenceSubscreenExtensionsOpen(m.key, ["Online", "ChatRoom"]);
-          R(new MainSubscreen(true));
-        });
-        server.append(getServer(), ping);
-        footer.append(server, settingsBtn);
-        container.append(footer);
-        if (qamScrollTop) buttonsContainer.scroll({ top: qamScrollTop });
-      }
-    },
-    {
-      name: "Toggle Invisibility",
-      description: "Toggle target's invisibility state",
-      load: (d4) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const btn = quickMenuBuilder.buildButton("Toggle Invisibility");
-        btn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          if (!isAllowScripts(target).hide) {
-            if (target.IsPlayer()) {
-              return Q2.error({
-                title: "You don't allow to use scripts on yourself",
-                message: `Enable "hide" option in the scripts settings`,
-                duration: 7e3
-              });
-            } else {
-              return Q2.error({
-                message: `${N3(
-                  target
-                )} doesn't allow you to modify appearance using scripts`,
-                duration: 6e3
-              });
-            }
-          }
-          if (!InventoryGet(target, "ItemScript")) {
-            const itemScript = InventoryWear(target, "Script", "ItemScript");
-            itemScript.Property = {
-              Hide: AssetGroup.filter((a5) => a5.Name !== "ItemScript").map((a5) => a5.Name)
-            };
-            ChatRoomCharacterUpdate(target);
-            Q2.success({
-              message: `You have successfully activated invisibility for ${N3(
-                target
-              )}!`,
-              duration: 6e3
-            });
-          } else {
-            InventoryRemove(target, "ItemScript");
-            ChatRoomCharacterUpdate(target);
-            Q2.success({
-              message: `You have successfully deactivated invisibility for ${N3(
-                target
-              )}!`,
-              duration: 6e3
-            });
-          }
-        });
-        d4.append(select, btn);
-      }
-    },
-    {
-      name: "Poses Manager",
-      description: "Change target's pose, y position",
-      load: (container) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-          I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
-          I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
-            createPosesContainer("BodyUpper"),
-            createPosesContainer("BodyLower"),
-            createPosesContainer("BodyFull")
-          );
-        });
-        const createPosesContainer = (category) => {
-          const container2 = document.createElement("div");
-          container2.style.cssText = "display: flex; gap: calc(0.5 * min(2dvh, 1dvw)); margin: 0.25em 1em;";
-          PoseFemale3DCG.filter((p4) => p4.Category === category && (p4.AllowMenu || p4.AllowMenuTransient)).forEach((p4) => {
-            const btn = document.createElement("button");
-            Q(btn, {
-              base: {
-                cursor: "pointer",
-                width: "3em",
-                aspectRatio: "1/1",
-                background: "none",
-                border: "2px solid #d2d2d2",
-                borderRadius: "8px"
-              },
-              hover: {
-                borderColor: "#ad68ff"
-              }
-            });
-            if (target.Pose.includes(p4.Name)) {
-              btn.style.borderColor = "#ad68ff";
-            }
-            btn.addEventListener("click", () => {
-              if (!ServerChatRoomGetAllowItem(Player, target)) {
-                return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-              }
-              PoseSetActive(target, p4.Name);
-              ChatRoomCharacterUpdate(target);
-              I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
-              I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
-                createPosesContainer("BodyUpper"),
-                createPosesContainer("BodyLower"),
-                createPosesContainer("BodyFull")
-              );
-            });
-            const image = document.createElement("img");
-            image.src = `Icons/Poses/${p4.Name}.png`;
-            image.style.cssText = "width: 80%; height: auto;";
-            btn.append(image);
-            container2.append(btn);
-          });
-          return container2;
-        };
-        const I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE = document.createElement("div");
-        I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
-          createPosesContainer("BodyUpper"),
-          createPosesContainer("BodyLower"),
-          createPosesContainer("BodyFull")
-        );
-        const suspenseBtn = quickMenuBuilder.buildButton("Suspense");
-        ;
-        suspenseBtn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          PoseSetActive(target, "Suspension");
-          ChatRoomCharacterUpdate(target);
-          I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.innerHTML = "";
-          I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE.append(
-            createPosesContainer("BodyUpper"),
-            createPosesContainer("BodyLower"),
-            createPosesContainer("BodyFull")
-          );
-        });
-        const overrideHeight = (h6) => {
-          const emoticon = InventoryGet(target, "Emoticon");
-          if (h6 === null) {
-            delete emoticon.Property?.OverrideHeight;
-          } else {
-            emoticon.Property ??= {};
-            const height = emoticon.Property.OverrideHeight?.Height ?? 0;
-            emoticon.Property.OverrideHeight = { Height: height + h6 };
-          }
-          ChatRoomCharacterUpdate(target);
-        };
-        const heightOverrideControls = document.createElement("div");
-        heightOverrideControls.style.cssText = "display: flex; justify-content: center; column-gap: 0.65em; margin-top: 0.25em; margin-bottom: 0.65em;";
-        const dynamicClass = {
-          base: {
-            cursor: "pointer",
-            aspectRatio: "1/1",
-            width: "10%",
-            background: "white",
-            border: "2px solid #d2d2d2",
-            borderRadius: "50%"
-          },
-          hover: {
-            borderColor: "#ad68ff"
-          }
-        };
-        const downBtn = document.createElement("button");
-        Q(downBtn, dynamicClass);
-        downBtn.append(createElement(ArrowDown));
-        downBtn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          overrideHeight(-10);
-        });
-        const resetBtn = document.createElement("button");
-        Q(resetBtn, {
-          base: {
-            cursor: "pointer",
-            padding: "0.25em 0.75em",
-            border: "none",
-            background: "#d3d3d3ff",
-            borderRadius: "4px"
-          },
-          hover: {
-            background: "#c3c3c3ff"
-          }
-        });
-        resetBtn.textContent = "Reset";
-        resetBtn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          overrideHeight(null);
-        });
-        const upBtn = document.createElement("button");
-        Q(upBtn, dynamicClass);
-        upBtn.append(createElement(ArrowUp));
-        upBtn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          overrideHeight(10);
-        });
-        heightOverrideControls.append(downBtn, resetBtn, upBtn);
-        container.append(select, I_DONT_KNOW_HOW_TO_NAME_THIS_VARIABLE, suspenseBtn, heightOverrideControls);
-      }
-    },
-    {
-      name: "Import Appearance",
-      description: "Import appearance on target using base64 outfit code",
-      load: (container) => {
-        let target = Player;
-        const input = quickMenuBuilder.buildInput("Code");
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const btn = quickMenuBuilder.buildButton("Import Appearance");
-        btn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          try {
-            I3(
-              target,
-              N4(target.AssetFamily, JSON.parse(LZString.decompressFromBase64(input.value)))
-            );
-            Q2.success({
-              message: `Appearance was successfully imported on ${N3(target)}`,
-              duration: 4e3
-            });
-          } catch {
-            Q2.error({
-              title: "Oops!",
-              message: "Error occurred while trying to import appearance",
-              duration: 5e3
-            });
-          }
-        });
-        container.append(input, select, btn);
-      }
-    },
-    {
-      name: "Export Appearance",
-      description: "Copy target's appearance to clipboard in utf-16 or base64 format",
-      load: (container) => {
-        let format = "base64";
-        let target = Player;
-        const formatSelect = quickMenuBuilder.buildSelect({
-          options: [
-            {
-              name: "utf-16",
-              text: "UTF-16 (Not safe)"
-            },
-            {
-              name: "btoa",
-              text: "BTOA (UBC)"
-            },
-            {
-              name: "base64",
-              text: "Base64 (Most mods)"
-            }
-          ],
-          currentOption: "base64",
-          onChange: (value) => {
-            format = value;
-          }
-        });
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const btn = quickMenuBuilder.buildButton("Copy to clipboard");
-        btn.addEventListener("click", async () => {
-          if (isBannedBy(target)) return Q2.error({
-            title: "Denied",
-            message: "You are blacklisted or ghosted by this player",
-            duration: 4500
-          });
-          const stringifiedAppearance = JSON.stringify(ServerAppearanceBundle(target.Appearance));
-          let clipboardResult;
-          if (format === "base64") {
-            clipboardResult = LZString.compressToBase64(stringifiedAppearance);
-          } else if (format === "utf-16") {
-            clipboardResult = LZString.compressToUTF16(stringifiedAppearance);
-          } else {
-            clipboardResult = btoa(encodeURI(stringifiedAppearance));
-          }
-          try {
-            await navigator.clipboard.writeText(clipboardResult);
-            Q2.success({
-              message: "Code was copied to your clipboard",
-              duration: 3e3
-            });
-          } catch (e2) {
-            const error = e2;
-            Q2.error({
-              title: error.name,
-              message: error.message,
-              duration: 8e3
-            });
-          }
-        });
-        container.append(formatSelect, select, btn);
-      }
-    },
-    {
-      name: "Leave Room",
-      description: "Forcibly leave chat room",
-      load: (container) => {
-        const btn = quickMenuBuilder.buildButton("Leave Room");
-        btn.addEventListener("click", () => {
-          if (!ServerPlayerIsInChatRoom()) return;
-          ChatRoomLeave();
-          CommonSetScreen("Online", "ChatSearch");
-        });
-        container.append(btn);
-      }
-    },
-    {
-      name: "Total Release",
-      description: "Release target from all items except for clothing and slave collar",
-      load: (container) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const btn = quickMenuBuilder.buildButton("Total Release");
-        btn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          CharacterReleaseTotal(target, true);
-          Q2.success({
-            message: `${N3(target)} was completely released`,
-            duration: 4e3
-          });
-        });
-        container.append(select, btn);
-      }
-    },
-    {
-      name: "Release",
-      description: "Release target from certain items",
-      load: (container) => {
-        let target = Player;
-        let itemGroup = "ItemNeck";
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-          itemSelectContainer.innerHTML = "";
-          createItemSelect();
-        });
-        const itemSelectContainer = document.createElement("div");
-        const createItemSelect = () => {
-          const options = target.Appearance.filter((a5) => a5.Asset.Group.Name.startsWith("Item") && !!InventoryGet(target, a5.Asset.Group.Name)).map((a5) => ({ name: a5.Asset.Group.Name, text: a5.Asset.Description }));
-          const select2 = quickMenuBuilder.buildSelect({
-            options,
-            currentOption: options[0]?.name,
-            onChange: (value) => {
-              itemGroup = value;
-            }
-          });
-          itemSelectContainer.append(select2);
-        };
-        const btn = quickMenuBuilder.buildButton("Release");
-        btn.addEventListener("click", () => {
-          if (!ServerChatRoomGetAllowItem(Player, target)) {
-            return Q2.error({ message: "Interactions are not allowed", duration: 3e3 });
-          }
-          InventoryRemove(target, itemGroup, true);
-          ChatRoomCharacterUpdate(target);
-          Q2.success({
-            message: `Successfully released ${N3(target)}'s ${itemGroup}`,
-            duration: 4e3
-          });
-        });
-        createItemSelect();
-        container.append(select, itemSelectContainer, btn);
-      }
-    },
-    {
-      name: "Map Teleport",
-      description: "Teleport to certain character on map",
-      load: (container) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const btn = quickMenuBuilder.buildButton("Map Teleport");
-        btn.addEventListener("click", () => {
-          if (!Player.MapData) Player.MapData = {};
-          const x6 = target.MapData?.Pos?.X;
-          const y5 = target.MapData?.Pos?.Y;
-          if (!x6 || !y5) return;
-          ;
-          Player.MapData.Pos = {
-            X: x6,
-            Y: y5
-          };
-          ChatRoomMapViewMovement = {
-            X: x6,
-            Y: y5,
-            TimeStart: CommonTime(),
-            TimeEnd: CommonTime(),
-            Direction: "East"
-          };
-          g2.sendLocal(
-            `You were successfully teleported to ${N3(target)}`
-          );
-        });
-        container.append(select, btn);
-      }
-    },
-    {
-      name: "Clone",
-      description: "Copy target's appearance, nickname, label's color and expressions. With the opportunity to return to your original appearance.",
-      load: (container) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((C4) => {
-          target = C4;
-        });
-        const cloneBtn = quickMenuBuilder.buildButton("Clone");
-        const backupBtn = quickMenuBuilder.buildButton("Backup");
-        backupBtn.addEventListener("click", () => {
-          if (!modStorage.qam?.cloneBackup) return Q2.error({
-            message: "You don't have backup",
-            duration: 3e3
-          });
-          Player.Nickname = modStorage.qam.cloneBackup.nickName;
-          Player.LabelColor = modStorage.qam.cloneBackup.labelColor;
-          PoseSetActive(Player, modStorage.qam.cloneBackup.activePose[0]);
-          CharacterSetFacialExpression(Player, "Emoticon", modStorage.qam.cloneBackup.emoticon?.expression, null, modStorage.qam.cloneBackup.emoticon?.color);
-          CharacterSetFacialExpression(Player, "Blush", modStorage.qam.cloneBackup.blush?.expression);
-          ServerAppearanceLoadFromBundle(
-            Player,
-            Player.AssetFamily,
-            JSON.parse(LZString.decompressFromBase64(modStorage.qam.cloneBackup.appearance)),
-            Player.MemberNumber
-          );
-          ServerSend("AccountUpdate", {
-            Nickname: Player.Nickname,
-            LabelColor: Player.LabelColor
-          });
-          ChatRoomCharacterUpdate(Player);
-          Q2.success({
-            message: `You have successfully canceled the cloning effect!`,
-            duration: 4500
-          });
-          delete modStorage.qam.cloneBackup;
-          syncStorage();
-        });
-        cloneBtn.addEventListener("click", () => {
-          if (isBannedBy(target)) return Q2.error({
-            title: "Denied",
-            message: "You are blacklisted or ghosted by this player",
-            duration: 4500
-          });
-          modStorage.qam ??= {};
-          if (!modStorage.qam.cloneBackup) {
-            modStorage.qam.cloneBackup = {
-              nickName: N3(Player),
-              labelColor: Player.LabelColor,
-              emoticon: {
-                expression: InventoryGet(Player, "Emoticon")?.Property?.Expression,
-                // color: InventoryGet(Player, "Emoticon")?.Property?.Color
-                color: ""
-              },
-              blush: {
-                expression: InventoryGet(Player, "Blush")?.Property?.Expression
-              },
-              appearance: LZString.compressToBase64(JSON.stringify(ServerAppearanceBundle(Player.Appearance))),
-              activePose: [...Player.ActivePose]
-            };
-            syncStorage();
-          }
-          Player.Nickname = N3(target);
-          Player.LabelColor = target.LabelColor;
-          PoseSetActive(Player, target.ActivePose[0]);
-          CharacterSetFacialExpression(Player, "Emoticon", InventoryGet(target, "Emoticon")?.Property?.Expression, null, InventoryGet(target, "Emoticon")?.Property?.Color);
-          CharacterSetFacialExpression(Player, "Blush", InventoryGet(target, "Blush")?.Property?.Expression);
-          ServerAppearanceLoadFromBundle(
-            Player,
-            Player.AssetFamily,
-            ServerAppearanceBundle(target.Appearance),
-            Player.MemberNumber
-          );
-          ServerSend("AccountUpdate", {
-            Nickname: Player.Nickname,
-            LabelColor: Player.LabelColor
-          });
-          ChatRoomCharacterUpdate(Player);
-          Q2.success({
-            message: `You were successfully cloned ${N3(target)}`,
-            duration: 4500
-          });
-        });
-        container.append(select, cloneBtn, backupBtn);
-      }
-    },
-    {
-      name: "View Card Decks",
-      description: "View target's decks of cards",
-      load: (container) => {
-        let target = Player;
-        let deckIndex = 0;
-        const select = quickMenuBuilder.buildCharacterSelect((_target) => {
-          target = _target;
-          refreshContent();
-        });
-        const contentContainer = document.createElement("div");
-        const createCard = (card) => {
-          const cardName = card.Name;
-          const requiredLevel = card.RequiredLevel ? card.RequiredLevel : 1;
-          const colors = ["", "white", "#a6a4a4", "#9be09b", "#b4b4f0", "#ed8e8e"];
-          const img = document.createElement("img");
-          img.style.cssText = `width: 2.5em; height: 5em; background: ${colors[requiredLevel]}; padding: 4px; border: 2px solid black;`;
-          img.src = card.Type === "Event" ? `https://www.bondage-europe.com/${GameVersion}/BondageClub/Screens/MiniGame/ClubCard/Event/${cardName}.png` : `https://www.bondage-europe.com/${GameVersion}/BondageClub/Screens/MiniGame/ClubCard/Member/${cardName}.png`;
-          return img;
-        };
-        const undoBundle = (bundle) => {
-          const result = [];
-          for (const entrie of bundle.split("")) {
-            const cardId = entrie.charCodeAt(0);
-            const card = ClubCardList.find((c7) => c7.ID === cardId);
-            if (!card) continue;
-            result.push(card);
-          }
-          return result;
-        };
-        const refreshContent = () => {
-          contentContainer.innerHTML = "";
-          deckIndex = 0;
-          const select2 = quickMenuBuilder.buildSelect({
-            options: target.Game.ClubCard?.Deck?.map((_4, i8) => ({ name: i8.toString(), text: target?.Game?.ClubCard?.DeckName?.[i8] || `Deck #${i8}` }))?.filter((n5) => !!target?.Game?.ClubCard?.Deck?.[parseInt(n5.name, 10)]),
-            currentOption: deckIndex.toString(),
-            onChange: (value) => {
-              deckIndex = parseInt(value, 10);
-              const selectedDeck2 = undoBundle(target.Game?.ClubCard?.Deck?.[deckIndex] ?? "");
-              cardsContainer.innerHTML = "";
-              cardsContainer.append(...selectedDeck2.map(createCard));
-            }
-          });
-          const cardsContainer = document.createElement("div");
-          cardsContainer.style.cssText = "display: flex; flex-wrap: wrap; gap: 0.25em; overflow-y: scroll; max-height: 50vh; margin: 0.25em 1em;";
-          const selectedDeck = undoBundle(target.Game?.ClubCard?.Deck?.[deckIndex] ?? "");
-          cardsContainer.append(...selectedDeck.map(createCard));
-          contentContainer.append(select2, cardsContainer);
-        };
-        refreshContent();
-        container.append(select, contentContainer);
-      }
-    },
-    {
-      name: "Cast Spell",
-      description: "Cast dark magic spell",
-      load: (container) => {
-        if ((modStorage.darkMagic?.spells ?? []).length === 0) {
-          const message = document.createElement("p");
-          message.style.cssText = "margin: 1.65em auto; font-weight: bold;";
-          message.textContent = "You don't have any spells to cast";
-          container.append(message);
-          return;
-        }
-        function dataURLToSVGElement(dataURL) {
-          const svgEncoded = dataURL.replace("data:image/svg+xml,", "");
-          const svgString = decodeURIComponent(svgEncoded);
-          const div = document.createElement("div");
-          div.innerHTML = svgString;
-          return div.firstElementChild;
-        }
-        let target = Player;
-        let spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells[0]));
-        const select = quickMenuBuilder.buildCharacterSelect((_target) => {
-          target = _target;
-        });
-        const _select = quickMenuBuilder.buildSelect({
-          options: modStorage.darkMagic?.spells?.map((s4) => ({ name: s4.name, text: s4.name, icon: dataURLToSVGElement(getSpellIcon(s4.icon).dataurl) })),
-          currentOption: modStorage.darkMagic?.spells?.[0]?.name,
-          onChange: (value) => {
-            spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells.find((s4) => s4.name === value)));
-            addDefaultParametersIfNeeds(spell);
-            refreshParamtersContainer();
-          }
-        });
-        const paramters = document.createElement("div");
-        paramters.style.cssText = "display: flex; flex-direction: column; row-gap: 0.5em; border: 3px dashed #dcccffff; border-radius: 4px; padding: 0.5em 0; margin: 0.5em auto; width: 90%;";
-        function refreshParamtersContainer() {
-          paramters.innerHTML = "";
-          const title = document.createElement("p");
-          title.style.cssText = "margin: 0.65em auto; width: 90%; font-weight: bold; font-size: 0.85em; color: #9977d0;";
-          title.textContent = "Parameters";
-          paramters.append(title);
-          for (const c7 of spell.effects.split("")) {
-            const effect = getSpellEffect(c7.charCodeAt(0));
-            if (effect.parameters.length === 0) continue;
-            const effectName = document.createElement("p");
-            effectName.style.cssText = "margin: 0.6em auto 0 auto; width: 90%;";
-            effectName.textContent = effect.name;
-            paramters.append(effectName);
-            for (const parameter of effect.parameters) {
-              const value = spell.data?.[c7]?.[parameter.name];
-              switch (parameter.type) {
-                case "boolean": {
-                  const checkbox = document.createElement("label");
-                  checkbox.style.cssText = "margin: auto; width: 90%;";
-                  const input = document.createElement("input");
-                  input.type = "checkbox";
-                  if (typeof value === "boolean") input.checked = value;
-                  input.addEventListener("change", () => {
-                    spell.data[c7][parameter.name] = input.checked;
-                  });
-                  checkbox.append(input, parameter.label);
-                  paramters.append(checkbox);
-                  break;
-                }
-                case "choice":
-                  paramters.append(
-                    quickMenuBuilder.buildSelect({
-                      options: parameter.options,
-                      currentOption: parameter.options.find((o4) => o4.name === value)?.name ?? parameter.options[0].name,
-                      onChange: (_value) => {
-                        spell.data[c7][parameter.name] = _value;
-                      }
-                    })
-                  );
-                  break;
-                case "number": {
-                  const input = quickMenuBuilder.buildInput(parameter.label);
-                  input.type = "number";
-                  if (typeof value === "number") input.value = value.toString();
-                  if (parameter.min) input.min = parameter.min.toString();
-                  if (parameter.min) input.max = parameter.max.toString();
-                  input.addEventListener("input", () => {
-                    spell.data[c7][parameter.name] = parseInt(input.value, 10);
-                  });
-                  paramters.append(input);
-                  break;
-                }
-                case "text": {
-                  const input = quickMenuBuilder.buildInput(parameter.label);
-                  if (typeof value === "string") input.value = value;
-                  input.addEventListener("input", () => {
-                    spell.data[c7][parameter.name] = input.value;
-                  });
-                  paramters.append(input);
-                  break;
-                }
-              }
-            }
-          }
-          if (paramters.children.length === 1) paramters.style.display = "none";
-          else paramters.style.display = "flex";
-        }
-        const btn = quickMenuBuilder.buildButton("Cast Spell");
-        btn.addEventListener("click", async () => {
-          if (!spell) return;
-          if (!Player.CanInteract()) {
-            return Q2.error({ message: "You can't interact", duration: 3e3 });
-          }
-          if (!isMagicItem(InventoryGet(Player, "ItemHandheld"))) {
-            return Q2.error({
-              message: "You should hold magic item in your hand to cast spells",
-              duration: 5e3
-            });
-          }
-          const allow = allowSpellCast(Player, target, spell);
-          if (allow.result === false) {
-            return Q2.error({
-              title: "Can't cast this spell",
-              message: allow.reason,
-              duration: 5e3
-            });
-          }
-          const { isValid } = await c4({
-            spell
-          }, CastSpellMessageDto);
-          if (!isValid) {
-            return Q2.error({
-              title: "Spell validation failed",
-              message: "Check spell's settings and make sure that everything is specified correctly",
-              duration: 5e3
-            });
-          }
-          castSpell(target, spell);
-        });
-        refreshParamtersContainer();
-        container.append(select, _select, paramters, btn);
-      }
-    },
-    {
-      name: "Put Locks",
-      description: "Put lock on target's all items",
-      load: (container) => {
-        let target = Player;
-        const locks = AssetGroupGet(Player.AssetFamily, "ItemMisc").Asset.filter((item) => item.Name?.endsWith("Padlock"));
-        let lock = locks[0].Name;
-        const select = quickMenuBuilder.buildCharacterSelect((_target) => {
-          target = _target;
-        });
-        const _select = quickMenuBuilder.buildSelect({
-          options: locks.map((l6) => ({ name: l6.Name, text: l6.Description })),
-          currentOption: locks[0].Name,
-          onChange: (value) => {
-            lock = value;
-          }
-        });
-        const btn = quickMenuBuilder.buildButton("Put Locks");
-        btn.addEventListener("click", () => {
-          InventoryFullLock(target, lock);
-          ChatRoomCharacterUpdate(target);
-          Q2.success({
-            message: `You have successfully locked every item on ${N3(target)}'s body`,
-            duration: 4500
-          });
-        });
-        container.append(select, _select, btn);
-      }
-    },
-    {
-      name: "Remove Locks",
-      description: "Remove all locks from target's body",
-      load: (container) => {
-        let target = Player;
-        const select = quickMenuBuilder.buildCharacterSelect((_target) => {
-          target = _target;
-        });
-        const btn = quickMenuBuilder.buildButton("Remove Locks");
-        btn.addEventListener("click", () => {
-          for (const a5 of Player.Appearance) {
-            if (InventoryGetLock(a5)) InventoryUnlock(target, a5);
-          }
-          ChatRoomCharacterUpdate(target);
-          Q2.success({
-            message: `You have successfully unlocked every item on ${N3(target)}'s body`,
-            duration: 4500
-          });
-        });
-        container.append(select, btn);
-      }
-    }
-  ];
-  var quickMenuItems = [
+  var qamFeatures = [
     {
       id: 1e3,
-      name: "Toggle Invisibility",
+      subscreen: new ToggleInvisibilityQAMSubscreen(),
       icon: HatGlasses
     },
     {
       id: 1001,
-      name: "Poses Manager",
+      subscreen: new PosesManagerQAMSubscreen(),
       icon: PersonStanding
     },
     {
       id: 1002,
-      name: "Import Appearance",
+      subscreen: new ImportAppearanceQAMSubscreen(),
       icon: ClipboardPaste
     },
     {
       id: 1003,
-      name: "Export Appearance",
+      subscreen: new ExportAppearanceQAMSubscreen(),
       icon: ClipboardCopy
     },
     {
       id: 1004,
-      name: "Leave Room",
+      subscreen: new LeaveRoomQAMSubscreen(),
       icon: LogOut
     },
     {
       id: 1005,
-      name: "Total Release",
+      subscreen: new TotalReleaseQAMSubscreen(),
       icon: ShieldAlert
     },
     {
       id: 1006,
-      name: "Release",
+      subscreen: new ReleaseQAMSubscreen(),
       icon: ShieldMinus
     },
     {
       id: 1007,
-      name: "Map Teleport",
+      subscreen: new MapTeleportQAMSubscreen(),
       icon: MapPinned
     },
     {
       id: 1008,
-      name: "Clone",
+      subscreen: new CloneQAMSubscreen(),
       icon: CopyPlus
     },
     {
       id: 1009,
-      name: "View Card Decks",
+      subscreen: new ViewCardDecksQAMSubscreen(),
       icon: Eye
     },
     {
       id: 1010,
-      name: "Cast Spell",
+      subscreen: new CastSpellQAMSubscreen(),
       icon: Wand
     },
     {
       id: 1011,
-      name: "Put Locks",
+      subscreen: new PutLocksQAMSubscreen(),
       icon: Lock
     },
     {
       id: 1012,
-      name: "Remove Locks",
+      subscreen: new RemoveLocksQAMSubscreen(),
       icon: LockOpen
+    },
+    {
+      id: 1013,
+      subscreen: new AVQS_QAMSubscreen(),
+      icon: GitCompareArrows,
+      isBeta: true
     }
   ];
-  function createQuickMenu() {
+  function createQAMButton() {
     const menuButton = document.createElement("button");
     menuButton.classList.add("bccQAMButton");
     const icon = document.createElement("img");
     icon.src = mouthWatering_default;
     menuButton.append(icon);
     document.body.append(menuButton);
-    new Draggable(menuButton);
+    new QAMButton(menuButton, menuButton);
     if (typeof localStorage.getItem === "function") {
       const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
       if (pos) {
@@ -29398,13 +30004,91 @@ One of mods you are using is using an old version of SDK. It will work for now b
     const res = await fetch(window.location.href);
     if (res.status < 400) serverPing = Date.now() - d1;
   }
+  var commits = /* @__PURE__ */ new Map();
+  var commitsBehindCount = /* @__PURE__ */ new Map();
+  function addCommit(sourceCharacter, targetCharacter) {
+    const _commits = commits.get(targetCharacter.MemberNumber) ?? [];
+    const prevCommit = _commits[0];
+    const seed = I3.getSeed(targetCharacter.Appearance);
+    if (!prevCommit) {
+      _commits.unshift({
+        bundle: {
+          seed,
+          content: ServerAppearanceBundle(targetCharacter.Appearance)
+        },
+        type: "initial"
+      });
+    } else {
+      const prevSeed = prevCommit.bundle.seed;
+      if (prevSeed === seed) return;
+      const revertCommitsFollowingThisCommit = _commits.find((c7) => c7.bundle.seed === seed);
+      _commits.unshift({
+        bundle: {
+          seed,
+          content: ServerAppearanceBundle(targetCharacter.Appearance),
+          difference: I3.getDifference(v("Female3DCG", prevCommit.bundle.content), targetCharacter.Appearance)
+        },
+        sourceCharacter: {
+          name: CharacterNickname(sourceCharacter),
+          memberNumber: sourceCharacter.MemberNumber
+        },
+        timestamp: Date.now(),
+        type: revertCommitsFollowingThisCommit ? "revert" : "push"
+      });
+    }
+    commits.set(targetCharacter.MemberNumber, _commits);
+  }
   function loadQuickAccessMenu() {
-    if (modStorage.qam?.enabled) createQuickMenu();
+    if (modStorage.qam?.enabled) createQAMButton();
     pingServer();
+    addCommit(Player, Player);
+    commitsBehindCount.set(Player.MemberNumber, 0);
+    if (ServerPlayerIsInChatRoom()) {
+      ChatRoomCharacter.forEach((C4) => {
+        if (!C4.IsPlayer()) addCommit(null, C4);
+      });
+    }
     setInterval(() => {
       if (!currentSubscreen || currentSubscreen.name !== "BONDAGE CLUB CHAOS") return;
       pingServer();
     }, 1e4);
+    c3("ChatRoomCharacterItemUpdate", d.OBSERVE, (args, next) => {
+      next(args);
+      const [target, group] = args;
+      addCommit(Player, target);
+    });
+    c3("ChatRoomSyncItem", d.OBSERVE, (args, next) => {
+      next(args);
+      const [data] = args;
+      const item = data?.Item;
+      const target1 = N2(data?.Source);
+      const target2 = N2(item?.Target);
+      if (!target1 || !target2) return;
+      addCommit(target1, target2);
+    });
+    c3("ChatRoomSyncSingle", d.OBSERVE, (args, next) => {
+      next(args);
+      const [data] = args;
+      const target1 = N2(data?.SourceMemberNumber);
+      const target2 = N2(data?.Character?.MemberNumber);
+      if (!target1 || !target2) return;
+      addCommit(target1, target2);
+    });
+    c3("ChatRoomSync", d.OBSERVE, async (args, next) => {
+      await next(args);
+      const [data] = args;
+      const playerCommits = commits.get(Player.MemberNumber);
+      commits.clear();
+      commits.set(Player.MemberNumber, playerCommits);
+      ChatRoomCharacter.forEach((C4) => {
+        if (!C4.IsPlayer()) addCommit(null, C4);
+      });
+    });
+    c3("ChatRoomSyncMemberJoin", d.OBSERVE, (args, next) => {
+      next(args);
+      const [data] = args;
+      addCommit(null, N2(data.SourceMemberNumber));
+    });
   }
 
   // src/modules/storage.ts
@@ -29417,10 +30101,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
     if (modStorage.version === "1.8.7") {
       modStorage = { version };
       const legacyData = LZString.decompressFromBase64(Player.ExtensionSettings.BCC);
-      p(() => !!document.getElementById("TextAreaChatLog")).then(() => {
+      h2(() => !!document.getElementById("TextAreaChatLog")).then(() => {
         g2.sendLocal("Legacy BCC Data: " + legacyData);
         g2.sendLocal("I get a lot of legacy BCC's error reports, so I decided to release new version sooner than necessary. Most of the functions was migrated, and those that I did not manage to migrate will be added later.");
       });
+    }
+    if (w3(version, modStorage.version)) {
+      Q2.info({
+        title: "BCC was updated",
+        message: "You can read the changelog in QAM",
+        duration: 6e3
+      });
+      modStorage.version = version;
     }
     syncStorage();
     g2.onPacket("syncStorage", (data, sender) => {
@@ -29471,8 +30163,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
     const noItemsFilter = (item) => !item.Group.startsWith("Item");
     const restraintsFilter = (item) => InventoryGet(Player, item.Group)?.Asset?.IsRestraint;
     const noRestraintsFilter = (item) => !InventoryGet(Player, item.Group)?.Asset?.IsRestraint;
-    const clothesFilter = (item) => y2(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
-    const noClothesFilter = (item) => i4(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
+    const clothesFilter = (item) => g3(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
+    const noClothesFilter = (item) => u2(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
     let triggered = false;
     const triggers = modStorage.chaosAura?.triggers;
     if (!modStorage.chaosAura?.whiteList?.includes(target.MemberNumber)) {
@@ -29528,9 +30220,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
         });
         setTimeout(() => ServerSend("ChatRoomCharacterPoseUpdate", { Pose: newActivePose }), 500);
         g2.sendAction(
-          `${N3(target)} tried to touch ${N3(
+          `${O2(target)} tried to touch ${O2(
             Player
-          )}, but ${N3(Player)} was protected by some kind of dark aura`
+          )}, but ${O2(Player)} was protected by some kind of dark aura`
         );
         if (modStorage.chaosAura?.retribution && (!targetStorage?.chaosAura?.enabled || !targetStorage?.chaosAura?.triggers?.itemsChange || targetStorage?.chaosAura?.whiteList?.includes(Player.MemberNumber)) && ServerChatRoomGetAllowItem(Player, target)) {
           const items1 = appearance1.filter(itemsFilter).map((item) => JSON.stringify(item));
@@ -29544,7 +30236,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           );
           if (retributionItems.length > 0) {
             g2.sendAction(
-              `Retribution: Used restraints are returned to ${N3(target)}`
+              `Retribution: Used restraints are returned to ${O2(target)}`
             );
             ServerSend("ChatRoomCharacterUpdate", {
               ID: target.AccountName.replace("Online-", ""),
@@ -29559,7 +30251,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     chaosAuraLastData.appearance = newAppearance;
     chaosAuraLastData.pose = newActivePose;
-    await p(() => {
+    await h2(() => {
       return JSON.stringify(
         ServerAppearanceBundle(
           Player.Appearance
@@ -29577,25 +30269,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   function loadChaosAura() {
     if (modStorage.chaosAura?.enabled) updateChaosAuraLastData();
-    c2("ChatRoomCharacterItemUpdate", a.OBSERVE, (args, next) => {
+    c3("ChatRoomCharacterItemUpdate", d.OBSERVE, (args, next) => {
       next(args);
       const [target] = args;
       if (target.IsPlayer()) onPlayerAppearanceChange(Player);
     });
-    c2("ChatRoomSyncItem", a.OBSERVE, (args, next) => {
+    c3("ChatRoomSyncItem", d.OBSERVE, (args, next) => {
       next(args);
       const [data] = args;
       const item = data?.Item;
-      const target1 = T2(data?.Source);
-      const target2 = T2(item?.Target);
+      const target1 = N2(data?.Source);
+      const target2 = N2(item?.Target);
       if (!target1 || !target2) return;
       if (target2.IsPlayer()) onPlayerAppearanceChange(target1);
     });
-    c2("ChatRoomSyncSingle", a.OBSERVE, (args, next) => {
+    c3("ChatRoomSyncSingle", d.OBSERVE, (args, next) => {
       next(args);
       const [data] = args;
-      const target1 = T2(data?.SourceMemberNumber);
-      const target2 = T2(data?.Character?.MemberNumber);
+      const target1 = N2(data?.SourceMemberNumber);
+      const target2 = N2(data?.Character?.MemberNumber);
       if (!target1 || !target2) return;
       if (target2.IsPlayer()) onPlayerAppearanceChange(target1);
     });
@@ -29604,7 +30296,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/subscreens/chaosAuraSubscreen.ts
   var ChaosAuraSubscreen = class extends te {
     get icon() {
-      return createElement(Shell);
+      return createElement4(Shell);
     }
     get name() {
       return "Aura Of Chaos";
@@ -29724,7 +30416,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/subscreens/overlaySubscreen.ts
   var OverlaySubscreen = class extends te {
     get icon() {
-      return createElement(SendToBack);
+      return createElement4(SendToBack);
     }
     get name() {
       return "Overlay";
@@ -29763,7 +30455,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         },
         modules: {
           base: [
-            new i2((target) => {
+            new i((target) => {
               if (target.style.zIndex === "100") target.style.zIndex = "10";
               else target.style.zIndex = "100";
             })
@@ -29788,7 +30480,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         },
         modules: {
           base: [
-            new i2((target) => {
+            new i((target) => {
               if (target.style.zIndex === "100") target.style.zIndex = "10";
               else target.style.zIndex = "100";
             })
@@ -29916,7 +30608,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         effects: "",
         data: {},
         createdBy: {
-          name: N3(Player),
+          name: O2(Player),
           id: Player.MemberNumber
         }
       };
@@ -29934,7 +30626,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     selectedSpellIconElement;
     _oldName;
     get icon() {
-      return createElement(Wand);
+      return createElement4(Wand);
     }
     get name() {
       return "Spell Editor";
@@ -29952,7 +30644,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           width: 500,
           modules: {
             base: [
-              new y({
+              new u({
                 fontWeight: "bold"
               })
             ]
@@ -29977,7 +30669,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             fontSize: 2.5,
             modules: {
               base: [
-                new y({
+                new u({
                   background: "#d18cff",
                   borderRadius: "0.25em",
                   padding: "0.2em 0.65em"
@@ -30018,7 +30710,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           width: 800,
           modules: {
             base: [
-              new y({
+              new u({
                 display: "flex",
                 columnGap: "0.25em"
               })
@@ -30109,7 +30801,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 scroll: "x",
                 modules: {
                   base: [
-                    new y({
+                    new u({
                       display: "flex",
                       gap: "4px"
                     })
@@ -30130,13 +30822,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
                     size: 150,
                     modules: {
                       base: [
-                        new y({
+                        new u({
                           cursor: "pointer",
                           borderRadius: "4px",
                           flexShrink: "0",
                           background: this.spellSettings.icon === icon.name ? "var(--tmd-element, #e6e6e6)" : ""
                         }),
-                        new i({
+                        new y({
                           hover: {
                             background: "var(--tmd-element, #e6e6e6)"
                           },
@@ -30144,7 +30836,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                             padding: "4px"
                           }
                         }),
-                        new i2((target) => {
+                        new i((target) => {
                           this.spellSettings.icon = icon.name;
                           this.selectedSpellIconElement.style.background = "";
                           target.style.background = "var(--tmd-element, #e6e6e6)";
@@ -30155,7 +30847,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   })
                 );
               });
-              this.selectedSpellIconElement = iconsContainer.children[getSpellIcons().findIndex((i8) => i8.name === this.spellSettings.icon)];
+              this.selectedSpellIconElement = iconsContainer.children[getSpellIcons().findIndex((i5) => i5.name === this.spellSettings.icon)];
               if (this.spellSettings.createdBy.id !== Player.MemberNumber) {
                 this.createText({
                   anchor: "bottom-right",
@@ -30176,7 +30868,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 onClick: () => {
                   modStorage.darkMagic ??= {};
                   modStorage.darkMagic.spells ??= [];
-                  const spell = modStorage.darkMagic.spells.find((s4) => s4.name === this._oldName);
+                  const spell = modStorage.darkMagic.spells.find((s5) => s5.name === this._oldName);
                   if (spell) {
                     spell.name = this.spellSettings.name;
                     spell.effects = this.spellSettings.effects;
@@ -30201,7 +30893,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                 height: 1e3 - 75 - 315,
                 modules: {
                   base: [
-                    new y({
+                    new u({
                       display: "flex",
                       flexDirection: "column",
                       rowGap: "0.3em"
@@ -30221,7 +30913,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   onClick: () => this.selectEffect(effectId),
                   modules: {
                     base: [
-                      new y({
+                      new u({
                         width: "100%"
                       })
                     ]
@@ -30247,9 +30939,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
     }
     exit() {
-      const s4 = this.previousSubscreen instanceof MySpellsSubscreen ? new MySpellsSubscreen() : new DarkMagicSubscreen();
+      const s5 = this.previousSubscreen instanceof MySpellsSubscreen ? new MySpellsSubscreen() : new DarkMagicSubscreen();
       super.exit();
-      this.setSubscreen(s4);
+      this.setSubscreen(s5);
     }
   };
 
@@ -30257,7 +30949,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var MySpellsSubscreen = class extends te {
     deletionMode = false;
     get icon() {
-      return createElement(BookHeart);
+      return createElement4(BookHeart);
     }
     get name() {
       return "My Spells";
@@ -30271,7 +30963,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           modules: {
             base: [
               new l(),
-              new y({
+              new u({
                 textAlign: "center"
               })
             ]
@@ -30287,7 +30979,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         height: 650,
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               flexDirection: "column",
               rowGap: "0.25em"
@@ -30300,7 +30992,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           place: false,
           modules: {
             base: [
-              new y({
+              new u({
                 display: "flex",
                 columnGap: "0.25em"
               })
@@ -30315,7 +31007,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             place: false,
             modules: {
               base: [
-                new y({
+                new u({
                   position: "relative",
                   width: "100%"
                 })
@@ -30326,12 +31018,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           }),
           this.createButton({
-            icon: createElement(Trash2),
+            icon: createElement4(Trash22),
             place: false,
             isDisabled: () => !this.deletionMode,
             modules: {
               base: [
-                new y({
+                new u({
                   height: "100%",
                   aspectRatio: "1/1"
                 }),
@@ -30341,7 +31033,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               ]
             },
             onClick: () => {
-              modStorage.darkMagic.spells = modStorage.darkMagic.spells.filter((s4) => s4.name !== spell.name);
+              modStorage.darkMagic.spells = modStorage.darkMagic.spells.filter((s5) => s5.name !== spell.name);
               _container.remove();
               if (modStorage.darkMagic.spells.length === 0) {
                 this.unload();
@@ -30382,7 +31074,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var LimitsSubscreen = class extends te {
     get icon() {
-      return createElement(Ban);
+      return createElement4(Ban);
     }
     get name() {
       return "Limits";
@@ -30397,7 +31089,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         height: 1e3 - 75 - 240,
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               flexDirection: "column",
               rowGap: "0.3em"
@@ -30410,7 +31102,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           place: false,
           modules: {
             base: [
-              new y({
+              new u({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -30437,10 +31129,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
             },
             modules: {
               base: [
-                new y({
+                new u({
                   position: "relative"
                 }),
-                new i2((target) => {
+                new i((target) => {
                   if (target.style.zIndex === "100") target.style.zIndex = "10";
                   else target.style.zIndex = "100";
                 })
@@ -30490,9 +31182,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var PageMarkup = class {
     static text({ content, fontSize = "md" }) {
-      const p4 = document.createElement("p");
-      p4.innerHTML = content;
-      Q(p4, {
+      const p5 = document.createElement("p");
+      p5.innerHTML = content;
+      Q(p5, {
         base: {
           color: "var(--tmd-text, black)",
           fontSize: fontSize === "sm" ? "0.5em" : fontSize === "md" ? "1.2em" : "1.8em",
@@ -30500,7 +31192,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           marginTop: "0.25em"
         }
       });
-      return p4;
+      return p5;
     }
     static flexContainer({
       direction = "row",
@@ -30546,7 +31238,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const t22 = PageMarkup.text({
         content: "The world around us, visible and invisible, is made up of countless <b>Magical Atoms</b> \u2014 primordial particles that are the source of all supernatural energy. A magician is not a shaman who invokes spirits, but an arcanist engineer who, by force of will and mind, gathers these atoms into complex structures \u2014 formulas that we call <b>spells</b>."
       });
-      const t32 = PageMarkup.text({
+      const t3 = PageMarkup.text({
         content: "There are only few <b>atoms of magic</b> known:"
       });
       const atomsContainer = PageMarkup.flexContainer({
@@ -30577,9 +31269,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
         content: "Until you learn <b>wild magic</b>, you will have to hold a <b>magic item</b> in your hands in order to cast spells."
       });
       const t5 = PageMarkup.text({
-        content: "Such items are: " + MAGIC_ITEMS.map((m5) => AssetGet(Player.AssetFamily, "ItemHandheld", m5)?.Description).filter((m5) => typeof m5 === "string").join(", ") + "."
+        content: "Such items are: " + MAGIC_ITEMS.map((m4) => AssetGet(Player.AssetFamily, "ItemHandheld", m4)?.Description).filter((m4) => typeof m4 === "string").join(", ") + "."
       });
-      container.append(t1, t22, t32, atomsContainer, t4, t5);
+      container.append(t1, t22, t3, atomsContainer, t4, t5);
     }
   };
 
@@ -30625,7 +31317,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           height: "auto"
         })
       );
-      const t32 = PageMarkup.text({
+      const t3 = PageMarkup.text({
         content: "In the spell editor, you can specify the icon, name, and effects of your spell. There are also descriptions of each effect and which atoms they consist of."
       });
       const t4 = PageMarkup.text({
@@ -30635,7 +31327,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         content: "<b>To be continued</b>",
         fontSize: "lg"
       });
-      container.append(t1, img, t22, imagesContainer, t32, t4, t5);
+      container.append(t1, img, t22, imagesContainer, t3, t4, t5);
     }
   };
 
@@ -30655,7 +31347,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 1700 - 60,
         height: 90,
         isBold: true,
-        items: pages.map((p4) => [p4.name, p4]),
+        items: pages.map((p5) => [p5.name, p5]),
         currentIndex: 0,
         onChange: (value) => {
           container.innerHTML = "";
@@ -30671,7 +31363,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         onClick: () => this.exit(),
         modules: {
           base: [
-            new y({
+            new u({
               zIndex: "10"
             })
           ]
@@ -30691,7 +31383,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/subscreens/darkMagicSubscreen.ts
   var DarkMagicSubscreen = class extends te {
     get icon() {
-      return createElement(Skull);
+      return createElement4(Skull);
     }
     get name() {
       return "Dark Magic";
@@ -30702,17 +31394,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
         new MySpellsSubscreen(),
         new SpellEditorSubscreen(),
         new LimitsSubscreen()
-      ].forEach((t4, i8) => {
-        t4.icon.style.width = "auto";
-        t4.icon.style.height = "70%";
+      ].forEach((t3, i5) => {
+        t3.icon.style.width = "auto";
+        t3.icon.style.height = "70%";
         this.createButton({
-          text: t4.name,
-          icon: t4.icon,
+          text: t3.name,
+          icon: t3.icon,
           x: 165,
-          y: 320 + 115 * i8,
+          y: 320 + 115 * i5,
           width: 600,
           padding: 2,
-          onClick: () => this.setSubscreen(t4)
+          onClick: () => this.setSubscreen(t3)
         }).style.fontWeight = "bold";
       });
       this.createButton({
@@ -30733,7 +31425,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         modules: {
           base: [
             new ShuffleTextModule(),
-            new y({
+            new u({
               fontFamily: "Kitnyx2",
               fontWeight: "bold",
               letterSpacing: "1em",
@@ -30754,22 +31446,22 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 200,
         modules: {
           base: [
-            new y({
+            new u({
               textAlign: "center"
             })
           ]
         }
       });
-      Object.values(atoms).forEach((atom, i8) => {
-        const angle = i8 / Object.values(atoms).length * 2 * Math.PI;
-        const x6 = centerX + radius * Math.cos(angle) - 35;
+      Object.values(atoms).forEach((atom, i5) => {
+        const angle = i5 / Object.values(atoms).length * 2 * Math.PI;
+        const x5 = centerX + radius * Math.cos(angle) - 35;
         const y5 = centerY + radius * Math.sin(angle) - 35;
         const iconContainer = this.createContainer({
-          x: x6,
+          x: x5,
           y: y5,
           modules: {
             base: [
-              new i({
+              new y({
                 base: {
                   borderRadius: "50%",
                   padding: "0.2em",
@@ -30790,13 +31482,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
         this.createText({
           text: atom.name,
           color: atom.iconColor,
-          x: x6,
+          x: x5,
           y: y5 + 80,
           width: 80,
           fontSize: 2,
           modules: {
             base: [
-              new y({
+              new u({
                 textAlign: "center"
               })
             ]
@@ -30816,7 +31508,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/subscreens/quickAccessMenuSubscreen.ts
   var QuickAccessMenuSubscreen = class extends te {
     get icon() {
-      return createElement(PanelsTopLeft);
+      return createElement4(PanelsTopLeft);
     }
     get name() {
       return "Quick Access Menu";
@@ -30831,7 +31523,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         onChange() {
           modStorage.qam ??= {};
           modStorage.qam.enabled = !modStorage.qam.enabled;
-          if (modStorage.qam.enabled) createQuickMenu();
+          if (modStorage.qam.enabled) createQAMButton();
           else removeQuickMenu();
         }
       });
@@ -30842,7 +31534,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 350,
         modules: {
           base: [
-            new y({
+            new u({
               border: "2px solid var(--tmd-accent, #e4e4e4)"
             })
           ]
@@ -30869,7 +31561,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         scroll: "y",
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               flexDirection: "column",
               rowGap: "0.45em"
@@ -30877,13 +31569,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           ]
         }
       });
-      quickMenuItems.forEach((i8) => {
+      qamFeatures.forEach((i5) => {
         container.append(
           this.createCheckbox({
-            text: i8.name,
-            isChecked: isFeatureEnabled(i8.id),
+            text: i5.subscreen.name,
+            isChecked: isFeatureEnabled(i5.id),
             place: false,
-            onChange: () => toggleFeature(i8.id)
+            onChange: () => toggleFeature(i5.id)
           })
         );
       });
@@ -30927,12 +31619,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   function loadCheats() {
     refreshBonus();
-    c2("ServerSend", a.MODIFY_BEHAVIOR, (args, next) => {
+    c3("ServerSend", d.MODIFY_BEHAVIOR, (args, next) => {
       const message = args[0];
       const params = args[1];
       if (message === "ChatRoomCharacterItemUpdate") {
         if (modStorage.cheats?.autoTight && params.Target !== Player.MemberNumber) {
-          const target = T2(params.Target);
+          const target = N2(params.Target);
           const item = InventoryGet(target, params.Group);
           if (item) {
             item.Difficulty = 1e3;
@@ -30943,24 +31635,24 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (message === "ChatRoomChat" && modStorage.cheats?.anonymousMode && (params.Type === "Action" && params.Content !== "Beep" || params.Type === "Status")) return null;
       return next(args);
     });
-    c2("ChatRoomPlayerIsAdmin", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("ChatRoomPlayerIsAdmin", d.OVERRIDE_BEHAVIOR, (args, next) => {
       if (modStorage.cheats?.mapSuperPower && next(args) === false) {
         return ChatRoomMapViewIsActive() && CurrentScreen !== "ChatAdmin" && !CurrentCharacter;
       }
       return next(args);
     });
-    c2("CommonDrawAppearanceBuild", a.ADD_BEHAVIOR, (args, next) => {
+    c3("CommonDrawAppearanceBuild", d.ADD_BEHAVIOR, (args, next) => {
       if (!modStorage.cheats?.xray) return next(args);
       const C4 = args[0];
       C4.AppearanceLayers?.forEach((Layer) => {
-        const A5 = Layer.Asset;
-        if (A5.Group?.Clothing) {
-          A5.DynamicBeforeDraw = true;
+        const A4 = Layer.Asset;
+        if (A4.Group?.Clothing) {
+          A4.DynamicBeforeDraw = true;
         }
       });
       return next(args);
     });
-    c2("CommonCallFunctionByNameWarn", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("CommonCallFunctionByNameWarn", d.OVERRIDE_BEHAVIOR, (args, next) => {
       const funcName = args[0];
       const params = args[1];
       if (!params) {
@@ -30983,15 +31675,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
       } else
         return next(args);
     });
-    c2("ExtendedItemLoad", a.OBSERVE, (args, next) => {
+    c3("ExtendedItemLoad", d.OBSERVE, (args, next) => {
       if (!modStorage.cheats?.showPadlocksPasswords) return next(args);
       if (!DialogFocusSourceItem || !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)) return next(args);
       if (InventoryItemMiscPasswordPadlockIsSet()) {
-        p(() => !!document.getElementById("Password")).then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
+        h2(() => !!document.getElementById("Password")).then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
       }
       return next(args);
     });
-    c2("ChatRoomFocusCharacter", a.OBSERVE, (args, next) => {
+    c3("ChatRoomFocusCharacter", d.OBSERVE, (args, next) => {
       next(args);
       if (!modStorage.cheats?.allowActivities) return next(args);
       const C4 = CharacterGetCurrent();
@@ -31008,16 +31700,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (DialogMenuMode !== "dialog") return next(args);
       setTimeout(() => DialogSetStatus("(You don't have access to use or remove items, but you can perform activities.)"), 250);
     });
-    c2("DialogClick", a.OVERRIDE_BEHAVIOR, (args, next) => {
+    c3("DialogClick", d.OVERRIDE_BEHAVIOR, (args, next) => {
+      const C4 = CharacterGetCurrent();
+      if (MouseX < 500 && modStorage.cheats?.allowActivities && !!C4 && !ServerChatRoomGetAllowItem(Player, C4)) return;
       next(args);
       if (!modStorage.cheats?.allowActivities) return;
-      const C4 = MouseX < 500 ? Player : CurrentCharacter;
       if (!C4) return;
-      if (ServerChatRoomGetAllowItem(Player, CurrentCharacter)) return;
-      const X4 = MouseX < 500 ? 0 : 500;
+      if (ServerChatRoomGetAllowItem(Player, C4)) return;
+      const X5 = MouseX < 500 ? 0 : 500;
       for (const Group of AssetGroup) {
         if (!Group.IsItem()) continue;
-        const Zone = Group.Zone.find((Z3) => DialogClickedInZone(C4, Z3, 1, X4, 0, C4.HeightRatio));
+        const Zone = Group.Zone.find((Z3) => DialogClickedInZone(C4, Z3, 1, X5, 0, C4.HeightRatio));
         if (Zone) {
           DialogChangeFocusToGroup(C4, Group);
           DialogChangeMode("activities");
@@ -31025,7 +31718,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       }
       const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
-      if (CharacterGetCurrent()?.IsPlayer() && isExitButtonExists) ElementRemove("bcc-exit-dialog-button");
       if (!isExitButtonExists) {
         const button = ElementButton.Create("bcc-exit-dialog-button", () => DialogChangeMode("dialog"), { tooltip: "(BCC) Back", image: "Icons/Exit.png" });
         document.body.append(button);
@@ -31037,7 +31729,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
         });
       }
     });
-    c2("DialogResize", a.OBSERVE, (args, next) => {
+    c3("DialogMenuBack", d.OBSERVE, (args, next) => {
+      const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
+      if (!isExitButtonExists) return next(args);
+      ElementRemove("bcc-exit-dialog-button");
+      DialogChangeFocusToGroup(CharacterGetCurrent(), null);
+    });
+    c3("DialogMenuMapping.activities.Resize", d.OBSERVE, (args, next) => {
       if (!modStorage.cheats?.allowActivities) return next(args);
       const button = document.getElementById("bcc-exit-dialog-button");
       if (button) {
@@ -31046,16 +31744,54 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       return next(args);
     });
+    c3("ChatRoomDrawArousalOverlay", d.OBSERVE, (args, next) => {
+      if (!modStorage.cheats?.disableArousalOverlay) return next(args);
+      return;
+    });
   }
 
   // src/subscreens/cheatsSubscreen.ts
+  var booleanCheats = [
+    {
+      name: "Permanent skills boost",
+      storageKey: "permanentSkillsBoost"
+    },
+    {
+      name: "Auto tight restraint",
+      storageKey: "autoTight"
+    },
+    {
+      name: "Anonymous mode",
+      storageKey: "anonymousMode"
+    },
+    {
+      name: "Always allow interactions with activities",
+      storageKey: "allowActivities"
+    },
+    {
+      name: "Map super power",
+      storageKey: "mapSuperPower"
+    },
+    {
+      name: "Xray vision",
+      storageKey: "xray"
+    },
+    {
+      name: "Always show padlocks passwords",
+      storageKey: "showPadlocksPasswords"
+    },
+    {
+      name: "Disable arousal overlay",
+      storageKey: "disableArousalOverlay"
+    }
+  ];
   function appendReputationElements(container, subscreen) {
     Player.Reputation.forEach((r5) => {
       const _container = subscreen.createContainer({
         place: false,
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between"
@@ -31069,7 +31805,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         value: r5.Value.toString(),
         modules: {
           base: [
-            new y({
+            new u({
               padding: "0.2em"
             })
           ]
@@ -31090,12 +31826,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     });
   }
   function appendSkillsElements(container, subscreen) {
-    Player.Skill.forEach((s4) => {
+    Player.Skill.forEach((s5) => {
       const _container = subscreen.createContainer({
         place: false,
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between"
@@ -31106,22 +31842,22 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const input = subscreen.createInput({
         width: 100,
         place: false,
-        value: s4.Level.toString(),
+        value: s5.Level.toString(),
         modules: {
           base: [
-            new y({
+            new u({
               padding: "0.2em"
             })
           ]
         },
         onChange() {
-          s4.Level = parseInt(input.value, 10);
+          s5.Level = parseInt(input.value, 10);
           ServerPlayerSkillSync();
         }
       });
       _container.append(
         subscreen.createText({
-          text: s4.Type + ":",
+          text: s5.Type + ":",
           place: false
         }),
         input
@@ -31131,7 +31867,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   var CheatsSubscreen = class extends te {
     get icon() {
-      return createElement(HandCoins);
+      return createElement4(HandCoins);
     }
     get name() {
       return "Cheats";
@@ -31158,86 +31894,41 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       y5 += 90;
-      this.createCheckbox({
-        text: "Permanent skills boost",
+      const booleanCheatsContainer = this.createContainer({
         x: 200,
         y: y5,
-        isChecked: modStorage.cheats?.permanentSkillsBoost,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.permanentSkillsBoost = !modStorage.cheats.permanentSkillsBoost;
-          refreshBonus();
+        width: 1e3,
+        height: 650,
+        modules: {
+          base: [
+            new u({
+              display: "flex",
+              flexDirection: "column",
+              rowGap: "0.45em",
+              overflowY: "scroll"
+            })
+          ]
         }
       });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Auto tight restraints",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.autoTight,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.autoTight = !modStorage.cheats.autoTight;
-        }
-      });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Anonymous mode",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.anonymousMode,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.anonymousMode = !modStorage.cheats.anonymousMode;
-        }
-      });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Always allow interactions with activities",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.allowActivities,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.allowActivities = !modStorage.cheats.allowActivities;
-        }
-      });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Map super power",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.mapSuperPower,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.mapSuperPower = !modStorage.cheats.mapSuperPower;
-        }
-      });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Xray vision",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.xray,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.xray = !modStorage.cheats.xray;
-          ChatRoomCharacter.forEach((c7) => {
-            CharacterLoadCanvas(c7);
-          });
-        }
-      });
-      y5 += 90;
-      this.createCheckbox({
-        text: "Always show padlocks passwords",
-        x: 200,
-        y: y5,
-        isChecked: modStorage.cheats?.showPadlocksPasswords,
-        onChange() {
-          if (!modStorage.cheats) modStorage.cheats = {};
-          modStorage.cheats.showPadlocksPasswords = !modStorage.cheats.showPadlocksPasswords;
-        }
-      });
+      for (const cheat of booleanCheats) {
+        booleanCheatsContainer.append(
+          this.createCheckbox({
+            text: cheat.name,
+            place: false,
+            isChecked: modStorage.cheats?.[cheat.storageKey],
+            onChange() {
+              if (!modStorage.cheats) modStorage.cheats = {};
+              modStorage.cheats[cheat.storageKey] = !modStorage.cheats[cheat.storageKey];
+              if (cheat.storageKey === "permanentSkillsBoost") refreshBonus();
+              if (cheat.storageKey === "xray") {
+                ChatRoomCharacter.forEach((c7) => {
+                  CharacterLoadCanvas(c7);
+                });
+              }
+            }
+          })
+        );
+      }
       this.createButton({
         text: "Get All Items",
         x: 1200,
@@ -31309,7 +32000,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         scroll: "y",
         modules: {
           base: [
-            new y({
+            new u({
               display: "flex",
               flexDirection: "column",
               rowGap: "0.2em"
@@ -31393,7 +32084,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 1200,
         modules: {
           base: [
-            new y({
+            new u({
               textAlign: "center",
               fontWeight: "bold"
             })
@@ -31407,7 +32098,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 1200,
         modules: {
           base: [
-            new y({
+            new u({
               textAlign: "center"
             })
           ]
@@ -31420,7 +32111,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         width: 1200,
         modules: {
           base: [
-            new y({
+            new u({
               textAlign: "center"
             })
           ]
@@ -31468,7 +32159,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         y: 65,
         name: "Version",
         value: version,
-        icon: createElement(GitPullRequest),
+        icon: createElement4(GitPullRequest),
         modules: this.animations ? {
           value: [
             new x2({
@@ -31490,14 +32181,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       this.createText({
-        text: quotes[h2(0, quotes.length - 1)],
+        text: quotes[y2(0, quotes.length - 1)],
         fontSize: 3,
         x: 800,
         y: 230,
         width: 1e3,
         modules: {
           base: [
-            new y({
+            new u({
               textAlign: "center",
               fontWeight: "bold"
             })
@@ -31510,12 +32201,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
         new DarkMagicSubscreen(),
         new QuickAccessMenuSubscreen(),
         new CheatsSubscreen()
-      ].forEach((t4, i8) => {
+      ].forEach((t3, i5) => {
         this.createButton({
-          text: t4.name,
-          icon: t4.icon,
+          text: t3.name,
+          icon: t3.icon,
           x: 165,
-          y: 280 + 115 * i8,
+          y: 280 + 115 * i5,
           width: 575,
           padding: 2,
           modules: {
@@ -31523,18 +32214,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
               new TentaclesModule()
             ],
             icon: [
-              new y({
+              new u({
                 width: "auto",
                 height: "70%"
               })
             ]
           },
-          onClick: () => this.setSubscreen(t4)
+          onClick: () => this.setSubscreen(t3)
         }).style.fontWeight = "bold";
       });
       this.createButton({
         text: "Source Code",
-        icon: createElement(CodeXml),
+        icon: createElement4(CodeXml),
         x: 1050,
         y: 400,
         width: 485,
@@ -31545,7 +32236,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       this.createButton({
         text: "Issues",
-        icon: createElement(Bug),
+        icon: createElement4(Bug),
         x: 1050,
         y: 510,
         width: 485,
@@ -31556,7 +32247,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       this.createButton({
         text: "Attributions",
-        icon: createElement(Heart),
+        icon: createElement4(Heart),
         x: 1050,
         y: 620,
         width: 485,
@@ -31565,7 +32256,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       this.createButton({
         text: "Reset Settings",
-        icon: createElement(Trash2),
+        icon: createElement4(Trash22),
         x: 1050,
         y: 730,
         style: "inverted",
@@ -31596,7 +32287,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       },
       exit: () => false,
       load: () => {
-        R(new MainSubscreen(true));
+        $(new MainSubscreen(true));
       }
     });
   }
@@ -31606,9 +32297,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // src/modules/overlay.ts
   function loadOverlay() {
-    c2(
+    c3(
       "ChatRoomCharacterViewDrawOverlay",
-      a.ADD_BEHAVIOR,
+      d.ADD_BEHAVIOR,
       (args, next) => {
         next(args);
         if (ChatRoomHideIconState !== 0) return;
@@ -31638,9 +32329,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
             DrawImageResize(getSpellIcon(spell.icon).dataurl, CharX + 400 * Zoom - 12 * Zoom, CharY + spellIconY * Zoom - 12 * Zoom, 25 * Zoom, 25 * Zoom);
             if (MouseIn(CharX + 400 * Zoom - 20 * Zoom, CharY + spellIconY * Zoom - 20 * Zoom, 40 * Zoom, 40 * Zoom)) {
               DrawRect(CharX + 200 * Zoom - 75 * Zoom, CharY + spellIconY * Zoom - 10 * Zoom, 240 * Zoom, 100 * Zoom, S()?.base?.element ?? "#e6d6ffff");
-              E("DrawTextFit", [spell.name, CharX + 240 * Zoom, CharY + 10 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
-              E("DrawTextFit", [`Casted by: ${spell.castedBy?.name} (${spell.castedBy?.id})`, CharX + 240 * Zoom, CharY + 40 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
-              E("DrawTextFit", [`Created by: ${spell.createdBy?.name} (${spell.createdBy?.id})`, CharX + 240 * Zoom, CharY + 70 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+              I("DrawTextFit", [spell.name, CharX + 240 * Zoom, CharY + 10 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+              I("DrawTextFit", [`Casted by: ${spell.castedBy?.name} (${spell.castedBy?.id})`, CharX + 240 * Zoom, CharY + 40 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
+              I("DrawTextFit", [`Created by: ${spell.createdBy?.name} (${spell.createdBy?.id})`, CharX + 240 * Zoom, CharY + 70 * Zoom + spellIconY * Zoom, 200 * Zoom, "Black"]);
             }
             spellIconY += 45;
             if (spellIconY >= 700) break;
@@ -31650,221 +32341,221 @@ One of mods you are using is using an old version of SDK. It will work for now b
     );
   }
 
-  // node_modules/.pnpm/@sugarch+bc-mod-hook-manager@0.3.1_bondage-club-mod-sdk@1.2.0/node_modules/@sugarch/bc-mod-hook-manager/dist/index.mjs
-  var t2 = class {
-    constructor(t4) {
-      this.hookMng = t4, this.workList = [];
+  // node_modules/.pnpm/@sugarch+bc-mod-hook-manager@0.3.4_bondage-club-mod-sdk@1.2.0/node_modules/@sugarch/bc-mod-hook-manager/dist/index.mjs
+  var t = class {
+    constructor(t3) {
+      this.hookMng = t3, this.workList = [];
     }
-    run(t4, o4) {
-      let i8, n5 = false;
-      for (const s4 of this.workList) if ("inject" === s4.value) s4.work(t4, o4);
-      else if ("next" === s4.value) i8 = o4(t4), n5 = true;
-      else if ("override" === s4.value) i8 = s4.work(t4, o4), n5 = true;
-      else if ("flag" === s4.value) {
-        if (!s4.flag) break;
-        s4.once && (s4.flag = false);
-      } else if ("check" === s4.value && !s4.work(t4, o4)) break;
-      return n5 ? i8 : o4(t4);
+    run(t3, o5) {
+      let i5, n4 = false;
+      for (const s5 of this.workList) if ("inject" === s5.value) s5.work(t3, o5);
+      else if ("next" === s5.value) i5 = o5(t3), n4 = true;
+      else if ("override" === s5.value) i5 = s5.work(t3, o5), n4 = true;
+      else if ("flag" === s5.value) {
+        if (!s5.flag) break;
+        s5.once && (s5.flag = false);
+      } else if ("check" === s5.value && !s5.work(t3, o5)) break;
+      return n4 ? i5 : o5(t3);
     }
     next() {
       return this.workList.push({ value: "next" }), this;
     }
-    inject(t4) {
-      return this.workList.push({ value: "inject", work: t4 }), this;
+    inject(t3) {
+      return this.workList.push({ value: "inject", work: t3 }), this;
     }
-    inside(t4, { once: o4 = false, priority: i8 = 1 } = {}) {
-      const n5 = { value: "flag", flag: false, once: o4 };
-      return this.hookMng.hookFunction(t4, i8, (t5, o5) => {
-        n5.flag = true;
-        const i9 = o5(t5);
-        return n5.flag = false, i9;
-      }), this.workList.push(n5), this;
+    inside(t3, { once: o5 = false, priority: i5 = 1 } = {}) {
+      const n4 = { value: "flag", flag: false, once: o5 };
+      return this.hookMng.hookFunction(t3, i5, (t4, o6) => {
+        n4.flag = true;
+        const i6 = o6(t4);
+        return n4.flag = false, i6;
+      }), this.workList.push(n4), this;
     }
-    when(t4) {
-      return this.workList.push({ value: "check", work: t4 }), this;
+    when(t3) {
+      return this.workList.push({ value: "check", work: t3 }), this;
     }
-    override(t4) {
-      return this.workList.push({ value: "override", work: t4 }), this;
-    }
-  };
-  var o;
-  var i5 = class {
-    static info(t4) {
-      o?.info(t4);
-    }
-    static warn(t4) {
-      o?.warn(t4);
-    }
-    static error(t4) {
-      o?.error(t4);
+    override(t3) {
+      return this.workList.push({ value: "override", work: t3 }), this;
     }
   };
-  var n2 = class {
-    constructor(t4 = false) {
-      this.done = t4, this.list = [];
+  var o2;
+  var i2 = class {
+    static info(t3) {
+      o2?.info(t3);
+    }
+    static warn(t3) {
+      o2?.warn(t3);
+    }
+    static error(t3) {
+      o2?.error(t3);
+    }
+  };
+  var n = class {
+    constructor(t3 = false) {
+      this.done = t3, this.list = [];
     }
     run() {
       for (this.done = true; this.list.length > 0; ) this.list.shift()();
     }
-    push(t4) {
-      this.done ? t4() : this.list.push(t4);
+    push(t3) {
+      this.done ? t3() : this.list.push(t3);
     }
   };
-  var s = new n2();
-  var r2 = new n2();
-  var e = new n2();
-  var h3 = new n2();
+  var s2 = new n();
+  var r2 = new n();
+  var e = new n();
+  var h4 = new n();
   function l3() {
     return null != globalThis.Player && "number" == typeof globalThis.Player.MemberNumber;
   }
-  var u = new class {
+  var u3 = new class {
     constructor() {
       this.mMod = void 0;
     }
     get mod() {
       return this.mMod;
     }
-    push(t4, o4) {
-      t4.push(o4);
+    push(t3, o5) {
+      t3.push(o5);
     }
-    initWithMod(t4) {
-      this.mMod = t4, h3.run(), r2.run();
-      const o4 = () => e.run();
-      l3() ? o4() : this.mod.hookFunction("LoginResponse", 0, (t5, i8) => {
-        i8(t5), l3() && o4();
-      }), s.run();
+    initWithMod(t3) {
+      this.mMod = t3, h4.run(), r2.run();
+      const o5 = () => e.run();
+      l3() ? o5() : this.mod.hookFunction("LoginResponse", 0, (t4, i5) => {
+        i5(t4), l3() && o5();
+      }), s2.run();
     }
-    afterInit(t4) {
-      this.push(s, t4);
+    afterInit(t3) {
+      this.push(s2, t3);
     }
-    afterPlayerLogin(t4) {
-      this.push(e, t4);
+    afterPlayerLogin(t3) {
+      this.push(e, t3);
     }
-    patchFunction(t4, o4) {
-      this.push(h3, () => this.mod.patchFunction(t4, o4));
+    patchFunction(t3, o5) {
+      this.push(h4, () => this.mod.patchFunction(t3, o5));
     }
-    invokeOriginal(t4, ...o4) {
-      return this.mod ? this.mod.callOriginal(t4, o4) : globalThis[t4]?.(...o4);
+    invokeOriginal(t3, ...o5) {
+      return this.mod ? this.mod.callOriginal(t3, o5) : globalThis[t3]?.(...o5);
     }
-    hookFunction(t4, o4, i8) {
-      this.push(r2, () => this.mod.hookFunction(t4, o4, i8));
+    hookFunction(t3, o5, i5) {
+      this.push(r2, () => this.mod.hookFunction(t3, o5, i5));
     }
-    progressiveHook(o4, i8 = 1) {
-      const n5 = new t2(this);
-      return this.hookFunction(o4, i8, (t4, o5) => n5.run(t4, o5)), n5;
+    progressiveHook(o5, i5 = 1) {
+      const n4 = new t(this);
+      return this.hookFunction(o5, i5, (t3, o6) => n4.run(t3, o6)), n4;
     }
-    insideFlag(t4, o4 = 1) {
-      const i8 = { inside: false };
-      return this.hookFunction(t4, o4, (t5, o5) => {
-        i8.inside = true;
-        const n5 = o5(t5);
-        return i8.inside = false, n5;
-      }), i8;
+    insideFlag(t3, o5 = 1) {
+      const i5 = { inside: false, args: void 0 };
+      return this.hookFunction(t3, o5, (t4, o6) => {
+        i5.inside = true, i5.args = t4;
+        const n4 = o6(t4);
+        return i5.inside = false, n4;
+      }), i5;
     }
-    hookPlayerFunction(t4, o4, i8) {
-      var n5;
-      n5 = () => this.mod.hookFunction(t4, o4, i8), l3() ? e.push(n5) : n5();
+    hookPlayerFunction(t3, o5, i5) {
+      var n4;
+      n4 = () => this.mod.hookFunction(t3, o5, i5), l3() ? e.push(n4) : n4();
     }
-    globalFunction(t4, o4) {
-      "function" != typeof o4 && i5.warn("globalFunction: param is not a function"), null == globalThis[t4] ? globalThis[t4] = o4 : globalThis[t4] != o4 && i5.warn(`globalFunction: ${t4} is already defined`);
+    globalFunction(t3, o5) {
+      "function" != typeof o5 && i2.warn("globalFunction: param is not a function"), null == globalThis[t3] ? globalThis[t3] = o5 : globalThis[t3] != o5 && i2.warn(`globalFunction: ${t3} is already defined`);
     }
-    randomGlobalFunction(t4, o4) {
-      const i8 = (t5) => t5 + Math.random().toString(16).substring(2);
-      let n5 = i8(t4);
-      for (; null != globalThis[n5]; ) n5 = i8(t4);
-      return globalThis[n5] = o4, n5;
+    randomGlobalFunction(t3, o5) {
+      const i5 = (t4) => t4 + Math.random().toString(16).substring(2);
+      let n4 = i5(t3);
+      for (; null != globalThis[n4]; ) n4 = i5(t3);
+      return globalThis[n4] = o5, n4;
     }
-    setLogger(t4) {
-      !(function(t5) {
-        o = t5;
-      })(t4);
+    setLogger(t3) {
+      !(function(t4) {
+        o2 = t4;
+      })(t3);
     }
   }();
 
-  // node_modules/.pnpm/@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook-manager@0.3.1_bondage-club-mod-sdk_21bcdc4580febcdd49c098e386a8de88/node_modules/@sugarch/bc-event-handler/dist/index.mjs
-  function t3(e2) {
+  // node_modules/.pnpm/@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook-manager@0.3.4_bondage-club-mod-sdk_184b91b29ea27c2053f106ec0a17f4bd/node_modules/@sugarch/bc-event-handler/dist/index.mjs
+  function t2(e2) {
     return e2 && e2.__esModule && Object.prototype.hasOwnProperty.call(e2, "default") ? e2.default : e2;
   }
   var r3;
-  var n3;
-  var s2;
-  var i6;
-  function o2() {
-    if (n3) return r3;
-    n3 = 1;
+  var n2;
+  var s3;
+  var i3;
+  function o3() {
+    if (n2) return r3;
+    n2 = 1;
     const e2 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...e3) => console.error("SEMVER", ...e3) : () => {
     };
     return r3 = e2;
   }
   function a3() {
-    if (i6) return s2;
-    i6 = 1;
+    if (i3) return s3;
+    i3 = 1;
     const e2 = Number.MAX_SAFE_INTEGER || 9007199254740991;
-    return s2 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: e2, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
+    return s3 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: e2, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
   }
-  var h4;
+  var h5;
   var c5;
   var E2;
   var l4;
   var f4;
-  var p2;
-  var u2;
+  var p3;
+  var u4;
   var I4;
-  var v;
-  var m3;
+  var v2;
+  var m2;
   var R3;
-  var d2 = { exports: {} };
-  function N5() {
-    return h4 || (h4 = 1, (function(e2, t4) {
-      const { MAX_SAFE_COMPONENT_LENGTH: r5, MAX_SAFE_BUILD_LENGTH: n5, MAX_LENGTH: s4 } = a3(), i8 = o2(), h6 = (t4 = e2.exports = {}).re = [], c7 = t4.safeRe = [], E4 = t4.src = [], l6 = t4.safeSrc = [], f6 = t4.t = {};
-      let p4 = 0;
-      const u4 = "[a-zA-Z0-9-]", I6 = [["\\s", 1], ["\\d", s4], [u4, n5]], v3 = (e3, t5, r6) => {
-        const n6 = ((e4) => {
-          for (const [t6, r7] of I6) e4 = e4.split(`${t6}*`).join(`${t6}{0,${r7}}`).split(`${t6}+`).join(`${t6}{1,${r7}}`);
+  var d4 = { exports: {} };
+  function N3() {
+    return h5 || (h5 = 1, (function(e2, t3) {
+      const { MAX_SAFE_COMPONENT_LENGTH: r5, MAX_SAFE_BUILD_LENGTH: n4, MAX_LENGTH: s5 } = a3(), i5 = o3(), h7 = (t3 = e2.exports = {}).re = [], c7 = t3.safeRe = [], E4 = t3.src = [], l6 = t3.safeSrc = [], f6 = t3.t = {};
+      let p5 = 0;
+      const u6 = "[a-zA-Z0-9-]", I6 = [["\\s", 1], ["\\d", s5], [u6, n4]], v4 = (e3, t4, r6) => {
+        const n5 = ((e4) => {
+          for (const [t5, r7] of I6) e4 = e4.split(`${t5}*`).join(`${t5}{0,${r7}}`).split(`${t5}+`).join(`${t5}{1,${r7}}`);
           return e4;
-        })(t5), s5 = p4++;
-        i8(e3, s5, t5), f6[e3] = s5, E4[s5] = t5, l6[s5] = n6, h6[s5] = new RegExp(t5, r6 ? "g" : void 0), c7[s5] = new RegExp(n6, r6 ? "g" : void 0);
+        })(t4), s6 = p5++;
+        i5(e3, s6, t4), f6[e3] = s6, E4[s6] = t4, l6[s6] = n5, h7[s6] = new RegExp(t4, r6 ? "g" : void 0), c7[s6] = new RegExp(n5, r6 ? "g" : void 0);
       };
-      v3("NUMERICIDENTIFIER", "0|[1-9]\\d*"), v3("NUMERICIDENTIFIERLOOSE", "\\d+"), v3("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${u4}*`), v3("MAINVERSION", `(${E4[f6.NUMERICIDENTIFIER]})\\.(${E4[f6.NUMERICIDENTIFIER]})\\.(${E4[f6.NUMERICIDENTIFIER]})`), v3("MAINVERSIONLOOSE", `(${E4[f6.NUMERICIDENTIFIERLOOSE]})\\.(${E4[f6.NUMERICIDENTIFIERLOOSE]})\\.(${E4[f6.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASEIDENTIFIER", `(?:${E4[f6.NONNUMERICIDENTIFIER]}|${E4[f6.NUMERICIDENTIFIER]})`), v3("PRERELEASEIDENTIFIERLOOSE", `(?:${E4[f6.NONNUMERICIDENTIFIER]}|${E4[f6.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASE", `(?:-(${E4[f6.PRERELEASEIDENTIFIER]}(?:\\.${E4[f6.PRERELEASEIDENTIFIER]})*))`), v3("PRERELEASELOOSE", `(?:-?(${E4[f6.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${E4[f6.PRERELEASEIDENTIFIERLOOSE]})*))`), v3("BUILDIDENTIFIER", `${u4}+`), v3("BUILD", `(?:\\+(${E4[f6.BUILDIDENTIFIER]}(?:\\.${E4[f6.BUILDIDENTIFIER]})*))`), v3("FULLPLAIN", `v?${E4[f6.MAINVERSION]}${E4[f6.PRERELEASE]}?${E4[f6.BUILD]}?`), v3("FULL", `^${E4[f6.FULLPLAIN]}$`), v3("LOOSEPLAIN", `[v=\\s]*${E4[f6.MAINVERSIONLOOSE]}${E4[f6.PRERELEASELOOSE]}?${E4[f6.BUILD]}?`), v3("LOOSE", `^${E4[f6.LOOSEPLAIN]}$`), v3("GTLT", "((?:<|>)?=?)"), v3("XRANGEIDENTIFIERLOOSE", `${E4[f6.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), v3("XRANGEIDENTIFIER", `${E4[f6.NUMERICIDENTIFIER]}|x|X|\\*`), v3("XRANGEPLAIN", `[v=\\s]*(${E4[f6.XRANGEIDENTIFIER]})(?:\\.(${E4[f6.XRANGEIDENTIFIER]})(?:\\.(${E4[f6.XRANGEIDENTIFIER]})(?:${E4[f6.PRERELEASE]})?${E4[f6.BUILD]}?)?)?`), v3("XRANGEPLAINLOOSE", `[v=\\s]*(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:${E4[f6.PRERELEASELOOSE]})?${E4[f6.BUILD]}?)?)?`), v3("XRANGE", `^${E4[f6.GTLT]}\\s*${E4[f6.XRANGEPLAIN]}$`), v3("XRANGELOOSE", `^${E4[f6.GTLT]}\\s*${E4[f6.XRANGEPLAINLOOSE]}$`), v3("COERCEPLAIN", `(^|[^\\d])(\\d{1,${r5}})(?:\\.(\\d{1,${r5}}))?(?:\\.(\\d{1,${r5}}))?`), v3("COERCE", `${E4[f6.COERCEPLAIN]}(?:$|[^\\d])`), v3("COERCEFULL", E4[f6.COERCEPLAIN] + `(?:${E4[f6.PRERELEASE]})?(?:${E4[f6.BUILD]})?(?:$|[^\\d])`), v3("COERCERTL", E4[f6.COERCE], true), v3("COERCERTLFULL", E4[f6.COERCEFULL], true), v3("LONETILDE", "(?:~>?)"), v3("TILDETRIM", `(\\s*)${E4[f6.LONETILDE]}\\s+`, true), t4.tildeTrimReplace = "$1~", v3("TILDE", `^${E4[f6.LONETILDE]}${E4[f6.XRANGEPLAIN]}$`), v3("TILDELOOSE", `^${E4[f6.LONETILDE]}${E4[f6.XRANGEPLAINLOOSE]}$`), v3("LONECARET", "(?:\\^)"), v3("CARETTRIM", `(\\s*)${E4[f6.LONECARET]}\\s+`, true), t4.caretTrimReplace = "$1^", v3("CARET", `^${E4[f6.LONECARET]}${E4[f6.XRANGEPLAIN]}$`), v3("CARETLOOSE", `^${E4[f6.LONECARET]}${E4[f6.XRANGEPLAINLOOSE]}$`), v3("COMPARATORLOOSE", `^${E4[f6.GTLT]}\\s*(${E4[f6.LOOSEPLAIN]})$|^$`), v3("COMPARATOR", `^${E4[f6.GTLT]}\\s*(${E4[f6.FULLPLAIN]})$|^$`), v3("COMPARATORTRIM", `(\\s*)${E4[f6.GTLT]}\\s*(${E4[f6.LOOSEPLAIN]}|${E4[f6.XRANGEPLAIN]})`, true), t4.comparatorTrimReplace = "$1$2$3", v3("HYPHENRANGE", `^\\s*(${E4[f6.XRANGEPLAIN]})\\s+-\\s+(${E4[f6.XRANGEPLAIN]})\\s*$`), v3("HYPHENRANGELOOSE", `^\\s*(${E4[f6.XRANGEPLAINLOOSE]})\\s+-\\s+(${E4[f6.XRANGEPLAINLOOSE]})\\s*$`), v3("STAR", "(<|>)?=?\\s*\\*"), v3("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), v3("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
-    })(d2, d2.exports)), d2.exports;
+      v4("NUMERICIDENTIFIER", "0|[1-9]\\d*"), v4("NUMERICIDENTIFIERLOOSE", "\\d+"), v4("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${u6}*`), v4("MAINVERSION", `(${E4[f6.NUMERICIDENTIFIER]})\\.(${E4[f6.NUMERICIDENTIFIER]})\\.(${E4[f6.NUMERICIDENTIFIER]})`), v4("MAINVERSIONLOOSE", `(${E4[f6.NUMERICIDENTIFIERLOOSE]})\\.(${E4[f6.NUMERICIDENTIFIERLOOSE]})\\.(${E4[f6.NUMERICIDENTIFIERLOOSE]})`), v4("PRERELEASEIDENTIFIER", `(?:${E4[f6.NONNUMERICIDENTIFIER]}|${E4[f6.NUMERICIDENTIFIER]})`), v4("PRERELEASEIDENTIFIERLOOSE", `(?:${E4[f6.NONNUMERICIDENTIFIER]}|${E4[f6.NUMERICIDENTIFIERLOOSE]})`), v4("PRERELEASE", `(?:-(${E4[f6.PRERELEASEIDENTIFIER]}(?:\\.${E4[f6.PRERELEASEIDENTIFIER]})*))`), v4("PRERELEASELOOSE", `(?:-?(${E4[f6.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${E4[f6.PRERELEASEIDENTIFIERLOOSE]})*))`), v4("BUILDIDENTIFIER", `${u6}+`), v4("BUILD", `(?:\\+(${E4[f6.BUILDIDENTIFIER]}(?:\\.${E4[f6.BUILDIDENTIFIER]})*))`), v4("FULLPLAIN", `v?${E4[f6.MAINVERSION]}${E4[f6.PRERELEASE]}?${E4[f6.BUILD]}?`), v4("FULL", `^${E4[f6.FULLPLAIN]}$`), v4("LOOSEPLAIN", `[v=\\s]*${E4[f6.MAINVERSIONLOOSE]}${E4[f6.PRERELEASELOOSE]}?${E4[f6.BUILD]}?`), v4("LOOSE", `^${E4[f6.LOOSEPLAIN]}$`), v4("GTLT", "((?:<|>)?=?)"), v4("XRANGEIDENTIFIERLOOSE", `${E4[f6.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), v4("XRANGEIDENTIFIER", `${E4[f6.NUMERICIDENTIFIER]}|x|X|\\*`), v4("XRANGEPLAIN", `[v=\\s]*(${E4[f6.XRANGEIDENTIFIER]})(?:\\.(${E4[f6.XRANGEIDENTIFIER]})(?:\\.(${E4[f6.XRANGEIDENTIFIER]})(?:${E4[f6.PRERELEASE]})?${E4[f6.BUILD]}?)?)?`), v4("XRANGEPLAINLOOSE", `[v=\\s]*(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E4[f6.XRANGEIDENTIFIERLOOSE]})(?:${E4[f6.PRERELEASELOOSE]})?${E4[f6.BUILD]}?)?)?`), v4("XRANGE", `^${E4[f6.GTLT]}\\s*${E4[f6.XRANGEPLAIN]}$`), v4("XRANGELOOSE", `^${E4[f6.GTLT]}\\s*${E4[f6.XRANGEPLAINLOOSE]}$`), v4("COERCEPLAIN", `(^|[^\\d])(\\d{1,${r5}})(?:\\.(\\d{1,${r5}}))?(?:\\.(\\d{1,${r5}}))?`), v4("COERCE", `${E4[f6.COERCEPLAIN]}(?:$|[^\\d])`), v4("COERCEFULL", E4[f6.COERCEPLAIN] + `(?:${E4[f6.PRERELEASE]})?(?:${E4[f6.BUILD]})?(?:$|[^\\d])`), v4("COERCERTL", E4[f6.COERCE], true), v4("COERCERTLFULL", E4[f6.COERCEFULL], true), v4("LONETILDE", "(?:~>?)"), v4("TILDETRIM", `(\\s*)${E4[f6.LONETILDE]}\\s+`, true), t3.tildeTrimReplace = "$1~", v4("TILDE", `^${E4[f6.LONETILDE]}${E4[f6.XRANGEPLAIN]}$`), v4("TILDELOOSE", `^${E4[f6.LONETILDE]}${E4[f6.XRANGEPLAINLOOSE]}$`), v4("LONECARET", "(?:\\^)"), v4("CARETTRIM", `(\\s*)${E4[f6.LONECARET]}\\s+`, true), t3.caretTrimReplace = "$1^", v4("CARET", `^${E4[f6.LONECARET]}${E4[f6.XRANGEPLAIN]}$`), v4("CARETLOOSE", `^${E4[f6.LONECARET]}${E4[f6.XRANGEPLAINLOOSE]}$`), v4("COMPARATORLOOSE", `^${E4[f6.GTLT]}\\s*(${E4[f6.LOOSEPLAIN]})$|^$`), v4("COMPARATOR", `^${E4[f6.GTLT]}\\s*(${E4[f6.FULLPLAIN]})$|^$`), v4("COMPARATORTRIM", `(\\s*)${E4[f6.GTLT]}\\s*(${E4[f6.LOOSEPLAIN]}|${E4[f6.XRANGEPLAIN]})`, true), t3.comparatorTrimReplace = "$1$2$3", v4("HYPHENRANGE", `^\\s*(${E4[f6.XRANGEPLAIN]})\\s+-\\s+(${E4[f6.XRANGEPLAIN]})\\s*$`), v4("HYPHENRANGELOOSE", `^\\s*(${E4[f6.XRANGEPLAINLOOSE]})\\s+-\\s+(${E4[f6.XRANGEPLAINLOOSE]})\\s*$`), v4("STAR", "(<|>)?=?\\s*\\*"), v4("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), v4("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
+    })(d4, d4.exports)), d4.exports;
   }
   function O3() {
-    if (u2) return p2;
-    u2 = 1;
-    const e2 = o2(), { MAX_LENGTH: t4, MAX_SAFE_INTEGER: r5 } = a3(), { safeRe: n5, t: s4 } = N5(), i8 = (function() {
+    if (u4) return p3;
+    u4 = 1;
+    const e2 = o3(), { MAX_LENGTH: t3, MAX_SAFE_INTEGER: r5 } = a3(), { safeRe: n4, t: s5 } = N3(), i5 = (function() {
       if (E2) return c5;
       E2 = 1;
-      const e3 = Object.freeze({ loose: true }), t5 = Object.freeze({});
-      return c5 = (r6) => r6 ? "object" != typeof r6 ? e3 : r6 : t5;
-    })(), { compareIdentifiers: h6 } = (function() {
+      const e3 = Object.freeze({ loose: true }), t4 = Object.freeze({});
+      return c5 = (r6) => r6 ? "object" != typeof r6 ? e3 : r6 : t4;
+    })(), { compareIdentifiers: h7 } = (function() {
       if (f4) return l4;
       f4 = 1;
-      const e3 = /^[0-9]+$/, t5 = (t6, r6) => {
-        const n6 = e3.test(t6), s5 = e3.test(r6);
-        return n6 && s5 && (t6 = +t6, r6 = +r6), t6 === r6 ? 0 : n6 && !s5 ? -1 : s5 && !n6 ? 1 : t6 < r6 ? -1 : 1;
+      const e3 = /^[0-9]+$/, t4 = (t5, r6) => {
+        const n5 = e3.test(t5), s6 = e3.test(r6);
+        return n5 && s6 && (t5 = +t5, r6 = +r6), t5 === r6 ? 0 : n5 && !s6 ? -1 : s6 && !n5 ? 1 : t5 < r6 ? -1 : 1;
       };
-      return l4 = { compareIdentifiers: t5, rcompareIdentifiers: (e4, r6) => t5(r6, e4) }, l4;
+      return l4 = { compareIdentifiers: t4, rcompareIdentifiers: (e4, r6) => t4(r6, e4) }, l4;
     })();
     class I6 {
-      constructor(o4, a5) {
-        if (a5 = i8(a5), o4 instanceof I6) {
-          if (o4.loose === !!a5.loose && o4.includePrerelease === !!a5.includePrerelease) return o4;
-          o4 = o4.version;
-        } else if ("string" != typeof o4) throw new TypeError(`Invalid version. Must be a string. Got type "${typeof o4}".`);
-        if (o4.length > t4) throw new TypeError(`version is longer than ${t4} characters`);
-        e2("SemVer", o4, a5), this.options = a5, this.loose = !!a5.loose, this.includePrerelease = !!a5.includePrerelease;
-        const h7 = o4.trim().match(a5.loose ? n5[s4.LOOSE] : n5[s4.FULL]);
-        if (!h7) throw new TypeError(`Invalid Version: ${o4}`);
-        if (this.raw = o4, this.major = +h7[1], this.minor = +h7[2], this.patch = +h7[3], this.major > r5 || this.major < 0) throw new TypeError("Invalid major version");
+      constructor(o5, a5) {
+        if (a5 = i5(a5), o5 instanceof I6) {
+          if (o5.loose === !!a5.loose && o5.includePrerelease === !!a5.includePrerelease) return o5;
+          o5 = o5.version;
+        } else if ("string" != typeof o5) throw new TypeError(`Invalid version. Must be a string. Got type "${typeof o5}".`);
+        if (o5.length > t3) throw new TypeError(`version is longer than ${t3} characters`);
+        e2("SemVer", o5, a5), this.options = a5, this.loose = !!a5.loose, this.includePrerelease = !!a5.includePrerelease;
+        const h8 = o5.trim().match(a5.loose ? n4[s5.LOOSE] : n4[s5.FULL]);
+        if (!h8) throw new TypeError(`Invalid Version: ${o5}`);
+        if (this.raw = o5, this.major = +h8[1], this.minor = +h8[2], this.patch = +h8[3], this.major > r5 || this.major < 0) throw new TypeError("Invalid major version");
         if (this.minor > r5 || this.minor < 0) throw new TypeError("Invalid minor version");
         if (this.patch > r5 || this.patch < 0) throw new TypeError("Invalid patch version");
-        h7[4] ? this.prerelease = h7[4].split(".").map((e3) => {
+        h8[4] ? this.prerelease = h8[4].split(".").map((e3) => {
           if (/^[0-9]+$/.test(e3)) {
-            const t5 = +e3;
-            if (t5 >= 0 && t5 < r5) return t5;
+            const t4 = +e3;
+            if (t4 >= 0 && t4 < r5) return t4;
           }
           return e3;
-        }) : this.prerelease = [], this.build = h7[5] ? h7[5].split(".") : [], this.format();
+        }) : this.prerelease = [], this.build = h8[5] ? h8[5].split(".") : [], this.format();
       }
       format() {
         return this.version = `${this.major}.${this.minor}.${this.patch}`, this.prerelease.length && (this.version += `-${this.prerelease.join(".")}`), this.version;
@@ -31872,60 +32563,60 @@ One of mods you are using is using an old version of SDK. It will work for now b
       toString() {
         return this.version;
       }
-      compare(t5) {
-        if (e2("SemVer.compare", this.version, this.options, t5), !(t5 instanceof I6)) {
-          if ("string" == typeof t5 && t5 === this.version) return 0;
-          t5 = new I6(t5, this.options);
+      compare(t4) {
+        if (e2("SemVer.compare", this.version, this.options, t4), !(t4 instanceof I6)) {
+          if ("string" == typeof t4 && t4 === this.version) return 0;
+          t4 = new I6(t4, this.options);
         }
-        return t5.version === this.version ? 0 : this.compareMain(t5) || this.comparePre(t5);
+        return t4.version === this.version ? 0 : this.compareMain(t4) || this.comparePre(t4);
       }
       compareMain(e3) {
-        return e3 instanceof I6 || (e3 = new I6(e3, this.options)), h6(this.major, e3.major) || h6(this.minor, e3.minor) || h6(this.patch, e3.patch);
+        return e3 instanceof I6 || (e3 = new I6(e3, this.options)), h7(this.major, e3.major) || h7(this.minor, e3.minor) || h7(this.patch, e3.patch);
       }
-      comparePre(t5) {
-        if (t5 instanceof I6 || (t5 = new I6(t5, this.options)), this.prerelease.length && !t5.prerelease.length) return -1;
-        if (!this.prerelease.length && t5.prerelease.length) return 1;
-        if (!this.prerelease.length && !t5.prerelease.length) return 0;
+      comparePre(t4) {
+        if (t4 instanceof I6 || (t4 = new I6(t4, this.options)), this.prerelease.length && !t4.prerelease.length) return -1;
+        if (!this.prerelease.length && t4.prerelease.length) return 1;
+        if (!this.prerelease.length && !t4.prerelease.length) return 0;
         let r6 = 0;
         do {
-          const n6 = this.prerelease[r6], s5 = t5.prerelease[r6];
-          if (e2("prerelease compare", r6, n6, s5), void 0 === n6 && void 0 === s5) return 0;
-          if (void 0 === s5) return 1;
-          if (void 0 === n6) return -1;
-          if (n6 !== s5) return h6(n6, s5);
+          const n5 = this.prerelease[r6], s6 = t4.prerelease[r6];
+          if (e2("prerelease compare", r6, n5, s6), void 0 === n5 && void 0 === s6) return 0;
+          if (void 0 === s6) return 1;
+          if (void 0 === n5) return -1;
+          if (n5 !== s6) return h7(n5, s6);
         } while (++r6);
       }
-      compareBuild(t5) {
-        t5 instanceof I6 || (t5 = new I6(t5, this.options));
+      compareBuild(t4) {
+        t4 instanceof I6 || (t4 = new I6(t4, this.options));
         let r6 = 0;
         do {
-          const n6 = this.build[r6], s5 = t5.build[r6];
-          if (e2("build compare", r6, n6, s5), void 0 === n6 && void 0 === s5) return 0;
-          if (void 0 === s5) return 1;
-          if (void 0 === n6) return -1;
-          if (n6 !== s5) return h6(n6, s5);
+          const n5 = this.build[r6], s6 = t4.build[r6];
+          if (e2("build compare", r6, n5, s6), void 0 === n5 && void 0 === s6) return 0;
+          if (void 0 === s6) return 1;
+          if (void 0 === n5) return -1;
+          if (n5 !== s6) return h7(n5, s6);
         } while (++r6);
       }
-      inc(e3, t5, r6) {
+      inc(e3, t4, r6) {
         if (e3.startsWith("pre")) {
-          if (!t5 && false === r6) throw new Error("invalid increment argument: identifier is empty");
-          if (t5) {
-            const e4 = `-${t5}`.match(this.options.loose ? n5[s4.PRERELEASELOOSE] : n5[s4.PRERELEASE]);
-            if (!e4 || e4[1] !== t5) throw new Error(`invalid identifier: ${t5}`);
+          if (!t4 && false === r6) throw new Error("invalid increment argument: identifier is empty");
+          if (t4) {
+            const e4 = `-${t4}`.match(this.options.loose ? n4[s5.PRERELEASELOOSE] : n4[s5.PRERELEASE]);
+            if (!e4 || e4[1] !== t4) throw new Error(`invalid identifier: ${t4}`);
           }
         }
         switch (e3) {
           case "premajor":
-            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", t5, r6);
+            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", t4, r6);
             break;
           case "preminor":
-            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", t5, r6);
+            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", t4, r6);
             break;
           case "prepatch":
-            this.prerelease.length = 0, this.inc("patch", t5, r6), this.inc("pre", t5, r6);
+            this.prerelease.length = 0, this.inc("patch", t4, r6), this.inc("pre", t4, r6);
             break;
           case "prerelease":
-            0 === this.prerelease.length && this.inc("patch", t5, r6), this.inc("pre", t5, r6);
+            0 === this.prerelease.length && this.inc("patch", t4, r6), this.inc("pre", t4, r6);
             break;
           case "release":
             if (0 === this.prerelease.length) throw new Error(`version ${this.raw} is not a prerelease`);
@@ -31944,16 +32635,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
             const e4 = Number(r6) ? 1 : 0;
             if (0 === this.prerelease.length) this.prerelease = [e4];
             else {
-              let n6 = this.prerelease.length;
-              for (; --n6 >= 0; ) "number" == typeof this.prerelease[n6] && (this.prerelease[n6]++, n6 = -2);
-              if (-1 === n6) {
-                if (t5 === this.prerelease.join(".") && false === r6) throw new Error("invalid increment argument: identifier already exists");
+              let n5 = this.prerelease.length;
+              for (; --n5 >= 0; ) "number" == typeof this.prerelease[n5] && (this.prerelease[n5]++, n5 = -2);
+              if (-1 === n5) {
+                if (t4 === this.prerelease.join(".") && false === r6) throw new Error("invalid increment argument: identifier already exists");
                 this.prerelease.push(e4);
               }
             }
-            if (t5) {
-              let n6 = [t5, e4];
-              false === r6 && (n6 = [t5]), 0 === h6(this.prerelease[0], t5) ? isNaN(this.prerelease[1]) && (this.prerelease = n6) : this.prerelease = n6;
+            if (t4) {
+              let n5 = [t4, e4];
+              false === r6 && (n5 = [t4]), 0 === h7(this.prerelease[0], t4) ? isNaN(this.prerelease[1]) && (this.prerelease = n5) : this.prerelease = n5;
             }
             break;
           }
@@ -31963,208 +32654,208 @@ One of mods you are using is using an old version of SDK. It will work for now b
         return this.raw = this.format(), this.build.length && (this.raw += `+${this.build.join(".")}`), this;
       }
     }
-    return p2 = I6;
+    return p3 = I6;
   }
-  var A3;
-  var L2;
-  var $;
-  var S3;
+  var A2;
+  var L3;
+  var $2;
+  var S2;
   var y3 = (function() {
-    if (R3) return m3;
+    if (R3) return m2;
     R3 = 1;
     const e2 = (function() {
-      if (v) return I4;
-      v = 1;
+      if (v2) return I4;
+      v2 = 1;
       const e3 = O3();
-      return I4 = (t4, r5, n5 = false) => {
-        if (t4 instanceof e3) return t4;
+      return I4 = (t3, r5, n4 = false) => {
+        if (t3 instanceof e3) return t3;
         try {
-          return new e3(t4, r5);
+          return new e3(t3, r5);
         } catch (e4) {
-          if (!n5) return null;
+          if (!n4) return null;
           throw e4;
         }
       }, I4;
     })();
-    return m3 = (t4, r5) => {
-      const n5 = e2(t4, r5);
-      return n5 ? n5.version : null;
-    }, m3;
+    return m2 = (t3, r5) => {
+      const n4 = e2(t3, r5);
+      return n4 ? n4.version : null;
+    }, m2;
   })();
-  var _2 = t3(y3);
+  var _2 = t2(y3);
   var C2 = (function() {
-    if (S3) return $;
-    S3 = 1;
+    if (S2) return $2;
+    S2 = 1;
     const e2 = (function() {
-      if (L2) return A3;
-      L2 = 1;
+      if (L3) return A2;
+      L3 = 1;
       const e3 = O3();
-      return A3 = (t4, r5, n5) => new e3(t4, n5).compare(new e3(r5, n5)), A3;
+      return A2 = (t3, r5, n4) => new e3(t3, n4).compare(new e3(r5, n4)), A2;
     })();
-    return $ = (t4, r5, n5) => e2(t4, r5, n5) < 0, $;
+    return $2 = (t3, r5, n4) => e2(t3, r5, n4) < 0, $2;
   })();
-  var T3 = t3(C2);
-  function g3(e2) {
+  var T3 = t2(C2);
+  function g4(e2) {
     return globalThis[e2];
   }
-  var P3 = class _P {
+  var P4 = class _P {
     static _initStorage() {
-      var e2, t4;
-      g3(this._namespace) || (e2 = this._namespace, t4 = {}, globalThis[e2] = t4);
+      var e2, t3;
+      g4(this._namespace) || (e2 = this._namespace, t3 = {}, globalThis[e2] = t3);
     }
-    static get(e2, t4) {
+    static get(e2, t3) {
       this._initStorage();
-      const r5 = g3(this._namespace);
-      return e2 in r5 || (r5[e2] = t4()), r5[e2];
+      const r5 = g4(this._namespace);
+      return e2 in r5 || (r5[e2] = t3()), r5[e2];
     }
-    static getMayOverride(e2, t4) {
+    static getMayOverride(e2, t3) {
       this._initStorage();
-      const r5 = g3(this._namespace);
-      return r5[e2] = t4(r5[e2]), r5[e2];
+      const r5 = g4(this._namespace);
+      return r5[e2] = t3(r5[e2]), r5[e2];
     }
-    static getByVersion(e2, t4, r5, n5) {
-      if (this._initStorage(), !_2(t4)) throw new Error(`Invalid version for ${e2}: ${t4}`);
-      const s4 = g3(this._namespace), i8 = `${e2}.__Version`, o4 = s4[e2], a5 = s4[i8];
-      return o4 ? a5 && !T3(a5, t4) || (s4[e2] = n5(a5, o4), s4[i8] = t4) : (s4[e2] = r5(o4), s4[i8] = t4), s4[e2];
+    static getByVersion(e2, t3, r5, n4) {
+      if (this._initStorage(), !_2(t3)) throw new Error(`Invalid version for ${e2}: ${t3}`);
+      const s5 = g4(this._namespace), i5 = `${e2}.__Version`, o5 = s5[e2], a5 = s5[i5];
+      return o5 ? a5 && !T3(a5, t3) || (s5[e2] = n4(a5, o5), s5[i5] = t3) : (s5[e2] = r5(o5), s5[i5] = t3), s5[e2];
     }
-    static set(e2, t4) {
-      this._initStorage(), g3(this._namespace)[e2] = t4;
+    static set(e2, t3) {
+      this._initStorage(), g4(this._namespace)[e2] = t3;
     }
     static has(e2) {
-      return this._initStorage(), e2 in g3(this._namespace);
+      return this._initStorage(), e2 in g4(this._namespace);
     }
     static delete(e2) {
       this._initStorage();
-      const t4 = g3(this._namespace);
-      return e2 in t4 && delete t4[e2];
+      const t3 = g4(this._namespace);
+      return e2 in t3 && delete t3[e2];
     }
     static setImplementation(e2) {
-      const t4 = ["get", "set", "has", "delete"];
-      for (const r5 of t4) {
+      const t3 = ["get", "set", "has", "delete"];
+      for (const r5 of t3) {
         if ("function" != typeof e2[r5]) throw new Error(`Implementation must provide a '${r5}' function`);
         _P[r5] = e2[r5];
       }
     }
     static createNamespace(e2) {
-      return { get: (t4, r5) => _P.get(`${e2}.${t4}`, r5), getMayOverride: (t4, r5) => _P.getMayOverride(`${e2}.${t4}`, r5), set: (t4, r5) => _P.set(`${e2}.${t4}`, r5), has: (t4) => _P.has(`${e2}.${t4}`), delete: (t4) => _P.delete(`${e2}.${t4}`) };
+      return { get: (t3, r5) => _P.get(`${e2}.${t3}`, r5), getMayOverride: (t3, r5) => _P.getMayOverride(`${e2}.${t3}`, r5), set: (t3, r5) => _P.set(`${e2}.${t3}`, r5), has: (t3) => _P.has(`${e2}.${t3}`), delete: (t3) => _P.delete(`${e2}.${t3}`) };
     }
   };
-  function w2(e2) {
-    return new Promise((t4) => setTimeout(t4, e2));
+  function w4(e2) {
+    return new Promise((t3) => setTimeout(t3, e2));
   }
-  function M3(e2, t4 = 100) {
+  function M3(e2, t3 = 100) {
     return (async () => {
-      for (; !e2(); ) await w2(t4);
+      for (; !e2(); ) await w4(t3);
     })();
   }
-  P3._namespace = "__BC_LUZI_GLOBALS__", P3.createNamespace("OnceFlag");
-  var D4;
+  P4._namespace = "__BC_LUZI_GLOBALS__", P4.createNamespace("OnceFlag");
+  var D3;
   var b = { exports: {} };
-  var F2 = (D4 || (D4 = 1, (function(e2) {
-    var t4 = Object.prototype.hasOwnProperty, r5 = "~";
-    function n5() {
+  var F2 = (D3 || (D3 = 1, (function(e2) {
+    var t3 = Object.prototype.hasOwnProperty, r5 = "~";
+    function n4() {
     }
-    function s4(e3, t5, r6) {
-      this.fn = e3, this.context = t5, this.once = r6 || false;
+    function s5(e3, t4, r6) {
+      this.fn = e3, this.context = t4, this.once = r6 || false;
     }
-    function i8(e3, t5, n6, i9, o5) {
-      if ("function" != typeof n6) throw new TypeError("The listener must be a function");
-      var a6 = new s4(n6, i9 || e3, o5), h6 = r5 ? r5 + t5 : t5;
-      return e3._events[h6] ? e3._events[h6].fn ? e3._events[h6] = [e3._events[h6], a6] : e3._events[h6].push(a6) : (e3._events[h6] = a6, e3._eventsCount++), e3;
+    function i5(e3, t4, n5, i6, o6) {
+      if ("function" != typeof n5) throw new TypeError("The listener must be a function");
+      var a6 = new s5(n5, i6 || e3, o6), h7 = r5 ? r5 + t4 : t4;
+      return e3._events[h7] ? e3._events[h7].fn ? e3._events[h7] = [e3._events[h7], a6] : e3._events[h7].push(a6) : (e3._events[h7] = a6, e3._eventsCount++), e3;
     }
-    function o4(e3, t5) {
-      0 === --e3._eventsCount ? e3._events = new n5() : delete e3._events[t5];
+    function o5(e3, t4) {
+      0 === --e3._eventsCount ? e3._events = new n4() : delete e3._events[t4];
     }
     function a5() {
-      this._events = new n5(), this._eventsCount = 0;
+      this._events = new n4(), this._eventsCount = 0;
     }
-    Object.create && (n5.prototype = /* @__PURE__ */ Object.create(null), new n5().__proto__ || (r5 = false)), a5.prototype.eventNames = function() {
-      var e3, n6, s5 = [];
-      if (0 === this._eventsCount) return s5;
-      for (n6 in e3 = this._events) t4.call(e3, n6) && s5.push(r5 ? n6.slice(1) : n6);
-      return Object.getOwnPropertySymbols ? s5.concat(Object.getOwnPropertySymbols(e3)) : s5;
+    Object.create && (n4.prototype = /* @__PURE__ */ Object.create(null), new n4().__proto__ || (r5 = false)), a5.prototype.eventNames = function() {
+      var e3, n5, s6 = [];
+      if (0 === this._eventsCount) return s6;
+      for (n5 in e3 = this._events) t3.call(e3, n5) && s6.push(r5 ? n5.slice(1) : n5);
+      return Object.getOwnPropertySymbols ? s6.concat(Object.getOwnPropertySymbols(e3)) : s6;
     }, a5.prototype.listeners = function(e3) {
-      var t5 = r5 ? r5 + e3 : e3, n6 = this._events[t5];
-      if (!n6) return [];
-      if (n6.fn) return [n6.fn];
-      for (var s5 = 0, i9 = n6.length, o5 = new Array(i9); s5 < i9; s5++) o5[s5] = n6[s5].fn;
-      return o5;
+      var t4 = r5 ? r5 + e3 : e3, n5 = this._events[t4];
+      if (!n5) return [];
+      if (n5.fn) return [n5.fn];
+      for (var s6 = 0, i6 = n5.length, o6 = new Array(i6); s6 < i6; s6++) o6[s6] = n5[s6].fn;
+      return o6;
     }, a5.prototype.listenerCount = function(e3) {
-      var t5 = r5 ? r5 + e3 : e3, n6 = this._events[t5];
-      return n6 ? n6.fn ? 1 : n6.length : 0;
-    }, a5.prototype.emit = function(e3, t5, n6, s5, i9, o5) {
+      var t4 = r5 ? r5 + e3 : e3, n5 = this._events[t4];
+      return n5 ? n5.fn ? 1 : n5.length : 0;
+    }, a5.prototype.emit = function(e3, t4, n5, s6, i6, o6) {
       var a6 = r5 ? r5 + e3 : e3;
       if (!this._events[a6]) return false;
-      var h6, c7, E4 = this._events[a6], l6 = arguments.length;
+      var h7, c7, E4 = this._events[a6], l6 = arguments.length;
       if (E4.fn) {
         switch (E4.once && this.removeListener(e3, E4.fn, void 0, true), l6) {
           case 1:
             return E4.fn.call(E4.context), true;
           case 2:
-            return E4.fn.call(E4.context, t5), true;
+            return E4.fn.call(E4.context, t4), true;
           case 3:
-            return E4.fn.call(E4.context, t5, n6), true;
+            return E4.fn.call(E4.context, t4, n5), true;
           case 4:
-            return E4.fn.call(E4.context, t5, n6, s5), true;
+            return E4.fn.call(E4.context, t4, n5, s6), true;
           case 5:
-            return E4.fn.call(E4.context, t5, n6, s5, i9), true;
+            return E4.fn.call(E4.context, t4, n5, s6, i6), true;
           case 6:
-            return E4.fn.call(E4.context, t5, n6, s5, i9, o5), true;
+            return E4.fn.call(E4.context, t4, n5, s6, i6, o6), true;
         }
-        for (c7 = 1, h6 = new Array(l6 - 1); c7 < l6; c7++) h6[c7 - 1] = arguments[c7];
-        E4.fn.apply(E4.context, h6);
+        for (c7 = 1, h7 = new Array(l6 - 1); c7 < l6; c7++) h7[c7 - 1] = arguments[c7];
+        E4.fn.apply(E4.context, h7);
       } else {
-        var f6, p4 = E4.length;
-        for (c7 = 0; c7 < p4; c7++) switch (E4[c7].once && this.removeListener(e3, E4[c7].fn, void 0, true), l6) {
+        var f6, p5 = E4.length;
+        for (c7 = 0; c7 < p5; c7++) switch (E4[c7].once && this.removeListener(e3, E4[c7].fn, void 0, true), l6) {
           case 1:
             E4[c7].fn.call(E4[c7].context);
             break;
           case 2:
-            E4[c7].fn.call(E4[c7].context, t5);
+            E4[c7].fn.call(E4[c7].context, t4);
             break;
           case 3:
-            E4[c7].fn.call(E4[c7].context, t5, n6);
+            E4[c7].fn.call(E4[c7].context, t4, n5);
             break;
           case 4:
-            E4[c7].fn.call(E4[c7].context, t5, n6, s5);
+            E4[c7].fn.call(E4[c7].context, t4, n5, s6);
             break;
           default:
-            if (!h6) for (f6 = 1, h6 = new Array(l6 - 1); f6 < l6; f6++) h6[f6 - 1] = arguments[f6];
-            E4[c7].fn.apply(E4[c7].context, h6);
+            if (!h7) for (f6 = 1, h7 = new Array(l6 - 1); f6 < l6; f6++) h7[f6 - 1] = arguments[f6];
+            E4[c7].fn.apply(E4[c7].context, h7);
         }
       }
       return true;
-    }, a5.prototype.on = function(e3, t5, r6) {
-      return i8(this, e3, t5, r6, false);
-    }, a5.prototype.once = function(e3, t5, r6) {
-      return i8(this, e3, t5, r6, true);
-    }, a5.prototype.removeListener = function(e3, t5, n6, s5) {
-      var i9 = r5 ? r5 + e3 : e3;
-      if (!this._events[i9]) return this;
-      if (!t5) return o4(this, i9), this;
-      var a6 = this._events[i9];
-      if (a6.fn) a6.fn !== t5 || s5 && !a6.once || n6 && a6.context !== n6 || o4(this, i9);
+    }, a5.prototype.on = function(e3, t4, r6) {
+      return i5(this, e3, t4, r6, false);
+    }, a5.prototype.once = function(e3, t4, r6) {
+      return i5(this, e3, t4, r6, true);
+    }, a5.prototype.removeListener = function(e3, t4, n5, s6) {
+      var i6 = r5 ? r5 + e3 : e3;
+      if (!this._events[i6]) return this;
+      if (!t4) return o5(this, i6), this;
+      var a6 = this._events[i6];
+      if (a6.fn) a6.fn !== t4 || s6 && !a6.once || n5 && a6.context !== n5 || o5(this, i6);
       else {
-        for (var h6 = 0, c7 = [], E4 = a6.length; h6 < E4; h6++) (a6[h6].fn !== t5 || s5 && !a6[h6].once || n6 && a6[h6].context !== n6) && c7.push(a6[h6]);
-        c7.length ? this._events[i9] = 1 === c7.length ? c7[0] : c7 : o4(this, i9);
+        for (var h7 = 0, c7 = [], E4 = a6.length; h7 < E4; h7++) (a6[h7].fn !== t4 || s6 && !a6[h7].once || n5 && a6[h7].context !== n5) && c7.push(a6[h7]);
+        c7.length ? this._events[i6] = 1 === c7.length ? c7[0] : c7 : o5(this, i6);
       }
       return this;
     }, a5.prototype.removeAllListeners = function(e3) {
-      var t5;
-      return e3 ? (t5 = r5 ? r5 + e3 : e3, this._events[t5] && o4(this, t5)) : (this._events = new n5(), this._eventsCount = 0), this;
+      var t4;
+      return e3 ? (t4 = r5 ? r5 + e3 : e3, this._events[t4] && o5(this, t4)) : (this._events = new n4(), this._eventsCount = 0), this;
     }, a5.prototype.off = a5.prototype.removeListener, a5.prototype.addListener = a5.prototype.on, a5.prefixed = r5, a5.EventEmitter = a5, e2.exports = a5;
   })(b)), b.exports);
-  var G2 = t3(F2);
+  var G2 = t2(F2);
   var U2 = "1.0.1";
-  var x4 = class {
+  var x3 = class {
     constructor() {
-      this.handler = new G2(), u.hookFunction("ChatRoomMessage", 10, (e2, t4) => {
+      this.handler = new G2(), u3.hookFunction("ChatRoomMessage", 10, (e2, t3) => {
         const { Type: r5 } = e2[0];
-        return "ServerMessage" !== r5 && "Status" !== r5 && this.handler.emit(r5, e2[0]), t4(e2);
-      }), u.hookFunction("ChatRoomSync", 1, (e2, t4) => {
-        const r5 = Player && !ServerPlayerIsInChatRoom() && RelogData?.ChatRoomName !== e2[0].Name, n5 = t4(e2);
-        return r5 && this.handler.emit("PlayerJoin", Player), n5;
-      }), u.hookFunction("ServerSend", 1, (e2, t4) => ("ChatRoomLeave" === e2[0] && Player && this.handler.emit("PlayerLeave", Player), t4(e2)));
+        return "ServerMessage" !== r5 && "Status" !== r5 && this.handler.emit(r5, e2[0]), t3(e2);
+      }), u3.hookFunction("ChatRoomSync", 1, (e2, t3) => {
+        const r5 = Player && !ServerPlayerIsInChatRoom() && RelogData?.ChatRoomName !== e2[0].Name, n4 = t3(e2);
+        return r5 && this.handler.emit("PlayerJoin", Player), n4;
+      }), u3.hookFunction("ServerSend", 1, (e2, t3) => ("ChatRoomLeave" === e2[0] && Player && this.handler.emit("PlayerLeave", Player), t3(e2)));
     }
     on(...e2) {
       this.handler.on(...e2);
@@ -32176,15 +32867,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.handler.once(...e2);
     }
   };
-  var X2 = P3.get(`ChatRoomEvents@${U2}`, () => new x4());
+  var X3 = P4.get(`ChatRoomEvents@${U2}`, () => new x3());
   var j2 = class {
     constructor() {
-      this.handler = new G2(), u.hookFunction("ActivityOrgasmStop", 9, (e2, t4) => {
-        const [r5, n5] = e2;
-        r5.IsPlayer() && (ActivityOrgasmRuined ? this.handler.emit("ruined", { Player: r5 }) : n5 >= 60 && this.handler.emit("resisted", { Player: r5 })), t4(e2);
-      }), u.hookFunction("ActivityOrgasmStart", 9, (e2, t4) => {
+      this.handler = new G2(), u3.hookFunction("ActivityOrgasmStop", 9, (e2, t3) => {
+        const [r5, n4] = e2;
+        r5.IsPlayer() && (ActivityOrgasmRuined ? this.handler.emit("ruined", { Player: r5 }) : n4 >= 60 && this.handler.emit("resisted", { Player: r5 })), t3(e2);
+      }), u3.hookFunction("ActivityOrgasmStart", 9, (e2, t3) => {
         const [r5] = e2;
-        r5.IsPlayer() && !ActivityOrgasmRuined && this.handler.emit("orgasmed", { Player: r5 }), t4(e2);
+        r5.IsPlayer() && !ActivityOrgasmRuined && this.handler.emit("orgasmed", { Player: r5 }), t3(e2);
       });
     }
     on(...e2) {
@@ -32197,12 +32888,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.handler.off(...e2);
     }
   };
-  var k2 = P3.get(`OrgasmEvents@${U2}`, () => new j2());
+  var k3 = P4.get(`OrgasmEvents@${U2}`, () => new j2());
   var H = class {
     constructor() {
       this.handler = new G2(), (async () => {
         var e2;
-        await M3(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = this.handler, { Description: `SugarChain ChatMessage Handler v${U2}`, Priority: 1024, Callback: (t4, r5, n5, s4) => (e2.emit(t4.Type, t4, r5, n5, s4), false) }));
+        await M3(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = this.handler, { Description: `SugarChain ChatMessage Handler v${U2}`, Priority: 1024, Callback: (t3, r5, n4, s5) => (e2.emit(t3.Type, t3, r5, n4, s5), false) }));
       })();
     }
     on(...e2) {
@@ -32215,259 +32906,262 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.handler.off(...e2);
     }
   };
-  var B = P3.get(`ChatRoomMessageHandlerEvents@${U2}`, () => new H());
+  var B2 = P4.get(`ChatRoomMessageHandlerEvents@${U2}`, () => new H());
   var V2 = { pullActivityInfo: function(...e2) {
-    const [t4, r5, n5, s4] = e2;
-    if ("Activity" !== t4.Type || !t4.Dictionary || !s4) return;
-    const { ActivityName: i8, ActivityAsset: o4, CraftingNames: a5, FocusGroup: h6, TargetMemberNumber: c7 } = s4;
-    if (!(i8 && h6 && c7 && r5.MemberNumber)) return;
-    return { SourceCharacter: r5.MemberNumber, SourceCharacterC: r5, TargetCharacter: c7, ActivityGroup: h6, ActivityName: i8, Asset: void 0 !== o4 ? { Asset: o4, CraftName: a5?.ActivityAsset } : void 0, Dictionary: t4.Dictionary };
+    const [t3, r5, n4, s5] = e2;
+    if ("Activity" !== t3.Type || !t3.Dictionary || !s5) return;
+    const { ActivityName: i5, ActivityAsset: o5, CraftingNames: a5, FocusGroup: h7, TargetMemberNumber: c7 } = s5;
+    if (!(i5 && h7 && c7 && r5.MemberNumber)) return;
+    return { SourceCharacter: r5.MemberNumber, SourceCharacterC: r5, TargetCharacter: c7, ActivityGroup: h7, ActivityName: i5, Asset: void 0 !== o5 ? { Asset: o5, CraftName: a5?.ActivityAsset } : void 0, Dictionary: t3.Dictionary };
   } };
   var z = { OthersOnSelf: /* @__PURE__ */ new Set(["OthersOnSelf", "AnyOnSelf", "SelfInvolved", "AnyInvolved"]), SelfOnSelf: /* @__PURE__ */ new Set(["SelfOnSelf", "AnyOnSelf", "SelfInvolved", "AnyInvolved"]), SelfOnOthers: /* @__PURE__ */ new Set(["SelfOnOthers", "SelfInvolved", "AnyInvolved"]), OthersOnOthers: /* @__PURE__ */ new Set(["AnyInvolved"]) };
   var J = class {
     constructor() {
       this._handlers = [], (async () => {
         var e2;
-        await M3(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = (...e3) => this.emit(...e3), { Description: `SugarChain Activity Handler v${U2}`, Priority: 290, Callback: (t4, r5, n5, s4) => {
-          const i8 = V2.pullActivityInfo(t4, r5, n5, s4);
-          if (!i8) return false;
-          const o4 = i8.TargetCharacter === Player.MemberNumber ? r5.MemberNumber === i8.TargetCharacter ? z.SelfOnSelf : z.OthersOnSelf : i8.SourceCharacter === Player.MemberNumber ? z.SelfOnOthers : z.OthersOnOthers;
-          return e2(o4, i8.ActivityName, r5, Player, i8), false;
+        await M3(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = (...e3) => this.emit(...e3), { Description: `SugarChain Activity Handler v${U2}`, Priority: 290, Callback: (t3, r5, n4, s5) => {
+          const i5 = V2.pullActivityInfo(t3, r5, n4, s5);
+          if (!i5) return false;
+          const o5 = i5.TargetCharacter === Player.MemberNumber ? r5.MemberNumber === i5.TargetCharacter ? z.SelfOnSelf : z.OthersOnSelf : i5.SourceCharacter === Player.MemberNumber ? z.SelfOnOthers : z.OthersOnOthers;
+          return e2(o5, i5.ActivityName, r5, Player, i5), false;
         } }));
       })();
     }
-    emit(e2, t4, ...r5) {
-      const n5 = [...this._handlers], s4 = [];
-      for (const i8 of n5) if (null !== i8.activity && t4 !== i8.activity || !e2.has(i8.mode)) s4.push(i8);
+    emit(e2, t3, ...r5) {
+      const n4 = [...this._handlers], s5 = [];
+      for (const i5 of n4) if (null !== i5.activity && t3 !== i5.activity || !e2.has(i5.mode)) s5.push(i5);
       else {
         try {
-          i8.listener(...r5);
+          i5.listener(...r5);
         } catch (e3) {
-          console.error(`Error in activity event listener for ${i8.activity} (${i8.mode}):`, e3);
+          console.error(`Error in activity event listener for ${i5.activity} (${i5.mode}):`, e3);
         }
-        i8.once || s4.push(i8);
+        i5.once || s5.push(i5);
       }
-      this._handlers = s4;
+      this._handlers = s5;
     }
-    on(e2, t4, r5) {
-      this._handlers.push({ mode: e2, activity: t4, listener: r5, once: false });
+    on(e2, t3, r5) {
+      this._handlers.push({ mode: e2, activity: t3, listener: r5, once: false });
     }
-    once(e2, t4, r5) {
-      this._handlers.push({ mode: e2, activity: t4, listener: r5, once: true });
+    once(e2, t3, r5) {
+      this._handlers.push({ mode: e2, activity: t3, listener: r5, once: true });
     }
-    onAny(e2, t4) {
-      this._handlers.push({ mode: e2, activity: null, listener: t4, once: false });
+    onAny(e2, t3) {
+      this._handlers.push({ mode: e2, activity: null, listener: t3, once: false });
     }
-    onceAny(e2, t4) {
-      this._handlers.push({ mode: e2, activity: null, listener: t4, once: true });
+    onceAny(e2, t3) {
+      this._handlers.push({ mode: e2, activity: null, listener: t3, once: true });
     }
-    off(e2, t4, r5) {
-      this._handlers = r5 ? this._handlers.filter((n5) => n5.mode !== e2 || n5.activity !== t4 || n5.listener !== r5) : this._handlers.filter((r6) => r6.mode !== e2 || r6.activity !== t4);
+    off(e2, t3, r5) {
+      this._handlers = r5 ? this._handlers.filter((n4) => n4.mode !== e2 || n4.activity !== t3 || n4.listener !== r5) : this._handlers.filter((r6) => r6.mode !== e2 || r6.activity !== t3);
     }
   };
-  var Y2 = P3.get(`ActivityEvents@${U2}`, () => new J());
+  var Y2 = P4.get(`ActivityEvents@${U2}`, () => new J());
   var Z = class {
     isAllowed(e2) {
       return e2 in this.modifiers;
     }
     constructor() {
-      this.modifiers = { ChatRoomChat: [], ChatRoomCharacterUpdate: [], ChatRoomCharacterExpressionUpdate: [], ChatRoomCharacterPoseUpdate: [], ChatRoomCharacterArousalUpdate: [], ChatRoomCharacterItemUpdate: [], ChatRoomCharacterMapDataUpdate: [], ChatRoomGame: [] }, u.hookFunction("ServerSend", 10, (e2, t4) => {
-        const [r5, n5] = e2;
+      this.modifiers = { ChatRoomChat: [], ChatRoomCharacterUpdate: [], ChatRoomCharacterExpressionUpdate: [], ChatRoomCharacterPoseUpdate: [], ChatRoomCharacterArousalUpdate: [], ChatRoomCharacterItemUpdate: [], ChatRoomCharacterMapDataUpdate: [], ChatRoomGame: [] }, u3.hookFunction("ServerSend", 10, (e2, t3) => {
+        const [r5, n4] = e2;
         if (this.isAllowed(r5)) {
-          const t5 = this.modifiers[r5];
-          for (const r6 of t5) e2[1] = r6(n5);
+          const t4 = this.modifiers[r5];
+          for (const r6 of t4) e2[1] = r6(n4);
         }
-        return t4(e2);
+        return t3(e2);
       });
     }
-    addModifier(e2, t4) {
-      this.modifiers[e2].push(t4);
+    addModifier(e2, t3) {
+      this.modifiers[e2].push(t3);
     }
-    removeModifier(e2, t4) {
-      const r5 = this.modifiers[e2].indexOf(t4);
+    removeModifier(e2, t3) {
+      const r5 = this.modifiers[e2].indexOf(t3);
       r5 > -1 && this.modifiers[e2].splice(r5, 1);
     }
   };
-  var W3 = P3.get("ServerSendModifiers", () => new Z());
+  var W2 = P4.get("ServerSendModifiers", () => new Z());
 
-  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.0.2_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_6cfdd4ed286b1fc197c98264f1c63cce/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
-  var i7;
+  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.1.1_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_268353b0c07c410468a5e413195f47b5/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
+  var i4;
   var r4 = class {
-    static info(t4) {
-      i7?.info(t4);
+    static info(t3) {
+      i4?.info(t3);
     }
-    static warn(t4) {
-      i7?.warn(t4);
+    static warn(t3) {
+      i4?.warn(t3);
     }
-    static error(t4) {
-      i7?.error(t4);
+    static error(t3) {
+      i4?.error(t3);
     }
   };
-  var s3 = /* @__PURE__ */ new Set();
-  function n4(e2, i8) {
-    s3.has(e2) ? r4.warn(`Handler for ${e2} already exists, skipping`) : Y2.on(i8.mode ?? "SelfInvolved", e2, (t4, e3, r5) => {
-      i8.run?.(e3, t4, r5);
+  var s4 = /* @__PURE__ */ new Set();
+  function n3(e2, i5) {
+    s4.has(e2) ? r4.warn(`Handler for ${e2} already exists, skipping`) : Y2.on(i5.mode ?? "SelfInvolved", e2, (t3, e3, r5) => {
+      i5.run?.(e3, t3, r5);
     });
   }
   var a4 = [];
-  var o3 = false;
-  function c6(t4) {
-    o3 ? t4() : a4.push(t4);
+  var o4 = false;
+  function c6(t3) {
+    o4 ? t3() : a4.push(t3);
   }
-  function E3(t4, e2, i8) {
-    return (function(t5, e3) {
-      const i9 = "TW" !== TranslationLanguage ? TranslationLanguage : "CN";
-      let r5 = t5(i9);
-      return void 0 !== r5 ? r5 : (r5 = "CN" === i9 ? t5("CN") : t5("EN") || t5("CN"), void 0 !== r5 ? r5 : e3);
-    })((i9) => t4[i9]?.[e2], i8);
+  function E3(t3, e2, i5) {
+    return (function(t4, e3) {
+      const i6 = "TW" !== TranslationLanguage ? TranslationLanguage : "CN";
+      let r5 = t4(i6);
+      return void 0 !== r5 ? r5 : (r5 = "CN" === i6 ? t4("CN") : t4("EN") || t4("CN"), void 0 !== r5 ? r5 : e3);
+    })((i6) => t3[i6]?.[e2], i5);
   }
-  var h5 = {};
-  function u3(t4, e2) {
-    for (const [i8, r5] of Object.entries(t4)) r5 && e2(i8, r5);
+  var h6 = {};
+  function u5(t3, e2) {
+    for (const [i5, r5] of Object.entries(t3)) r5 && e2(i5, r5);
   }
-  function m4(t4, e2, i8, r5) {
-    u3(e2, (e3, s4) => {
-      h5[e3] = (function(t5, e4, i9 = {}) {
-        const r6 = { ...i9 };
-        return u3(t5, (t6, i10) => {
-          const { key: s5, value: n5 } = e4(t6, i10);
-          r6[s5] = n5;
+  function m3(t3, e2, i5, r5) {
+    u5(e2, (e3, s5) => {
+      h6[e3] = (function(t4, e4, i6 = {}) {
+        const r6 = { ...i6 };
+        return u5(t4, (t5, i7) => {
+          const { key: s6, value: n4 } = e4(t5, i7);
+          r6[s6] = n4;
         }), r6;
-      })(s4, (e4, s5) => ({ key: `${t4}Chat${i8}-${e4}-${r5}`, value: s5 }), h5[e3] || {});
+      })(s5, (e4, s6) => ({ key: `${t3}Chat${i5}-${e4}-${r5}`, value: s6 }), h6[e3] || {});
     });
   }
-  var I5 = { ItemVulva: "ItemPenis", ItemVulvaPiercings: "ItemGlans" };
-  function p3(t4, e2, i8, r5, s4) {
-    l5(e2) ? (function(t5, e3, i9, r6, s5) {
-      u3(e3, (e4, n5) => {
-        h5[e4] || (h5[e4] = {});
-        for (const a5 of s5) {
-          h5[e4][`${t5}Chat${i9}-${a5}-${r6}`] = n5;
-          const s6 = I5[a5];
-          s6 && (h5[e4][`${t5}Chat${i9}-${s6}-${r6}`] = n5);
+  var p4 = { ItemVulva: "ItemPenis", ItemVulvaPiercings: "ItemGlans" };
+  function I5(t3, e2, i5, r5, s5) {
+    l5(e2) ? (function(t4, e3, i6, r6, s6) {
+      u5(e3, (e4, n4) => {
+        h6[e4] || (h6[e4] = {});
+        for (const a5 of s6) {
+          h6[e4][`${t4}Chat${i6}-${a5}-${r6}`] = n4;
+          const s7 = p4[a5];
+          s7 && (h6[e4][`${t4}Chat${i6}-${s7}-${r6}`] = n4);
         }
       });
-    })(t4, e2, i8, r5, s4) : m4(t4, e2, i8, r5);
+    })(t3, e2, i5, r5, s5) : m3(t3, e2, i5, r5);
   }
-  function l5(t4) {
-    return Object.values(t4).some((t5) => "string" == typeof t5);
+  function l5(t3) {
+    return Object.values(t3).some((t4) => "string" == typeof t4);
   }
-  function A4(t4) {
-    const { activity: e2, label: i8, labelSelf: r5, dialog: s4, dialogSelf: n5 } = t4, { Name: a5, Target: o4, TargetSelf: c7 } = e2, E4 = i8 ?? r5 ?? { CN: a5 };
-    l5(E4) ? u3(E4, (t5, e3) => {
-      h5[t5] || (h5[t5] = {}), h5[t5][`Activity${a5}`] = e3;
-    }) : u3(E4, (t5, e3) => {
-      h5[t5] || (h5[t5] = {}), h5[t5][`Activity${a5}`] = Object.values(e3)[0] || a5;
-    }), p3("Label-", E4, "Other", a5, o4), s4 && p3("", s4, "Other", a5, o4);
-    const m5 = "boolean" == typeof c7 && c7 ? o4 : Array.isArray(c7) ? c7 : [], I6 = r5 || i8;
-    I6 && p3("Label-", I6, "Self", a5, m5);
-    const A5 = n5 || s4;
-    A5 && p3("", A5, "Self", a5, m5);
+  function A3(t3) {
+    const { activity: e2, label: i5, labelSelf: r5, dialog: s5, dialogSelf: n4 } = t3, { Name: a5, Target: o5, TargetSelf: c7 } = e2, E4 = i5 ?? r5 ?? { CN: a5 };
+    l5(E4) ? u5(E4, (t4, e3) => {
+      h6[t4] || (h6[t4] = {}), h6[t4][`Activity${a5}`] = e3;
+    }) : u5(E4, (t4, e3) => {
+      h6[t4] || (h6[t4] = {}), h6[t4][`Activity${a5}`] = Object.values(e3)[0] || a5;
+    }), I5("Label-", E4, "Other", a5, o5), s5 && I5("", s5, "Other", a5, o5);
+    const m4 = "boolean" == typeof c7 && c7 ? o5 : Array.isArray(c7) ? c7 : [], p5 = r5 || i5;
+    p5 && I5("Label-", p5, "Self", a5, m4);
+    const A4 = n4 || s5;
+    A4 && I5("", A4, "Self", a5, m4);
   }
   var f5 = {};
-  function g4(t4) {
-    f5[t4.name] = t4;
+  function g5(t3) {
+    f5[t3.name] = t3;
   }
-  function N6(t4, e2) {
+  function N4(t3, e2) {
     return e2.map((e3) => {
       if ("function" == typeof e3) {
-        const i8 = (function(t5) {
+        const i5 = (function(t4) {
           for (; ; ) {
-            const e4 = `${t5}_prereq_${Math.random().toString(36).substring(2)}`;
+            const e4 = `${t4}_prereq_${Math.random().toString(36).substring(2)}`;
             if (!f5[e4]) return e4;
           }
-        })(t4);
-        return g4({ name: i8, test: e3 }), i8;
+        })(t3);
+        return g5({ name: i5, test: e3 }), i5;
       }
       return e3;
     });
   }
   var R4 = {};
-  function $2(t4) {
-    R4[t4.activity.Name] = t4;
+  function d5(t3) {
+    R4[t3.activity.Name] = t3;
   }
-  function L3(t4) {
-    return t4 && t4.__esModule && Object.prototype.hasOwnProperty.call(t4, "default") ? t4.default : t4;
+  function $3(t3) {
+    return !!R4[t3];
   }
-  var d3;
-  var v2;
-  var O4;
+  function v3(t3) {
+    return t3 && t3.__esModule && Object.prototype.hasOwnProperty.call(t3, "default") ? t3.default : t3;
+  }
+  var L4;
   var y4;
-  function S4() {
-    if (v2) return d3;
-    v2 = 1;
-    const t4 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...t5) => console.error("SEMVER", ...t5) : () => {
-    };
-    return d3 = t4;
-  }
+  var O4;
+  var S3;
   function T4() {
-    if (y4) return O4;
+    if (y4) return L4;
     y4 = 1;
-    const t4 = Number.MAX_SAFE_INTEGER || 9007199254740991;
-    return O4 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t4, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
+    const t3 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...t4) => console.error("SEMVER", ...t4) : () => {
+    };
+    return L4 = t3;
+  }
+  function D4() {
+    if (S3) return O4;
+    S3 = 1;
+    const t3 = Number.MAX_SAFE_INTEGER || 9007199254740991;
+    return O4 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t3, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
   }
   var C3;
-  var D5;
-  var w3;
   var F3;
-  var P4;
+  var w5;
+  var P5;
   var G3;
   var M4;
   var b2;
   var _3;
   var U3;
-  var X3;
-  var k3 = { exports: {} };
-  function j3() {
-    return C3 || (C3 = 1, (function(t4, e2) {
-      const { MAX_SAFE_COMPONENT_LENGTH: i8, MAX_SAFE_BUILD_LENGTH: r5, MAX_LENGTH: s4 } = T4(), n5 = S4(), a5 = (e2 = t4.exports = {}).re = [], o4 = e2.safeRe = [], c7 = e2.src = [], E4 = e2.safeSrc = [], h6 = e2.t = {};
-      let u4 = 0;
-      const m5 = "[a-zA-Z0-9-]", I6 = [["\\s", 1], ["\\d", s4], [m5, r5]], p4 = (t5, e3, i9) => {
-        const r6 = ((t6) => {
-          for (const [e4, i10] of I6) t6 = t6.split(`${e4}*`).join(`${e4}{0,${i10}}`).split(`${e4}+`).join(`${e4}{1,${i10}}`);
-          return t6;
-        })(e3), s5 = u4++;
-        n5(t5, s5, e3), h6[t5] = s5, c7[s5] = e3, E4[s5] = r6, a5[s5] = new RegExp(e3, i9 ? "g" : void 0), o4[s5] = new RegExp(r6, i9 ? "g" : void 0);
+  var X4;
+  var k4;
+  var j3 = { exports: {} };
+  function B3() {
+    return C3 || (C3 = 1, (function(t3, e2) {
+      const { MAX_SAFE_COMPONENT_LENGTH: i5, MAX_SAFE_BUILD_LENGTH: r5, MAX_LENGTH: s5 } = D4(), n4 = T4(), a5 = (e2 = t3.exports = {}).re = [], o5 = e2.safeRe = [], c7 = e2.src = [], E4 = e2.safeSrc = [], h7 = e2.t = {};
+      let u6 = 0;
+      const m4 = "[a-zA-Z0-9-]", p5 = [["\\s", 1], ["\\d", s5], [m4, r5]], I6 = (t4, e3, i6) => {
+        const r6 = ((t5) => {
+          for (const [e4, i7] of p5) t5 = t5.split(`${e4}*`).join(`${e4}{0,${i7}}`).split(`${e4}+`).join(`${e4}{1,${i7}}`);
+          return t5;
+        })(e3), s6 = u6++;
+        n4(t4, s6, e3), h7[t4] = s6, c7[s6] = e3, E4[s6] = r6, a5[s6] = new RegExp(e3, i6 ? "g" : void 0), o5[s6] = new RegExp(r6, i6 ? "g" : void 0);
       };
-      p4("NUMERICIDENTIFIER", "0|[1-9]\\d*"), p4("NUMERICIDENTIFIERLOOSE", "\\d+"), p4("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${m5}*`), p4("MAINVERSION", `(${c7[h6.NUMERICIDENTIFIER]})\\.(${c7[h6.NUMERICIDENTIFIER]})\\.(${c7[h6.NUMERICIDENTIFIER]})`), p4("MAINVERSIONLOOSE", `(${c7[h6.NUMERICIDENTIFIERLOOSE]})\\.(${c7[h6.NUMERICIDENTIFIERLOOSE]})\\.(${c7[h6.NUMERICIDENTIFIERLOOSE]})`), p4("PRERELEASEIDENTIFIER", `(?:${c7[h6.NONNUMERICIDENTIFIER]}|${c7[h6.NUMERICIDENTIFIER]})`), p4("PRERELEASEIDENTIFIERLOOSE", `(?:${c7[h6.NONNUMERICIDENTIFIER]}|${c7[h6.NUMERICIDENTIFIERLOOSE]})`), p4("PRERELEASE", `(?:-(${c7[h6.PRERELEASEIDENTIFIER]}(?:\\.${c7[h6.PRERELEASEIDENTIFIER]})*))`), p4("PRERELEASELOOSE", `(?:-?(${c7[h6.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${c7[h6.PRERELEASEIDENTIFIERLOOSE]})*))`), p4("BUILDIDENTIFIER", `${m5}+`), p4("BUILD", `(?:\\+(${c7[h6.BUILDIDENTIFIER]}(?:\\.${c7[h6.BUILDIDENTIFIER]})*))`), p4("FULLPLAIN", `v?${c7[h6.MAINVERSION]}${c7[h6.PRERELEASE]}?${c7[h6.BUILD]}?`), p4("FULL", `^${c7[h6.FULLPLAIN]}$`), p4("LOOSEPLAIN", `[v=\\s]*${c7[h6.MAINVERSIONLOOSE]}${c7[h6.PRERELEASELOOSE]}?${c7[h6.BUILD]}?`), p4("LOOSE", `^${c7[h6.LOOSEPLAIN]}$`), p4("GTLT", "((?:<|>)?=?)"), p4("XRANGEIDENTIFIERLOOSE", `${c7[h6.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), p4("XRANGEIDENTIFIER", `${c7[h6.NUMERICIDENTIFIER]}|x|X|\\*`), p4("XRANGEPLAIN", `[v=\\s]*(${c7[h6.XRANGEIDENTIFIER]})(?:\\.(${c7[h6.XRANGEIDENTIFIER]})(?:\\.(${c7[h6.XRANGEIDENTIFIER]})(?:${c7[h6.PRERELEASE]})?${c7[h6.BUILD]}?)?)?`), p4("XRANGEPLAINLOOSE", `[v=\\s]*(${c7[h6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c7[h6.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c7[h6.XRANGEIDENTIFIERLOOSE]})(?:${c7[h6.PRERELEASELOOSE]})?${c7[h6.BUILD]}?)?)?`), p4("XRANGE", `^${c7[h6.GTLT]}\\s*${c7[h6.XRANGEPLAIN]}$`), p4("XRANGELOOSE", `^${c7[h6.GTLT]}\\s*${c7[h6.XRANGEPLAINLOOSE]}$`), p4("COERCEPLAIN", `(^|[^\\d])(\\d{1,${i8}})(?:\\.(\\d{1,${i8}}))?(?:\\.(\\d{1,${i8}}))?`), p4("COERCE", `${c7[h6.COERCEPLAIN]}(?:$|[^\\d])`), p4("COERCEFULL", c7[h6.COERCEPLAIN] + `(?:${c7[h6.PRERELEASE]})?(?:${c7[h6.BUILD]})?(?:$|[^\\d])`), p4("COERCERTL", c7[h6.COERCE], true), p4("COERCERTLFULL", c7[h6.COERCEFULL], true), p4("LONETILDE", "(?:~>?)"), p4("TILDETRIM", `(\\s*)${c7[h6.LONETILDE]}\\s+`, true), e2.tildeTrimReplace = "$1~", p4("TILDE", `^${c7[h6.LONETILDE]}${c7[h6.XRANGEPLAIN]}$`), p4("TILDELOOSE", `^${c7[h6.LONETILDE]}${c7[h6.XRANGEPLAINLOOSE]}$`), p4("LONECARET", "(?:\\^)"), p4("CARETTRIM", `(\\s*)${c7[h6.LONECARET]}\\s+`, true), e2.caretTrimReplace = "$1^", p4("CARET", `^${c7[h6.LONECARET]}${c7[h6.XRANGEPLAIN]}$`), p4("CARETLOOSE", `^${c7[h6.LONECARET]}${c7[h6.XRANGEPLAINLOOSE]}$`), p4("COMPARATORLOOSE", `^${c7[h6.GTLT]}\\s*(${c7[h6.LOOSEPLAIN]})$|^$`), p4("COMPARATOR", `^${c7[h6.GTLT]}\\s*(${c7[h6.FULLPLAIN]})$|^$`), p4("COMPARATORTRIM", `(\\s*)${c7[h6.GTLT]}\\s*(${c7[h6.LOOSEPLAIN]}|${c7[h6.XRANGEPLAIN]})`, true), e2.comparatorTrimReplace = "$1$2$3", p4("HYPHENRANGE", `^\\s*(${c7[h6.XRANGEPLAIN]})\\s+-\\s+(${c7[h6.XRANGEPLAIN]})\\s*$`), p4("HYPHENRANGELOOSE", `^\\s*(${c7[h6.XRANGEPLAINLOOSE]})\\s+-\\s+(${c7[h6.XRANGEPLAINLOOSE]})\\s*$`), p4("STAR", "(<|>)?=?\\s*\\*"), p4("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), p4("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
-    })(k3, k3.exports)), k3.exports;
+      I6("NUMERICIDENTIFIER", "0|[1-9]\\d*"), I6("NUMERICIDENTIFIERLOOSE", "\\d+"), I6("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${m4}*`), I6("MAINVERSION", `(${c7[h7.NUMERICIDENTIFIER]})\\.(${c7[h7.NUMERICIDENTIFIER]})\\.(${c7[h7.NUMERICIDENTIFIER]})`), I6("MAINVERSIONLOOSE", `(${c7[h7.NUMERICIDENTIFIERLOOSE]})\\.(${c7[h7.NUMERICIDENTIFIERLOOSE]})\\.(${c7[h7.NUMERICIDENTIFIERLOOSE]})`), I6("PRERELEASEIDENTIFIER", `(?:${c7[h7.NONNUMERICIDENTIFIER]}|${c7[h7.NUMERICIDENTIFIER]})`), I6("PRERELEASEIDENTIFIERLOOSE", `(?:${c7[h7.NONNUMERICIDENTIFIER]}|${c7[h7.NUMERICIDENTIFIERLOOSE]})`), I6("PRERELEASE", `(?:-(${c7[h7.PRERELEASEIDENTIFIER]}(?:\\.${c7[h7.PRERELEASEIDENTIFIER]})*))`), I6("PRERELEASELOOSE", `(?:-?(${c7[h7.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${c7[h7.PRERELEASEIDENTIFIERLOOSE]})*))`), I6("BUILDIDENTIFIER", `${m4}+`), I6("BUILD", `(?:\\+(${c7[h7.BUILDIDENTIFIER]}(?:\\.${c7[h7.BUILDIDENTIFIER]})*))`), I6("FULLPLAIN", `v?${c7[h7.MAINVERSION]}${c7[h7.PRERELEASE]}?${c7[h7.BUILD]}?`), I6("FULL", `^${c7[h7.FULLPLAIN]}$`), I6("LOOSEPLAIN", `[v=\\s]*${c7[h7.MAINVERSIONLOOSE]}${c7[h7.PRERELEASELOOSE]}?${c7[h7.BUILD]}?`), I6("LOOSE", `^${c7[h7.LOOSEPLAIN]}$`), I6("GTLT", "((?:<|>)?=?)"), I6("XRANGEIDENTIFIERLOOSE", `${c7[h7.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), I6("XRANGEIDENTIFIER", `${c7[h7.NUMERICIDENTIFIER]}|x|X|\\*`), I6("XRANGEPLAIN", `[v=\\s]*(${c7[h7.XRANGEIDENTIFIER]})(?:\\.(${c7[h7.XRANGEIDENTIFIER]})(?:\\.(${c7[h7.XRANGEIDENTIFIER]})(?:${c7[h7.PRERELEASE]})?${c7[h7.BUILD]}?)?)?`), I6("XRANGEPLAINLOOSE", `[v=\\s]*(${c7[h7.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c7[h7.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c7[h7.XRANGEIDENTIFIERLOOSE]})(?:${c7[h7.PRERELEASELOOSE]})?${c7[h7.BUILD]}?)?)?`), I6("XRANGE", `^${c7[h7.GTLT]}\\s*${c7[h7.XRANGEPLAIN]}$`), I6("XRANGELOOSE", `^${c7[h7.GTLT]}\\s*${c7[h7.XRANGEPLAINLOOSE]}$`), I6("COERCEPLAIN", `(^|[^\\d])(\\d{1,${i5}})(?:\\.(\\d{1,${i5}}))?(?:\\.(\\d{1,${i5}}))?`), I6("COERCE", `${c7[h7.COERCEPLAIN]}(?:$|[^\\d])`), I6("COERCEFULL", c7[h7.COERCEPLAIN] + `(?:${c7[h7.PRERELEASE]})?(?:${c7[h7.BUILD]})?(?:$|[^\\d])`), I6("COERCERTL", c7[h7.COERCE], true), I6("COERCERTLFULL", c7[h7.COERCEFULL], true), I6("LONETILDE", "(?:~>?)"), I6("TILDETRIM", `(\\s*)${c7[h7.LONETILDE]}\\s+`, true), e2.tildeTrimReplace = "$1~", I6("TILDE", `^${c7[h7.LONETILDE]}${c7[h7.XRANGEPLAIN]}$`), I6("TILDELOOSE", `^${c7[h7.LONETILDE]}${c7[h7.XRANGEPLAINLOOSE]}$`), I6("LONECARET", "(?:\\^)"), I6("CARETTRIM", `(\\s*)${c7[h7.LONECARET]}\\s+`, true), e2.caretTrimReplace = "$1^", I6("CARET", `^${c7[h7.LONECARET]}${c7[h7.XRANGEPLAIN]}$`), I6("CARETLOOSE", `^${c7[h7.LONECARET]}${c7[h7.XRANGEPLAINLOOSE]}$`), I6("COMPARATORLOOSE", `^${c7[h7.GTLT]}\\s*(${c7[h7.LOOSEPLAIN]})$|^$`), I6("COMPARATOR", `^${c7[h7.GTLT]}\\s*(${c7[h7.FULLPLAIN]})$|^$`), I6("COMPARATORTRIM", `(\\s*)${c7[h7.GTLT]}\\s*(${c7[h7.LOOSEPLAIN]}|${c7[h7.XRANGEPLAIN]})`, true), e2.comparatorTrimReplace = "$1$2$3", I6("HYPHENRANGE", `^\\s*(${c7[h7.XRANGEPLAIN]})\\s+-\\s+(${c7[h7.XRANGEPLAIN]})\\s*$`), I6("HYPHENRANGELOOSE", `^\\s*(${c7[h7.XRANGEPLAINLOOSE]})\\s+-\\s+(${c7[h7.XRANGEPLAINLOOSE]})\\s*$`), I6("STAR", "(<|>)?=?\\s*\\*"), I6("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), I6("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
+    })(j3, j3.exports)), j3.exports;
   }
-  function B2() {
-    if (M4) return G3;
-    M4 = 1;
-    const t4 = S4(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i8 } = T4(), { safeRe: r5, t: s4 } = j3(), n5 = (function() {
-      if (w3) return D5;
-      w3 = 1;
-      const t5 = Object.freeze({ loose: true }), e3 = Object.freeze({});
-      return D5 = (i9) => i9 ? "object" != typeof i9 ? t5 : i9 : e3;
+  function x4() {
+    if (b2) return M4;
+    b2 = 1;
+    const t3 = T4(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i5 } = D4(), { safeRe: r5, t: s5 } = B3(), n4 = (function() {
+      if (w5) return F3;
+      w5 = 1;
+      const t4 = Object.freeze({ loose: true }), e3 = Object.freeze({});
+      return F3 = (i6) => i6 ? "object" != typeof i6 ? t4 : i6 : e3;
     })(), { compareIdentifiers: a5 } = (function() {
-      if (P4) return F3;
-      P4 = 1;
-      const t5 = /^[0-9]+$/, e3 = (e4, i9) => {
-        const r6 = t5.test(e4), s5 = t5.test(i9);
-        return r6 && s5 && (e4 = +e4, i9 = +i9), e4 === i9 ? 0 : r6 && !s5 ? -1 : s5 && !r6 ? 1 : e4 < i9 ? -1 : 1;
+      if (G3) return P5;
+      G3 = 1;
+      const t4 = /^[0-9]+$/, e3 = (e4, i6) => {
+        const r6 = t4.test(e4), s6 = t4.test(i6);
+        return r6 && s6 && (e4 = +e4, i6 = +i6), e4 === i6 ? 0 : r6 && !s6 ? -1 : s6 && !r6 ? 1 : e4 < i6 ? -1 : 1;
       };
-      return F3 = { compareIdentifiers: e3, rcompareIdentifiers: (t6, i9) => e3(i9, t6) }, F3;
+      return P5 = { compareIdentifiers: e3, rcompareIdentifiers: (t5, i6) => e3(i6, t5) }, P5;
     })();
-    class o4 {
+    class o5 {
       constructor(a6, c7) {
-        if (c7 = n5(c7), a6 instanceof o4) {
+        if (c7 = n4(c7), a6 instanceof o5) {
           if (a6.loose === !!c7.loose && a6.includePrerelease === !!c7.includePrerelease) return a6;
           a6 = a6.version;
         } else if ("string" != typeof a6) throw new TypeError(`Invalid version. Must be a string. Got type "${typeof a6}".`);
         if (a6.length > e2) throw new TypeError(`version is longer than ${e2} characters`);
-        t4("SemVer", a6, c7), this.options = c7, this.loose = !!c7.loose, this.includePrerelease = !!c7.includePrerelease;
-        const E4 = a6.trim().match(c7.loose ? r5[s4.LOOSE] : r5[s4.FULL]);
+        t3("SemVer", a6, c7), this.options = c7, this.loose = !!c7.loose, this.includePrerelease = !!c7.includePrerelease;
+        const E4 = a6.trim().match(c7.loose ? r5[s5.LOOSE] : r5[s5.FULL]);
         if (!E4) throw new TypeError(`Invalid Version: ${a6}`);
-        if (this.raw = a6, this.major = +E4[1], this.minor = +E4[2], this.patch = +E4[3], this.major > i8 || this.major < 0) throw new TypeError("Invalid major version");
-        if (this.minor > i8 || this.minor < 0) throw new TypeError("Invalid minor version");
-        if (this.patch > i8 || this.patch < 0) throw new TypeError("Invalid patch version");
-        E4[4] ? this.prerelease = E4[4].split(".").map((t5) => {
-          if (/^[0-9]+$/.test(t5)) {
-            const e3 = +t5;
-            if (e3 >= 0 && e3 < i8) return e3;
+        if (this.raw = a6, this.major = +E4[1], this.minor = +E4[2], this.patch = +E4[3], this.major > i5 || this.major < 0) throw new TypeError("Invalid major version");
+        if (this.minor > i5 || this.minor < 0) throw new TypeError("Invalid minor version");
+        if (this.patch > i5 || this.patch < 0) throw new TypeError("Invalid patch version");
+        E4[4] ? this.prerelease = E4[4].split(".").map((t4) => {
+          if (/^[0-9]+$/.test(t4)) {
+            const e3 = +t4;
+            if (e3 >= 0 && e3 < i5) return e3;
           }
-          return t5;
+          return t4;
         }) : this.prerelease = [], this.build = E4[5] ? E4[5].split(".") : [], this.format();
       }
       format() {
@@ -32477,59 +33171,59 @@ One of mods you are using is using an old version of SDK. It will work for now b
         return this.version;
       }
       compare(e3) {
-        if (t4("SemVer.compare", this.version, this.options, e3), !(e3 instanceof o4)) {
+        if (t3("SemVer.compare", this.version, this.options, e3), !(e3 instanceof o5)) {
           if ("string" == typeof e3 && e3 === this.version) return 0;
-          e3 = new o4(e3, this.options);
+          e3 = new o5(e3, this.options);
         }
         return e3.version === this.version ? 0 : this.compareMain(e3) || this.comparePre(e3);
       }
-      compareMain(t5) {
-        return t5 instanceof o4 || (t5 = new o4(t5, this.options)), a5(this.major, t5.major) || a5(this.minor, t5.minor) || a5(this.patch, t5.patch);
+      compareMain(t4) {
+        return t4 instanceof o5 || (t4 = new o5(t4, this.options)), a5(this.major, t4.major) || a5(this.minor, t4.minor) || a5(this.patch, t4.patch);
       }
       comparePre(e3) {
-        if (e3 instanceof o4 || (e3 = new o4(e3, this.options)), this.prerelease.length && !e3.prerelease.length) return -1;
+        if (e3 instanceof o5 || (e3 = new o5(e3, this.options)), this.prerelease.length && !e3.prerelease.length) return -1;
         if (!this.prerelease.length && e3.prerelease.length) return 1;
         if (!this.prerelease.length && !e3.prerelease.length) return 0;
-        let i9 = 0;
+        let i6 = 0;
         do {
-          const r6 = this.prerelease[i9], s5 = e3.prerelease[i9];
-          if (t4("prerelease compare", i9, r6, s5), void 0 === r6 && void 0 === s5) return 0;
-          if (void 0 === s5) return 1;
+          const r6 = this.prerelease[i6], s6 = e3.prerelease[i6];
+          if (t3("prerelease compare", i6, r6, s6), void 0 === r6 && void 0 === s6) return 0;
+          if (void 0 === s6) return 1;
           if (void 0 === r6) return -1;
-          if (r6 !== s5) return a5(r6, s5);
-        } while (++i9);
+          if (r6 !== s6) return a5(r6, s6);
+        } while (++i6);
       }
       compareBuild(e3) {
-        e3 instanceof o4 || (e3 = new o4(e3, this.options));
-        let i9 = 0;
+        e3 instanceof o5 || (e3 = new o5(e3, this.options));
+        let i6 = 0;
         do {
-          const r6 = this.build[i9], s5 = e3.build[i9];
-          if (t4("build compare", i9, r6, s5), void 0 === r6 && void 0 === s5) return 0;
-          if (void 0 === s5) return 1;
+          const r6 = this.build[i6], s6 = e3.build[i6];
+          if (t3("build compare", i6, r6, s6), void 0 === r6 && void 0 === s6) return 0;
+          if (void 0 === s6) return 1;
           if (void 0 === r6) return -1;
-          if (r6 !== s5) return a5(r6, s5);
-        } while (++i9);
+          if (r6 !== s6) return a5(r6, s6);
+        } while (++i6);
       }
-      inc(t5, e3, i9) {
-        if (t5.startsWith("pre")) {
-          if (!e3 && false === i9) throw new Error("invalid increment argument: identifier is empty");
+      inc(t4, e3, i6) {
+        if (t4.startsWith("pre")) {
+          if (!e3 && false === i6) throw new Error("invalid increment argument: identifier is empty");
           if (e3) {
-            const t6 = `-${e3}`.match(this.options.loose ? r5[s4.PRERELEASELOOSE] : r5[s4.PRERELEASE]);
-            if (!t6 || t6[1] !== e3) throw new Error(`invalid identifier: ${e3}`);
+            const t5 = `-${e3}`.match(this.options.loose ? r5[s5.PRERELEASELOOSE] : r5[s5.PRERELEASE]);
+            if (!t5 || t5[1] !== e3) throw new Error(`invalid identifier: ${e3}`);
           }
         }
-        switch (t5) {
+        switch (t4) {
           case "premajor":
-            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", e3, i9);
+            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", e3, i6);
             break;
           case "preminor":
-            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", e3, i9);
+            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", e3, i6);
             break;
           case "prepatch":
-            this.prerelease.length = 0, this.inc("patch", e3, i9), this.inc("pre", e3, i9);
+            this.prerelease.length = 0, this.inc("patch", e3, i6), this.inc("pre", e3, i6);
             break;
           case "prerelease":
-            0 === this.prerelease.length && this.inc("patch", e3, i9), this.inc("pre", e3, i9);
+            0 === this.prerelease.length && this.inc("patch", e3, i6), this.inc("pre", e3, i6);
             break;
           case "release":
             if (0 === this.prerelease.length) throw new Error(`version ${this.raw} is not a prerelease`);
@@ -32545,322 +33239,353 @@ One of mods you are using is using an old version of SDK. It will work for now b
             0 === this.prerelease.length && this.patch++, this.prerelease = [];
             break;
           case "pre": {
-            const t6 = Number(i9) ? 1 : 0;
-            if (0 === this.prerelease.length) this.prerelease = [t6];
+            const t5 = Number(i6) ? 1 : 0;
+            if (0 === this.prerelease.length) this.prerelease = [t5];
             else {
               let r6 = this.prerelease.length;
               for (; --r6 >= 0; ) "number" == typeof this.prerelease[r6] && (this.prerelease[r6]++, r6 = -2);
               if (-1 === r6) {
-                if (e3 === this.prerelease.join(".") && false === i9) throw new Error("invalid increment argument: identifier already exists");
-                this.prerelease.push(t6);
+                if (e3 === this.prerelease.join(".") && false === i6) throw new Error("invalid increment argument: identifier already exists");
+                this.prerelease.push(t5);
               }
             }
             if (e3) {
-              let r6 = [e3, t6];
-              false === i9 && (r6 = [e3]), 0 === a5(this.prerelease[0], e3) ? isNaN(this.prerelease[1]) && (this.prerelease = r6) : this.prerelease = r6;
+              let r6 = [e3, t5];
+              false === i6 && (r6 = [e3]), 0 === a5(this.prerelease[0], e3) ? isNaN(this.prerelease[1]) && (this.prerelease = r6) : this.prerelease = r6;
             }
             break;
           }
           default:
-            throw new Error(`invalid increment argument: ${t5}`);
+            throw new Error(`invalid increment argument: ${t4}`);
         }
         return this.raw = this.format(), this.build.length && (this.raw += `+${this.build.join(".")}`), this;
       }
     }
-    return G3 = o4;
+    return M4 = o5;
   }
-  var x5;
-  var W4;
+  var W3;
   var V3;
   var H2;
-  var z2 = L3((function() {
-    if (X3) return U3;
-    X3 = 1;
-    const t4 = (function() {
-      if (_3) return b2;
-      _3 = 1;
-      const t5 = B2();
-      return b2 = (e2, i8, r5 = false) => {
-        if (e2 instanceof t5) return e2;
+  var z2;
+  var Z2 = v3((function() {
+    if (k4) return X4;
+    k4 = 1;
+    const t3 = (function() {
+      if (U3) return _3;
+      U3 = 1;
+      const t4 = x4();
+      return _3 = (e2, i5, r5 = false) => {
+        if (e2 instanceof t4) return e2;
         try {
-          return new t5(e2, i8);
-        } catch (t6) {
+          return new t4(e2, i5);
+        } catch (t5) {
           if (!r5) return null;
-          throw t6;
+          throw t5;
         }
       };
     })();
-    return U3 = (e2, i8) => {
-      const r5 = t4(e2, i8);
+    return X4 = (e2, i5) => {
+      const r5 = t3(e2, i5);
       return r5 ? r5.version : null;
     };
   })());
-  var Z2 = (function() {
-    if (H2) return V3;
-    H2 = 1;
-    const t4 = (function() {
-      if (W4) return x5;
-      W4 = 1;
-      const t5 = B2();
-      return x5 = (e2, i8, r5) => new t5(e2, r5).compare(new t5(i8, r5)), x5;
+  var q3 = (function() {
+    if (z2) return H2;
+    z2 = 1;
+    const t3 = (function() {
+      if (V3) return W3;
+      V3 = 1;
+      const t4 = x4();
+      return W3 = (e2, i5, r5) => new t4(e2, r5).compare(new t4(i5, r5)), W3;
     })();
-    return V3 = (e2, i8, r5) => t4(e2, i8, r5) < 0, V3;
+    return H2 = (e2, i5, r5) => t3(e2, i5, r5) < 0, H2;
   })();
-  var q3 = L3(Z2);
-  function Y3(t4) {
-    return globalThis[t4];
+  var Y3 = v3(q3);
+  function J2(t3) {
+    return globalThis[t3];
   }
-  var J2 = class _J {
+  var Q3 = class _Q {
     static _initStorage() {
-      var t4, e2;
-      Y3(this._namespace) || (t4 = this._namespace, e2 = {}, globalThis[t4] = e2);
+      var t3, e2;
+      J2(this._namespace) || (t3 = this._namespace, e2 = {}, globalThis[t3] = e2);
     }
-    static get(t4, e2) {
+    static get(t3, e2) {
       this._initStorage();
-      const i8 = Y3(this._namespace);
-      return t4 in i8 || (i8[t4] = e2()), i8[t4];
+      const i5 = J2(this._namespace);
+      return t3 in i5 || (i5[t3] = e2()), i5[t3];
     }
-    static getMayOverride(t4, e2) {
+    static getMayOverride(t3, e2) {
       this._initStorage();
-      const i8 = Y3(this._namespace);
-      return i8[t4] = e2(i8[t4]), i8[t4];
+      const i5 = J2(this._namespace);
+      return i5[t3] = e2(i5[t3]), i5[t3];
     }
-    static getByVersion(t4, e2, i8, r5) {
-      if (this._initStorage(), !z2(e2)) throw new Error(`Invalid version for ${t4}: ${e2}`);
-      const s4 = Y3(this._namespace), n5 = `${t4}.__Version`, a5 = s4[t4], o4 = s4[n5];
-      return a5 ? o4 && !q3(o4, e2) || (s4[t4] = r5(o4, a5), s4[n5] = e2) : (s4[t4] = i8(a5), s4[n5] = e2), s4[t4];
+    static getByVersion(t3, e2, i5, r5) {
+      if (this._initStorage(), !Z2(e2)) throw new Error(`Invalid version for ${t3}: ${e2}`);
+      const s5 = J2(this._namespace), n4 = `${t3}.__Version`, a5 = s5[t3], o5 = s5[n4];
+      return a5 ? o5 && !Y3(o5, e2) || (s5[t3] = r5(o5, a5), s5[n4] = e2) : (s5[t3] = i5(a5), s5[n4] = e2), s5[t3];
     }
-    static set(t4, e2) {
-      this._initStorage(), Y3(this._namespace)[t4] = e2;
+    static set(t3, e2) {
+      this._initStorage(), J2(this._namespace)[t3] = e2;
     }
-    static has(t4) {
-      return this._initStorage(), t4 in Y3(this._namespace);
+    static has(t3) {
+      return this._initStorage(), t3 in J2(this._namespace);
     }
-    static delete(t4) {
+    static delete(t3) {
       this._initStorage();
-      const e2 = Y3(this._namespace);
-      return t4 in e2 && delete e2[t4];
+      const e2 = J2(this._namespace);
+      return t3 in e2 && delete e2[t3];
     }
-    static setImplementation(t4) {
+    static setImplementation(t3) {
       const e2 = ["get", "set", "has", "delete"];
-      for (const i8 of e2) {
-        if ("function" != typeof t4[i8]) throw new Error(`Implementation must provide a '${i8}' function`);
-        _J[i8] = t4[i8];
+      for (const i5 of e2) {
+        if ("function" != typeof t3[i5]) throw new Error(`Implementation must provide a '${i5}' function`);
+        _Q[i5] = t3[i5];
       }
     }
-    static createNamespace(t4) {
-      return { get: (e2, i8) => _J.get(`${t4}.${e2}`, i8), getMayOverride: (e2, i8) => _J.getMayOverride(`${t4}.${e2}`, i8), set: (e2, i8) => _J.set(`${t4}.${e2}`, i8), has: (e2) => _J.has(`${t4}.${e2}`), delete: (e2) => _J.delete(`${t4}.${e2}`) };
+    static createNamespace(t3) {
+      return { get: (e2, i5) => _Q.get(`${t3}.${e2}`, i5), getMayOverride: (e2, i5) => _Q.getMayOverride(`${t3}.${e2}`, i5), set: (e2, i5) => _Q.set(`${t3}.${e2}`, i5), has: (e2) => _Q.has(`${t3}.${e2}`), delete: (e2) => _Q.delete(`${t3}.${e2}`) };
     }
   };
-  J2._namespace = "__BC_LUZI_GLOBALS__";
-  var Q3 = J2.createNamespace("OnceFlag");
-  function K2(t4, e2) {
-    Q3.get(t4, () => false) || (Q3.set(t4, true), e2());
+  Q3._namespace = "__BC_LUZI_GLOBALS__";
+  var K2 = Q3.createNamespace("OnceFlag");
+  function tt(t3, e2) {
+    K2.get(t3, () => false) || (K2.set(t3, true), e2());
   }
-  function tt(t4) {
-    return new Promise((e2) => setTimeout(e2, t4));
+  function et(t3) {
+    return new Promise((e2) => setTimeout(e2, t3));
   }
-  function et(t4, e2 = 100) {
+  function it(t3, e2 = 100) {
     return (async () => {
-      for (; !t4(); ) await tt(e2);
+      for (; !t3(); ) await et(e2);
     })();
   }
-  var it = class {
+  var rt = class {
     static get emptyImage() {
       return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAG3RFWHRTb2Z0d2FyZQBDZWxzeXMgU3R1ZGlvIFRvb2zBp+F8AAAADUlEQVQI12P4//8/AwAI/AL+XJ/P2gAAAABJRU5ErkJggg==";
     }
-    static assetPreviewIconPath(t4) {
-      const e2 = "Asset" in t4 ? t4.Asset : t4;
+    static assetPreviewIconPath(t3) {
+      const e2 = "Asset" in t3 ? t3.Asset : t3;
       return `${AssetGetPreviewPath(e2)}/${e2.Name}.png`;
     }
-    static activityPreviewIconPath(t4) {
-      return `Assets/Female3DCG/Activity/${("Activity" in t4 ? t4.Activity : t4).Name}.png`;
+    static activityPreviewIconPath(t3) {
+      return `Assets/Female3DCG/Activity/${("Activity" in t3 ? t3.Activity : t3).Name}.png`;
     }
   };
-  function rt(t4, e2) {
-    const i8 = /* @__PURE__ */ new Set();
-    let r5 = t4;
+  function st(t3, e2) {
+    const i5 = /* @__PURE__ */ new Set();
+    let r5 = t3;
     for (; e2[r5]; ) {
-      if (i8.has(r5)) return console.warn(`Circular dependency detected during resolution: ${r5}`), "";
-      i8.add(r5), r5 = e2[r5];
+      if (i5.has(r5)) return console.warn(`Circular dependency detected during resolution: ${r5}`), "";
+      i5.add(r5), r5 = e2[r5];
     }
     return r5;
   }
-  function st(t4) {
+  function nt(t3) {
     const e2 = {};
-    for (const i8 of Object.keys(t4)) {
-      const r5 = rt(i8, t4);
-      if (!r5) return console.warn(`Circular dependency detected during optimization: ${i8}`), null;
-      e2[i8] = r5;
+    for (const i5 of Object.keys(t3)) {
+      const r5 = st(i5, t3);
+      if (!r5) return console.warn(`Circular dependency detected during optimization: ${i5}`), null;
+      e2[i5] = r5;
     }
     return e2;
   }
-  var nt = new class {
+  var at = class {
+    constructor(t3, e2) {
+      this.path = t3, this.storage = e2;
+    }
+    map(t3) {
+      const e2 = Array.isArray(t3) ? t3 : [t3], i5 = {};
+      for (const t4 of e2) i5[t4] = this.path;
+      return this.storage.addImgMapping(i5), this;
+    }
+    resolve(t3) {
+      return this.storage.addImgMapping({ [this.path]: t3 }), this;
+    }
+  };
+  var ot = new class {
     constructor() {
       this.basic = {}, this.custom = {}, this.customSrc = {};
     }
-    addImgMapping(t4) {
-      const e2 = { ...this.customSrc, ...t4 }, i8 = st(e2);
-      i8 ? (this.customSrc = e2, this.custom = i8) : console.warn("Failed to add mappings due to circular dependencies.");
+    addImgMapping(t3) {
+      const e2 = { ...this.customSrc, ...t3 }, i5 = nt(e2);
+      i5 ? (this.customSrc = e2, this.custom = i5) : console.warn("Failed to add mappings due to circular dependencies.");
     }
     rebuildCustomMapping() {
-      const t4 = st(this.customSrc);
-      t4 ? this.custom = t4 : console.warn("Failed to rebuild mappings due to circular dependencies.");
+      const t3 = nt(this.customSrc);
+      t3 ? this.custom = t3 : console.warn("Failed to rebuild mappings due to circular dependencies.");
     }
-    migrateTo(t4) {
-      t4.customSrc = { ...t4.customSrc, ...this.customSrc }, t4.basic = { ...t4.basic, ...this.basic }, t4.rebuildCustomMapping(), this.customSrc = t4.customSrc, this.basic = t4.basic, this.custom = t4.custom;
+    migrateTo(t3) {
+      t3.customSrc = { ...t3.customSrc, ...this.customSrc }, t3.basic = { ...t3.basic, ...this.basic }, t3.rebuildCustomMapping(), this.customSrc = t3.customSrc, this.basic = t3.basic, this.custom = t3.custom;
     }
-    setBasicImgMapping(t4) {
-      this.basic = { ...t4, ...this.basic };
+    setBasicImgMapping(t3) {
+      this.basic = { ...t3, ...this.basic };
     }
-    mapImgSrc(t4) {
-      if ("string" != typeof t4) return t4;
-      if (!t4.endsWith(".png")) return t4;
-      if (t4.startsWith("data:image")) return t4;
-      if (t4.startsWith("http")) return t4;
-      if (t4.startsWith("@nomap/")) return t4;
-      const e2 = t4.startsWith("./") ? t4.slice(2) : t4;
-      let i8 = e2;
-      return this.custom[i8] && (i8 = this.custom[i8]), this.basic[i8] && (i8 = this.basic[i8]), i8 !== e2 ? i8 : t4;
+    mapImgSrc(t3) {
+      if ("string" != typeof t3) return t3;
+      if (!t3.endsWith(".png")) return t3;
+      if (t3.startsWith("blob:")) return t3;
+      if (t3.startsWith("data:")) return t3;
+      if (t3.startsWith("http:")) return t3;
+      if (t3.startsWith("https:")) return t3;
+      if (t3.startsWith("@nomap/")) return t3;
+      const e2 = t3.startsWith("./") ? t3.slice(2) : t3;
+      let i5 = e2;
+      return this.custom[i5] && (i5 = this.custom[i5]), this.basic[i5] && (i5 = this.basic[i5]), i5 !== e2 ? i5 : t3;
     }
-    mapImg(t4, e2) {
-      let i8 = t4;
-      i8.startsWith("data:image") || i8.startsWith("http") || (this.custom[i8] && (i8 = this.custom[i8]), this.basic[i8] && (i8 = this.basic[i8]), i8 !== t4 && e2(i8));
+    mapImg(t3, e2) {
+      let i5 = t3;
+      i5.startsWith("data:image") || i5.startsWith("http") || (this.custom[i5] && (i5 = this.custom[i5]), this.basic[i5] && (i5 = this.basic[i5]), i5 !== t3 && e2(i5));
     }
   }();
-  var ot = class {
+  var Et = class {
     constructor() {
-      K2("ImgMappingOnce.GLDrawLoadImage.crossOrigin", () => {
-        u.patchFunction("GLDrawLoadImage", { "Img.src = url;": 'Img.crossOrigin = "Anonymous";\n		Img.src = url;' });
-      }), ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t4) => {
-        u.hookFunction(t4, 10, (t5, e2) => (t5[0] = nt.mapImgSrc(t5[0]), e2(t5)));
-      }), K2("ImgMappingOnce.nomap", () => {
-        ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t4) => {
-          u.hookFunction(t4, 0, (t5, e2) => ("string" == typeof t5[0] && t5[0].startsWith("@nomap/") && (t5[0] = t5[0].substring(7)), e2(t5)));
+      tt("ImgMappingOnce.GLDrawLoadImage.crossOrigin", () => {
+        u3.patchFunction("GLDrawLoadImage", { "Img.src = url;": 'Img.crossOrigin = "Anonymous";\n		Img.src = url;' });
+      }), ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t3) => {
+        u3.hookFunction(t3, 10, (t4, e2) => (t4[0] = ot.mapImgSrc(t4[0]), e2(t4)));
+      }), tt("ImgMappingOnce.nomap", () => {
+        ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t3) => {
+          u3.hookFunction(t3, 0, (t4, e2) => ("string" == typeof t4[0] && t4[0].startsWith("@nomap/") && (t4[0] = t4[0].substring(7)), e2(t4)));
         });
-      }), u.hookFunction("GLDrawLoadTextureAlphaMask", 0, (t4, e2) => (Array.isArray(t4[5]) && (t4[5] = t4[5].map((t5) => ({ ...t5, Url: nt.mapImgSrc(t5.Url) }))), e2(t4))), (async () => {
-        await et(() => void 0 !== globalThis.ElementButton), u.hookFunction("ElementButton.CreateForAsset", 0, (t4, e2) => (nt.mapImg(it.assetPreviewIconPath(t4[1]), (e3) => {
-          t4[4] = { ...t4[4], image: e3 };
-        }), e2(t4))), u.hookFunction("ElementButton.CreateForActivity", 0, (t4, e2) => {
-          const i8 = t4[1], r5 = t4[4]?.image ?? (i8.Item ? it.assetPreviewIconPath(i8.Item.Asset) : `Assets/Female3DCG/Activity/${i8.Activity.Name}.png`);
-          return nt.mapImg(r5, (e3) => {
-            t4[4] = { ...t4[4], image: e3 };
-          }), e2(t4);
-        }), u.hookFunction("ElementButton.Create", 0, (t4, e2) => {
-          if (t4[0]?.startsWith("dialog-inventory")) {
-            const e3 = t4[2];
-            e3?.icons && (e3.icons = e3.icons.map((t5) => {
-              if ("string" == typeof t5 && t5.endsWith("Padlock")) {
-                const e4 = `Assets/Female3DCG/ItemMisc/Preview/${t5}.png`, i8 = nt.mapImgSrc(e4);
-                if (i8 !== e4) return { name: t5, iconSrc: i8, tooltipText: InterfaceTextGet("PreviewIconPadlock").replace("AssetName", AssetGet("Female3DCG", "ItemMisc", t5)?.Description ?? t5) };
+      }), u3.hookFunction("GLDrawLoadTextureAlphaMask", 0, (t3, e2) => (Array.isArray(t3[5]) && (t3[5] = t3[5].map((t4) => ({ ...t4, Url: ot.mapImgSrc(t4.Url) }))), e2(t3))), (async () => {
+        await it(() => void 0 !== globalThis.ElementButton), u3.hookFunction("ElementButton.CreateForAsset", 0, (t3, e2) => (ot.mapImg(rt.assetPreviewIconPath(t3[1]), (e3) => {
+          t3[4] = { ...t3[4], image: e3 };
+        }), e2(t3))), u3.hookFunction("ElementButton.CreateForActivity", 0, (t3, e2) => {
+          const i5 = t3[1], r5 = t3[4]?.image ?? (i5.Item ? rt.assetPreviewIconPath(i5.Item.Asset) : `Assets/Female3DCG/Activity/${i5.Activity.Name}.png`);
+          return ot.mapImg(r5, (e3) => {
+            t3[4] = { ...t3[4], image: e3 };
+          }), e2(t3);
+        }), u3.hookFunction("ElementButton.Create", 0, (t3, e2) => {
+          if (t3[0]?.startsWith("dialog-inventory")) {
+            const e3 = t3[2];
+            e3?.icons && (e3.icons = e3.icons.map((t4) => {
+              if ("string" == typeof t4 && t4.endsWith("Padlock")) {
+                const e4 = `Assets/Female3DCG/ItemMisc/Preview/${t4}.png`, i5 = ot.mapImgSrc(e4);
+                if (i5 !== e4) return { name: t4, iconSrc: i5, tooltipText: InterfaceTextGet("PreviewIconPadlock").replace("AssetName", AssetGet("Female3DCG", "ItemMisc", t4)?.Description ?? t4) };
               }
-              return t5;
+              return t4;
             }));
           }
-          if (t4[0]?.startsWith("dialog-expression-button-grid-Emoticon")) {
-            const e3 = t4[2];
-            e3?.image && (e3.image = nt.mapImgSrc(e3.image));
+          if (t3[0]?.startsWith("dialog-expression-button-grid-Emoticon")) {
+            const e3 = t3[2];
+            e3?.image && (e3.image = ot.mapImgSrc(e3.image));
           }
-          return e2(t4);
+          return e2(t3);
         });
       })();
     }
     get storage() {
-      return nt;
+      return ot;
     }
-    addImgMapping(t4) {
-      nt.addImgMapping(t4);
+    addImgMapping(t3) {
+      ot.addImgMapping(t3);
     }
-    setBasicImgMapping(t4) {
-      nt.setBasicImgMapping(t4);
+    setBasicImgMapping(t3) {
+      ot.setBasicImgMapping(t3);
+    }
+    createVirtualPath(t3) {
+      return new at(t3, ot);
     }
   };
-  var ct = J2.get("ImageMapping@2.0.1", () => new ot());
-  function Et(t4, e2) {
-    if ("function" == typeof e2) return void (ht[t4.Name] = e2);
-    const i8 = {}, r5 = it.activityPreviewIconPath(t4);
-    Array.isArray(e2) ? i8[r5] = `Assets/Female3DCG/${e2[0]}/Preview/${e2[1]}.png` : "None" === e2 || void 0 === e2 ? i8[r5] = it.emptyImage : e2.startsWith("http") || e2.startsWith("data:image") ? i8[r5] = e2 : i8[r5] = it.activityPreviewIconPath({ Name: e2 }), ct.addImgMapping(i8);
+  var ht = Q3.get("ImageMapping@2.1.3", () => new Et());
+  function ut(t3, e2) {
+    if ("function" == typeof e2) return void (mt[t3.Name] = e2);
+    const i5 = {}, r5 = rt.activityPreviewIconPath(t3);
+    Array.isArray(e2) ? i5[r5] = `Assets/Female3DCG/${e2[0]}/Preview/${e2[1]}.png` : "None" === e2 || void 0 === e2 ? i5[r5] = rt.emptyImage : e2.startsWith("http") || e2.startsWith("data:image") ? i5[r5] = e2 : i5[r5] = rt.activityPreviewIconPath({ Name: e2 }), ht.addImgMapping(i5);
   }
-  var ht = {};
-  var ut = {};
   var mt = {};
-  function It(t4) {
-    t4.override && (ut[t4.activity.Name] && r4.warn(`Override for ${t4.activity.Name} already exists, skipping`), ut[t4.activity.Name] || (ut[t4.activity.Name] = t4.override)), t4.item && (mt[t4.activity.Name] && r4.warn(`Item provider for ${t4.activity.Name} already exists, skipping`), mt[t4.activity.Name] || (mt[t4.activity.Name] = t4.item));
+  var pt = {};
+  var It = {};
+  var lt = {};
+  function At(t3) {
+    t3.override && (pt[t3.activity.Name] && r4.warn(`Override for ${t3.activity.Name} already exists, skipping`), pt[t3.activity.Name] || (pt[t3.activity.Name] = t3.override)), t3.item && (It[t3.activity.Name] && r4.warn(`Item provider for ${t3.activity.Name} already exists, skipping`), It[t3.activity.Name] || (It[t3.activity.Name] = t3.item)), t3.dictionary && (lt[t3.activity.Name] && r4.warn(`Dictionary processor for ${t3.activity.Name} already exists, skipping`), lt[t3.activity.Name] || (lt[t3.activity.Name] = t3.dictionary));
   }
-  var pt = class {
-    addPrerequisites(t4) {
-      c6(() => t4.forEach((t5) => g4(t5)));
+  var ft = class {
+    addPrerequisites(t3) {
+      c6(() => t3.forEach((t4) => g5(t4)));
     }
-    checkActivityAvailability(t4) {
-      return !ActivityFemale3DCGOrdering.includes(t4);
+    checkActivityAvailability(t3) {
+      return !ActivityFemale3DCGOrdering.includes(t3);
     }
-    addCustomActivity(t4) {
-      Array.isArray(t4) || (t4 = [t4]);
-      for (const e2 of t4) {
-        const t5 = { ...e2 };
+    addCustomActivity(t3) {
+      Array.isArray(t3) || (t3 = [t3]);
+      for (const e2 of t3) {
+        const t4 = { ...e2 };
         c6(() => {
-          t5.activity.Prerequisite = N6(t5.activity.Name, t5.activity.Prerequisite), t5.activity.ActivityID = -1, ActivityFemale3DCG.push(t5.activity), ActivityFemale3DCGOrdering.push(t5.activity.Name), A4(t5), n4(t5.activity.Name, t5), $2(t5), It(t5), Et(t5.activity, t5.useImage);
+          t4.activity.Prerequisite = N4(t4.activity.Name, t4.activity.Prerequisite), "R121" === GameVersion ? t4.activity.ActivityID = -1 : t4.activity.ActivityID = void 0, ActivityFemale3DCG.push(t4.activity), ActivityFemale3DCGOrdering.push(t4.activity.Name), A3(t4), n3(t4.activity.Name, t4), d5(t4), At(t4), ut(t4.activity, t4.useImage);
         });
       }
     }
-    removeCustomActivity(t4) {
-      ActivityFemale3DCG = ActivityFemale3DCG.filter((e2) => e2.Name !== t4), ActivityFemale3DCGOrdering = ActivityFemale3DCGOrdering.filter((e2) => e2 !== t4);
+    removeCustomActivity(t3) {
+      ActivityFemale3DCG = ActivityFemale3DCG.filter((e2) => e2.Name !== t3), ActivityFemale3DCGOrdering = ActivityFemale3DCGOrdering.filter((e2) => e2 !== t3);
     }
-    activityIsCustom(t4) {
-      return (function(t5) {
-        return !!R4[t5];
-      })(t4);
+    activityIsCustom(t3) {
+      return $3(t3);
     }
-    addCustomActivities(t4) {
-      this.addCustomActivity(t4);
+    addCustomActivities(t3) {
+      this.addCustomActivity(t3);
     }
-    activityTrigger(t4) {
-      c6(() => n4(t4.name, t4));
+    activityTrigger(t3) {
+      c6(() => n3(t3.name, t3));
     }
     init() {
       (async () => {
-        await et(() => Array.isArray(ActivityFemale3DCG) && ActivityFemale3DCG.length > 0 && Array.isArray(ActivityFemale3DCGOrdering)), (function(t4 = {}) {
-          const { startMsg: e2 = "Start loading", endMsg: i8 = "Loading completed, time usage: " } = t4, s4 = Date.now();
-          for (r4.info(e2), o3 = true; a4.length > 0; ) {
-            const t5 = a4.shift();
-            t5 && t5();
+        await it(() => Array.isArray(ActivityFemale3DCG) && ActivityFemale3DCG.length > 0 && Array.isArray(ActivityFemale3DCGOrdering)), (function(t3 = {}) {
+          const { startMsg: e2 = "Start loading", endMsg: i5 = "Loading completed, time usage: " } = t3, s5 = Date.now();
+          for (r4.info(e2), o4 = true; a4.length > 0; ) {
+            const t4 = a4.shift();
+            t4 && t4();
           }
-          const n5 = Date.now();
-          r4.info(`${i8} ${n5 - s4}ms`);
+          const n4 = Date.now();
+          r4.info(`${i5} ${n4 - s5}ms`);
         })();
-      })(), u.hookFunction("ActivityRun", 0, (t4, e2) => {
-        const i8 = ut[t4[3].Activity.Name];
-        if (i8) return i8(t4[0], t4[1], t4[2], t4[3]);
-        const r5 = mt[t4[3].Activity.Name];
-        if (r5) {
-          const e3 = r5(t4[0], t4[1], t4[2], t4[3]);
-          e3 && (t4[3].Item = e3);
-        }
-        return e2(t4);
-      }), u.hookFunction("ElementButton.CreateForActivity", 1, (t4, e2) => {
-        const [i8, r5, s4] = t4, n5 = ht[r5.Activity.Name];
-        if (n5) {
-          const e3 = n5(r5.Activity, s4, r5.Group) ?? it.emptyImage;
-          e3 && (t4[4] = { ...t4[4], image: e3 });
-        }
-        return e2(t4);
-      }), (function() {
-        const t4 = (t5) => E3(h5, t5);
-        u.hookFunction("ActivityDictionaryText", 1, (e2, i8) => t4(e2[0]) || i8(e2)), u.progressiveHook("ServerSend", 1).inside("ActivityRun").inject((e2) => {
-          const { Content: i8, Dictionary: r5, Type: s4 } = e2[1];
-          if ("Activity" !== s4 || !r5) return;
-          const n5 = t4(i8);
-          n5 && r5.push({ Tag: `MISSING ACTIVITY DESCRIPTION FOR KEYWORD ${i8}`, Text: n5 });
+      })(), (function() {
+        u3.hookFunction("ActivityRun", 0, (t4, e2) => {
+          const i5 = pt[t4[3].Activity.Name];
+          if (i5) return i5(t4[0], t4[1], t4[2], t4[3]);
+          const r5 = It[t4[3].Activity.Name];
+          if (r5) {
+            const e3 = r5(t4[0], t4[1], t4[2], t4[3]);
+            e3 && (t4[3].Item = e3);
+          }
+          return e2(t4);
+        }), u3.hookFunction("PreferenceGetActivityFactor", 0, (t4, e2) => $3(t4[1]) ? 2 : e2(t4));
+        const t3 = u3.insideFlag("ActivityRun");
+        u3.hookFunction("ServerSend", 0, (e2, i5) => {
+          if (!t3.inside || !t3.args) return i5(e2);
+          if ("ChatRoomChat" != e2[0]) return i5(e2);
+          const r5 = e2[1], s5 = r5.Dictionary, n4 = t3.args ? t3.args[3].Activity : null;
+          if (!n4) return i5(e2);
+          const a5 = lt[n4.Name];
+          if (!a5) return i5(e2);
+          if (!s5.some((t4) => t4?.ActivityName === n4?.Name)) return i5(e2);
+          const o5 = t3.args, c7 = a5(Array.from(s5), o5[0], o5[1], o5[2], o5[3]);
+          i5([e2[0], { ...r5, Dictionary: c7 }]);
         });
-      })(), u.hookFunction("ActivityCheckPrerequisite", 1, (t4, e2) => {
-        const i8 = f5[t4[0]];
-        return i8 ? i8.test(...t4) : e2(t4);
+      })(), u3.hookFunction("ElementButton.CreateForActivity", 1, (t3, e2) => {
+        const [i5, r5, s5] = t3, n4 = mt[r5.Activity.Name];
+        if (n4) {
+          const e3 = n4(r5.Activity, s5, r5.Group) ?? rt.emptyImage;
+          e3 && (t3[4] = { ...t3[4], image: e3 });
+        }
+        return e2(t3);
+      }), (function() {
+        const t3 = (t4) => E3(h6, t4);
+        u3.hookFunction("ActivityDictionaryText", 1, (e2, i5) => t3(e2[0]) || i5(e2)), u3.progressiveHook("ServerSend", 1).inside("ActivityRun").inject((e2) => {
+          const { Content: i5, Dictionary: r5, Type: s5 } = e2[1];
+          if ("Activity" !== s5 || !r5) return;
+          const n4 = t3(i5);
+          n4 && r5.push({ Tag: `MISSING ACTIVITY DESCRIPTION FOR KEYWORD ${i5}`, Text: n4 });
+        });
+      })(), u3.hookFunction("ActivityCheckPrerequisite", 1, (t3, e2) => {
+        const i5 = f5[t3[0]];
+        return i5 ? i5.test(...t3) : e2(t3);
       });
     }
-    setLogger(t4) {
-      !(function(t5) {
-        i7 = t5;
-      })(t4);
+    setLogger(t3) {
+      !(function(t4) {
+        i4 = t4;
+      })(t3);
     }
     typePrerequisiteNames() {
       return this;
@@ -32869,11 +33594,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return this;
     }
   };
-  var lt = new pt();
+  var gt = new ft();
 
   // src/modules/activities.ts
   function addActivities() {
-    lt.addCustomActivity({
+    gt.addCustomActivity({
       activity: {
         Name: "BCC_StealPanties" /* STEAL_PANTIES */,
         Prerequisite: ["UseHands", (_4, _acter, acted) => !!InventoryGet(acted, "Panties")],
@@ -32888,11 +33613,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
       dialog: { EN: "SourceCharacter steals TargetCharacter's panties." },
       run: (_player, sender, info) => {
         if (!sender.IsPlayer()) return;
-        const target = T2(info.TargetCharacter);
+        const target = N2(info.TargetCharacter);
         InventoryRemove(target, "Panties");
         InventoryWear(Player, "Panties", "ItemHandheld", "red", 10, Player.MemberNumber, {
           Item: "Panties",
-          Name: `${N3(target)}'s panties`,
+          Name: `${O2(target)}'s panties`,
           Description: "",
           Color: "red",
           Property: "Normal",
@@ -32902,13 +33627,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           Type: null,
           TypeRecord: null,
           MemberNumber: target.MemberNumber,
-          MemberName: N3(target)
+          MemberName: O2(target)
         });
         ChatRoomCharacterUpdate(target);
         ChatRoomCharacterUpdate(Player);
       }
     });
-    lt.addCustomActivity({
+    gt.addCustomActivity({
       activity: {
         Name: "BCC_SuckOnTipOfHair" /* SUCK_ON_TIP_HAIR */,
         Prerequisite: ["UseMouth"],
@@ -32920,11 +33645,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
       dialog: { EN: "SourceCharacter sucks on TargetCharacter's tip of hair." },
       run: (_player, sender, info) => {
         if (!sender.IsPlayer()) return;
-        const target = T2(info.TargetCharacter);
+        const target = N2(info.TargetCharacter);
         const hairColor = InventoryGet(target, "HairFront")?.Color?.[0] ?? "#6a3628";
         InventoryWear(Player, "Tentacles", "ItemMouth2", hairColor, 10, target.MemberNumber, {
           Item: "Tentacles",
-          Name: `${N3(target)}'s tip of hair`,
+          Name: `${O2(target)}'s tip of hair`,
           Description: "",
           Color: hairColor,
           Property: "Decoy",
@@ -32934,13 +33659,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           Type: null,
           TypeRecord: null,
           MemberNumber: target.MemberNumber,
-          MemberName: N3(target)
+          MemberName: O2(target)
         });
         ChatRoomCharacterUpdate(Player);
       }
     });
-    u.initWithMod(t);
-    lt.init();
+    u3.initWithMod(o);
+    gt.init();
   }
 
   // src/index.ts
@@ -32960,7 +33685,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         progressBarColor: "#242424"
       }
     });
-    O2(`${styles_default2}@font-face { font-family: Kitnyx2; src: url(${Kitnyx2_default}); }`);
+    k2(`${styles_default2}@font-face { font-family: Kitnyx2; src: url(${Kitnyx2_default}); }`);
     loadStorage();
     loadSettingsSubscreen();
     loadCheats();
@@ -32970,12 +33695,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     loadDarkMagic();
     addActivities();
     Q2.success({
-      title: `${m.fullName} loaded`,
+      title: `${c2.fullName} loaded`,
       message: `v${version}`,
       duration: 4500
     });
   }
-  P2(start);
+  P3(start);
 })();
 /*! Bundled license information:
 
@@ -33052,39 +33777,10 @@ react/cjs/react-jsx-runtime.development.js:
 
 lucide/dist/esm/defaultAttributes.js:
 lucide/dist/esm/createElement.js:
-lucide/dist/esm/icons/arrow-down.js:
-lucide/dist/esm/icons/arrow-up.js:
-lucide/dist/esm/icons/ban.js:
-lucide/dist/esm/icons/book-heart.js:
-lucide/dist/esm/icons/bug.js:
 lucide/dist/esm/icons/check.js:
 lucide/dist/esm/icons/chevron-down.js:
-lucide/dist/esm/icons/chevron-left.js:
 lucide/dist/esm/icons/circle-x.js:
-lucide/dist/esm/icons/clipboard-copy.js:
-lucide/dist/esm/icons/clipboard-paste.js:
-lucide/dist/esm/icons/code-xml.js:
-lucide/dist/esm/icons/copy-plus.js:
-lucide/dist/esm/icons/eye.js:
-lucide/dist/esm/icons/git-pull-request.js:
-lucide/dist/esm/icons/hand-coins.js:
-lucide/dist/esm/icons/hat-glasses.js:
-lucide/dist/esm/icons/heart.js:
-lucide/dist/esm/icons/lock.js:
-lucide/dist/esm/icons/lock-open.js:
-lucide/dist/esm/icons/log-out.js:
-lucide/dist/esm/icons/map-pinned.js:
-lucide/dist/esm/icons/panels-top-left.js:
-lucide/dist/esm/icons/person-standing.js:
-lucide/dist/esm/icons/send-to-back.js:
-lucide/dist/esm/icons/settings.js:
-lucide/dist/esm/icons/shell.js:
-lucide/dist/esm/icons/shield-alert.js:
-lucide/dist/esm/icons/shield-minus.js:
-lucide/dist/esm/icons/skull.js:
-lucide/dist/esm/icons/target.js:
 lucide/dist/esm/icons/trash-2.js:
-lucide/dist/esm/icons/wand.js:
 lucide/dist/esm/lucide.js:
   (**
    * @license lucide v0.541.0 - ISC
@@ -33109,9 +33805,58 @@ lucide-react/dist/esm/lucide-react.js:
    * See the LICENSE file in the root directory of this source tree.
    *)
 
+lucide/dist/esm/defaultAttributes.js:
+lucide/dist/esm/createElement.js:
+lucide/dist/esm/icons/align-vertical-space-around.js:
+lucide/dist/esm/icons/arrow-down.js:
+lucide/dist/esm/icons/arrow-up.js:
+lucide/dist/esm/icons/ban.js:
+lucide/dist/esm/icons/book-heart.js:
+lucide/dist/esm/icons/bug.js:
+lucide/dist/esm/icons/check.js:
+lucide/dist/esm/icons/chevron-down.js:
+lucide/dist/esm/icons/clipboard-copy.js:
+lucide/dist/esm/icons/clipboard-paste.js:
+lucide/dist/esm/icons/code-xml.js:
+lucide/dist/esm/icons/copy-plus.js:
+lucide/dist/esm/icons/eye.js:
+lucide/dist/esm/icons/git-commit-vertical.js:
+lucide/dist/esm/icons/git-compare-arrows.js:
+lucide/dist/esm/icons/git-pull-request-arrow.js:
+lucide/dist/esm/icons/git-pull-request-closed.js:
+lucide/dist/esm/icons/git-pull-request.js:
+lucide/dist/esm/icons/hand-coins.js:
+lucide/dist/esm/icons/hat-glasses.js:
+lucide/dist/esm/icons/heart.js:
+lucide/dist/esm/icons/lock-open.js:
+lucide/dist/esm/icons/lock.js:
+lucide/dist/esm/icons/log-out.js:
+lucide/dist/esm/icons/map-pinned.js:
+lucide/dist/esm/icons/maximize.js:
+lucide/dist/esm/icons/panel-left-close.js:
+lucide/dist/esm/icons/panels-top-left.js:
+lucide/dist/esm/icons/person-standing.js:
+lucide/dist/esm/icons/send-to-back.js:
+lucide/dist/esm/icons/settings.js:
+lucide/dist/esm/icons/shell.js:
+lucide/dist/esm/icons/shield-alert.js:
+lucide/dist/esm/icons/shield-minus.js:
+lucide/dist/esm/icons/skull.js:
+lucide/dist/esm/icons/target.js:
+lucide/dist/esm/icons/trash-2.js:
+lucide/dist/esm/icons/wand.js:
+lucide/dist/esm/icons/x.js:
+lucide/dist/esm/lucide.js:
+  (**
+   * @license lucide v0.554.0 - ISC
+   *
+   * This source code is licensed under the ISC license.
+   * See the LICENSE file in the root directory of this source tree.
+   *)
+
 @sugarch/bc-mod-hook-manager/dist/index.mjs:
   (**
-   * @sugarch/bc-mod-hook-manager v0.3.1
+   * @sugarch/bc-mod-hook-manager v0.3.4
    * 
    * Copyright (c) 2025 SugarChain Studio
    * License: MIT
@@ -33139,7 +33884,7 @@ lucide-react/dist/esm/lucide-react.js:
 
 @sugarch/bc-activity-manager/dist/index.mjs:
   (**
-   * @sugarch/bc-activity-manager v1.0.2
+   * @sugarch/bc-activity-manager v1.1.1
    * 
    * Copyright (c) 2025 SugarChain Studio
    * License: MIT
@@ -33155,7 +33900,7 @@ lucide-react/dist/esm/lucide-react.js:
    * @preserve
    *)
   (**
-   * @sugarch/bc-image-mapping v2.0.1
+   * @sugarch/bc-image-mapping v2.1.3
    * 
    * Copyright (c) 2025 SugarChain Studio
    * License: MIT
