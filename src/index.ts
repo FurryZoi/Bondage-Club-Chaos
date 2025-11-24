@@ -12,6 +12,7 @@ import { loadOverlay } from "./modules/overlay";
 import { loadDarkMagic } from "./modules/darkMagic";
 import { loadQuickAccessMenu } from "./modules/quickAccessMenu";
 import { addActivities } from "./modules/activities";
+import { REPOSITORY_URL } from "./constants";
 
 
 
@@ -19,6 +20,7 @@ function start() {
     registerCore({
         name: "BCC",
         fullName: "Bondage Club Chaos",
+        repository: REPOSITORY_URL,
         key: "BCC",
         version,
         fontFamily: "Yusei Magic",
