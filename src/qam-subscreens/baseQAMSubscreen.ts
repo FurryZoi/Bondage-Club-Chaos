@@ -12,23 +12,7 @@ export abstract class BaseQAMSubscreen {
         return !!qamFeatures.find((f) => f.subscreen.constructor.name === this.constructor.name);
     }
 
-    public load(container: HTMLElement) {
-        const header = document.createElement("div");
-        header.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
-        container.append(header);
-
-        const title = document.createElement("p");
-        title.style.cssText = "font-weight: bold; font-size: 1.15em;";
-        title.textContent = this.name;
-        header.append(title);
-
-        if (!this.description) return;
-
-        const description = document.createElement("p");
-        description.style.cssText = "color: #424242; font-size: 0.75em;";
-        description.textContent = this.description;
-        header.append(description);
-    }
+    public load(container: HTMLElement) {}
 
     protected buildButton(text: string) {
         const btn = document.createElement("button");

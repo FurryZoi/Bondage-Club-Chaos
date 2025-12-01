@@ -83,7 +83,19 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         sidebar.style.cssText = "display: flex; flex-direction: column; width: 40%; height: 100%;";
 
         const contentArea = document.createElement("div");
-        contentArea.style.cssText = "width: 100%; display: flex; flex-direction: column; overflow: auto; margin: 0 auto; padding-bottom: 0.5em; border-left: 1px solid #e5e5e5;";
+        contentArea.style.cssText = "width: 100%; display: flex; flex-direction: column; margin: 0 auto; padding-bottom: 0.5em; border-left: 1px solid #e5e5e5;";
+
+        const contentAreaHeader = document.createElement("div");
+        contentAreaHeader.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
+
+        const contentAreaHeaderTitle = document.createElement("p");
+        contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em;";
+
+        const contentAreaHeaderDescription = document.createElement("p");
+        contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em;";
+
+        const featureContent = document.createElement("div");
+        featureContent.style.cssText = "display: flex; flex-direction: column; height: 100%; overflow: auto;";
 
         const searchInput = document.createElement("input");
         searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
@@ -145,11 +157,13 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 const icon = createElement(b.icon);
                 icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
                 btn.addEventListener("click", () => {
-                    contentArea.innerHTML = "";
-                    b.subscreen.load(contentArea);
+                    featureContent.innerHTML = "";
+                    b.subscreen.load(featureContent);
                     if (sidebarActiveButton) sidebarActiveButton.style.borderLeft = "";
                     sidebarActiveButton = btn;
                     sidebarActiveButton.style.borderLeft = "3px solid rgb(219 201 255)";
+                    contentAreaHeaderTitle.textContent = b.subscreen.name;
+                    contentAreaHeaderDescription.textContent = b.subscreen.description;
                 });
                 detailsContainer.append(name, description);
                 btn.append(icon, detailsContainer);
@@ -201,12 +215,15 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         sidebar.append(searchInput, sidebarButtons);
         server.append(getServer(), ping);
         footer.append(server, settingsBtn);
+        contentAreaHeader.append(contentAreaHeaderTitle, contentAreaHeaderDescription);
+        contentArea.append(contentAreaHeader, featureContent);
         const flexContainer = document.createElement("div");
         flexContainer.style.cssText = "display: flex; width: 100%; height: calc(100% - 6.6em);";
         flexContainer.append(sidebar, contentArea);
         container.append(header, flexContainer, footer);
         new QAMWindow(container, header);
-        new WelcomeQAMSubscreen().load(contentArea);
+        new WelcomeQAMSubscreen().load(featureContent);
+        contentAreaHeaderTitle.textContent = "Welcome to QAM";
         container.style.left = ((window.innerWidth - container.offsetWidth) / 2) + "px";
         container.style.top = ((window.innerHeight - container.offsetHeight) / 2) + "px";
     }

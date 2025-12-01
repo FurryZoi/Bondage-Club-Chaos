@@ -145,12 +145,46 @@ class Draggable {
 }
 
 class QAMButton extends Draggable {
-    protected onMouseUp() {
-        super.onMouseUp();
+    constructor(
+        protected draggableElement: HTMLElement,
+        protected captureElement: HTMLElement
+    ) {
+        super(draggableElement, captureElement);
+        window.addEventListener("resize", () => { this.normalizePosition(); });
+        this.normalizePosition();
+    }
+
+    normalizePosition() {
+        if (typeof localStorage.getItem === "function") {
+            const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
+            if (pos) {
+                this.draggableElement.style.top = pos[0] + "px";
+                this.draggableElement.style.left = pos[1] + "px";
+            }
+        }
+        if (this.draggableElement.offsetLeft + this.draggableElement.offsetWidth >= window.innerWidth) {
+            this.draggableElement.style.left = (window.innerWidth - this.draggableElement.offsetWidth) + "px";
+        }
+        if (this.draggableElement.offsetTop + this.draggableElement.offsetHeight >= window.innerHeight) {
+            this.draggableElement.style.top = (window.innerHeight - this.draggableElement.offsetHeight) + "px";
+        }
+    }
+
+    savePosition() {
         if (this.wasDragged && typeof localStorage.setItem === "function") {
             const { top, left } = this.draggableElement.getBoundingClientRect();
             localStorage.setItem(LOCAL_STORAGE_POS_KEY, `${top}:${left}`);
         }
+    }
+
+    protected onMouseUp() {
+        super.onMouseUp();
+        this.savePosition();
+    }
+
+    protected onTouchEnd() {
+        super.onTouchEnd();
+        this.savePosition();
     }
 
     protected onClick() {
@@ -386,13 +420,6 @@ export function createQAMButton(): void {
     menuButton.append(icon);
     document.body.append(menuButton);
     new QAMButton(menuButton, menuButton);
-    if (typeof localStorage.getItem === "function") {
-        const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
-        if (pos) {
-            menuButton.style.top = pos[0] + "px";
-            menuButton.style.left = pos[1] + "px";
-        }
-    }
 }
 
 export function removeQuickMenu(): void {
