@@ -26795,18 +26795,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return !!qamFeatures.find((f6) => f6.subscreen.constructor.name === this.constructor.name);
     }
     load(container) {
-      const header = document.createElement("div");
-      header.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
-      container.append(header);
-      const title = document.createElement("p");
-      title.style.cssText = "font-weight: bold; font-size: 1.15em;";
-      title.textContent = this.name;
-      header.append(title);
-      if (!this.description) return;
-      const description = document.createElement("p");
-      description.style.cssText = "color: #424242; font-size: 0.75em;";
-      description.textContent = this.description;
-      header.append(description);
     }
     buildButton(text) {
       const btn = document.createElement("button");
@@ -27011,7 +26999,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
       sidebar.classList.add("bccQAM_sidebar");
       sidebar.style.cssText = "display: flex; flex-direction: column; width: 40%; height: 100%;";
       const contentArea = document.createElement("div");
-      contentArea.style.cssText = "width: 100%; display: flex; flex-direction: column; overflow: auto; margin: 0 auto; padding-bottom: 0.5em; border-left: 1px solid #e5e5e5;";
+      contentArea.style.cssText = "width: 100%; display: flex; flex-direction: column; margin: 0 auto; padding-bottom: 0.5em; border-left: 1px solid #e5e5e5;";
+      const contentAreaHeader = document.createElement("div");
+      contentAreaHeader.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
+      const contentAreaHeaderTitle = document.createElement("p");
+      contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em;";
+      const contentAreaHeaderDescription = document.createElement("p");
+      contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em;";
+      const featureContent = document.createElement("div");
+      featureContent.style.cssText = "display: flex; flex-direction: column; height: 100%; overflow: auto;";
       const searchInput = document.createElement("input");
       searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
       searchInput.placeholder = "Search...";
@@ -27065,11 +27061,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           const icon = createElement4(b3.icon);
           icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
           btn.addEventListener("click", () => {
-            contentArea.innerHTML = "";
-            b3.subscreen.load(contentArea);
+            featureContent.innerHTML = "";
+            b3.subscreen.load(featureContent);
             if (sidebarActiveButton) sidebarActiveButton.style.borderLeft = "";
             sidebarActiveButton = btn;
             sidebarActiveButton.style.borderLeft = "3px solid rgb(219 201 255)";
+            contentAreaHeaderTitle.textContent = b3.subscreen.name;
+            contentAreaHeaderDescription.textContent = b3.subscreen.description;
           });
           detailsContainer.append(name, description);
           btn.append(icon, detailsContainer);
@@ -27115,12 +27113,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
       sidebar.append(searchInput, sidebarButtons);
       server.append(getServer(), ping);
       footer.append(server, settingsBtn);
+      contentAreaHeader.append(contentAreaHeaderTitle, contentAreaHeaderDescription);
+      contentArea.append(contentAreaHeader, featureContent);
       const flexContainer = document.createElement("div");
       flexContainer.style.cssText = "display: flex; width: 100%; height: calc(100% - 6.6em);";
       flexContainer.append(sidebar, contentArea);
       container.append(header, flexContainer, footer);
       new QAMWindow(container, header);
-      new WelcomeQAMSubscreen().load(contentArea);
+      new WelcomeQAMSubscreen().load(featureContent);
+      contentAreaHeaderTitle.textContent = "Welcome to QAM";
       container.style.left = (window.innerWidth - container.offsetWidth) / 2 + "px";
       container.style.top = (window.innerHeight - container.offsetHeight) / 2 + "px";
     }
@@ -29761,12 +29762,43 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
   var QAMButton = class extends Draggable {
-    onMouseUp() {
-      super.onMouseUp();
+    constructor(draggableElement, captureElement) {
+      super(draggableElement, captureElement);
+      this.draggableElement = draggableElement;
+      this.captureElement = captureElement;
+      window.addEventListener("resize", () => {
+        this.normalizePosition();
+      });
+      this.normalizePosition();
+    }
+    normalizePosition() {
+      if (typeof localStorage.getItem === "function") {
+        const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
+        if (pos) {
+          this.draggableElement.style.top = pos[0] + "px";
+          this.draggableElement.style.left = pos[1] + "px";
+        }
+      }
+      if (this.draggableElement.offsetLeft + this.draggableElement.offsetWidth >= window.innerWidth) {
+        this.draggableElement.style.left = window.innerWidth - this.draggableElement.offsetWidth + "px";
+      }
+      if (this.draggableElement.offsetTop + this.draggableElement.offsetHeight >= window.innerHeight) {
+        this.draggableElement.style.top = window.innerHeight - this.draggableElement.offsetHeight + "px";
+      }
+    }
+    savePosition() {
       if (this.wasDragged && typeof localStorage.setItem === "function") {
         const { top, left } = this.draggableElement.getBoundingClientRect();
         localStorage.setItem(LOCAL_STORAGE_POS_KEY, `${top}:${left}`);
       }
+    }
+    onMouseUp() {
+      super.onMouseUp();
+      this.savePosition();
+    }
+    onTouchEnd() {
+      super.onTouchEnd();
+      this.savePosition();
     }
     onClick() {
       if (this.isDragging || this.wasDragged) return;
@@ -29988,13 +30020,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
     menuButton.append(icon);
     document.body.append(menuButton);
     new QAMButton(menuButton, menuButton);
-    if (typeof localStorage.getItem === "function") {
-      const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
-      if (pos) {
-        menuButton.style.top = pos[0] + "px";
-        menuButton.style.left = pos[1] + "px";
-      }
-    }
   }
   function removeQuickMenu() {
     document.querySelector(".bccQAMButton")?.remove();
