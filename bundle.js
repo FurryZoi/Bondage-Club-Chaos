@@ -27843,7 +27843,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
             return { result: false, reason: "EFFECTS_LIMITED" /* EFFECTS_LIMITED */ };
           }
         default:
-          if (this.atoms.includes(1e3 /* NOX */)) return { result: false, reason: "EFFECTS_LIMITED" /* EFFECTS_LIMITED */ };
+          if (this.atoms.includes(1e3 /* NOX */)) {
+            if (targetCharacter.IsLoverOfCharacter(sourceCharacter)) {
+              return { result: true };
+            } else {
+              return { result: false, reason: "EFFECTS_LIMITED" /* EFFECTS_LIMITED */ };
+            }
+          }
           if (
             //@ts-expect-error
             sourceCharacter.FriendList?.includes(targetCharacter.MemberNumber) || //@ts-expect-error
@@ -28222,9 +28228,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
         return c7.BCC && this.isActiveOn(c7) && this.getSpellsWithEffect(c7)[0].castedBy.id === Player.MemberNumber;
       });
     }
-    canCast(_sourceCharacter, targetCharacter) {
+    canCast(sourceCharacter, targetCharacter) {
       if (this.isActiveOn(targetCharacter)) return { result: false, reason: "CANT_CAST_AT_THIS_MOMENT" /* CANT_CAST_AT_THIS_MOMENT */ };
-      return { result: true };
+      return super.canCast(sourceCharacter, targetCharacter);
     }
     trigger(event) {
       super.trigger(event);
