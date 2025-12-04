@@ -35,14 +35,15 @@ export class AnimaFurtaEffect extends BaseEffect {
         });
     }
 
-    public canCast(_sourceCharacter: Character, targetCharacter: Character): {
+    public canCast(sourceCharacter: Character, targetCharacter: Character): {
         result: false
         reason: CastSpellRejectionReason
     } | {
         result: true
     } {
+
         if (this.isActiveOn(targetCharacter)) return { result: false, reason: CastSpellRejectionReason.CANT_CAST_AT_THIS_MOMENT };
-        return { result: true };
+        return super.canCast(sourceCharacter, targetCharacter);
     }
 
     public trigger(event: TriggerEvent): void {

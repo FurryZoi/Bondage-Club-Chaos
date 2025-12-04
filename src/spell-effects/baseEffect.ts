@@ -1,6 +1,7 @@
 import { hookFunction } from "zois-core/modsApi";
 import { Atom, CastSpellRejectionReason, getSpellEffects, MinimumRole } from "../modules/darkMagic";
 import { ModStorage, modStorage, syncStorage } from "../modules/storage";
+import { AnimaFurtaEffect } from "./animaFurtaEffect";
 
 export type EffectParameter = EffectParameterText | EffectParameterNumber | EffectParameterBoolean | EffectParameterChoice;
 
@@ -216,7 +217,13 @@ export abstract class BaseEffect {
                     return { result: false, reason: CastSpellRejectionReason.EFFECTS_LIMITED };
                 }
             default:
-                if (this.atoms.includes(Atom.NOX)) return { result: false, reason: CastSpellRejectionReason.EFFECTS_LIMITED };
+                if (this.atoms.includes(Atom.NOX)) {
+                    if (targetCharacter.IsLoverOfCharacter(sourceCharacter)) {
+                        return { result: true };
+                    } else {
+                        return { result: false, reason: CastSpellRejectionReason.EFFECTS_LIMITED };
+                    }
+                }
                 if (
                     //@ts-expect-error
                     sourceCharacter.FriendList?.includes(targetCharacter.MemberNumber) ||
