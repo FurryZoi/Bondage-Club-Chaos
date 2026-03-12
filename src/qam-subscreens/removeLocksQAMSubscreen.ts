@@ -7,7 +7,7 @@ export class RemoveLocksQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Remove Locks";
     public description: string = "Remove all locks from target's body";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

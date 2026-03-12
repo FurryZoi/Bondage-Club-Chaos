@@ -9,7 +9,7 @@ export class CloneQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Clone";
     public description: string = "Copy target's appearance, nickname, label's color and expressions. With the opportunity to return to your original appearance";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -57,8 +57,7 @@ export class CloneQAMSubscreen extends BaseQAMSubscreen {
                     labelColor: Player.LabelColor,
                     emoticon: {
                         expression: InventoryGet(Player, "Emoticon")?.Property?.Expression,
-                        // color: InventoryGet(Player, "Emoticon")?.Property?.Color
-                        color: ""
+                        color: InventoryGet(Player, "Emoticon")?.Color
                     },
                     blush: {
                         expression: InventoryGet(Player, "Blush")?.Property?.Expression

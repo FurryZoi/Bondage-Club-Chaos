@@ -451,3 +451,171 @@
     text-shadow: 0.045em 0.045em 0 var(--tmd-text, black), -0.045em -0.045em 0 var(--tmd-accent, #6600da), 0.045em -0.045em 0 var(--tmd-text, black), -0.045em 0.045em 0 var(--tmd-accent, #6600da);
   }
 }
+
+.all-seeing-eye-btn {
+  position: relative;
+  width: 100%;
+  padding: 25px 30px 25px 100px;
+  background: linear-gradient(90deg, #0a0a2a 0%, #151538 100%);
+  border: 2px solid #2a2a5a;
+  border-radius: 15px;
+  color: #e0e0ff;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s;
+  overflow: hidden;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.all-seeing-eye-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: #4a4a8a;
+}
+
+.all-seeing-eye-btn.active {
+  background: linear-gradient(90deg, #15153a 0%, #1a1a4a 100%);
+  border-color: #8a2be2;
+  box-shadow:
+    0 0 20px rgba(138, 43, 226, 0.4),
+    inset 0 0 15px rgba(138, 43, 226, 0.1);
+  color: #ffffff;
+}
+
+/* Контейнер для глаза */
+.eye-container {
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  height: 80%;
+  z-index: 2;
+}
+
+/* Внешний круг глаза */
+.eye-outer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #2a2a5a, #0a0a2a);
+  border: 3px solid #4a4a8a;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(74, 74, 138, 0.5);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+/* Веко (закрытое состояние) */
+.eyelid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #0a0a2a;
+  border-radius: 50%;
+  z-index: 3;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Глазное яблоко */
+.eyeball {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  background: white;
+  border-radius: 50%;
+  top: 15%;
+  left: 15%;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.3),
+    0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Радужка */
+.iris {
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle at 35% 35%, #8a2be2, #4b0082);
+  border-radius: 50%;
+  top: 20%;
+  left: 20%;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(138, 43, 226, 0.3);
+}
+
+/* Зрачок */
+.pupil {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  background: black;
+  border-radius: 50%;
+  top: 30%;
+  left: 30%;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.8),
+    0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Блеск в глазу */
+.eye-sparkle {
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  background: white;
+  border-radius: 50%;
+  top: 25%;
+  left: 25%;
+  z-index: 2;
+  opacity: 0.9;
+  box-shadow: 0 0 5px white;
+}
+
+/* Свечение при активации */
+.eye-glow {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle,
+      rgba(138, 43, 226, 0) 30%,
+      rgba(138, 43, 226, 0.1) 40%,
+      rgba(138, 43, 226, 0) 70%);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* Активированное состояние */
+.eye-container.active .eyelid {
+  transform: scaleY(0);
+}
+
+.eye-container.active .eye-outer {
+  border-color: #8a2be2;
+  box-shadow:
+    inset 0 0 20px rgba(138, 43, 226, 0.3),
+    0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+.eye-container.active .eye-glow {
+  opacity: 1;
+  animation: pulse-glow 2s infinite;
+}
+
+.eye-container.active .iris {
+  animation: iris-glow 3s infinite alternate;
+}

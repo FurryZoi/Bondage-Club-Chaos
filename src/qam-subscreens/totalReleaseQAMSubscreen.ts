@@ -7,7 +7,7 @@ export class TotalReleaseQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Total Release";
     public description: string = "Release target from all items except for clothing and slave collar";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

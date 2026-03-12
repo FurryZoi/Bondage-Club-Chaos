@@ -1,11 +1,9 @@
-// BCC legacy code
-// TODO: Refactoring
-
-import { getNickname, getPlayer, waitFor } from "zois-core";
+import { getNickname, getPlayer, getRandomNumber, waitFor } from "zois-core";
 import { modStorage, syncStorage } from "./storage";
 import { messagesManager } from "zois-core/messaging";
 import { isBody, isCloth } from "zois-core/wardrobe";
-import { hookFunction, HookPriority } from "zois-core/modsApi";
+import { findModByName, getLoadedMods, hookFunction, HookPriority } from "zois-core/modsApi";
+import { isLSCGSpellBeneficial, shouldSpellBounceBack } from "./darkMagic";
 
 const chaosAuraLastData = {
     appearance: null,
@@ -205,5 +203,55 @@ export function loadChaosAura(): void {
         const target2 = getPlayer(data?.Character?.MemberNumber);
         if (!target1 || !target2) return;
         if (target2.IsPlayer()) onPlayerAppearanceChange(target1);
+    });
+
+    // We can't use ChatRoomRegisterMessageHandler here, because we need to proccess LSCG command before LSCG does it
+    hookFunction("ChatRoomMessage", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
+        const data = args[0];
+        if (
+            !modStorage.chaosAura?.enabled ||
+            !modStorage.chaosAura?.triggers?.magicCast ||
+            typeof data.Sender !== "number" ||
+            data.Sender === Player.MemberNumber ||
+            modStorage.chaosAura?.whiteList?.includes(data.Sender) ||
+            !findModByName("LSCG")
+        ) return next(args);
+        if (data.Content !== "LSCGMsg") return next(args);
+        const sender = getPlayer(data.Sender);
+        //@ts-expect-error
+        const lscgMessage = data.Dictionary?.[0]?.message;
+        const commandName = lscgMessage?.command?.name;
+        const commandArgs = lscgMessage?.command?.args;
+        const spell = commandArgs?.find((arg) => arg?.name === "spell")?.value;
+        if (commandName !== "spell" || spell === undefined || isLSCGSpellBeneficial(spell)) return next(args);
+        modStorage.chaosAura.triggersCount ??= 0;
+        modStorage.chaosAura.triggersCount++;
+        syncStorage();
+        const expression = `${getRandomNumber(1, 15)}${getRandomNumber(1, 2) === 1 ? '+' : '-'}${getRandomNumber(1, 5)}`;
+        messagesManager.sendAction(`${CharacterNickname(Player)} [∞] successfully saves against ${CharacterNickname(sender)}'s [${expression}] ${spell.Name}.`);
+        if (shouldSpellBounceBack(spell, sender, Player)) {
+            messagesManager.sendAction(`"${spell.Name}" spell bounces off of ${CharacterNickname(Player)} and hits ${CharacterNickname(sender)}.`);
+            ServerSend("ChatRoomChat", {
+                Type: "Hidden",
+                Content: "LSCGMsg",
+                Dictionary: [
+                    {
+                        message: {
+                            IsLSCG: true,
+                            type: "command",
+                            reply: false,
+                            target: data.Sender,
+                            version: getLoadedMods().find((mod) => mod.name === "LSCG").version,
+                            command: {
+                                name: "spell",
+                                args: [
+                                    { name: "spell", value: spell }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            });
+        }
     });
 }

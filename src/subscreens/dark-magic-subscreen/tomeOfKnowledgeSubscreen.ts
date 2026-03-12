@@ -3,12 +3,14 @@ import { createElement, SendToBack } from "lucide";
 import { StyleModule } from "zois-core/ui-modules";
 import { BasicsPage } from "./tome-of-knowledge-pages/basics";
 import { EffectsPage } from "./tome-of-knowledge-pages/effects";
+import { SpellCastingPage } from "./tome-of-knowledge-pages/spellCasting";
 
 
 
 const pages = [
     new BasicsPage(),
-    new EffectsPage()
+    new EffectsPage(),
+    new SpellCastingPage()
 ];
 
 export class TomeOfKnowledgeSubscreen extends BaseSubscreen {

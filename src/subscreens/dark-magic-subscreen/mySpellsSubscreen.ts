@@ -1,4 +1,4 @@
-import { BaseSubscreen } from "zois-core/ui";
+import { BaseSubscreen, cssVar, dataUrlSvgWithColor, hexToRgb } from "zois-core/ui";
 import { BookHeart, createElement, Trash2 } from "lucide";
 import { modStorage } from "@/modules/storage";
 import { AttributesModule, CenterModule, StyleModule } from "zois-core/ui-modules";
@@ -68,7 +68,7 @@ export class MySpellsSubscreen extends BaseSubscreen {
             _container.append(
                 this.createButton({
                     text: spell.name,
-                    icon: getSpellIcon(spell.icon)?.dataurl ?? undefined,
+                    icon: getSpellIcon(spell.icon)?.dataurl ? dataUrlSvgWithColor(getSpellIcon(spell.icon)?.dataurl, cssVar("--tmd-text", "black").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "black")) : cssVar("--tmd-text", "black")) : undefined,
                     padding: 2,
                     place: false,
                     modules: {

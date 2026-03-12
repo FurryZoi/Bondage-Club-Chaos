@@ -5,7 +5,7 @@ export class LeaveRoomQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Leave Room";
     public description: string = "Forcibly leave chat room";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         const btn = this.buildButton("Leave Room");

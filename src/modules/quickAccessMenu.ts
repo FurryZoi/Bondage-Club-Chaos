@@ -1,15 +1,8 @@
 import mouthWateringIcon from "@/assets/game-icons/mouthWatering.svg";
-import { MainSubscreen } from "@/subscreens/mainSubscreen";
-import { ArrowDown, ArrowUp, Check, ChevronDown, ChevronLeft, ClipboardCopy, ClipboardPaste, CopyPlus, createElement, Eye, Frown, GitBranchPlus, GitCommitVertical, GitCompareArrows, GitPullRequestArrow, Goal, HatGlasses, type IconNode, Lock, LogOut, MapPinned, PersonStanding, Settings, ShieldAlert, ShieldMinus, Target, Unlock, Wand } from "lucide";
-import { getNickname, getPlayer, MOD_DATA } from "zois-core";
-import { messagesManager } from "zois-core/messaging";
-import { toastsManager } from "zois-core/popups";
-import { addDynamicClass, DynamicClassStyles, setSubscreen } from "zois-core/ui";
-import { appearanceComparer, importAppearance, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
-import { addDefaultParametersIfNeeds, allowSpellCast, castSpell, getSpellEffect, getSpellIcon, isMagicItem } from "./darkMagic";
-import { type ModStorage, modStorage, syncStorage } from "./storage";
-import { validateData } from "zois-core/validation";
-import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
+import { ClipboardCopy, ClipboardPaste, CopyPlus, Eye, GitCompareArrows, HatGlasses, type IconNode, Lock, LogOut, MapPinned, PersonStanding, Shield, ShieldAlert, ShieldMinus, Unlock, Wand } from "lucide";
+import { getPlayer } from "zois-core";
+import { appearanceComparer, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
+import { modStorage } from "./storage";
 import { hookFunction, HookPriority } from "zois-core/modsApi";
 import type { BaseQAMSubscreen } from "@/qam-subscreens/baseQAMSubscreen";
 import { MainQAMSubscreen } from "@/qam-subscreens/mainQAMSubscreen";
@@ -27,11 +20,11 @@ import { CastSpellQAMSubscreen } from "@/qam-subscreens/castSpellQAMSubscreen";
 import { PutLocksQAMSubscreen } from "@/qam-subscreens/putLocksQAMSubscreen";
 import { RemoveLocksQAMSubscreen } from "@/qam-subscreens/removeLocksQAMSubscreen";
 import { AVQS_QAMSubscreen } from "@/qam-subscreens/avcsQAMSubscreen";
+import { AuraOfChaosQAMSubscreen } from "@/qam-subscreens/auraOfChaosQAMSubscreen";
 
 export let serverPing: number;
 let currentSubscreen: BaseQAMSubscreen;
 const LOCAL_STORAGE_POS_KEY = "BCC_QAMButton_Pos";
-let commitHashGenerationToken = Date.now().toString(16);
 
 export interface QAMFeature {
     id: number
@@ -192,12 +185,12 @@ class QAMButton extends Draggable {
         const qam: HTMLDivElement = document.querySelector(".bccQAM");
         if (qam) {
             qam.style.display = qam.style.display === "none" ? "flex" : "none";
-            currentSubscreen = null;
         } else {
             const d = document.createElement("div");
             d.classList.add("bccQAM");
             document.body.append(d);
             setQAMSubscreen(new MainQAMSubscreen());
+            pingServer();
         }
 
     }
@@ -407,7 +400,12 @@ export const qamFeatures: QAMFeature[] = [
     {
         id: 1013,
         subscreen: new AVQS_QAMSubscreen(),
-        icon: GitCompareArrows,
+        icon: GitCompareArrows
+    },
+    {
+        id: 1014,
+        subscreen: new AuraOfChaosQAMSubscreen(),
+        icon: Shield,
         isBeta: true
     }
 ];
@@ -452,7 +450,7 @@ interface PushCommit extends BaseCommit {
             removed: string[]
         }
     }
-    sourceCharacter: {
+    sourceCharacter?: {
         name: string
         memberNumber: number
     }
@@ -468,7 +466,7 @@ interface RevertCommit extends BaseCommit {
             removed: string[]
         }
     }
-    sourceCharacter: {
+    sourceCharacter?: {
         name: string
         memberNumber: number
     }
@@ -497,19 +495,25 @@ function addCommit(sourceCharacter: Character, targetCharacter: Character) {
         const prevSeed = prevCommit.bundle.seed;
         if (prevSeed === seed) return;
         const revertCommitsFollowingThisCommit = _commits.find((c) => c.bundle.seed === seed);
-        _commits.unshift({
+        const commitData: RevertCommit | PushCommit = {
             bundle: {
                 seed,
                 content: ServerAppearanceBundle(targetCharacter.Appearance),
-                difference: appearanceComparer.getDifference(serverAppearanceBundleToAppearance("Female3DCG", prevCommit.bundle.content), targetCharacter.Appearance)
-            },
-            sourceCharacter: {
-                name: CharacterNickname(sourceCharacter),
-                memberNumber: sourceCharacter.MemberNumber
+                difference: appearanceComparer.getDifference(
+                    serverAppearanceBundleToAppearance("Female3DCG", prevCommit.bundle.content),
+                    targetCharacter.Appearance
+                )
             },
             timestamp: Date.now(),
             type: revertCommitsFollowingThisCommit ? "revert" : "push"
-        });
+        };
+        if (sourceCharacter) {
+            commitData.sourceCharacter = {
+                name: CharacterNickname(sourceCharacter),
+                memberNumber: sourceCharacter.MemberNumber
+            };
+        }
+        _commits.unshift(commitData);
     }
     commits.set(targetCharacter.MemberNumber, _commits);
 }
@@ -559,7 +563,6 @@ export function loadQuickAccessMenu(): void {
 
     hookFunction("ChatRoomSync", HookPriority.OBSERVE, async (args, next) => {
         await next(args);
-        const [data] = args;
         const playerCommits = commits.get(Player.MemberNumber);
         commits.clear();
         commits.set(Player.MemberNumber, playerCommits);

@@ -34,7 +34,7 @@ export class WelcomeQAMSubscreen extends BaseQAMSubscreen {
 
         const changelog = document.createElement("div");
         changelog.classList.add("bccChangelog");
-        changelog.innerHTML = `<p>-- BCC v${version} -- Changes:</p><br><ul><li>Fixed bugs with QAM and other</li><li>Redesigned QAM</li><li>Added adaptation for mobile devices</li><li>"Disable arousal overlay" cheat</li><li>"Appearance Version Control System" QAM feature (Improved version of undo)</li></ul>`;
+        changelog.innerHTML = `<p>-- BCC v${version} -- Changes:</p><br><ul><li>Fixed "slumber curse" effect</li><li>Fixed crashes in chat room and crafting screen</li><li>More integration with Themed</li><li>Fixed some spell state icons not rendering correctly</li><li>Fixed visual bugs</li><li>[NEW] Aura Of Chaos's magic cast trigger with LSCG integration</li><li>Adapt R126</li><li>Significantly improved "Traditio Artium" effect</li><li>[NEW] "Spell Casting" page in Tome Of Knowledge</li></ul>`;
 
         container.append(text, githubPageButton, changelog);
     }

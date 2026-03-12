@@ -1,8 +1,4 @@
-import { quickMenuItems, isFeatureEnabled, quickMenuSubscreens, setQAMSubscreen, isAllowScripts } from "@/modules/quickAccessMenu";
-import { MainSubscreen } from "@/subscreens/mainSubscreen";
-import { ArrowDown, ArrowUp, createElement, Settings } from "lucide";
-import { getNickname, MOD_DATA } from "zois-core";
-import { addDynamicClass, DynamicClassStyles, setSubscreen } from "zois-core/ui";
+import { getNickname } from "zois-core";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { toastsManager } from "zois-core/popups";
 import { importAppearance, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
@@ -12,7 +8,7 @@ export class ImportAppearanceQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Import Appearance";
     public description: string = "Import appearance on target using base64 outfit code";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

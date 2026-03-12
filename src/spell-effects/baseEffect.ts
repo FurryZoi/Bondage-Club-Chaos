@@ -27,16 +27,20 @@ export interface EffectParameterBoolean extends BaseEffectParameter {
 
 export interface EffectParameterChoice extends BaseEffectParameter {
     type: "choice"
-    options: {
+    options: (() => ({
+        text: string
+        returnValue: unknown
+        icon?: SVGElement
+    })[]) | {
         name: string
         text: string
         icon?: SVGElement
     }[]
 }
 
-export interface TriggerEvent {
+export interface TriggerEvent<Data extends Record<string, unknown> = Record<string, unknown>> {
     sourceCharacter: Character
-    data: unknown
+    data: Data;
     spellName: string
     init: boolean
 }
@@ -55,6 +59,10 @@ export abstract class BaseEffect {
 
     get isInstant(): boolean {
         return true;
+    }
+
+    get isBeneficial(): boolean {
+        return !this.atoms.includes(Atom.IGNIS) && !this.atoms.includes(Atom.MATERIA) && !this.atoms.includes(Atom.MOTUS) && !this.atoms.includes(Atom.NOX) && !this.atoms.includes(Atom.RATIO);
     }
 
     get selfCastAllowed(): boolean {

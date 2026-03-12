@@ -1,8 +1,8 @@
-import { qamFeatures, isFeatureEnabled, setQAMSubscreen, QAMFeature, serverPing, QAMWindow } from "@/modules/quickAccessMenu";
+import { qamFeatures, isFeatureEnabled, type QAMFeature, serverPing, QAMWindow } from "@/modules/quickAccessMenu";
 import { MainSubscreen } from "@/subscreens/mainSubscreen";
 import { AlignVerticalSpaceAround, createElement, Maximize, Settings, SidebarClose, X } from "lucide";
 import { MOD_DATA } from "zois-core";
-import { addDynamicClass, DynamicClassStyles, setSubscreen } from "zois-core/ui";
+import { addDynamicClass, type DynamicClassStyles, setSubscreen } from "zois-core/ui";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { WelcomeQAMSubscreen } from "./welcomeQAMSubscreen";
 
@@ -209,6 +209,8 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
             await PreferenceOpenSubscreen("Extensions");
             await PreferenceSubscreenExtensionsOpen(MOD_DATA.key, ["Online", "ChatRoom"]);
             setSubscreen(new MainSubscreen(true));
+            const qam: HTMLDivElement = document.querySelector(".bccQAM");
+            qam.style.display = "none";
         });
 
         header.append(headerLeftButtonsContainer, title, headerRightButtonsContainer);

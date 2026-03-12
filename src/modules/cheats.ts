@@ -44,6 +44,7 @@ export function loadCheats(): void {
         if (message === "ChatRoomCharacterItemUpdate") {
             if (
                 modStorage.cheats?.autoTight &&
+                typeof params.Target === "number" &&
                 params.Target !== Player.MemberNumber
             ) {
                 const target = getPlayer(params.Target);

@@ -1,4 +1,4 @@
-import { BaseSubscreen } from "zois-core/ui";
+import { BaseSubscreen, cssVar, dataUrlSvgWithColor, hexToRgb } from "zois-core/ui";
 import { createElement, Skull } from "lucide";
 import { MySpellsSubscreen } from "./dark-magic-subscreen/mySpellsSubscreen";
 import { SpellEditorSubscreen } from "./dark-magic-subscreen/spellEditorSubscreen";
@@ -6,12 +6,10 @@ import { SpellEditorSubscreen } from "./dark-magic-subscreen/spellEditorSubscree
 import { LimitsSubscreen } from "./dark-magic-subscreen/limitsSubscreen";
 import { MainSubscreen } from "./mainSubscreen";
 import evilBookIcon from "@/assets/game-icons/evilBook.svg";
-import spellBookIcon from "@/assets/game-icons/spellBook.svg";
 import { ShuffleTextModule } from "@/ui-modules/shuffleTextModule";
-import { ClickModule, DynamicClassModule, StyleModule } from "zois-core/ui-modules";
+import { DynamicClassModule, StyleModule } from "zois-core/ui-modules";
 import { TomeOfKnowledgeSubscreen } from "./dark-magic-subscreen/tomeOfKnowledgeSubscreen";
 import { atoms } from "@/modules/darkMagic";
-import { BasicsPage } from "./dark-magic-subscreen/tome-of-knowledge-pages/basics";
 
 export class DarkMagicSubscreen extends BaseSubscreen {
     get icon(): SVGElement {
@@ -44,7 +42,7 @@ export class DarkMagicSubscreen extends BaseSubscreen {
 
         this.createButton({
             text: "Tome of Knowledge",
-            icon: evilBookIcon,
+            icon: dataUrlSvgWithColor(evilBookIcon, cssVar("--tmd-text", "white").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "white")) : cssVar("--tmd-text", "white")),
             x: 165,
             y: 320 + (115 * 3) + 150,
             style: "inverted",

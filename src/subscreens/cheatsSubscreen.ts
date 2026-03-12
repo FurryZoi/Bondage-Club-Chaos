@@ -1,7 +1,7 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, HandCoins } from "lucide";
 import { toastsManager } from "zois-core/popups";
-import { ModStorage, modStorage } from "@/modules/storage";
+import { type ModStorage, modStorage } from "@/modules/storage";
 import { refreshBonus } from "@/modules/cheats";
 import { StyleModule } from "zois-core/ui-modules";
 import { MainSubscreen } from "./mainSubscreen";

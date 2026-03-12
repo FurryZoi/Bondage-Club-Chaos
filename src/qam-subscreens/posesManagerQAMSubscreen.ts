@@ -1,7 +1,5 @@
-import { MainSubscreen } from "@/subscreens/mainSubscreen";
-import { ArrowDown, ArrowUp, createElement, Settings } from "lucide";
-import { getNickname, MOD_DATA } from "zois-core";
-import { addDynamicClass, DynamicClassStyles, setSubscreen } from "zois-core/ui";
+import { ArrowDown, ArrowUp, createElement } from "lucide";
+import { addDynamicClass, type DynamicClassStyles } from "zois-core/ui";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { toastsManager } from "zois-core/popups";
 
@@ -10,7 +8,7 @@ export class PosesManagerQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Poses Manager";
     public description: string = "Change target's pose, y position";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

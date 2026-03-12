@@ -13,6 +13,14 @@ import { loadDarkMagic } from "./modules/darkMagic";
 import { loadQuickAccessMenu } from "./modules/quickAccessMenu";
 import { addActivities } from "./modules/activities";
 import { REPOSITORY_URL } from "./constants";
+import { MainSubscreen } from "./subscreens/mainSubscreen";
+import { OverlaySubscreen } from "./subscreens/overlaySubscreen";
+import { QuickAccessMenuSubscreen } from "./subscreens/quickAccessMenuSubscreen";
+import { CheatsSubscreen } from "./subscreens/cheatsSubscreen";
+import { DarkMagicSubscreen } from "./subscreens/darkMagicSubscreen";
+import { ChaosAuraSubscreen } from "./subscreens/chaosAuraSubscreen";
+import { AttributionsSubscreen } from "./subscreens/attributionsSubscreen";
+import { ResetSettingsSubscreen } from "./subscreens/resetSettingsSubscreen";
 
 
 
@@ -31,7 +39,17 @@ function start() {
             iconFillColor: "#e600d2",
             iconStrokeColor: "#731f71",
             progressBarColor: "#242424"
-        }
+        },
+        deepLinkSubscreens: [
+            new MainSubscreen(),
+            new OverlaySubscreen(),
+            new QuickAccessMenuSubscreen(),
+            new CheatsSubscreen(),
+            new DarkMagicSubscreen(),
+            new ChaosAuraSubscreen(),
+            new AttributionsSubscreen(),
+            new ResetSettingsSubscreen()
+        ]
     });
 
     injectStyles(`${styles}@font-face { font-family: Kitnyx2; src: url(${kitnyx2Font}); }`);
@@ -45,7 +63,7 @@ function start() {
     addActivities();
 
     toastsManager.success({
-        title: `${MOD_DATA.fullName} loaded`,
+        title: `${MOD_DATA.name} loaded`,
         message: `v${version}`,
         duration: 4500
     });

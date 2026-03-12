@@ -27,7 +27,7 @@ export class VocisAlteratioEffect extends BaseEffect {
     get isInstant(): boolean {
         return false;
     }
-    
+
     get name(): string {
         return "Vocis Alteratio";
     }
@@ -76,7 +76,7 @@ export class VocisAlteratioEffect extends BaseEffect {
         ]
     }
 
-    public trigger(event: TriggerEvent): void {
+    public trigger(event: TriggerEvent<{ speechType: "puppy" | "kitty" | "bunny" | "baby" | "cow" }>): void {
         super.trigger(event);
         this.hookFunction(event, "ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];

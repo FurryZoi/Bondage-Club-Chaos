@@ -1,9 +1,8 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { Bug, CodeXml, createElement, GitPullRequest, Heart, Trash2 } from "lucide";
-import { ClickModule, DynamicClassModule, StyleModule, TypeModule } from "zois-core/ui-modules";
+import { StyleModule, TypeModule } from "zois-core/ui-modules";
 import { version } from "@/../package.json";
 import { TentaclesModule } from "@/ui-modules/tentaclesModule";
-import { Atom, atoms } from "@/modules/darkMagic";
 import { PaintTextModule } from "@/ui-modules/paintTextModule";
 import { ChaosAuraSubscreen } from "./chaosAuraSubscreen";
 import { OverlaySubscreen } from "./overlaySubscreen";

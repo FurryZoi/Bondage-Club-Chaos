@@ -4,9 +4,6 @@ import icon from "@/assets/game-icons/mouthWatering.svg";
 
 
 export function loadSettingsSubscreen(): void {
-	// icon.style.width = "45px";
-	// icon.style.height = "45px";
-
 	PreferenceRegisterExtensionSetting({
 		Identifier: "BCC",
 		ButtonText: "BCC Settings",

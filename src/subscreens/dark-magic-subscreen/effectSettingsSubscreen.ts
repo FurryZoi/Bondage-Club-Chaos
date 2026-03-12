@@ -86,17 +86,19 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
                     y += 100;
                     break;
                 case "choice":
-                    this.createSelect({
-                        x: 200,
-                        y,
-                        options: param.options,
-                        currentOption: this.getParameterValue(param.name) ?? param.options[0].name,
-                        width: 800,
-                        onChange: (name) => {
-                            this.setParameter(param.name, name);
-                        },
-                    });
-                    y += 100;
+                    if (typeof param.options !== "function") {
+                        this.createSelect({
+                            x: 200,
+                            y,
+                            options: param.options,
+                            currentOption: this.getParameterValue(param.name) ?? param.options[0].name,
+                            width: 800,
+                            onChange: (name) => {
+                                this.setParameter(param.name, name);
+                            },
+                        });
+                        y += 100;
+                    }
                     break;
             }
         }

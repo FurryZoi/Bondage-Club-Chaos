@@ -50,11 +50,6 @@ export class EffectsPage extends BasePage {
             content: "Spells can only be edited by their creators. That is, if someone gives you a spell, you won't be able to edit it."
         });
 
-        const t5 = PageMarkup.text({
-            content: "<b>To be continued</b>",
-            fontSize: "lg"
-        });
-
-        container.append(t1, img, t2, imagesContainer, t3, t4, t5);
+        container.append(t1, img, t2, imagesContainer, t3, t4);
     }
 }

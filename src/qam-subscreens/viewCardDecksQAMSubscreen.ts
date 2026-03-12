@@ -5,7 +5,7 @@ export class ViewCardDecksQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "View Card Decks";
     public description: string = "View target's decks of cards";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -41,7 +41,7 @@ export class ViewCardDecksQAMSubscreen extends BaseQAMSubscreen {
         const refreshContent = () => {
             contentContainer.innerHTML = "";
             deckIndex = 0;
-            const select = this.buildSelect({
+            const select = this.buildDropdown({
                 options: target.Game.ClubCard?.Deck
                     ?.map((_, i) => ({ name: i.toString(), text: target?.Game?.ClubCard?.DeckName?.[i] || `Deck #${i}` }))
                     ?.filter((n) => !!target?.Game?.ClubCard?.Deck?.[parseInt(n.name, 10)]),

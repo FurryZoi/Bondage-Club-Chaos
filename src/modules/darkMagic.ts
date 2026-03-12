@@ -45,6 +45,7 @@ import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 import { TraditioArtiumEffect } from "@/spell-effects/traditioArtiumEffect";
 import { FlammaSubmissionisEffect } from "@/spell-effects/flammaSubmissionisEffect";
 import { AcceleratioVoluptatisEffect } from "@/spell-effects/acceleratioVoluptatisEffect";
+import { Server } from "lucide";
 
 
 let showAnimaFurtaWaitingButton = false;
@@ -339,16 +340,48 @@ export function allowSpellCast(
     return { result: true };
 }
 
+export function shouldSpellBounceBack(spell: ModStorage["darkMagic"]["spells"][0] | unknown, castedBy: Character, target: Character): boolean {
+    if (castedBy.MemberNumber === target.MemberNumber) return false;
+    const casterSettings = castedBy.IsPlayer() ? modStorage : castedBy.BCC;
+    const targetSettings = target.IsPlayer() ? modStorage : target.BCC;
+    // @ts-expect-error
+    const _isSpellBeneficial = spell.Name ? isLSCGSpellBeneficial(spell) : isSpellBeneficial(spell as ModStorage["darkMagic"]["spells"][0]);
+    if (_isSpellBeneficial) return false;
+    return !(
+        (
+            casterSettings?.chaosAura?.enabled &&
+            casterSettings?.chaosAura?.triggers?.magicCast &&
+            !casterSettings?.chaosAura?.whiteList?.includes(target.MemberNumber)
+        ) ||
+        (
+            !targetSettings?.chaosAura?.enabled ||
+            !targetSettings.chaosAura?.retribution ||
+            !targetSettings?.chaosAura?.triggers?.magicCast ||
+            targetSettings?.chaosAura?.whiteList?.includes(castedBy.MemberNumber)
+        )
+    );
+}
+
 export function isSpellInstant(spell: ModStorage["darkMagic"]["spells"][0]): boolean {
     return spell.effects.split("").every((c) => spellEffects[c.charCodeAt(0) as Effect].isInstant);
 }
 
-export function generateSpellName(name: string, attempt: number = 1): string {
+export function isSpellBeneficial(spell: ModStorage["darkMagic"]["spells"][0]): boolean {
+    return spell.effects.split("").every((c) => spellEffects[c.charCodeAt(0) as Effect].isBeneficial);
+}
+
+export function isLSCGSpellBeneficial(spell: unknown): boolean {
+    // @ts-expect-error
+    const lscgMagicModule = window.LSCG?.getModule("MagicModule");
+    return lscgMagicModule?.SpellIsBeneficial?.(spell);
+}
+
+export function generateSpellName(name: string, spellList: ModStorage["darkMagic"]["spells"][0][], attempt: number = 1): string {
     let search: string;
     if (attempt === 1) search = name;
     else search = `${name} (${attempt - 1})`;
-    if (modStorage.darkMagic?.state?.spells.find((s) => s.name === search)) {
-        return generateSpellName(name, attempt + 1);
+    if (spellList.find((s) => s.name === search)) {
+        return generateSpellName(name, spellList, attempt + 1);
     }
     return search;
 }
@@ -360,14 +393,25 @@ export function addDefaultParametersIfNeeds(spell: ModStorage["darkMagic"]["spel
         const effect = getSpellEffect(effectChar.charCodeAt(0));
         for (const parameter of effect.parameters) {
             if (parameter.type === "boolean") spell.data[effectChar][parameter.name] ??= false;
-            if (parameter.type === "choice") spell.data[effectChar][parameter.name] ??= parameter.options[0].name;
+            if (parameter.type === "choice" && typeof parameter.options !== "function") spell.data[effectChar][parameter.name] ??= parameter.options[0].name;
         }
     }
 }
 
 export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]["spells"][0]) {
     spell = JSON.parse(JSON.stringify(spell));
-    spell.name = generateSpellName(spell.name.trim());
+    if (
+        modStorage.chaosAura?.enabled &&
+        modStorage.chaosAura?.triggers?.magicCast &&
+        !modStorage.chaosAura?.whiteList?.includes(castedBy.MemberNumber) &&
+        spell.effects.split("").some((c) => getSpellEffect(c.charCodeAt(0))?.isBeneficial === false)
+    ) {
+        modStorage.chaosAura.triggersCount ??= 0;
+        modStorage.chaosAura.triggersCount++;
+        messagesManager.sendAction(`Some kind of dark aura neutralized the "${spell.name}" spell before it hit ${CharacterNickname(Player)}`);
+        return;
+    }
+    spell.name = generateSpellName(spell.name.trim(), modStorage.darkMagic?.state?.spells ?? []);
     addDefaultParametersIfNeeds(spell);
     if (!isSpellInstant(spell)) {
         modStorage.darkMagic ??= {};
@@ -380,7 +424,7 @@ export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]
             data: JSON.parse(JSON.stringify(spell.data ?? {})),
             createdBy: spell.createdBy,
             castedBy: {
-                name: getNickname(castedBy),
+                name: CharacterNickname(castedBy),
                 id: castedBy.MemberNumber
             }
         });
@@ -403,7 +447,14 @@ export function castSpell(target: Character, spell: ModStorage["darkMagic"]["spe
     if (target.IsPlayer()) {
         processSpell(target, spell);
     } else {
-        messagesManager.sendPacket("castSpell", { spell }, target.MemberNumber);
+        if (shouldSpellBounceBack(spell, Player, target)) {
+            setTimeout(() => {
+                messagesManager.sendAction(`"${spell.name}" spell bounces off of ${CharacterNickname(target)} and hits ${CharacterNickname(Player)}`);
+                processSpell(Player, spell);
+            }, 1000);
+        } else {
+            messagesManager.sendPacket("castSpell", { spell }, target.MemberNumber);
+        }
     }
 }
 
@@ -492,7 +543,7 @@ export async function loadDarkMagic(): Promise<void> {
     hookFunction("InventoryLock", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         const controllableCharacter = (getSpellEffect(Effect.ANIMA_FURTA) as AnimaFurtaEffect).getControllableCharacter();
         if (!controllableCharacter) return next(args);
-        args[3] = controllableCharacter.MemberNumber;
+        args[3] = controllableCharacter.MemberNumber.toString();
         return next(args);
     });
 
@@ -594,7 +645,7 @@ export async function loadDarkMagic(): Promise<void> {
                 ChatRoomStatusUpdate("Wardrobe");
             }
             CharacterAppearanceLoadCharacter(controllableCharacter, (ready) => {
-                //@ts-expect-error
+                // @ts-expect-error
                 CommonSetScreen(module, screen);
                 if (inChatRoom) {
                     ChatRoomShowElements();

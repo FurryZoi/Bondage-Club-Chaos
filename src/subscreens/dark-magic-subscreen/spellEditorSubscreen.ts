@@ -1,4 +1,4 @@
-import { BaseSubscreen } from "zois-core/ui";
+import { BaseSubscreen, cssVar, dataUrlSvgReplaceVars, dataUrlSvgWithColor } from "zois-core/ui";
 import { createElement, Wand } from "lucide";
 import { atoms, Effect, getSpellIcons, spellEffects, type SpellIcon } from "@/modules/darkMagic";
 import { DynamicClassModule, StyleModule } from "zois-core/ui-modules";
@@ -8,6 +8,8 @@ import { DarkMagicSubscreen } from "../darkMagicSubscreen";
 import { ClickModule } from "zois-core/ui-modules";
 import { getNickname } from "zois-core";
 import { MySpellsSubscreen } from "./mySpellsSubscreen";
+import starIcon from "@/assets/common/star.svg";
+import { dialogsManager } from "zois-core/popups";
 
 
 export class SpellEditorSubscreen extends BaseSubscreen {
@@ -76,7 +78,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
             this.effectTraitsContainerElement = this.createContainer({
                 x: 1600,
                 y: 315,
-                width: 300
+                // width: 300
             });
         }
         if (effect.isInstant) {
@@ -166,11 +168,11 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                     if (this.spellSettings.effects.includes(String.fromCharCode(this.selectedEffectId))) {
                         this.spellSettings.effects = this.spellSettings.effects.replaceAll(String.fromCharCode(this.selectedEffectId), "");
                         this.effectAddElement.textContent = "Add Effect";
-                        effectButtonElement.setAttribute("data-zc-style", "default");
+                        (effectButtonElement.children[0] as SVGElement).style.visibility = "hidden"
                     } else {
                         this.spellSettings.effects += String.fromCharCode(this.selectedEffectId);
                         this.effectAddElement.textContent = "Remove Effect";
-                        effectButtonElement.setAttribute("data-zc-style", "green");
+                        (effectButtonElement.children[0] as SVGElement).style.visibility = ""
                     }
                 }
             });
@@ -300,18 +302,19 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             padding: 3,
                             isDisabled: () => this.spellSettings.createdBy.id !== Player.MemberNumber,
                             onClick: () => {
+                                if (this.spellSettings.name.trim() === "") return spellName.focus();
                                 modStorage.darkMagic ??= {};
                                 modStorage.darkMagic.spells ??= [];
                                 const spell = modStorage.darkMagic.spells.find((s) => s.name === this._oldName);
                                 if (spell) {
-                                    spell.name = this.spellSettings.name;
+                                    spell.name = this.spellSettings.name.trim();
                                     spell.effects = this.spellSettings.effects;
                                     spell.icon = this.spellSettings.icon;
                                     spell.data = this.spellSettings.data;
                                 } else {
                                     modStorage.darkMagic.spells.push(this.spellSettings);
                                 }
-                                this.exit();
+                                this.exit(false);
                             }
                         });
                     }
@@ -344,12 +347,23 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                 place: false,
                                 padding: 2,
                                 fontSize: 3,
-                                style: this.spellSettings.effects.includes(String.fromCharCode(effectId)) ? "green" : "default",
+                                icon: dataUrlSvgReplaceVars(starIcon, {
+                                    "circle-fill": cssVar("--tmd-main", "black"),
+                                    "circle-stroke": cssVar("--tmd-main", "black"),
+                                    "star-fill": cssVar("--tmd-accent", "#F0EAD6"),
+                                    "star-stroke": cssVar("--tmd-text", "#2A2A2A")
+                                }),
                                 onClick: () => this.selectEffect(effectId),
                                 modules: {
                                     base: [
                                         new StyleModule({
-                                            width: "100%"
+                                            width: "100%",
+                                            position: "relative",
+                                        }),
+                                    ],
+                                    icon: [
+                                        new StyleModule({
+                                            visibility: this.spellSettings.effects.includes(String.fromCharCode(effectId)) ? "visible" : "hidden"
                                         })
                                     ]
                                 }
@@ -375,7 +389,13 @@ export class SpellEditorSubscreen extends BaseSubscreen {
         });
     }
 
-    public exit(): void {
+    public async exit(showConfjrmDialog = true): Promise<void> {
+        if (showConfjrmDialog) {
+            const confirm = await dialogsManager.confirm({
+                message: "Are you sure you want to leave this subscreen? The changes will not be saved."
+            });
+            if (!confirm) return;
+        }
         const s = this.previousSubscreen instanceof MySpellsSubscreen ? new MySpellsSubscreen() : new DarkMagicSubscreen();
         super.exit();
         this.setSubscreen(s);

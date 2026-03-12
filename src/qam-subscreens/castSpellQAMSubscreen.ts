@@ -31,12 +31,13 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
 
         let target: Character = Player;
         let spell: ModStorage["darkMagic"]["spells"][0] = JSON.parse(JSON.stringify(modStorage.darkMagic.spells[0]));
+        addDefaultParametersIfNeeds(spell);
 
         const select = this.buildCharacterSelect((_target) => {
             target = _target;
         });
 
-        const _select = this.buildSelect({
+        const _select = this.buildDropdown({
             options: modStorage.darkMagic?.spells?.map((s) => ({ name: s.name, text: s.name, icon: dataURLToSVGElement(getSpellIcon(s.icon).dataurl) })),
             currentOption: modStorage.darkMagic?.spells?.[0]?.name,
             onChange: (value) => {
@@ -69,16 +70,18 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                     duration: 5000
                 });
             }
-            const { isValid } = await validateData({
+            const { isValid, validatedData, errors } = await validateData({
                 spell
             }, CastSpellMessageDto);
 
             if (!isValid) {
-                return toastsManager.error({
+                console.warn("BCC: Spell validation failed", validatedData, errors);
+                toastsManager.error({
                     title: "Spell validation failed",
                     message: "Check spell's settings and make sure that everything is specified correctly",
                     duration: 5000
                 });
+                return;
             }
 
             castSpell(target, spell);
@@ -119,17 +122,31 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                         paramters.append(checkbox);
                         break;
                     }
-                    case "choice":
-                        paramters.append(
-                            this.buildSelect({
-                                options: parameter.options,
-                                currentOption: parameter.options.find((o) => o.name === value)?.name ?? parameter.options[0].name,
-                                onChange: (_value) => {
-                                    spell.data[c][parameter.name] = _value;
-                                }
-                            })
-                        );
+                    case "choice": {
+                        const options = parameter.options;
+                        if (typeof options === "function") {
+                            console.log(options());
+                            paramters.append(
+                                this.buildDynamicDropdown({
+                                    options,
+                                    onChange: (_value) => {
+                                        spell.data[c][parameter.name] = _value;
+                                    }
+                                })
+                            );
+                        } else {
+                            paramters.append(
+                                this.buildDropdown({
+                                    options,
+                                    currentOption: options.find((o) => o.name === value)?.name ?? options[0].name,
+                                    onChange: (_value) => {
+                                        spell.data[c][parameter.name] = _value;
+                                    }
+                                })
+                            );
+                        }
                         break;
+                    }
                     case "number": {
                         const input = this.buildInput(parameter.label);
                         input.type = "number";

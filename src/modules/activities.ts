@@ -26,7 +26,7 @@ export function addActivities(): void {
             if (!sender.IsPlayer()) return;
             const target = getPlayer(info.TargetCharacter);
             InventoryRemove(target, "Panties");
-            InventoryWear(Player, "Panties", "ItemHandheld", "red", 10, Player.MemberNumber, {
+            InventoryWear(Player, "Panties", "ItemHandheld", "Default", 10, Player.MemberNumber, {
                 Item: "Panties",
                 Name: `${getNickname(target)}'s panties`,
                 Description: "",
@@ -38,7 +38,8 @@ export function addActivities(): void {
                 Type: null,
                 TypeRecord: null,
                 MemberNumber: target.MemberNumber,
-                MemberName: getNickname(target)
+                MemberName: getNickname(target),
+                Effects: {}
             });
             ChatRoomCharacterUpdate(target);
             ChatRoomCharacterUpdate(Player);
@@ -58,7 +59,7 @@ export function addActivities(): void {
             if (!sender.IsPlayer()) return;
             const target = getPlayer(info.TargetCharacter);
             const hairColor = InventoryGet(target, "HairFront")?.Color?.[0] ?? "#6a3628";
-            InventoryWear(Player, "Tentacles", "ItemMouth2", hairColor, 10, target.MemberNumber, {
+            InventoryWear(Player, "Tentacles", "ItemMouth2", "Default", 10, target.MemberNumber, {
                 Item: "Tentacles",
                 Name: `${getNickname(target)}'s tip of hair`,
                 Description: "",
@@ -70,7 +71,8 @@ export function addActivities(): void {
                 Type: null,
                 TypeRecord: null,
                 MemberNumber: target.MemberNumber,
-                MemberName: getNickname(target)
+                MemberName: getNickname(target),
+                Effects: {}
             });
             ChatRoomCharacterUpdate(Player);
         }

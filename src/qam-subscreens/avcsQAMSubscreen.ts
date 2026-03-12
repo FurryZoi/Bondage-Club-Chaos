@@ -1,7 +1,7 @@
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { createElement, GitCommitVertical, GitPullRequestArrow, GitPullRequestClosed, X } from "lucide";
 import { addDynamicClass } from "zois-core/ui";
-import { Commit, commits } from "@/modules/quickAccessMenu";
+import { type Commit, commits } from "@/modules/quickAccessMenu";
 import { serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
 
 
@@ -30,7 +30,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
     public name: string = "AVCS";
     public description: string = "Appearance Version Control System - System that registers all the changes in appearance that occur in room and allows you to manipulate them. Don't associate this with GIT and other VCS";
 
-    public load(container: HTMLElement) {
+    public load(container: HTMLDivElement) {
         super.load(container);
         this.loadCommitsList(container);
     }
@@ -137,7 +137,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                         justifyContent: "space-between",
                         cursor: "pointer",
                         fontSize: "0.8em",
-                        height: "2.5em",
+                        height: "30px",
                         padding: "0 0.5em"
                     },
                     hover: {
@@ -152,10 +152,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
         const commitsContainer = document.createElement("div");
         addDynamicClass(commitsContainer, {
             base: {
-                display: "flex",
-                flexDirection: "column",
                 width: "90%",
-                // height: "60vh",
                 overflowY: "scroll",
                 margin: "0 auto",
                 padding: "0.5em 0"

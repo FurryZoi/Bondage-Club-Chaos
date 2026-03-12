@@ -7,7 +7,7 @@ export class MapTeleportQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Map Teleport";
     public description: string = "Teleport to certain character on map";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

@@ -57,8 +57,9 @@ class SpellDto {
                         if (getSizeInKbytes(parameterValue) > 5) return false;
                         break;
                     case "choice":
-                        if (!isString(parameterValue)) return false;
-                        if (!parameter.options.map((o) => o.name).includes(parameterValue)) return false;
+                        // if (typeof parameter.options !== "function") {
+                        //     if (!parameter.options.some((o) => o.name === parameterValue)) return false
+                        // }
                         break;
                 }
             }

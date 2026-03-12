@@ -1,6 +1,6 @@
 import { getRandomNumber } from "zois-core";
-import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent } from "./baseEffect";
+import { Atom, generateSpellName } from "../modules/darkMagic";
+import { BaseEffect, EffectParameter, TriggerEvent } from "./baseEffect";
 import { dialogsManager, toastsManager } from "zois-core/popups";
 import { ModStorage, modStorage, syncStorage } from "@/modules/storage";
 
@@ -17,26 +17,41 @@ export class TraditioArtiumEffect extends BaseEffect {
         return "Establishes connection with target, letting you share your magical arts";
     }
 
-    public async trigger(event: TriggerEvent) {
-        super.trigger(event);
-        const spells = event.sourceCharacter?.BCC?.darkMagic?.spells;
-        if (!spells) return;
-        const result = await dialogsManager.showDialog({
-            type: "choice_multiple",
-            title: "Choose spells",
-            body: "",
-            width: 600,
-            buttons: {
-                direction: "column",
-                list: spells.map((s) => ({text: s.name, value: s})),
+    get parameters(): EffectParameter[] {
+        return [
+            {
+                name: "spell",
+                type: "choice",
+                label: "Spell to share",
+                options: () => {
+                    const options = [];
+                    for (const spell of modStorage.darkMagic?.spells ?? []) {
+                        options.push({
+                            text: spell.name,
+                            returnValue: spell
+                        });
+                    }
+                    return options;
+                }
             }
-        }) as ModStorage["darkMagic"]["spells"][0][];
+        ];
+    }
+
+    public async trigger(event: TriggerEvent<{ spell: ModStorage["darkMagic"]["spells"][number] }>) {
+        super.trigger(event);
+        const spell = event.data.spell;
+        if (!spell) return;
+        const result = await dialogsManager.confirm({
+            message: `Do you want to learn the spell "${spell.name}" from ${CharacterNickname(event.sourceCharacter)}?`,
+        });
+        if (!result) return;
+        spell.name = generateSpellName(spell.name.trim(), modStorage.darkMagic?.spells ?? []);
         modStorage.darkMagic ??= {};
         modStorage.darkMagic.spells ??= [];
-        modStorage.darkMagic.spells.push(...result);
+        modStorage.darkMagic.spells.push(spell);
         toastsManager.success({
-            message: `Learned spells: ${result.map((s) => s.name).join(", ")}`,
-            duration: 5000
+            message: `Spell successfully learned`,
+            duration: 4000
         });
         syncStorage();
     }

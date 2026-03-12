@@ -7,7 +7,7 @@ export class ReleaseQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Release";
     public description: string = "Release target from certain items";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -22,7 +22,7 @@ export class ReleaseQAMSubscreen extends BaseQAMSubscreen {
             const options = target.Appearance
                 .filter((a) => a.Asset.Group.Name.startsWith("Item") && !!InventoryGet(target, a.Asset.Group.Name))
                 .map((a) => ({ name: a.Asset.Group.Name, text: a.Asset.Description }));
-            const select = this.buildSelect({
+            const select = this.buildDropdown({
                 options,
                 currentOption: options[0]?.name,
                 onChange: (value) => { itemGroup = value as AssetGroupItemName }

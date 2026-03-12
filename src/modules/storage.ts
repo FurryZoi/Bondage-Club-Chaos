@@ -1,7 +1,7 @@
 import { version } from "@/../package.json";
-import type { Effect, MinimumRole, SpellIcon } from "./darkMagic";
+import type { MinimumRole, SpellIcon } from "./darkMagic";
 import { messagesManager } from "zois-core/messaging";
-import { SyncStorageMessageData } from "@/types/messages";
+import type { SyncStorageMessageData } from "@/types/messages";
 import { removeQuickMenu } from "./quickAccessMenu";
 import { isVersionNewer, waitFor } from "zois-core";
 import { toastsManager } from "zois-core/popups";
@@ -15,10 +15,10 @@ export interface ModStorage {
         enabledFeatures?: string
         cloneBackup?: {
             nickName: string
-            labelColor: string
+            labelColor: `#${string}` | ""
             emoticon: {
                 expression: ExpressionName
-                color: string
+                color: ItemColor
             },
             blush: {
                 expression: ExpressionName

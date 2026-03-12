@@ -85,11 +85,10 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         y += 90;
 
         this.createCheckbox({
-            text: "Magic cast (WIP)",
+            text: "Magic cast",
             x: 140,
             y,
             isChecked: modStorage.chaosAura?.triggers?.magicCast,
-            isDisabled: () => true,
             onChange: () => this.turnTrigger("magicCast")
         });
         y += 90;

@@ -7,7 +7,7 @@ export class PutLocksQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Put Locks";
     public description: string = "Put lock on target's all items";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -17,7 +17,7 @@ export class PutLocksQAMSubscreen extends BaseQAMSubscreen {
         const select = this.buildCharacterSelect((_target) => {
             target = _target;
         });
-        const _select = this.buildSelect({
+        const _select = this.buildDropdown({
             options: locks.map((l) => ({ name: l.Name, text: l.Description })),
             currentOption: locks[0].Name,
             onChange: (value) => {

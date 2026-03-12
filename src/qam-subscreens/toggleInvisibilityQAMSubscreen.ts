@@ -1,8 +1,5 @@
-import { quickMenuItems, isFeatureEnabled, quickMenuSubscreens, setQAMSubscreen, isAllowScripts } from "@/modules/quickAccessMenu";
-import { MainSubscreen } from "@/subscreens/mainSubscreen";
-import { createElement, Settings } from "lucide";
-import { getNickname, MOD_DATA } from "zois-core";
-import { addDynamicClass, setSubscreen } from "zois-core/ui";
+import { isAllowScripts } from "@/modules/quickAccessMenu";
+import { getNickname } from "zois-core";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { toastsManager } from "zois-core/popups";
 
@@ -12,7 +9,7 @@ export class ToggleInvisibilityQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Toggle Invisibility";
     public description: string = "Toggle target's invisibility state";
 
-    public load(container: Element) {
+    public load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
