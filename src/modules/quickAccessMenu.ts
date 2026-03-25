@@ -480,6 +480,7 @@ export const commits = new Map<number, Commit[]>();
 export const commitsBehindCount = new Map<number, number>();
 
 function addCommit(sourceCharacter: Character, targetCharacter: Character) {
+    if (!targetCharacter) return;
     const _commits = commits.get(targetCharacter.MemberNumber) ?? [];
     const prevCommit = _commits[0];
     const seed = appearanceComparer.getSeed(targetCharacter.Appearance);
