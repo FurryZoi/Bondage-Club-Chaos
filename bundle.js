@@ -30489,6 +30489,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var commits = /* @__PURE__ */ new Map();
   var commitsBehindCount = /* @__PURE__ */ new Map();
   function addCommit(sourceCharacter, targetCharacter) {
+    if (!targetCharacter) return;
     const _commits = commits.get(targetCharacter.MemberNumber) ?? [];
     const prevCommit = _commits[0];
     const seed = I2.getSeed(targetCharacter.Appearance);
