@@ -125,7 +125,6 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                     case "choice": {
                         const options = parameter.options;
                         if (typeof options === "function") {
-                            console.log(options());
                             paramters.append(
                                 this.buildDynamicDropdown({
                                     options,

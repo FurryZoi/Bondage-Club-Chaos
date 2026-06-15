@@ -15,8 +15,8 @@
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
-    "bc-stubs": "126.0.0-Beta.1",
-    "esbuild": "^0.27.3"
+    "bc-stubs": "129.0.0",
+    "esbuild": "^0.28.1"
   },
   "pnpm": {
     "overrides": {}

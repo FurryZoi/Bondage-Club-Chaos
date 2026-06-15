@@ -125,7 +125,7 @@ export function loadCheats(): void {
             !DialogFocusSourceItem ||
             !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)
         ) return next(args);
-        if (InventoryItemMiscPasswordPadlockIsSet()) {
+        if (InventoryItemMiscPasswordPadlockIsSet(DialogFocusSourceItem)) {
             waitFor(() => !!document.getElementById("Password"))
                 .then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
         }
