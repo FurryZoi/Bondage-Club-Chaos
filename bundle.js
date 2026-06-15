@@ -6,7 +6,11 @@
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    try {
+      return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+    } catch (e2) {
+      throw mod = 0, e2;
+    }
   };
   var __copyProps = (to, from, except, desc) => {
     if (from && typeof from === "object" || typeof from === "function") {
@@ -24957,6 +24961,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       super();
       this.animation = animation;
     }
+    animation;
     effect(context) {
       const text = context.element.textContent;
       const container = context.element;
@@ -29725,7 +29730,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
             case "choice": {
               const options = parameter.options;
               if (typeof options === "function") {
-                console.log(options());
                 paramters.append(
                   this.buildDynamicDropdown({
                     options,
@@ -30133,6 +30137,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.offset = { x: 0, y: 0 };
       this.init();
     }
+    draggableElement;
+    captureElement;
     isReadyForDragging = false;
     isDragging = false;
     wasDragged = false;
@@ -30223,6 +30229,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       this.normalizePosition();
     }
+    draggableElement;
+    captureElement;
     normalizePosition() {
       if (typeof localStorage.getItem === "function") {
         const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
@@ -31029,6 +31037,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.spellSettings = spellSettings;
       this.spellSettings = JSON.parse(JSON.stringify(this.spellSettings));
     }
+    effectId;
+    spellSettings;
     get name() {
       return `Spell Editor > ${spellEffects[this.effectId].name}'s Settings`;
     }
@@ -31147,6 +31157,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
       this.currentTab ??= "Main";
       this._oldName = this.spellSettings.name;
     }
+    spellSettings;
+    currentTab;
     effectNameElement;
     effectDescriptionElement;
     effectTraitsContainerElement;
@@ -32270,7 +32282,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     l3("ExtendedItemLoad", f3.OBSERVE, (args, next) => {
       if (!modStorage.cheats?.showPadlocksPasswords) return next(args);
       if (!DialogFocusSourceItem || !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)) return next(args);
-      if (InventoryItemMiscPasswordPadlockIsSet()) {
+      if (InventoryItemMiscPasswordPadlockIsSet(DialogFocusSourceItem)) {
         y3(() => !!document.getElementById("Password")).then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
       }
       return next(args);
@@ -32743,6 +32755,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       super();
       this.animations = animations;
     }
+    animations;
     load() {
       super.load();
       this.createCard({
