@@ -1,8 +1,8 @@
-import { hookFunction, HookPriority } from "zois-core/modsApi";
+import { hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { modStorage } from "./storage";
 import { getPlayer, waitFor } from "zois-core";
 import { setPosition } from "zois-core/ui";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 
 export function refreshBonus(): void {
     const skills = Player.Skill;

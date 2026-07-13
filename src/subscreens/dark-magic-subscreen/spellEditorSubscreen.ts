@@ -1,15 +1,14 @@
 import { BaseSubscreen, cssVar, dataUrlSvgReplaceVars, dataUrlSvgWithColor } from "zois-core/ui";
 import { createElement, Wand } from "lucide";
 import { atoms, Effect, getSpellIcons, spellEffects, type SpellIcon } from "@/modules/darkMagic";
-import { DynamicClassModule, StyleModule } from "zois-core/ui-modules";
 import { type ModStorage, modStorage } from "@/modules/storage";
 import { EffectSettingsSubscreen } from "./effectSettingsSubscreen";
 import { DarkMagicSubscreen } from "../darkMagicSubscreen";
-import { ClickModule } from "zois-core/ui-modules";
 import { getNickname } from "zois-core";
 import { MySpellsSubscreen } from "./mySpellsSubscreen";
 import starIcon from "@/assets/common/star.svg";
-import { dialogsManager } from "zois-core/popups";
+import { dialogsManager } from "zois-core/dialogs";
+import { StyleModule, DynamicClassModule, ClickModule } from "zois-core/shard-modules";
 
 
 export class SpellEditorSubscreen extends BaseSubscreen {
@@ -82,23 +81,21 @@ export class SpellEditorSubscreen extends BaseSubscreen {
             });
         }
         if (effect.isInstant) {
-            this.effectTraitsContainerElement.append(
-                this.createText({
-                    place: false,
-                    text: "Instant",
-                    color: "#3e2653",
-                    fontSize: 2.5,
-                    modules: {
-                        base: [
-                            new StyleModule({
-                                background: "#d18cff",
-                                borderRadius: "0.25em",
-                                padding: "0.2em 0.65em"
-                            })
-                        ]
-                    }
-                })
-            );
+            this.createText({
+                parent: this.effectTraitsContainerElement,
+                text: "Instant",
+                color: "#3e2653",
+                fontSize: 2.5,
+                modules: {
+                    base: [
+                        new StyleModule({
+                            background: "#d18cff",
+                            borderRadius: "0.25em",
+                            padding: "0.2em 0.65em"
+                        })
+                    ]
+                }
+            });
         }
         if (this.effectDescriptionElement) {
             this.effectDescriptionElement.textContent = effect.description;
@@ -143,13 +140,11 @@ export class SpellEditorSubscreen extends BaseSubscreen {
         effect.atoms.forEach((atomId) => {
             const atom = atoms[atomId];
             if (!atom) return;
-            this.effectAtomsContainerElement.append(
-                this.createSvg({
-                    dataurl: atom.iconDataUrl,
-                    size: 50,
-                    place: false
-                })
-            );
+            this.createSvg({
+                dataurl: atom.iconDataUrl,
+                size: 50,
+                parent: this.effectAtomsContainerElement
+            });
         });
         if (this.effectAddElement) {
             this.effectAddElement.textContent = this.spellSettings.effects.includes(String.fromCharCode(effectId)) ?
@@ -222,7 +217,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             y: 450,
                         });
 
-                        const iconsContainer = this.createScrollView({
+                        const iconsContainer = this.createContainer({
                             x: 200,
                             y: 515,
                             width: 1600,
@@ -244,39 +239,37 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                         });
 
                         getSpellIcons().forEach((icon) => {
-                            iconsContainer.append(
-                                this.createSvg({
-                                    place: false,
-                                    dataurl: icon.dataurl,
-                                    size: 150,
-                                    modules: {
-                                        base: [
-                                            new StyleModule({
-                                                cursor: "pointer",
-                                                borderRadius: "4px",
-                                                flexShrink: "0",
-                                                background: this.spellSettings.icon === icon.name
-                                                    ? "var(--tmd-element, #e6e6e6)"
-                                                    : ""
-                                            }),
-                                            new DynamicClassModule({
-                                                hover: {
-                                                    background: "var(--tmd-element, #e6e6e6)"
-                                                },
-                                                active: {
-                                                    padding: "4px"
-                                                }
-                                            }),
-                                            new ClickModule((target) => {
-                                                this.spellSettings.icon = icon.name as SpellIcon;
-                                                this.selectedSpellIconElement.style.background = "";
-                                                target.style.background = "var(--tmd-element, #e6e6e6)";
-                                                this.selectedSpellIconElement = target as SVGElement;
-                                            })
-                                        ]
-                                    }
-                                })
-                            );
+                            this.createSvg({
+                                parent: iconsContainer,
+                                dataurl: icon.dataurl,
+                                size: 150,
+                                modules: {
+                                    base: [
+                                        new StyleModule({
+                                            cursor: "pointer",
+                                            borderRadius: "4px",
+                                            flexShrink: "0",
+                                            background: this.spellSettings.icon === icon.name
+                                                ? "var(--tmd-element, #e6e6e6)"
+                                                : ""
+                                        }),
+                                        new DynamicClassModule({
+                                            hover: {
+                                                background: "var(--tmd-element, #e6e6e6)"
+                                            },
+                                            active: {
+                                                padding: "4px"
+                                            }
+                                        }),
+                                        new ClickModule((target) => {
+                                            this.spellSettings.icon = icon.name as SpellIcon;
+                                            this.selectedSpellIconElement.style.background = "";
+                                            target.style.background = "var(--tmd-element, #e6e6e6)";
+                                            this.selectedSpellIconElement = target as SVGElement;
+                                        })
+                                    ]
+                                }
+                            });
                         });
 
                         this.selectedSpellIconElement = iconsContainer.children[
@@ -322,7 +315,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                 {
                     name: "Effects",
                     load: () => {
-                        const container = this.createScrollView({
+                        const container = this.createContainer({
                             scroll: "y",
                             x: 160,
                             y: 315,
@@ -344,7 +337,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             const effectItem = spellEffects[effectId];
                             const btn = this.createButton({
                                 text: effectItem.name,
-                                place: false,
+                                parent: container,
                                 padding: 2,
                                 fontSize: 3,
                                 icon: dataUrlSvgReplaceVars(starIcon, {
@@ -369,7 +362,6 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                 }
                             });
                             btn.id = `effect-${String.fromCharCode(effectId)}-button`;
-                            container.append(btn);
                         });
 
                         this.selectEffect(Effect.ANIMA_FURTA);

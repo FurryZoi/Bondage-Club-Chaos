@@ -1,9 +1,9 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { Bug, CodeXml, createElement, GitPullRequest, Heart, Trash2 } from "lucide";
-import { StyleModule, TypeModule } from "zois-core/ui-modules";
+import { MultiClickModule, StyleModule, TypeModule } from "zois-core/shard-modules";
 import { version } from "@/../package.json";
-import { TentaclesModule } from "@/ui-modules/tentaclesModule";
-import { PaintTextModule } from "@/ui-modules/paintTextModule";
+import { TentaclesModule } from "@/shard-modules/tentaclesModule";
+import { PaintTextModule } from "@/shard-modules/paintTextModule";
 import { ChaosAuraSubscreen } from "./chaosAuraSubscreen";
 import { OverlaySubscreen } from "./overlaySubscreen";
 import { DarkMagicSubscreen } from "./darkMagicSubscreen";
@@ -13,6 +13,7 @@ import { syncStorage } from "@/modules/storage";
 import { AttributionsSubscreen } from "./attributionsSubscreen";
 import { ResetSettingsSubscreen } from "./resetSettingsSubscreen";
 import { getRandomNumber } from "zois-core";
+import { toastsManager } from "zois-core/toasts";
 
 
 const quotes = [
@@ -32,22 +33,51 @@ export class MainSubscreen extends BaseSubscreen {
         super();
     }
 
+    override get name(): string {
+        return "";
+    }
+
     public load(): void {
         super.load();
         this.createCard({
             anchor: "bottom-right",
             x: 90,
             y: 65,
+            width: 220,
             name: "Version",
             value: version,
             icon: createElement(GitPullRequest),
-            modules: this.animations ? {
+            modules: {
                 value: [
-                    new TypeModule({
+                    ...(this.animations ? [new TypeModule({
                         duration: 850
+                    })] : [])
+                ],
+                base: [
+                    // You have found secret, but let's keep it between us, fine?
+                    new MultiClickModule({
+                        callback: () => {
+                            //@ts-expect-error
+                            if (window.ZOIS_CORE.getSettings().devMode) {
+                                return toastsManager.info({
+                                    message: "You are already developer",
+                                    duration: 5000
+                                });
+                            }
+                            //@ts-expect-error
+                            window.ZOIS_CORE.enableDevMode();
+                            toastsManager.success({
+                                message: "You became developer",
+                                duration: 4000
+                            });
+                        },
+                        n: 4
+                    }),
+                    new StyleModule({
+                        userSelect: "none"
                     })
                 ]
-            } : undefined
+            }
         });
 
         this.createText({

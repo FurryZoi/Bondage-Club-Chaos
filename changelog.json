@@ -1,0 +1,104 @@
+[
+  {
+    "hash": "9580fb22b30f11dd6e473df1059a26c988d41219",
+    "author": "Зи",
+    "message": "Последний коммит",
+    "date": "2026-03-25T21:51:40+03:00"
+  },
+  {
+    "hash": "de23c286fbeb8133d4f0eb03105155fa95eedcc3",
+    "author": "Зи",
+    "message": "v2.1.0",
+    "date": "2026-03-12T03:44:00+03:00"
+  },
+  {
+    "hash": "9d1d8b6ba1ef8823fa2ab9ddf037f0c4f92096bf",
+    "author": "Зи",
+    "message": "Fix \"canCast\" method of anima furta spell effect",
+    "date": "2025-12-04T03:20:33+03:00"
+  },
+  {
+    "hash": "3dfecc8d59d1613de5a667c83922193f6cac86b9",
+    "author": "Зи",
+    "message": "QAM's fixes, improvements",
+    "date": "2025-12-01T16:30:23+03:00"
+  },
+  {
+    "hash": "b258c3458c490bea84da60d824575b0a35a5deb7",
+    "author": "Furry Zoi",
+    "message": "Add repository url",
+    "date": "2025-11-24T19:45:41+03:00"
+  },
+  {
+    "hash": "423ec30ba7cc6f52ca392bd7efab9895e3f3e97d",
+    "author": "Furry Zoi",
+    "message": "Change QAM's min-height, min-width",
+    "date": "2025-11-24T19:44:49+03:00"
+  },
+  {
+    "hash": "5ce78490c6d1b5c51071361e6bcf992c67255dd2",
+    "author": "Furry Zoi",
+    "message": "v2.0.1",
+    "date": "2025-11-24T19:16:59+03:00"
+  },
+  {
+    "hash": "c150fb90f46414a037332410045d8feb22a40dec",
+    "author": "Furry Zoi",
+    "message": "Update zois-core",
+    "date": "2025-10-24T16:37:04+03:00"
+  },
+  {
+    "hash": "fe5888179d961f90bf5fccb65bf487dbf5a5fde0",
+    "author": "Furry Zoi",
+    "message": "Add timeout in userscript",
+    "date": "2025-10-23T13:05:55+03:00"
+  },
+  {
+    "hash": "429f9de4044f5ce5043258674a61d10f4285135d",
+    "author": "Furry Zoi",
+    "message": "Fix userscript",
+    "date": "2025-10-23T00:09:01+03:00"
+  },
+  {
+    "hash": "a6d9bd72ec9b0b663b7e5d80379cd0b1b218f370",
+    "author": "Furry Zoi",
+    "message": "Release",
+    "date": "2025-10-23T00:05:59+03:00"
+  },
+  {
+    "hash": "d75a981ea11bac5cdb3e28a3d9dea50cb75395a5",
+    "author": "Furry Zoi",
+    "message": "A lot of changes",
+    "date": "2025-10-20T01:28:38+03:00"
+  },
+  {
+    "hash": "f1a45f3c3cfc6cf0dbd7056084c58f6f5ef616a2",
+    "author": "Furry Zoi",
+    "message": "Remove invalid atom",
+    "date": "2025-09-25T20:02:25+03:00"
+  },
+  {
+    "hash": "824315639201319704a140064d1e2ff5e67556ed",
+    "author": "Furry Zoi",
+    "message": "Exact pnpm version",
+    "date": "2025-09-25T19:47:49+03:00"
+  },
+  {
+    "hash": "7a643f14be298db4ddb43d652ccc0f8760222fb4",
+    "author": "Furry Zoi",
+    "message": "Fix pnpm version",
+    "date": "2025-09-25T19:33:17+03:00"
+  },
+  {
+    "hash": "5f429a3a5ac2a575e96ec01386d03b1593bb6d7b",
+    "author": "Furry Zoi",
+    "message": "Update",
+    "date": "2025-09-25T19:30:20+03:00"
+  },
+  {
+    "hash": "5c1d4ed0060d081a0c4e504087faefbd0a1deb1a",
+    "author": "Furry Zoi",
+    "message": "Update",
+    "date": "2025-09-25T19:18:52+03:00"
+  }
+]

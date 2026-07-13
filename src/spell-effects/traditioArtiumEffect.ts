@@ -1,8 +1,9 @@
 import { getRandomNumber } from "zois-core";
 import { Atom, generateSpellName } from "../modules/darkMagic";
 import { BaseEffect, EffectParameter, TriggerEvent } from "./baseEffect";
-import { dialogsManager, toastsManager } from "zois-core/popups";
+import { dialogsManager } from "zois-core/dialogs";
 import { ModStorage, modStorage, syncStorage } from "@/modules/storage";
+import { toastsManager } from "zois-core/toasts";
 
 export class TraditioArtiumEffect extends BaseEffect {
     get name(): string {

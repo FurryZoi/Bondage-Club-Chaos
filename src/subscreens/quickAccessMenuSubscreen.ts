@@ -2,7 +2,7 @@ import { BaseSubscreen } from "zois-core/ui";
 import { createElement, PanelsTopLeft } from "lucide";
 import { modStorage } from "@/modules/storage";
 import { createQAMButton, isFeatureEnabled, qamFeatures, removeQuickMenu, toggleFeature } from "@/modules/quickAccessMenu";
-import { StyleModule } from "zois-core/ui-modules";
+import { StyleModule } from "zois-core/shard-modules";
 import qamImage from "@/assets/images/qam.png";
 import { MainSubscreen } from "./mainSubscreen";
 
@@ -60,7 +60,7 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
             y: 200
         });
 
-        const container = this.createScrollView({
+        const container = this.createContainer({
             x: 1300,
             y: 280,
             width: 600,
@@ -78,14 +78,12 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
         });
 
         qamFeatures.forEach((i) => {
-            container.append(
-                this.createCheckbox({
-                    text: i.subscreen.name,
-                    isChecked: isFeatureEnabled(i.id),
-                    place: false,
-                    onChange: () => toggleFeature(i.id)
-                })
-            );
+            this.createCheckbox({
+                text: i.subscreen.name,
+                isChecked: isFeatureEnabled(i.id),
+                parent: container,
+                onChange: () => toggleFeature(i.id)
+            })
         });
     }
 

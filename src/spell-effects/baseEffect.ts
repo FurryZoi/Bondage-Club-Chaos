@@ -1,4 +1,4 @@
-import { hookFunction } from "zois-core/modsApi";
+import { hookFunction } from "zois-core/mod-sdk";
 import { Atom, CastSpellRejectionReason, getSpellEffects, MinimumRole } from "../modules/darkMagic";
 import { ModStorage, modStorage, syncStorage } from "../modules/storage";
 import { AnimaFurtaEffect } from "./animaFurtaEffect";

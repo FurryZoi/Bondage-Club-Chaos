@@ -3,7 +3,7 @@ import { ClipboardCopy, ClipboardPaste, CopyPlus, Eye, GitCompareArrows, HatGlas
 import { getPlayer } from "zois-core";
 import { appearanceComparer, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
 import { modStorage } from "./storage";
-import { hookFunction, HookPriority } from "zois-core/modsApi";
+import { hookFunction, HookPriority } from "zois-core/mod-sdk";
 import type { BaseQAMSubscreen } from "@/qam-subscreens/baseQAMSubscreen";
 import { MainQAMSubscreen } from "@/qam-subscreens/mainQAMSubscreen";
 import { ToggleInvisibilityQAMSubscreen } from "@/qam-subscreens/toggleInvisibilityQAMSubscreen";

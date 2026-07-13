@@ -1,7 +1,7 @@
 import { BaseSubscreen } from "zois-core/ui";
 import heartsIcon from "@/assets/game-icons/hearts.svg";
 import { MainSubscreen } from "./mainSubscreen";
-import { StyleModule } from "zois-core/ui-modules";
+import { StyleModule } from "zois-core/shard-modules";
 import { resetStorage } from "@/modules/storage";
 
 export class ResetSettingsSubscreen extends BaseSubscreen {

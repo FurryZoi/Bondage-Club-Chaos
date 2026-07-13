@@ -2,7 +2,7 @@ import { BaseSubscreen } from "zois-core/ui";
 import { createElement, SendToBack } from "lucide";
 import { MainSubscreen } from "./mainSubscreen";
 import { modStorage } from "@/modules/storage";
-import { ClickModule } from "zois-core/ui-modules";
+import { ClickModule } from "zois-core/shard-modules";
 
 export class OverlaySubscreen extends BaseSubscreen {
     get icon(): SVGElement {

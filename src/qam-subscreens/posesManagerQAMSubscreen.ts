@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowUp, createElement } from "lucide";
 import { addDynamicClass, type DynamicClassStyles } from "zois-core/ui";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 
 
 export class PosesManagerQAMSubscreen extends BaseQAMSubscreen {

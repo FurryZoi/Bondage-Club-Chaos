@@ -1,6 +1,7 @@
 {
     "include": [
         "node_modules/bc-stubs/bc/**/*.d.ts",
+        "node_modules/zois-core/types/globals.d.ts",
         "**/*.js",
         "**/*.ts"
     ],
@@ -13,11 +14,11 @@
         "allowJs": false,
         "removeComments": true,
         "sourceMap": true,
-        "alwaysStrict": false,
         "skipLibCheck": true,
         "allowSyntheticDefaultImports": true,
         "noEmit": true,
         "baseUrl": "src",
+        "ignoreDeprecations": "6.0",
         "paths": {
             "@/*": [
                 "*"

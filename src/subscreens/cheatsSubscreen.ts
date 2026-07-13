@@ -1,45 +1,54 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, HandCoins } from "lucide";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 import { type ModStorage, modStorage } from "@/modules/storage";
 import { refreshBonus } from "@/modules/cheats";
-import { StyleModule } from "zois-core/ui-modules";
+import { StyleModule } from "zois-core/shard-modules";
 import { MainSubscreen } from "./mainSubscreen";
 
 const booleanCheats: {
     name: string
-    storageKey: keyof ModStorage["cheats"]
+    tooltip: string
+    storageKey: keyof NonNullable<ModStorage["cheats"]>
 }[] = [
         {
             name: "Permanent skills boost",
+            tooltip: "Adds permanent +5 boost for every skill",
             storageKey: "permanentSkillsBoost"
         },
         {
             name: "Auto tight restraint",
+            tooltip: "Greatly tightens any restraint when used on anyone except you",
             storageKey: "autoTight"
         },
         {
             name: "Anonymous mode",
+            tooltip: "Prevents sending public action messages to the chat",
             storageKey: "anonymousMode"
         },
         {
             name: "Always allow interactions with activities",
+            tooltip: "Allows you to use sexual activities when this is not possible",
             storageKey: "allowActivities"
         },
         {
             name: "Map super power",
+            tooltip: "Gives you admin super powers on map view",
             storageKey: "mapSuperPower"
         },
         {
             name: "Xray vision",
+            tooltip: "Allows you to see through clothes",
             storageKey: "xray"
         },
         {
             name: "Always show padlocks passwords",
+            tooltip: "It will always show the password on the combination locks",
             storageKey: "showPadlocksPasswords"
         },
         {
             name: "Disable arousal overlay",
+            tooltip: "Turns off the pink glow",
             storageKey: "disableArousalOverlay"
         }
     ]
@@ -48,7 +57,7 @@ const booleanCheats: {
 function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSubscreen): void {
     Player.Reputation.forEach((r) => {
         const _container = subscreen.createContainer({
-            place: false,
+            parent: container,
             modules: {
                 base: [
                     new StyleModule({
@@ -59,9 +68,13 @@ function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSu
                 ]
             }
         });
+        subscreen.createText({
+            text: r.Type + ":",
+            parent: _container
+        });
         const input = subscreen.createInput({
             width: 100,
-            place: false,
+            parent: _container,
             value: r.Value.toString(),
             modules: {
                 base: [
@@ -74,22 +87,14 @@ function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSu
                 DialogSetReputation(r.Type, parseInt(input.value, 10));
                 ServerPlayerReputationSync();
             },
-        })
-        _container.append(
-            subscreen.createText({
-                text: r.Type + ":",
-                place: false
-            }),
-            input
-        );
-        container.append(_container);
+        });
     });
 }
 
 function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscreen): void {
     Player.Skill.forEach((s) => {
         const _container = subscreen.createContainer({
-            place: false,
+            parent: container,
             modules: {
                 base: [
                     new StyleModule({
@@ -100,9 +105,13 @@ function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscr
                 ]
             }
         });
+        subscreen.createText({
+            text: s.Type + ":",
+            parent: _container
+        });
         const input = subscreen.createInput({
             width: 100,
-            place: false,
+            parent: _container,
             value: s.Level.toString(),
             modules: {
                 base: [
@@ -116,14 +125,6 @@ function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscr
                 ServerPlayerSkillSync();
             },
         })
-        _container.append(
-            subscreen.createText({
-                text: s.Type + ":",
-                place: false
-            }),
-            input
-        );
-        container.append(_container);
     });
 }
 
@@ -166,7 +167,7 @@ export class CheatsSubscreen extends BaseSubscreen {
             x: 200,
             y,
             width: 1000,
-            height: 650,
+            height: 625,
             modules: {
                 base: [
                     new StyleModule({
@@ -180,23 +181,25 @@ export class CheatsSubscreen extends BaseSubscreen {
         });
 
         for (const cheat of booleanCheats) {
-            booleanCheatsContainer.append(
-                this.createCheckbox({
-                    text: cheat.name,
-                    place: false,
-                    isChecked: modStorage.cheats?.[cheat.storageKey],
-                    onChange() {
-                        if (!modStorage.cheats) modStorage.cheats = {};
-                        modStorage.cheats[cheat.storageKey] = !modStorage.cheats[cheat.storageKey];
-                        if (cheat.storageKey === "permanentSkillsBoost") refreshBonus();
-                        if (cheat.storageKey === "xray") {
-                            ChatRoomCharacter.forEach((c) => {
-                                CharacterLoadCanvas(c);
-                            });
-                        }
+            this.createCheckbox({
+                text: cheat.name,
+                parent: booleanCheatsContainer,
+                isChecked: !!modStorage.cheats?.[cheat.storageKey],
+                tooltip: {
+                    position: "right",
+                    text: cheat.tooltip,
+                },
+                onChange() {
+                    if (!modStorage.cheats) modStorage.cheats = {};
+                    modStorage.cheats[cheat.storageKey] = !modStorage.cheats[cheat.storageKey];
+                    if (cheat.storageKey === "permanentSkillsBoost") refreshBonus();
+                    if (cheat.storageKey === "xray") {
+                        ChatRoomCharacter.forEach((c) => {
+                            CharacterLoadCanvas(c);
+                        });
                     }
-                })
-            );
+                }
+            });
         }
 
         this.createButton({
@@ -267,7 +270,7 @@ export class CheatsSubscreen extends BaseSubscreen {
             },
         });
 
-        const container = this.createScrollView({
+        const container = this.createContainer({
             x: 1200,
             y: 220 + 120 + 95,
             width: 500,

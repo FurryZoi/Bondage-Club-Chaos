@@ -1,6 +1,6 @@
 import { isBannedBy } from "@/modules/quickAccessMenu";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 
 
 export class ExportAppearanceQAMSubscreen extends BaseQAMSubscreen {

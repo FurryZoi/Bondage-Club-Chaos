@@ -1,4 +1,4 @@
-import { callOriginal, hookFunction, HookPriority } from "zois-core/modsApi";
+import { callOriginal, hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { type ModStorage, modStorage } from "./storage";
 import { getSpellIcon } from "./darkMagic";
 import { createElement, Pencil, Wand } from "lucide";

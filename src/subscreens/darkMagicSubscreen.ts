@@ -6,8 +6,8 @@ import { SpellEditorSubscreen } from "./dark-magic-subscreen/spellEditorSubscree
 import { LimitsSubscreen } from "./dark-magic-subscreen/limitsSubscreen";
 import { MainSubscreen } from "./mainSubscreen";
 import evilBookIcon from "@/assets/game-icons/evilBook.svg";
-import { ShuffleTextModule } from "@/ui-modules/shuffleTextModule";
-import { DynamicClassModule, StyleModule } from "zois-core/ui-modules";
+import { ShuffleTextModule } from "@/shard-modules/shuffleTextModule";
+import { DynamicClassModule, StyleModule } from "zois-core/shard-modules";
 import { TomeOfKnowledgeSubscreen } from "./dark-magic-subscreen/tomeOfKnowledgeSubscreen";
 import { atoms } from "@/modules/darkMagic";
 
@@ -27,8 +27,8 @@ export class DarkMagicSubscreen extends BaseSubscreen {
             new MySpellsSubscreen(), new SpellEditorSubscreen(),
             new LimitsSubscreen()
         ].forEach((t, i) => {
-            t.icon.style.width = "auto";
-            t.icon.style.height = "70%";
+            // t.prototype.icon.style.width = "auto";
+            // t.prototype.icon.style.height = "70%";
             this.createButton({
                 text: t.name,
                 icon: t.icon,
@@ -108,14 +108,12 @@ export class DarkMagicSubscreen extends BaseSubscreen {
                     ]
                 }
             });
-            iconContainer.append(
-                this.createSvg({
-                    place: false,
-                    dataurl: atom.iconDataUrl,
-                    fill: atom.iconColor,
-                    size: 70,
-                })
-            );
+            this.createSvg({
+                parent: iconContainer,
+                dataurl: atom.iconDataUrl,
+                fill: atom.iconColor,
+                size: 70,
+            });
             this.createText({
                 text: atom.name,
                 color: atom.iconColor,

@@ -1,6 +1,6 @@
 import { addDynamicClass, BaseSubscreen } from "zois-core/ui";
 import { createElement, SendToBack } from "lucide";
-import { StyleModule } from "zois-core/ui-modules";
+import { StyleModule } from "zois-core/shard-modules";
 import { BasicsPage } from "./tome-of-knowledge-pages/basics";
 import { EffectsPage } from "./tome-of-knowledge-pages/effects";
 import { SpellCastingPage } from "./tome-of-knowledge-pages/spellCasting";
@@ -24,7 +24,6 @@ export class TomeOfKnowledgeSubscreen extends BaseSubscreen {
             y: 90,
             width: 1700 - 60,
             height: 90,
-            isBold: true,
             items: pages.map((p) => [p.name, p]),
             currentIndex: 0,
             onChange: (value) => {
@@ -49,7 +48,7 @@ export class TomeOfKnowledgeSubscreen extends BaseSubscreen {
             }
         });
 
-        const container = this.createScrollView({
+        const container = this.createContainer({
             scroll: "y",
             x: 125,
             y: 215,

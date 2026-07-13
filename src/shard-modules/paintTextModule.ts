@@ -1,14 +1,15 @@
-import { BaseModule, type Context } from "zois-core/modules";
+import { ShardModule, type ShardModuleTarget } from "zois-core/shard-modules";
+import type { ShardContext } from "zois-core/shards";
 
 
-export class PaintTextModule extends BaseModule {
+export class PaintTextModule extends ShardModule {
     constructor(private readonly animation: boolean = true) {
         super();
     }
 
-    public effect(context: Context) {
-        const text = context.element.textContent;
-        const container = context.element;
+    override effect(_context: ShardContext, target: ShardModuleTarget) {
+        const text = target.textContent;
+        const container = target;
         container.innerHTML = "";
 
         text.split('').forEach((letter, index) => {

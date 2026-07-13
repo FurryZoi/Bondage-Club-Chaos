@@ -4,7 +4,7 @@ import { messagesManager } from "zois-core/messaging";
 import type { SyncStorageMessageData } from "@/types/messages";
 import { removeQuickMenu } from "./quickAccessMenu";
 import { isVersionNewer, waitFor } from "zois-core";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 
 export let modStorage: ModStorage = { version };
 

@@ -208,7 +208,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         settingsBtn.addEventListener("click", async () => {
             await PreferenceOpenSubscreen("Extensions");
             await PreferenceSubscreenExtensionsOpen(MOD_DATA.key, ["Online", "ChatRoom"]);
-            setSubscreen(new MainSubscreen(true));
+            setSubscreen(new MainSubscreen());
             const qam: HTMLDivElement = document.querySelector(".bccQAM");
             qam.style.display = "none";
         });

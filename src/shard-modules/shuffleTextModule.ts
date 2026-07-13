@@ -1,4 +1,5 @@
-import { BaseModule, type Context, type ModuleTarget } from "zois-core/modules";
+import { ShardModule, type ShardModuleTarget } from "zois-core/shard-modules";
+import type { ShardContext } from "zois-core/shards";
 
 function shuffleString(str) {
     return str
@@ -7,8 +8,8 @@ function shuffleString(str) {
         .join('');
 }
 
-export class ShuffleTextModule extends BaseModule {
-    public effect(context: Context, target: ModuleTarget): void {
+export class ShuffleTextModule extends ShardModule {
+    override effect(_context: ShardContext, target: ShardModuleTarget): void {
         const id = setInterval(() => {
             try {
                 target.textContent = shuffleString(target.textContent);

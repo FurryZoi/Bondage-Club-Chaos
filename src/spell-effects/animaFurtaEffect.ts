@@ -1,4 +1,4 @@
-import { HookPriority } from "zois-core/modsApi";
+import { HookPriority } from "zois-core/mod-sdk";
 import { Atom, CastSpellRejectionReason, Effect, getSpellEffect } from "../modules/darkMagic";
 import { BaseEffect, RemoveEvent, TriggerEvent } from "./baseEffect";
 import { messagesManager } from "zois-core/messaging";

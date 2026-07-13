@@ -1,5 +1,5 @@
 import { messagesManager } from "zois-core/messaging";
-import { HookPriority } from "zois-core/modsApi";
+import { HookPriority } from "zois-core/mod-sdk";
 import { Atom } from "../modules/darkMagic";
 import { BaseEffect, type RemoveEvent, type TriggerEvent } from "./baseEffect";
 

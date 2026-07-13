@@ -1,6 +1,6 @@
 import { getNickname } from "zois-core";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 import { importAppearance, serverAppearanceBundleToAppearance } from "zois-core/wardrobe";
 
 

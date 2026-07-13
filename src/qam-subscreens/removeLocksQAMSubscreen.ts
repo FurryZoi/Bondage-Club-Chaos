@@ -1,4 +1,4 @@
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { getNickname } from "zois-core";
 

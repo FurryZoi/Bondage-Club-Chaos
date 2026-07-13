@@ -1,9 +1,10 @@
 import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 import { getSpellIcon, addDefaultParametersIfNeeds, getSpellEffect, isMagicItem, allowSpellCast, castSpell } from "@/modules/darkMagic";
 import { modStorage, ModStorage } from "@/modules/storage";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 import { validateData } from "zois-core/validation";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
+import { logger } from "zois-core/logging";
 
 
 export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
@@ -75,7 +76,7 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
             }, CastSpellMessageDto);
 
             if (!isValid) {
-                console.warn("BCC: Spell validation failed", validatedData, errors);
+                logger.warn("Spell validation failed", validatedData, errors);
                 toastsManager.error({
                     title: "Spell validation failed",
                     message: "Check spell's settings and make sure that everything is specified correctly",

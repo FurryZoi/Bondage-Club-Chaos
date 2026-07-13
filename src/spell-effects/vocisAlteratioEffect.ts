@@ -1,6 +1,6 @@
 import { getNickname, getRandomNumber } from "zois-core";
 import { messagesManager } from "zois-core/messaging";
-import { HookPriority } from "zois-core/modsApi";
+import { HookPriority } from "zois-core/mod-sdk";
 import { Atom } from "../modules/darkMagic";
 import { BaseEffect, TriggerEvent, type EffectParameter } from "./baseEffect";
 

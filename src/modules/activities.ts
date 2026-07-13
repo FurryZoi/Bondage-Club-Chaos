@@ -1,7 +1,7 @@
 import { ActivityManager } from "@sugarch/bc-activity-manager";
 import { HookManager } from "@sugarch/bc-mod-hook-manager";
 import { getNickname, getPlayer } from "zois-core";
-import { modSdk } from "zois-core/modsApi";
+import { modSdk } from "zois-core/mod-sdk";
 
 enum Activity {
     STEAL_PANTIES = "BCC_StealPanties",

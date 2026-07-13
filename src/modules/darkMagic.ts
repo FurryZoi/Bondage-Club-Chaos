@@ -40,7 +40,7 @@ import { VocisPrivatioEffect } from "../spell-effects/vocisPrivatioEffect";
 import { modStorage, type ModStorage, syncStorage } from "./storage";
 import { messagesManager } from "zois-core/messaging";
 import { getNickname } from "zois-core";
-import { hookFunction, HookPriority, patchFunction } from "zois-core/modsApi";
+import { hookFunction, HookPriority, patchFunction } from "zois-core/mod-sdk";
 import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 import { TraditioArtiumEffect } from "@/spell-effects/traditioArtiumEffect";
 import { FlammaSubmissionisEffect } from "@/spell-effects/flammaSubmissionisEffect";

@@ -1,6 +1,6 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, Shell } from "lucide";
-import { CounterUpModule } from "zois-core/ui-modules";
+import { CounterUpModule } from "zois-core/shard-modules";
 import { type ModStorage, modStorage, syncStorage } from "@/modules/storage";
 import { updateChaosAuraLastData } from "@/modules/chaosAura";
 import { MainSubscreen } from "./mainSubscreen";

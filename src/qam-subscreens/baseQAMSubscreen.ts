@@ -1,5 +1,5 @@
 import { qamFeatures } from "@/modules/quickAccessMenu";
-import { Check, ChevronDown, createElement, Target, type IconNode } from "lucide";
+import { Check, ChevronDown, createElement, Target } from "lucide";
 import { getPlayer } from "zois-core";
 import { addDynamicClass } from "zois-core/ui";
 

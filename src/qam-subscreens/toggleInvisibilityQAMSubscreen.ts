@@ -1,7 +1,7 @@
 import { isAllowScripts } from "@/modules/quickAccessMenu";
 import { getNickname } from "zois-core";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
-import { toastsManager } from "zois-core/popups";
+import { toastsManager } from "zois-core/toasts";
 
 let qamScrollTop: number;
 

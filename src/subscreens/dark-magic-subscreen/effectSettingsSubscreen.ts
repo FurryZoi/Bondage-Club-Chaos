@@ -1,6 +1,6 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { type Effect, spellEffects } from "@/modules/darkMagic";
-import { AttributesModule } from "zois-core/ui-modules";
+import { AttributesModule } from "zois-core/shard-modules";
 import { SpellEditorSubscreen } from "./spellEditorSubscreen";
 import type { ModStorage } from "@/modules/storage";
 

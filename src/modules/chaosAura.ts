@@ -2,7 +2,7 @@ import { getNickname, getPlayer, getRandomNumber, waitFor } from "zois-core";
 import { modStorage, syncStorage } from "./storage";
 import { messagesManager } from "zois-core/messaging";
 import { isBody, isCloth } from "zois-core/wardrobe";
-import { findModByName, getLoadedMods, hookFunction, HookPriority } from "zois-core/modsApi";
+import { findModByName, getLoadedMods, hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { isLSCGSpellBeneficial, shouldSpellBounceBack } from "./darkMagic";
 
 const chaosAuraLastData = {
