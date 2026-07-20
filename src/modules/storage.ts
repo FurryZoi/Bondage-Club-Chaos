@@ -5,6 +5,7 @@ import type { SyncStorageMessageData } from "@/types/messages";
 import { removeQuickMenu } from "./quickAccessMenu";
 import { isVersionNewer, waitFor } from "zois-core";
 import { toastsManager } from "zois-core/toasts";
+import { hookFunction, HookPriority } from "zois-core/mod-sdk";
 
 export let modStorage: ModStorage = { version };
 
@@ -112,6 +113,20 @@ export function loadStorage(): void {
             });
         }
         sender.BCC = data.storage;
+    });
+    hookFunction("ChatRoomSync", HookPriority.OBSERVE, async (args, next) => {
+        const ret = await next(args);
+        ChatRoomCharacter.forEach((c) => { delete c.BCC });
+        messagesManager.sendPacket<SyncStorageMessageData>("syncStorage", {
+            storage: JSON.parse(JSON.stringify(modStorage)),
+        });
+        return ret;
+    });
+
+    hookFunction("ChatRoomSyncMemberJoin", HookPriority.OBSERVE, async (args, next) => {
+        const char = Character.find((c) => c.MemberNumber === args[0].SourceMemberNumber);
+        delete char?.BCC;
+        return next(args);
     });
 }
 
