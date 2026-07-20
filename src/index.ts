@@ -27,9 +27,7 @@ import { MySpellsSubscreen } from "./subscreens/dark-magic-subscreen/mySpellsSub
 import { SpellEditorSubscreen } from "./subscreens/dark-magic-subscreen/spellEditorSubscreen";
 import { TomeOfKnowledgeSubscreen } from "./subscreens/dark-magic-subscreen/tomeOfKnowledgeSubscreen";
 import { logger } from "zois-core/logging";
-import changelog from "../changelog.json";
-import { showChangelogModal } from "zois-core/changelogs";
-import { messagesManager } from "zois-core/messaging";
+import { CheatsMinigamesSubscreen } from "./subscreens/cheatsMinigamesSubscreen";
 
 
 bootstrap({
@@ -52,6 +50,7 @@ bootstrap({
         OverlaySubscreen,
         QuickAccessMenuSubscreen,
         CheatsSubscreen,
+        CheatsMinigamesSubscreen,
         DarkMagicSubscreen,
         ChaosAuraSubscreen,
         AttributionsSubscreen,
@@ -61,11 +60,6 @@ bootstrap({
         MySpellsSubscreen,
         SpellEditorSubscreen,
         TomeOfKnowledgeSubscreen
-    },
-    changelog: {
-        data: changelog,
-        repo: "Bondage-Club-Chaos",
-        owner: "FurryZoi"
     }
 });
 
@@ -86,13 +80,6 @@ function start() {
         message: `v${version}`,
         duration: 4500
     });
-
-    const d = document.createElement("p");
-    d.textContent = "BCC updated, click here to open changelog";
-    d.addEventListener("click", () => {
-        showChangelogModal();
-    });
-    messagesManager.sendLocal(d);
 }
 
 waitForStart(start);

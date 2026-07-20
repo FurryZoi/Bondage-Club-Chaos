@@ -3,6 +3,7 @@ import { modStorage } from "./storage";
 import { getPlayer, waitFor } from "zois-core";
 import { setPosition } from "zois-core/ui";
 import { toastsManager } from "zois-core/toasts";
+import { logger } from "zois-core/logging";
 
 export function refreshBonus(): void {
     const skills = Player.Skill;
@@ -202,5 +203,47 @@ export function loadCheats(): void {
     hookFunction("ChatRoomDrawArousalOverlay", HookPriority.OBSERVE, (args, next) => {
         if (!modStorage.cheats?.disableArousalOverlay) return next(args);
         return;
+    });
+
+    hookFunction("DialogStruggleStart", HookPriority.OBSERVE, (args, next) => {
+        // if (!modStorage.cheats?.disableArousalOverlay) return next(args);
+        logger.debug("DialogStruggleStart", args);
+        const [C, Action, PrevItem, NextItem] = args;
+        next(args)
+        // DialogStruggleStop();
+    });
+
+    hookFunction("StruggleMinigameStart", HookPriority.OBSERVE, (args, next) => {
+        const [_C, MiniGame, _PrevItem, _NextItem, _Completion] = args;
+        next(args);
+
+        const skipMinigames = modStorage.cheats?.skipMinigames;
+        if (skipMinigames === undefined) return next(args);
+
+        switch (MiniGame) {
+            case "Dexterity": {
+                if (skipMinigames.dexterity) StruggleProgress = 100;
+                break;
+            }
+            case "Flexibility": {
+                if (skipMinigames.flexibility) StruggleProgress = 100;
+                break;
+            }
+            case "Loosen": {
+                if (skipMinigames.loosen) StruggleProgress = 100;
+                break;
+            }
+            case "Strength": {
+                if (skipMinigames.strength) StruggleProgress = 100;
+                break;
+            }
+            case "LockPick": {
+                if (skipMinigames.lockPick) StruggleLockPickSuccessTime = Date.now();
+                break;
+            }
+            default: {
+                logger.warn(`Unknown minigame "${MiniGame}" caught in StruggleMinigameStart`);
+            }
+        }
     });
 }

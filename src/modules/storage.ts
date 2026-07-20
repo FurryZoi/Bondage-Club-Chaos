@@ -53,6 +53,13 @@ export interface ModStorage {
         xray?: boolean
         showPadlocksPasswords?: boolean
         disableArousalOverlay?: boolean
+        skipMinigames?: {
+            lockPick?: boolean
+            dexterity?: boolean
+            flexibility?: boolean
+            loosen?: boolean
+            strength?: boolean
+        }
     }
     darkMagic?: {
         spells?: {

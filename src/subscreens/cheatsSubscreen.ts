@@ -5,6 +5,7 @@ import { type ModStorage, modStorage } from "@/modules/storage";
 import { refreshBonus } from "@/modules/cheats";
 import { StyleModule } from "zois-core/shard-modules";
 import { MainSubscreen } from "./mainSubscreen";
+import { CheatsMinigamesSubscreen } from "./cheatsMinigamesSubscreen";
 
 const booleanCheats: {
     name: string
@@ -207,6 +208,7 @@ export class CheatsSubscreen extends BaseSubscreen {
             x: 1200,
             y: 220,
             padding: 2,
+            width: 300,
             onClick: () => {
                 const ids = [];
                 AssetFemale3DCG.forEach((group) => {
@@ -244,10 +246,19 @@ export class CheatsSubscreen extends BaseSubscreen {
             }
         });
 
+        this.createButton({
+            text: "Minigames",
+            x: 1200 + 300 + 50,
+            y: 220,
+            padding: 2,
+            width: 300,
+            onClick: () => this.setSubscreen(new CheatsMinigamesSubscreen())
+        });
+
         this.createSelect({
             x: 1200,
             y: 220 + 120,
-            width: 500,
+            width: 650,
             currentOption: "reputation",
             options: [
                 {
@@ -273,7 +284,7 @@ export class CheatsSubscreen extends BaseSubscreen {
         const container = this.createContainer({
             x: 1200,
             y: 220 + 120 + 95,
-            width: 500,
+            width: 650,
             height: 495,
             scroll: "y",
             modules: {
