@@ -4,6 +4,19 @@ import { getSpellIcon } from "./darkMagic";
 import { createElement, Pencil, Wand } from "lucide";
 import { logger } from "zois-core/logging";
 
+const titleColors = Array.from({ length: 360 }, (_, i) => {
+    const hue = (i / 360) * 360;
+    return `hsl(${hue}, 100%, 50%)`;
+});
+
+const startTime = performance.now();
+
+function getRainbowColor(): string {
+    const elapsed = (performance.now() - startTime) / 25;
+    const index = Math.floor(elapsed) % titleColors.length;
+    return titleColors[index];
+}
+
 export function loadOverlay(): void {
     hookFunction(
         "ChatRoomCharacterViewDrawOverlay",
@@ -12,7 +25,7 @@ export function loadOverlay(): void {
             next(args);
             if (ChatRoomHideIconState !== 0) return;
 
-            const [C, CharX, CharY, Zoom] = args as [Character, number, number, number];
+            const [C, CharX, CharY, Zoom] = args;
             let bccData: ModStorage;
 
             if (C.IsPlayer()) {
@@ -36,8 +49,8 @@ export function loadOverlay(): void {
                     `BCC v${bccData?.version}`,
                     CharX + 250 * Zoom,
                     CharY + 60 * Zoom,
-                    140 * Zoom,
-                    "Black"
+                    100 * Zoom,
+                    getRainbowColor()
                 );
             }
 
