@@ -5,15 +5,15 @@ import { modStorage } from "@/modules/storage";
 import { ClickModule } from "zois-core/shard-modules";
 
 export class OverlaySubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(SendToBack);
     }
 
-    get name() {
+    public override get name() {
         return "Overlay";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         const options = [
@@ -40,7 +40,7 @@ export class OverlaySubscreen extends BaseSubscreen {
 
         this.createSelect({
             x: 550,
-            y: 220 - 30,
+            y: 220 - 10,
             options,
             width: 500,
             currentOption: (modStorage.overlay?.versionText ?? 2).toString(),
@@ -67,7 +67,7 @@ export class OverlaySubscreen extends BaseSubscreen {
 
         this.createSelect({
             x: 550,
-            y: 320 - 30,
+            y: 320 - 10,
             options,
             width: 500,
             currentOption: (modStorage.overlay?.effectsIcons ?? 2).toString(),
@@ -86,7 +86,7 @@ export class OverlaySubscreen extends BaseSubscreen {
         });
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

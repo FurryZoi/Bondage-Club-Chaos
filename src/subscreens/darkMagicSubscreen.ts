@@ -12,15 +12,15 @@ import { TomeOfKnowledgeSubscreen } from "./dark-magic-subscreen/tomeOfKnowledge
 import { atoms } from "@/modules/darkMagic";
 
 export class DarkMagicSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(Skull);
     }
 
-    get name() {
+    public override get name() {
         return "Dark Magic";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         [
@@ -132,7 +132,7 @@ export class DarkMagicSubscreen extends BaseSubscreen {
         });
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

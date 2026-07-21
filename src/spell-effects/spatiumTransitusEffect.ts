@@ -1,30 +1,20 @@
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent, type EffectParameter } from "./baseEffect";
-
-interface Parameters {
-    lobby: "classic" | "extended"
-    isPrivate: boolean
-    roomName: string
-}
+import { BaseEffect, type TriggerEvent, type EffectParameter } from "./baseEffect";
 
 export class SpatiumTransitusEffect extends BaseEffect {
-    get name(): string {
+    public override get name(): string {
         return "Spatium Transitus";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.NOX, Atom.MOTUS];
     }
 
-    get icon(): SVGElement {
-        return null;
-    }
-
-    get description(): string {
+    public override get description(): string {
         return "Teleports target in the specified chat room. If the chat room does not exist then target creates it.";
     }
 
-    get parameters(): EffectParameter[] {
+    public override get parameters(): EffectParameter[] {
         return [
             {
                 name: "lobby",
@@ -54,7 +44,13 @@ export class SpatiumTransitusEffect extends BaseEffect {
         ];
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(
+        event: TriggerEvent<{
+            roomName: string
+            isPrivate: boolean
+            lobby: "extended" | "classic"
+        }>
+    ): void {
         super.trigger(event);
         const roomName = event.data.roomName.trim();
         const isPrivate = event.data.isPrivate;
@@ -65,7 +61,7 @@ export class SpatiumTransitusEffect extends BaseEffect {
         ChatSearchLastQueryJoin = roomName;
         ServerSend("ChatRoomJoin", { Name: roomName });
         ChatRoomPingLeashedPlayers();
-        ServerSocket.once("ChatRoomSearchResponse", (data) => {
+        ServerSocket.once("ChatRoomSearchResponse", (data: string) => {
             if (["CannotFindRoom", "RoomFull"].includes(data)) {
                 ServerAccountUpdate.QueueData({ RoomCreateLanguage: "EN" });
                 const newRoom = {
@@ -85,7 +81,7 @@ export class SpatiumTransitusEffect extends BaseEffect {
                 };
                 ServerSend("ChatRoomCreate", newRoom);
                 // ChatCreateMessage = "CreatingRoom";
-                ServerSocket.once("ChatRoomCreateResponse", (data) => {
+                ServerSocket.once("ChatRoomCreateResponse", (data: string) => {
                     if (data === "ChatRoomCreated") {
                         ChatRoomPingLeashedPlayers();
                     }

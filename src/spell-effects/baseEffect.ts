@@ -1,7 +1,6 @@
 import { hookFunction } from "zois-core/mod-sdk";
-import { Atom, CastSpellRejectionReason, getSpellEffects, MinimumRole } from "../modules/darkMagic";
-import { ModStorage, modStorage, syncStorage } from "../modules/storage";
-import { AnimaFurtaEffect } from "./animaFurtaEffect";
+import { Atom, type CastedSpell, CastSpellRejectionReason, getSpellEffects, MinimumRole } from "../modules/darkMagic";
+import { modStorage, syncStorage } from "../modules/storage";
 
 export type EffectParameter = EffectParameterText | EffectParameterNumber | EffectParameterBoolean | EffectParameterChoice;
 
@@ -70,7 +69,7 @@ export abstract class BaseEffect {
     }
 
     get id(): number {
-        let charCode: number;
+        let charCode = -1;
         for (const [key, value] of Object.entries(getSpellEffects())) {
             if (value.name === this.name) {
                 charCode = parseInt(key, 10);
@@ -80,17 +79,13 @@ export abstract class BaseEffect {
         return charCode;
     }
 
-    get name(): string {
-        return null;
-    }
+    public abstract get name(): string
 
     get atoms(): Atom[] {
         return [];
     }
 
-    get description(): string {
-        return null;
-    }
+    public abstract get description(): string
 
     get parameters(): EffectParameter[] {
         return [];
@@ -100,7 +95,7 @@ export abstract class BaseEffect {
         if (this.isInstant) return false;
         const charCode = this.id;
         if (!charCode) return false;
-        return modStorage.darkMagic?.state?.spells?.some((s) => s.effects.includes(String.fromCharCode(charCode)));
+        return modStorage.darkMagic?.state?.spells?.some((s) => s.effects.includes(String.fromCharCode(charCode))) ?? false;
     }
 
     public isActiveOn(C: Character): boolean {
@@ -109,11 +104,11 @@ export abstract class BaseEffect {
         if (!C.BCC) return false
         const charCode = this.id;
         if (!charCode) return false;
-        return C.BCC?.darkMagic?.state?.spells?.some((s) => s.effects.includes(String.fromCharCode(charCode)));
+        return C.BCC?.darkMagic?.state?.spells?.some((s) => s.effects.includes(String.fromCharCode(charCode))) ?? false;
     }
 
     public getSpellsWithEffect(C: Character = Player) {
-        const spells: ModStorage["darkMagic"]["state"]["spells"] = [];
+        const spells: CastedSpell[] = [];
         if (!this.isActiveOn(C)) return spells;
         const storage = C.IsPlayer() ? modStorage : C.BCC;
         for (const spell of (storage?.darkMagic?.state?.spells ?? []).toReversed()) {
@@ -124,7 +119,7 @@ export abstract class BaseEffect {
         return spells;
     }
 
-    public getParameter<T>(name: string, C: Character = Player): T {
+    public getParameter<T>(name: string, C: Character = Player): T | null {
         if (!this.isActiveOn(C)) return null;
         const spells = this.getSpellsWithEffect(C);
         if (spells.length === 0) return null;
@@ -132,14 +127,14 @@ export abstract class BaseEffect {
         let parameterValue = spells[0].data?.[String.fromCharCode(this.id)]?.[name] as T;
         if (parameter) {
             if (parameter.type === "boolean") parameterValue ??= false as T;
-            if (parameter.type === "choice") parameterValue ??= parameter.options[0].name as T;
+            if (parameter.type === "choice" && typeof parameter.options !== "function") parameterValue ??= parameter.options[0].name as T;
         }
         return parameterValue;
     }
 
     public setParameter(name: string, value: unknown, spellName: string) {
         if (!this.isActive) return;
-        const spell = modStorage.darkMagic.state.spells.find((s) => s.name === spellName);
+        const spell = modStorage.darkMagic?.state?.spells?.find((s) => s.name === spellName);
         if (!spell) return;
         spell.data ??= {};
         spell.data[String.fromCharCode(this.id)] ??= {};
@@ -168,13 +163,15 @@ export abstract class BaseEffect {
         for (const cb of this.removeCallbacks[event.targetSpellName].hooks) cb();
         for (const cb of this.removeCallbacks[event.targetSpellName].intervals) cb();
         delete this.removeCallbacks[event.targetSpellName];
-        const spells = modStorage.darkMagic.state.spells;
+        const spells = modStorage.darkMagic?.state?.spells ?? [];
         const spell = spells.find((s) => s.name === event.targetSpellName);
-        spell.effects = spell.effects.replaceAll(String.fromCharCode(this.id), "");
-        if (spell.effects.length === 0) {
-            spells.splice(spells.findIndex((s) => s.name === event.targetSpellName), 1);
+        if (spell) {
+            spell.effects = spell.effects.replaceAll(String.fromCharCode(this.id), "");
+            if (spell.effects.length === 0) {
+                spells.splice(spells.findIndex((s) => s.name === event.targetSpellName), 1);
+            }
+            if (push) syncStorage();
         }
-        if (push) syncStorage();
     }
 
     public canCast(sourceCharacter: Character, targetCharacter: Character): {
@@ -205,8 +202,8 @@ export abstract class BaseEffect {
                 }
             case MinimumRole.WHITELIST:
                 if (
-                    sourceCharacter.WhiteList?.includes(targetCharacter.MemberNumber) ||
-                    targetCharacter.WhiteList?.includes(sourceCharacter.MemberNumber)
+                    sourceCharacter.WhiteList?.includes(targetCharacter.MemberNumber ?? -1) ||
+                    targetCharacter.WhiteList?.includes(sourceCharacter.MemberNumber ?? -1)
                 ) {
                     return { result: true };
                 } else {

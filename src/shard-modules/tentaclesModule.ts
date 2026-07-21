@@ -3,7 +3,7 @@ import type { ShardContext } from "zois-core/shards";
 
 
 export class TentaclesModule extends ShardModule {
-    override layoutEffect(_context: ShardContext, target: ShardModuleTarget) {
+    public override layoutEffect(_context: ShardContext, target: ShardModuleTarget) {
         target.style.overflow = "hidden";
         target.innerHTML += `<div class="tentacle-horror">
         <div class="tentacle">

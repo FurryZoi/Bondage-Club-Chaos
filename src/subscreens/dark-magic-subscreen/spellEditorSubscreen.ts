@@ -1,7 +1,7 @@
-import { BaseSubscreen, cssVar, dataUrlSvgReplaceVars, dataUrlSvgWithColor } from "zois-core/ui";
+import { BaseSubscreen, cssVar, dataUrlSvgReplaceVars, } from "zois-core/ui";
 import { createElement, Wand } from "lucide";
-import { atoms, Effect, getSpellIcons, spellEffects, type SpellIcon } from "@/modules/darkMagic";
-import { type ModStorage, modStorage } from "@/modules/storage";
+import { atoms, Effect, getSpellIcons, type Spell, spellEffects, type SpellIcon } from "@/modules/darkMagic";
+import { modStorage } from "@/modules/storage";
 import { EffectSettingsSubscreen } from "./effectSettingsSubscreen";
 import { DarkMagicSubscreen } from "../darkMagicSubscreen";
 import { getNickname } from "zois-core";
@@ -12,34 +12,34 @@ import { StyleModule, DynamicClassModule, ClickModule } from "zois-core/shard-mo
 
 
 export class SpellEditorSubscreen extends BaseSubscreen {
-    private effectNameElement: HTMLParagraphElement;
-    private effectDescriptionElement: HTMLParagraphElement;
-    private effectTraitsContainerElement: HTMLDivElement;
-    private effectAddElement: HTMLButtonElement;
-    private effectSettingsElement: HTMLButtonElement;
-    private effectAtomsElement: HTMLParagraphElement;
-    private effectAtomsContainerElement: HTMLDivElement;
-    private selectedEffectId: Effect;
-    private selectedSpellIconElement: SVGElement;
+    private effectNameElement: HTMLParagraphElement | null = null;
+    private effectDescriptionElement: HTMLParagraphElement | null = null;
+    private effectTraitsContainerElement: HTMLDivElement | null = null;
+    private effectAddElement: HTMLButtonElement | null = null;
+    private effectSettingsElement: HTMLButtonElement | null = null;
+    private effectAtomsElement: HTMLParagraphElement | null = null;
+    private effectAtomsContainerElement: HTMLDivElement | null = null;
+    private selectedEffectId: Effect | null = null;
+    private selectedSpellIconElement: SVGElement | null = null;
     private _oldName: string;
 
     get icon(): SVGElement {
         return createElement(Wand);
     }
 
-    get name() {
+    public override get name() {
         return "Spell Editor";
     }
 
     constructor(
-        private spellSettings?: ModStorage["darkMagic"]["spells"][0],
+        private spellSettings?: Spell,
         private readonly currentTab?: string
     ) {
         super();
         if (this.spellSettings) this.spellSettings = JSON.parse(JSON.stringify(this.spellSettings));
         this.spellSettings ??= {
             name: "",
-            icon: getSpellIcons()[0].name as SpellIcon,
+            icon: getSpellIcons()[0].name,
             effects: "",
             data: {},
             createdBy: {
@@ -139,7 +139,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
         }
         effect.atoms.forEach((atomId) => {
             const atom = atoms[atomId];
-            if (!atom) return;
+            if (!atom || !this.effectAtomsContainerElement) return;
             this.createSvg({
                 dataurl: atom.iconDataUrl,
                 size: 50,
@@ -147,27 +147,27 @@ export class SpellEditorSubscreen extends BaseSubscreen {
             });
         });
         if (this.effectAddElement) {
-            this.effectAddElement.textContent = this.spellSettings.effects.includes(String.fromCharCode(effectId)) ?
+            this.effectAddElement.textContent = this.spellSettings?.effects.includes(String.fromCharCode(effectId)) ?
                 "Remove Effect"
                 : "Add Effect";
         } else {
             this.effectAddElement = this.createButton({
-                text: this.spellSettings.effects.includes(String.fromCharCode(effectId)) ? "Remove Effect" : "Add Effect",
+                text: this.spellSettings?.effects.includes(String.fromCharCode(effectId)) ? "Remove Effect" : "Add Effect",
                 anchor: "bottom-left",
                 x: 1000,
                 y: 75,
                 padding: 2,
                 width: 365,
                 onClick: () => {
-                    const effectButtonElement = document.getElementById(`effect-${String.fromCharCode(this.selectedEffectId)}-button`);
-                    if (this.spellSettings.effects.includes(String.fromCharCode(this.selectedEffectId))) {
-                        this.spellSettings.effects = this.spellSettings.effects.replaceAll(String.fromCharCode(this.selectedEffectId), "");
-                        this.effectAddElement.textContent = "Add Effect";
-                        (effectButtonElement.children[0] as SVGElement).style.visibility = "hidden"
+                    const effectButtonElement = document.getElementById(`effect-${String.fromCharCode(this.selectedEffectId!)}-button`);
+                    if (this.spellSettings?.effects.includes(String.fromCharCode(this.selectedEffectId!))) {
+                        this.spellSettings.effects = this.spellSettings.effects.replaceAll(String.fromCharCode(this.selectedEffectId!), "");
+                        this.effectAddElement!.textContent = "Add Effect";
+                        (effectButtonElement!.children[0] as SVGElement).style.visibility = "hidden"
                     } else {
-                        this.spellSettings.effects += String.fromCharCode(this.selectedEffectId);
-                        this.effectAddElement.textContent = "Remove Effect";
-                        (effectButtonElement.children[0] as SVGElement).style.visibility = ""
+                        this.spellSettings!.effects += String.fromCharCode(this.selectedEffectId!);
+                        this.effectAddElement!.textContent = "Remove Effect";
+                        (effectButtonElement!.children[0] as SVGElement).style.visibility = "";
                     }
                 }
             });
@@ -182,13 +182,13 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                 y: 75,
                 padding: 2,
                 width: 365,
-                onClick: () => this.setSubscreen(new EffectSettingsSubscreen(this.selectedEffectId, this.spellSettings)),
-                isDisabled: () => spellEffects[this.selectedEffectId].parameters.length === 0
+                onClick: () => this.setSubscreen(new EffectSettingsSubscreen(this.selectedEffectId!, this.spellSettings!)),
+                isDisabled: () => spellEffects[this.selectedEffectId!].parameters.length === 0
             });
         }
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         this.createTabs({
@@ -205,9 +205,9 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             width: 800,
                             placeholder: "Spell name",
                             padding: 2,
-                            value: this.spellSettings.name,
+                            value: this.spellSettings!.name,
                             onChange: () => {
-                                this.spellSettings.name = spellName.value;
+                                this.spellSettings!.name = spellName.value;
                             }
                         });
 
@@ -249,7 +249,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                             cursor: "pointer",
                                             borderRadius: "4px",
                                             flexShrink: "0",
-                                            background: this.spellSettings.icon === icon.name
+                                            background: this.spellSettings!.icon === icon.name
                                                 ? "var(--tmd-element, #e6e6e6)"
                                                 : ""
                                         }),
@@ -262,8 +262,8 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                             }
                                         }),
                                         new ClickModule((target) => {
-                                            this.spellSettings.icon = icon.name as SpellIcon;
-                                            this.selectedSpellIconElement.style.background = "";
+                                            this.spellSettings!.icon = icon.name as SpellIcon;
+                                            this.selectedSpellIconElement!.style.background = "";
                                             target.style.background = "var(--tmd-element, #e6e6e6)";
                                             this.selectedSpellIconElement = target as SVGElement;
                                         })
@@ -273,10 +273,10 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                         });
 
                         this.selectedSpellIconElement = iconsContainer.children[
-                            getSpellIcons().findIndex((i) => i.name === this.spellSettings.icon)
+                            getSpellIcons().findIndex((i) => i.name === this.spellSettings!.icon)
                         ] as SVGElement;
 
-                        if (this.spellSettings.createdBy.id !== Player.MemberNumber) {
+                        if (this.spellSettings!.createdBy.id !== Player.MemberNumber) {
                             this.createText({
                                 anchor: "bottom-right",
                                 x: 300,
@@ -293,19 +293,19 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             y: 90,
                             text: "Save",
                             padding: 3,
-                            isDisabled: () => this.spellSettings.createdBy.id !== Player.MemberNumber,
+                            isDisabled: () => this.spellSettings!.createdBy.id !== Player.MemberNumber,
                             onClick: () => {
-                                if (this.spellSettings.name.trim() === "") return spellName.focus();
+                                if (this.spellSettings!.name.trim() === "") return spellName.focus();
                                 modStorage.darkMagic ??= {};
                                 modStorage.darkMagic.spells ??= [];
                                 const spell = modStorage.darkMagic.spells.find((s) => s.name === this._oldName);
                                 if (spell) {
-                                    spell.name = this.spellSettings.name.trim();
-                                    spell.effects = this.spellSettings.effects;
-                                    spell.icon = this.spellSettings.icon;
-                                    spell.data = this.spellSettings.data;
+                                    spell.name = this.spellSettings!.name.trim();
+                                    spell.effects = this.spellSettings!.effects;
+                                    spell.icon = this.spellSettings!.icon;
+                                    spell.data = this.spellSettings!.data;
                                 } else {
-                                    modStorage.darkMagic.spells.push(this.spellSettings);
+                                    modStorage.darkMagic.spells.push(this.spellSettings!);
                                 }
                                 this.exit(false);
                             }
@@ -356,7 +356,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                                     ],
                                     icon: [
                                         new StyleModule({
-                                            visibility: this.spellSettings.effects.includes(String.fromCharCode(effectId)) ? "visible" : "hidden"
+                                            visibility: this.spellSettings!.effects.includes(String.fromCharCode(effectId)) ? "visible" : "hidden"
                                         })
                                     ]
                                 }
@@ -377,11 +377,11 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                     }
                 }
             ],
-            currentTabName: this.currentTab
+            currentTabName: this.currentTab!
         });
     }
 
-    public async exit(showConfjrmDialog = true): Promise<void> {
+    public override async exit(showConfjrmDialog = true): Promise<void> {
         if (showConfjrmDialog) {
             const confirm = await dialogsManager.confirm({
                 message: "Are you sure you want to leave this subscreen? The changes will not be saved."

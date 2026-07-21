@@ -2,14 +2,13 @@ import { isAllowScripts } from "@/modules/quickAccessMenu";
 import { getNickname } from "zois-core";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { toastsManager } from "zois-core/toasts";
-
-let qamScrollTop: number;
+import { logger } from "zois-core/logging";
 
 export class ToggleInvisibilityQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Toggle Invisibility";
-    public description: string = "Toggle target's invisibility state";
+    public override name: string = "Toggle Invisibility";
+    public override description: string = "Toggle target's invisibility state";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -39,6 +38,10 @@ export class ToggleInvisibilityQAMSubscreen extends BaseQAMSubscreen {
 
             if (!InventoryGet(target, "ItemScript")) {
                 const itemScript = InventoryWear(target, "Script", "ItemScript");
+                if (!itemScript) {
+                    logger.error("Failed to wear Script")
+                    return;
+                }
                 itemScript.Property = {
                     Hide: AssetGroup.filter((a) => a.Name !== "ItemScript").map((a) => a.Name)
                 };

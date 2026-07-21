@@ -5,7 +5,7 @@ import { addDynamicClass } from "zois-core/ui";
 
 export class WelcomeQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Welcome to QAM";
-    // public description: string = "Teleport to certain character on map";
+    public description: string = "";
 
     public load(container: HTMLDivElement) {
         super.load(container);

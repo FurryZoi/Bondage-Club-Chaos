@@ -2,6 +2,7 @@ import { callOriginal, hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { type ModStorage, modStorage } from "./storage";
 import { getSpellIcon } from "./darkMagic";
 import { createElement, Pencil, Wand } from "lucide";
+import { logger } from "zois-core/logging";
 
 export function loadOverlay(): void {
     hookFunction(
@@ -49,8 +50,13 @@ export function loadOverlay(): void {
             ) {
                 let spellIconY = 200;
                 for (const spell of bccData?.darkMagic?.state?.spells ?? []) {
+                    const spellIcon = getSpellIcon(spell.icon);
+                    if (!spellIcon) {
+                        logger.warn(`Unknown spell icon "${spell.icon}"`);
+                        continue;
+                    }
                     DrawCircle(CharX + 400 * Zoom, CharY + spellIconY * Zoom, 20 * Zoom, 2, "#c4b2e2ff", "#e6d6ffff");
-                    DrawImageResize(fixSvgDimensions(getSpellIcon(spell.icon).dataurl, 25 * Zoom, 25 * Zoom), CharX + 400 * Zoom - 12 * Zoom, CharY + spellIconY * Zoom - 12 * Zoom, 25 * Zoom, 25 * Zoom);
+                    DrawImageResize(fixSvgDimensions(spellIcon.dataurl, 25 * Zoom, 25 * Zoom), CharX + 400 * Zoom - 12 * Zoom, CharY + spellIconY * Zoom - 12 * Zoom, 25 * Zoom, 25 * Zoom);
                     if (MouseIn(CharX + 400 * Zoom - 20 * Zoom, CharY + spellIconY * Zoom - 20 * Zoom, 40 * Zoom, 40 * Zoom)) {
                         drawRoundedRect(MainCanvas, CharX + 200 * Zoom - 75 * Zoom, CharY + spellIconY * Zoom - 10 * Zoom, 240 * Zoom, 100 * Zoom, 6, "#e6d6ffff", "#c3b3ddff", 2);
                         callOriginal("DrawTextFit", [spell.name, CharX + 245 * Zoom, CharY + 10 * Zoom + spellIconY * Zoom, 165 * Zoom, "Black"]);

@@ -27,10 +27,10 @@ function formatMilliseconds(ms: number): string {
 }
 
 export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "AVCS";
-    public description: string = "Appearance Version Control System - System that registers all the changes in appearance that occur in room and allows you to manipulate them. Don't associate this with GIT and other VCS";
+    public override name: string = "AVCS";
+    public override description: string = "Appearance Version Control System - System that registers all the changes in appearance that occur in room and allows you to manipulate them. Don't associate this with GIT and other VCS";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
         this.loadCommitsList(container);
     }
@@ -44,14 +44,14 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
         previewCharacter.Appearance = serverAppearanceBundleToAppearance("Female3DCG", commit.bundle.content);
         CharacterRefresh(previewCharacter);
         if (previewCharacter.IsKneeling()) {
-            DrawCharacter(previewCharacter, 90, -60, 0.4, false, previewCanvas.getContext("2d"));
+            DrawCharacter(previewCharacter, 90, -60, 0.4, false, previewCanvas.getContext("2d")!);
         } else {
-            DrawCharacter(previewCharacter, 90, 0, 0.4, false, previewCanvas.getContext("2d"));
+            DrawCharacter(previewCharacter, 90, 0, 0.4, false, previewCanvas.getContext("2d")!);
         }
         return previewCanvas;
     }
 
-    private loadCommitsList(container, target: Character = Player) {
+    private loadCommitsList(container: HTMLDivElement, target: Character = Player) {
         const select = this.buildCharacterSelect((_target) => {
             target = _target;
             commitsContainer.innerHTML = "";
@@ -59,7 +59,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
         }, target);
 
         const createCommits = () => {
-            for (const commit of commits.get(target.MemberNumber)) {
+            for (const commit of commits.get(target.MemberNumber ?? -1) ?? []) {
                 const commitElement = document.createElement("div");
                 commitElement.addEventListener("click", () => {
                     select.remove();
@@ -93,7 +93,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                 });
                 const text = document.createElement("p");
                 text.style.cssText = "font-size: 0.8em;";
-                let timeAgo: HTMLParagraphElement;
+                let timeAgo: HTMLParagraphElement | null = null;
                 const differenceContainer = document.createElement("p");
                 differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em;";
 
@@ -113,7 +113,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                     iconText.textContent = commit.type === "push" ? "Push" : "Revert";
                     icon.style.background = commit.type === "push" ? "rgb(172 255 220 / 50%)" : "rgb(255 0 0 / 30%)";
                     iconText.style.color = commit.type === "push" ? "rgb(102 152 130)" : "rgb(129 36 36 / 70%)";
-                    text.textContent = `${commit.sourceCharacter.name} (${commit.sourceCharacter.memberNumber})`;
+                    text.textContent = `${commit.sourceCharacter?.name} (${commit.sourceCharacter?.memberNumber})`;
                     icon.append(iconImg, iconText);
                     timeAgo = document.createElement("p");
                     timeAgo.style.cssText = "color: #526378; font-size: 0.75em;";
@@ -144,6 +144,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                         background: "#e7e4ef"
                     }
                 });
+
                 commitElement.append(icon, text, timeAgo ? timeAgo : "", differenceContainer);
                 commitsContainer.append(commitElement);
             }
@@ -238,7 +239,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
             const details = document.createElement("p");
             details.style.margin = "0.25em 1em";
             details.style.marginTop = "1em";
-            details.innerHTML = `Commited by <span style="color: #3b3b4eff;">${commit.sourceCharacter.name} (${commit.sourceCharacter.memberNumber})</span> at <span style="color: #3b3b4eff;">${new Date(commit.timestamp).toLocaleString()}</span>`;
+            details.innerHTML = `Commited by <span style="color: #3b3b4eff;">${commit.sourceCharacter?.name} (${commit.sourceCharacter?.memberNumber})</span> at <span style="color: #3b3b4eff;">${new Date(commit.timestamp).toLocaleString()}</span>`;
             const seed = document.createElement("p");
             seed.style.margin = "0.25em 1em";
             seed.textContent = `Appearance Seed: ${commit.bundle.seed}`;

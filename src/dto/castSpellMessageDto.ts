@@ -1,7 +1,7 @@
 import { addDefaultParametersIfNeeds, getSpellEffect, SpellIcon } from "@/modules/darkMagic";
 import { BaseEffect } from "@/spell-effects/baseEffect";
 import { getSizeInKbytes } from "zois-core";
-import { isBoolean, isEnum, isNumber, IsNumber, IsObject, isString, IsString, registerDecorator, Type, ValidateIf, ValidateNested, ValidationArguments, ValidationOptions } from "zois-core/validation";
+import { isBoolean, isEnum, isNumber, IsNumber, IsObject, isString, IsString, registerDecorator, Type, ValidateIf, ValidateNested, type ValidationArguments, type ValidationOptions } from "zois-core/validation";
 
 function ValidateCustom(validator: (object: ValidationArguments["object"]) => boolean, validationOptions?: ValidationOptions) {
     return (object: Object, propertyName: string) => {

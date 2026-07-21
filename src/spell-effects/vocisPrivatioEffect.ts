@@ -1,27 +1,27 @@
 import { HookPriority } from "zois-core/mod-sdk";
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent } from "./baseEffect";
+import { BaseEffect, type TriggerEvent } from "./baseEffect";
 import { messagesManager } from "zois-core/messaging";
 import { getNickname } from "zois-core";
 
 export class VocisPrivatioEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
     
-    get name(): string {
+    public override get name(): string {
         return "Vocis Privatio";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.RATIO];
     }
 
-    get description(): string {
+    public override get description(): string {
         return "Takes away the target's voice. The target will lose the ability to send messages except chat commands and OOC.";
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
         this.hookFunction(event, "ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];

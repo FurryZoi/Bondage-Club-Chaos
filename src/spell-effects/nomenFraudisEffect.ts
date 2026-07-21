@@ -1,31 +1,26 @@
 import { HookPriority } from "zois-core/mod-sdk";
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent } from "./baseEffect";
+import { BaseEffect, type TriggerEvent } from "./baseEffect";
 import { getPlayer, getRandomNumber } from "zois-core";
 
-//gallucination
 export class NomenFraudisEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
 
-    get name(): string {
+    public override get name(): string {
         return "Nomen Fraudis";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.RATIO];
     }
 
-    get icon(): SVGElement {
-        return null;
-    }
-
-    get description(): string {
+    public override get description(): string {
         return "Causes the target to hallucinate with charaters names. They will be swapped.";
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
         this.hookFunction(event, "ChatRoomMessage", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];

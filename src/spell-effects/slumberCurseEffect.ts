@@ -4,23 +4,23 @@ import { Atom } from "../modules/darkMagic";
 import { BaseEffect, type RemoveEvent, type TriggerEvent } from "./baseEffect";
 
 export class SlumberCurseEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
 
-    get name(): string {
+    public override get name(): string {
         return "Slumber Curse";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.IGNIS, Atom.RATIO];
     }
 
-    get description(): string {
+    public override get description(): string {
         return `Puts target to sleep. (Analogue of LSCG's "Slumbering" effect)`;
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
 
         if (CharacterCanKneel(Player)) PoseSetActive(Player, "Kneel");
@@ -60,7 +60,7 @@ export class SlumberCurseEffect extends BaseEffect {
         }
     }
 
-    public remove(event: RemoveEvent, push?: boolean): void {
+    public override remove(event: RemoveEvent, push?: boolean): void {
         super.remove(event, push);
         delete (DialogSelfMenuMapping.Expression.clickStatusCallbacks as Record<string, unknown>).bcc;
         delete DialogSelfMenuMapping.Expression.menubarEventListeners.blink.validate?.bcc;

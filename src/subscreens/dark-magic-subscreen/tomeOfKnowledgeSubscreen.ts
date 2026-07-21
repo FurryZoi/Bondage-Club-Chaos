@@ -1,5 +1,4 @@
-import { addDynamicClass, BaseSubscreen } from "zois-core/ui";
-import { createElement, SendToBack } from "lucide";
+import { BaseSubscreen } from "zois-core/ui";
 import { StyleModule } from "zois-core/shard-modules";
 import { BasicsPage } from "./tome-of-knowledge-pages/basics";
 import { EffectsPage } from "./tome-of-knowledge-pages/effects";
@@ -14,11 +13,11 @@ const pages = [
 ];
 
 export class TomeOfKnowledgeSubscreen extends BaseSubscreen {
-    get name() {
+    public override get name() {
         return `Tome of Knowledge`;
     }
 
-    public async load(): Promise<void> {
+    public override load(): void {
         this.createBackNextButton({
             x: 125,
             y: 90,

@@ -2,13 +2,14 @@ import { ArrowDown, ArrowUp, createElement } from "lucide";
 import { addDynamicClass, type DynamicClassStyles } from "zois-core/ui";
 import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 import { toastsManager } from "zois-core/toasts";
+import { logger } from "zois-core/logging";
 
 
 export class PosesManagerQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Poses Manager";
-    public description: string = "Change target's pose, y position";
+    public override name: string = "Poses Manager";
+    public override description: string = "Change target's pose, y position";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -90,11 +91,16 @@ export class PosesManagerQAMSubscreen extends BaseQAMSubscreen {
             );
         });
 
-        const overrideHeight = (h: number) => {
-            const emoticon = InventoryGet(target, "Emoticon");
+        const overrideHeight = (h: number | null) => {
+            let emoticon = InventoryGet(target, "Emoticon");
             if (h === null) {
-                delete emoticon.Property?.OverrideHeight;
+                delete emoticon?.Property?.OverrideHeight;
             } else {
+                emoticon = InventoryWear(target, "Emoticon", "Emoticon");
+                if (!emoticon) {
+                    logger.error("Failed to wear emoticon");
+                    return;
+                }
                 emoticon.Property ??= {};
                 const height = emoticon.Property.OverrideHeight?.Height ?? 0;
                 //@ts-expect-error Ignore Priority

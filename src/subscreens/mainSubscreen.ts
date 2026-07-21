@@ -33,11 +33,11 @@ export class MainSubscreen extends BaseSubscreen {
         super();
     }
 
-    override get name(): string {
+    public override get name(): string {
         return "";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
         this.createCard({
             anchor: "bottom-right",
@@ -181,8 +181,7 @@ export class MainSubscreen extends BaseSubscreen {
         });
     }
 
-
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(null);
         syncStorage();

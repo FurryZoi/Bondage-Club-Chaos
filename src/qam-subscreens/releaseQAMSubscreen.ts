@@ -4,10 +4,10 @@ import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 
 
 export class ReleaseQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Release";
-    public description: string = "Release target from certain items";
+    public override name: string = "Release";
+    public override description: string = "Release target from certain items";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

@@ -1,8 +1,7 @@
-import { getNickname, getRandomNumber } from "zois-core";
-import { messagesManager } from "zois-core/messaging";
+import { getRandomNumber } from "zois-core";
 import { HookPriority } from "zois-core/mod-sdk";
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent, type EffectParameter } from "./baseEffect";
+import { BaseEffect, type TriggerEvent, type EffectParameter } from "./baseEffect";
 
 
 function garbleSpeech(text: string, garbleWords: string[]): string {
@@ -24,27 +23,23 @@ function garbleSpeech(text: string, garbleWords: string[]): string {
 }
 
 export class VocisAlteratioEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
 
-    get name(): string {
+    public override get name(): string {
         return "Vocis Alteratio";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.RATIO];
     }
 
-    get icon(): SVGElement {
-        return null;
-    }
-
-    get description(): string {
+    public override get description(): string {
         return "Changes target's speech.";
     }
 
-    get parameters(): EffectParameter[] {
+    public override get parameters(): EffectParameter[] {
         return [
             {
                 name: "speechType",
@@ -76,7 +71,7 @@ export class VocisAlteratioEffect extends BaseEffect {
         ]
     }
 
-    public trigger(event: TriggerEvent<{ speechType: "puppy" | "kitty" | "bunny" | "baby" | "cow" }>): void {
+    public override trigger(event: TriggerEvent<{ speechType: "puppy" | "kitty" | "bunny" | "baby" | "cow" }>): void {
         super.trigger(event);
         this.hookFunction(event, "ServerSend", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
             const message = args[0];

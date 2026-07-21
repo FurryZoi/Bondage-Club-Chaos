@@ -2,10 +2,10 @@ import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 
 
 export class ViewCardDecksQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "View Card Decks";
-    public description: string = "View target's decks of cards";
+    public override name: string = "View Card Decks";
+    public override description: string = "View target's decks of cards";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -42,7 +42,7 @@ export class ViewCardDecksQAMSubscreen extends BaseQAMSubscreen {
             contentContainer.innerHTML = "";
             deckIndex = 0;
             const select = this.buildDropdown({
-                options: target.Game.ClubCard?.Deck
+                options: (target.Game?.ClubCard?.Deck ?? [])
                     ?.map((_, i) => ({ name: i.toString(), text: target?.Game?.ClubCard?.DeckName?.[i] || `Deck #${i}` }))
                     ?.filter((n) => !!target?.Game?.ClubCard?.Deck?.[parseInt(n.name, 10)]),
                 currentOption: deckIndex.toString(),

@@ -1,5 +1,4 @@
 import { BasePage, PageMarkup } from "./base";
-import limitsImage from "@/assets/images/limits.png";
 import qamCastSpellImage from "@/assets/images/qam-cast-spell.png";
 import characterStateIconsImage from "@/assets/images/character-state-icons.png";
 

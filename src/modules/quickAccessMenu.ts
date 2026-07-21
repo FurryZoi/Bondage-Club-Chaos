@@ -21,6 +21,7 @@ import { PutLocksQAMSubscreen } from "@/qam-subscreens/putLocksQAMSubscreen";
 import { RemoveLocksQAMSubscreen } from "@/qam-subscreens/removeLocksQAMSubscreen";
 import { AVQS_QAMSubscreen } from "@/qam-subscreens/avcsQAMSubscreen";
 import { AuraOfChaosQAMSubscreen } from "@/qam-subscreens/auraOfChaosQAMSubscreen";
+import { logger } from "zois-core/logging";
 
 export let serverPing: number;
 let currentSubscreen: BaseQAMSubscreen;
@@ -38,8 +39,8 @@ class Draggable {
     protected isDragging: boolean = false;
     protected wasDragged: boolean = false;
     protected offset: { x: number, y: number };
-    protected previousMousePositionX: number;
-    protected previousMousePositionY: number;
+    protected previousMousePositionX: number | null = null;
+    protected previousMousePositionY: number | null = null;
 
     constructor(
         protected draggableElement: HTMLElement,
@@ -147,7 +148,7 @@ class QAMButton extends Draggable {
         this.normalizePosition();
     }
 
-    normalizePosition() {
+    public normalizePosition() {
         if (typeof localStorage.getItem === "function") {
             const pos = localStorage.getItem(LOCAL_STORAGE_POS_KEY)?.split(":");
             if (pos) {
@@ -163,7 +164,7 @@ class QAMButton extends Draggable {
         }
     }
 
-    savePosition() {
+    public savePosition() {
         if (this.wasDragged && typeof localStorage.setItem === "function") {
             const { top, left } = this.draggableElement.getBoundingClientRect();
             localStorage.setItem(LOCAL_STORAGE_POS_KEY, `${top}:${left}`);
@@ -182,7 +183,7 @@ class QAMButton extends Draggable {
 
     protected onClick() {
         if (this.isDragging || this.wasDragged) return;
-        const qam: HTMLDivElement = document.querySelector(".bccQAM");
+        const qam = document.querySelector<HTMLDivElement>(".bccQAM");
         if (qam) {
             qam.style.display = qam.style.display === "none" ? "flex" : "none";
         } else {
@@ -284,7 +285,7 @@ export function isAllowScripts(target: Character = Player) {
             );
         }
     }
-    if (Player.FriendList.includes(target.MemberNumber)) {
+    if (Player.FriendList.includes(target.MemberNumber ?? -1)) {
         if (!allowHide) {
             allowHide = ValidationHasScriptPermission(
                 target,
@@ -311,6 +312,10 @@ export function isAllowScripts(target: Character = Player) {
 export function setQAMSubscreen(s: BaseQAMSubscreen): void {
     if (!document.querySelector(".bccQAM")) return;
     const container = document.querySelector<HTMLDivElement>(".bccQAM");
+    if (!container) {
+        logger.error(".bccQAM is not located in DOM");
+        return;
+    }
     container.innerHTML = "";
     s.load(container);
     currentSubscreen = s;
@@ -328,7 +333,7 @@ export function toggleFeature(id: number): void {
 
 export function isFeatureEnabled(id: number): boolean {
     const char = String.fromCharCode(id);
-    return modStorage.qam?.enabledFeatures?.includes(char);
+    return modStorage.qam?.enabledFeatures?.includes(char) ?? false;
 }
 
 export const qamFeatures: QAMFeature[] = [
@@ -479,9 +484,9 @@ export type Commit = PushCommit | RevertCommit | InitialCommit;
 export const commits = new Map<number, Commit[]>();
 export const commitsBehindCount = new Map<number, number>();
 
-function addCommit(sourceCharacter: Character, targetCharacter: Character) {
+function addCommit(sourceCharacter: Character | null, targetCharacter: Character) {
     if (!targetCharacter) return;
-    const _commits = commits.get(targetCharacter.MemberNumber) ?? [];
+    const _commits = commits.get(targetCharacter.MemberNumber ?? -1) ?? [];
     const prevCommit = _commits[0];
     const seed = appearanceComparer.getSeed(targetCharacter.Appearance);
     if (!prevCommit) {
@@ -511,12 +516,12 @@ function addCommit(sourceCharacter: Character, targetCharacter: Character) {
         if (sourceCharacter) {
             commitData.sourceCharacter = {
                 name: CharacterNickname(sourceCharacter),
-                memberNumber: sourceCharacter.MemberNumber
+                memberNumber: sourceCharacter.MemberNumber ?? -1
             };
         }
         _commits.unshift(commitData);
     }
-    commits.set(targetCharacter.MemberNumber, _commits);
+    commits.set(targetCharacter.MemberNumber ?? -1, _commits);
 }
 
 export function loadQuickAccessMenu(): void {
@@ -539,7 +544,7 @@ export function loadQuickAccessMenu(): void {
 
     hookFunction("ChatRoomCharacterItemUpdate", HookPriority.OBSERVE, (args, next) => {
         next(args);
-        const [target, group] = args;
+        const [target, _group] = args;
         addCommit(Player, target);
     });
 
@@ -564,7 +569,7 @@ export function loadQuickAccessMenu(): void {
 
     hookFunction("ChatRoomSync", HookPriority.OBSERVE, async (args, next) => {
         await next(args);
-        const playerCommits = commits.get(Player.MemberNumber);
+        const playerCommits = commits.get(Player.MemberNumber) ?? [];
         commits.clear();
         commits.set(Player.MemberNumber, playerCommits);
         ChatRoomCharacter.forEach((C) => {
@@ -575,6 +580,7 @@ export function loadQuickAccessMenu(): void {
     hookFunction("ChatRoomSyncMemberJoin", HookPriority.OBSERVE, (args, next) => {
         next(args);
         const [data] = args;
-        addCommit(null, getPlayer(data.SourceMemberNumber));
+        const target = getPlayer(data.SourceMemberNumber);
+        if (target) addCommit(null, target);
     });
 }

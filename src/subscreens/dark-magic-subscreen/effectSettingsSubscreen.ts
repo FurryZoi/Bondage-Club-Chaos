@@ -1,30 +1,31 @@
 import { BaseSubscreen } from "zois-core/ui";
-import { type Effect, spellEffects } from "@/modules/darkMagic";
+import { type Effect, type Spell, spellEffects } from "@/modules/darkMagic";
 import { AttributesModule } from "zois-core/shard-modules";
 import { SpellEditorSubscreen } from "./spellEditorSubscreen";
-import type { ModStorage } from "@/modules/storage";
 
 export class EffectSettingsSubscreen extends BaseSubscreen {
-    get name() {
+    public override get name() {
         return `Spell Editor > ${spellEffects[this.effectId].name}'s Settings`;
     }
 
-    constructor(private readonly effectId: Effect, private spellSettings: ModStorage["darkMagic"]["spells"][0]) {
+    constructor(private readonly effectId: Effect, private spellSettings: Spell) {
         super();
         this.spellSettings = JSON.parse(JSON.stringify(this.spellSettings));
     }
 
     private setParameter(name: string, value: unknown): void {
+        this.spellSettings.data ??= {};
         this.spellSettings.data[String.fromCharCode(this.effectId)] ??= {};
         this.spellSettings.data[String.fromCharCode(this.effectId)][name] = value;
     }
 
     private getParameterValue<T>(name: string): T {
+        this.spellSettings.data ??= {};
         this.spellSettings.data[String.fromCharCode(this.effectId)] ??= {};
         return this.spellSettings.data[String.fromCharCode(this.effectId)][name] as T;
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         // Should not be called, but just in case
@@ -104,7 +105,7 @@ export class EffectSettingsSubscreen extends BaseSubscreen {
         }
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(
             new SpellEditorSubscreen(this.spellSettings, "Effects")

@@ -1,41 +1,41 @@
 import { HookPriority } from "zois-core/mod-sdk";
 import { Atom, CastSpellRejectionReason, Effect, getSpellEffect } from "../modules/darkMagic";
-import { BaseEffect, RemoveEvent, TriggerEvent } from "./baseEffect";
+import { BaseEffect, type RemoveEvent, type TriggerEvent } from "./baseEffect";
 import { messagesManager } from "zois-core/messaging";
 import { AnimaFurtaMessageDto } from "@/dto/animaFurtaMessageDto";
 import { getPlayer } from "zois-core";
 
 
 export class AnimaFurtaEffect extends BaseEffect {
-    private removePacketListener: () => void;
+    private removePacketListener: (() => void) | null = null;
 
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
 
-    get selfCastAllowed(): boolean {
+    public override get selfCastAllowed(): boolean {
         return false;
     }
 
-    get name(): string {
+    public override get name(): string {
         return "Anima Furta";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.IGNIS, Atom.NOX, Atom.MOTUS, Atom.RATIO];
     }
 
-    get description(): string {
+    public override get description(): string {
         return "Lets you control target. (Chat, activities, poses, wardrobe, map moving)";
     }
 
-    public getControllableCharacter(): Character {
+    public getControllableCharacter(): Character | null {
         return ChatRoomCharacter.find((c) => {
             return c.BCC && this.isActiveOn(c) && this.getSpellsWithEffect(c)[0].castedBy.id === Player.MemberNumber;
-        });
+        }) ?? null;
     }
 
-    public canCast(sourceCharacter: Character, targetCharacter: Character): {
+    public override canCast(sourceCharacter: Character, targetCharacter: Character): {
         result: false
         reason: CastSpellRejectionReason
     } | {
@@ -46,7 +46,7 @@ export class AnimaFurtaEffect extends BaseEffect {
         return super.canCast(sourceCharacter, targetCharacter);
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
         if (event.init) {
             this.hookFunction(event, "ChatRoomLeave", HookPriority.OBSERVE, (args, next) => {
@@ -100,13 +100,15 @@ export class AnimaFurtaEffect extends BaseEffect {
                     ServerSend("ChatRoomCharacterPoseUpdate", { Pose: Player.ActivePose });
                 }
                 if (data.name === "changeAppearance") {
+                    const c = getPlayer(data.target);
+                    if (!c) return;
                     ServerAppearanceLoadFromBundle(
-                        getPlayer(data.target),
-                        getPlayer(data.target).AssetFamily,
+                        c,
+                        c.AssetFamily,
                         data.appearance,
                         data.target
                     );
-                    ChatRoomCharacterUpdate(getPlayer(data.target));
+                    ChatRoomCharacterUpdate(c);
                 }
                 if (data.name === "publishAction") {
                     ServerSend("ChatRoomChat", data.params);
@@ -117,7 +119,7 @@ export class AnimaFurtaEffect extends BaseEffect {
                 if (data.name === "mapMove") {
                     //@ts-expect-error
                     if (!Player.MapData) Player.MapData = {};
-                    Player.MapData.Pos = {
+                    Player.MapData!.Pos = {
                         X: data.pos.x,
                         Y: data.pos.y
                     };
@@ -139,7 +141,7 @@ export class AnimaFurtaEffect extends BaseEffect {
         }
     }
 
-    public remove(event: RemoveEvent, push?: boolean): void {
+    public override remove(event: RemoveEvent, push?: boolean): void {
         super.remove(event, push);
         this.removePacketListener?.();
     }

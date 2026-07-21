@@ -67,7 +67,7 @@ export class MySpellsSubscreen extends BaseSubscreen {
             });
             this.createButton({
                 text: spell.name,
-                icon: getSpellIcon(spell.icon)?.dataurl ? dataUrlSvgWithColor(getSpellIcon(spell.icon)?.dataurl, cssVar("--tmd-text", "black").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "black")) : cssVar("--tmd-text", "black")) : undefined,
+                icon: getSpellIcon(spell.icon)?.dataurl ? dataUrlSvgWithColor(getSpellIcon(spell.icon)!.dataurl, cssVar("--tmd-text", "black").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "black")) : cssVar("--tmd-text", "black")) : undefined,
                 padding: 2,
                 parent: _container,
                 modules: {
@@ -98,6 +98,8 @@ export class MySpellsSubscreen extends BaseSubscreen {
                     ]
                 },
                 onClick: () => {
+                    modStorage.darkMagic ??= {};
+                    modStorage.darkMagic.spells ??= [];
                     modStorage.darkMagic.spells = modStorage.darkMagic.spells.filter((s) => s.name !== spell.name);
                     _container.remove();
                     if (modStorage.darkMagic.spells.length === 0) {

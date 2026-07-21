@@ -1,6 +1,7 @@
 import { ActivityManager } from "@sugarch/bc-activity-manager";
 import { HookManager } from "@sugarch/bc-mod-hook-manager";
 import { getNickname, getPlayer } from "zois-core";
+import { logger } from "zois-core/logging";
 import { modSdk } from "zois-core/mod-sdk";
 
 enum Activity {
@@ -18,6 +19,10 @@ export function addActivities(): void {
         },
         useImage: (_activity, target, _group) => {
             const asset = InventoryGet(target, "Panties")?.Asset;
+            if (!asset) {
+                logger.error("Failed to load preview for activity: Panties slot is empty");
+                return;
+            }
             return AssetGetPreviewPath(asset) + "/" + asset?.Name + ".png";
         },
         label: { EN: "Steal Panties" },
@@ -25,6 +30,10 @@ export function addActivities(): void {
         run: (_player, sender, info) => {
             if (!sender.IsPlayer()) return;
             const target = getPlayer(info.TargetCharacter);
+            if (!target) {
+                logger.error("Failed to run activity: Target character is undefined");
+                return;
+            }
             InventoryRemove(target, "Panties");
             InventoryWear(Player, "Panties", "ItemHandheld", "Default", 10, Player.MemberNumber, {
                 Item: "Panties",
@@ -58,6 +67,10 @@ export function addActivities(): void {
         run: (_player, sender, info) => {
             if (!sender.IsPlayer()) return;
             const target = getPlayer(info.TargetCharacter);
+            if (!target) {
+                logger.error("Failed to run activity: Target character is undefined");
+                return;
+            }
             const hairColor = InventoryGet(target, "HairFront")?.Color?.[0] ?? "#6a3628";
             InventoryWear(Player, "Tentacles", "ItemMouth2", "Default", 10, target.MemberNumber, {
                 Item: "Tentacles",

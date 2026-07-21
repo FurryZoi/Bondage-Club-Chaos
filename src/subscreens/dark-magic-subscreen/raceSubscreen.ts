@@ -2,19 +2,19 @@ import { BaseSubscreen } from "zois-core/ui";
 import { createElement, SendToBack } from "lucide";
 
 export class RaceSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(SendToBack);
     }
 
-    get name() {
+    public override get name() {
         return "Race";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
     }
 }

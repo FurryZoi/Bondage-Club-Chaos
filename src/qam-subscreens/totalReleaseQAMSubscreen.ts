@@ -4,10 +4,10 @@ import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 
 
 export class TotalReleaseQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Total Release";
-    public description: string = "Release target from all items except for clothing and slave collar";
+    public override name: string = "Total Release";
+    public override description: string = "Release target from all items except for clothing and slave collar";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;

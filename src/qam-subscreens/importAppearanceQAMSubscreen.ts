@@ -5,10 +5,10 @@ import { importAppearance, serverAppearanceBundleToAppearance } from "zois-core/
 
 
 export class ImportAppearanceQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Import Appearance";
-    public description: string = "Import appearance on target using base64 outfit code";
+    public override name: string = "Import Appearance";
+    public override description: string = "Import appearance on target using base64 outfit code";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -22,7 +22,7 @@ export class ImportAppearanceQAMSubscreen extends BaseQAMSubscreen {
             try {
                 importAppearance(
                     target,
-                    serverAppearanceBundleToAppearance(target.AssetFamily, JSON.parse(LZString.decompressFromBase64(input.value)))
+                    serverAppearanceBundleToAppearance(target.AssetFamily, JSON.parse(LZString.decompressFromBase64(input.value) ?? "null"))
                 );
                 toastsManager.success({
                     message: `Appearance was successfully imported on ${getNickname(target)}`,

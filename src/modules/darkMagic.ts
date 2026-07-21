@@ -45,7 +45,7 @@ import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
 import { TraditioArtiumEffect } from "@/spell-effects/traditioArtiumEffect";
 import { FlammaSubmissionisEffect } from "@/spell-effects/flammaSubmissionisEffect";
 import { AcceleratioVoluptatisEffect } from "@/spell-effects/acceleratioVoluptatisEffect";
-import { Server } from "lucide";
+import type { DeepRequired } from "@/types/utilities";
 
 
 let showAnimaFurtaWaitingButton = false;
@@ -76,6 +76,24 @@ export enum Effect {
     FLAMMA_SUBMISSIONIS = 1010,
     ACCELERATIO_VOLUPTATIS = 1011
 };
+
+export interface Spell {
+    name: string
+    icon: SpellIcon
+    effects: string
+    data?: Record<string, Record<string, unknown>>
+    createdBy: {
+        name: string
+        id: number
+    }
+}
+
+export interface CastedSpell extends Spell {
+    castedBy: {
+        name: string
+        id: number
+    }
+}
 
 export interface AtomItem {
     name: string
@@ -305,7 +323,7 @@ export function isMagicItem(item: Item): boolean {
 export function allowSpellCast(
     sourceCharacter: Character,
     targetCharacter: Character,
-    spell: ModStorage["darkMagic"]["spells"][0]
+    spell: Spell
 ): {
     result: false
     reason: CastSpellRejectionReason
@@ -323,7 +341,7 @@ export function allowSpellCast(
         (!targetCharacter.IsPlayer() && !targetCharacter.BCC)
     ) return { result: false, reason: CastSpellRejectionReason.NOT_BCC_PLAYER };
     if (spell.effects.length === 0) return { result: false, reason: CastSpellRejectionReason.NO_EFFECTS };
-    const storage = targetCharacter.IsPlayer() ? modStorage : targetCharacter.BCC;
+    const storage = targetCharacter.IsPlayer() ? modStorage : targetCharacter.BCC!;
     if ((storage.darkMagic?.state?.spells ?? []).length >= 10 && !isSpellInstant(spell)) {
         return {
             result: false,
@@ -340,33 +358,33 @@ export function allowSpellCast(
     return { result: true };
 }
 
-export function shouldSpellBounceBack(spell: ModStorage["darkMagic"]["spells"][0] | unknown, castedBy: Character, target: Character): boolean {
+export function shouldSpellBounceBack(spell: Spell | unknown, castedBy: Character, target: Character): boolean {
     if (castedBy.MemberNumber === target.MemberNumber) return false;
     const casterSettings = castedBy.IsPlayer() ? modStorage : castedBy.BCC;
     const targetSettings = target.IsPlayer() ? modStorage : target.BCC;
     // @ts-expect-error
-    const _isSpellBeneficial = spell.Name ? isLSCGSpellBeneficial(spell) : isSpellBeneficial(spell as ModStorage["darkMagic"]["spells"][0]);
+    const _isSpellBeneficial = spell.Name ? isLSCGSpellBeneficial(spell) : isSpellBeneficial(spell as Spell);
     if (_isSpellBeneficial) return false;
     return !(
         (
             casterSettings?.chaosAura?.enabled &&
             casterSettings?.chaosAura?.triggers?.magicCast &&
-            !casterSettings?.chaosAura?.whiteList?.includes(target.MemberNumber)
+            !casterSettings?.chaosAura?.whiteList?.includes(target.MemberNumber ?? -1)
         ) ||
         (
             !targetSettings?.chaosAura?.enabled ||
             !targetSettings.chaosAura?.retribution ||
             !targetSettings?.chaosAura?.triggers?.magicCast ||
-            targetSettings?.chaosAura?.whiteList?.includes(castedBy.MemberNumber)
+            targetSettings?.chaosAura?.whiteList?.includes(castedBy.MemberNumber ?? -1)
         )
     );
 }
 
-export function isSpellInstant(spell: ModStorage["darkMagic"]["spells"][0]): boolean {
+export function isSpellInstant(spell: Spell): boolean {
     return spell.effects.split("").every((c) => spellEffects[c.charCodeAt(0) as Effect].isInstant);
 }
 
-export function isSpellBeneficial(spell: ModStorage["darkMagic"]["spells"][0]): boolean {
+export function isSpellBeneficial(spell: Spell): boolean {
     return spell.effects.split("").every((c) => spellEffects[c.charCodeAt(0) as Effect].isBeneficial);
 }
 
@@ -376,7 +394,7 @@ export function isLSCGSpellBeneficial(spell: unknown): boolean {
     return lscgMagicModule?.SpellIsBeneficial?.(spell);
 }
 
-export function generateSpellName(name: string, spellList: ModStorage["darkMagic"]["spells"][0][], attempt: number = 1): string {
+export function generateSpellName(name: string, spellList: Spell[], attempt: number = 1): string {
     let search: string;
     if (attempt === 1) search = name;
     else search = `${name} (${attempt - 1})`;
@@ -386,7 +404,7 @@ export function generateSpellName(name: string, spellList: ModStorage["darkMagic
     return search;
 }
 
-export function addDefaultParametersIfNeeds(spell: ModStorage["darkMagic"]["spells"][0]): void {
+export function addDefaultParametersIfNeeds(spell: Spell): void {
     spell.data ??= {};
     for (const effectChar of spell.effects.split("")) {
         spell.data[effectChar] ??= {}
@@ -398,12 +416,12 @@ export function addDefaultParametersIfNeeds(spell: ModStorage["darkMagic"]["spel
     }
 }
 
-export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]["spells"][0]) {
+export function processSpell(castedBy: Character, spell: Spell) {
     spell = JSON.parse(JSON.stringify(spell));
     if (
         modStorage.chaosAura?.enabled &&
         modStorage.chaosAura?.triggers?.magicCast &&
-        !modStorage.chaosAura?.whiteList?.includes(castedBy.MemberNumber) &&
+        !modStorage.chaosAura?.whiteList?.includes(castedBy.MemberNumber ?? -1) &&
         spell.effects.split("").some((c) => getSpellEffect(c.charCodeAt(0))?.isBeneficial === false)
     ) {
         modStorage.chaosAura.triggersCount ??= 0;
@@ -425,12 +443,12 @@ export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]
             createdBy: spell.createdBy,
             castedBy: {
                 name: CharacterNickname(castedBy),
-                id: castedBy.MemberNumber
+                id: castedBy.MemberNumber ?? -1
             }
         });
     }
     for (const c of spell.effects) {
-        const effect: BaseEffect = spellEffects[c.charCodeAt(0)];
+        const effect: BaseEffect = spellEffects[c.charCodeAt(0) as Effect];
         effect.trigger({
             sourceCharacter: castedBy,
             data: JSON.parse(JSON.stringify(spell.data?.[c] ?? {})),
@@ -442,7 +460,7 @@ export function processSpell(castedBy: Character, spell: ModStorage["darkMagic"]
     messagesManager.sendAction(`Effects of "${spell.name}" spell was applied to ${getNickname(Player)}`);
 }
 
-export function castSpell(target: Character, spell: ModStorage["darkMagic"]["spells"][0]) {
+export function castSpell(target: Character, spell: Spell) {
     messagesManager.sendAction(`${getNickname(Player)} casts "${spell.name}" spell on ${getNickname(target)}`);
     if (target.IsPlayer()) {
         processSpell(target, spell);
@@ -461,10 +479,10 @@ export function castSpell(target: Character, spell: ModStorage["darkMagic"]["spe
 export async function loadDarkMagic(): Promise<void> {
     for (const spell of modStorage.darkMagic?.state?.spells ?? []) {
         for (const c of spell.effects) {
-            const effect: BaseEffect = spellEffects[c.charCodeAt(0)]
+            const effect = spellEffects[c.charCodeAt(0) as Effect];
             effect.trigger({
-                sourceCharacter: undefined,
-                data: spell.data?.[c],
+                sourceCharacter: Player,
+                data: spell.data?.[c] ?? {},
                 spellName: spell.name,
                 init: false
             });
@@ -473,8 +491,7 @@ export async function loadDarkMagic(): Promise<void> {
 
     messagesManager.onPacket("castSpell", CastSpellMessageDto, (data: CastSpellMessageDto, sender) => {
         const allow = allowSpellCast(sender, Player, data.spell);
-        if (allow.result === false) return;
-        processSpell(sender, data.spell);
+        if (allow.result) processSpell(sender, data.spell);
     });
 
     hookFunction("ChatRoomToggleKneel", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
@@ -528,22 +545,22 @@ export async function loadDarkMagic(): Promise<void> {
         const [target, item] = args;
         const lock = InventoryGetLock(item);
         if (!controllableCharacter.CanInteract()) return false;
-        if (lock.Asset.Name === "ExclusivePadlock") return controllableCharacter.MemberNumber !== target.MemberNumber;
-        if (lock.Asset.ExclusiveUnlock) {
-            const allowedMembers = CommonConvertStringToArray(item.Property.MemberNumberListKeys);
-            if (item.Property.MemberNumberListKeys != null) return allowedMembers.includes(controllableCharacter.MemberNumber);
-            if (item.Property.LockMemberNumber === controllableCharacter.MemberNumber) return true;
+        if (lock?.Asset.Name === "ExclusivePadlock") return controllableCharacter.MemberNumber !== target.MemberNumber;
+        if (lock?.Asset.ExclusiveUnlock) {
+            const allowedMembers = CommonConvertStringToArray(item.Property?.MemberNumberListKeys ?? "");
+            if (item.Property?.MemberNumberListKeys != null) return allowedMembers.includes(controllableCharacter.MemberNumber ?? -1);
+            if (item.Property?.LockMemberNumber === controllableCharacter.MemberNumber) return true;
         }
-        if (lock.Asset.OwnerOnly && target.IsOwnedByMemberNumber(controllableCharacter.MemberNumber)) return true;
-        if (lock.Asset.LoverOnly && target.IsLoverOfMemberNumber(controllableCharacter.MemberNumber)) return true;
-        if (lock.Asset.FamilyOnly && target.IsInFamilyOfMemberNumber(controllableCharacter.MemberNumber)) return true;
+        if (lock?.Asset.OwnerOnly && target.IsOwnedByMemberNumber(controllableCharacter.MemberNumber ?? -1)) return true;
+        if (lock?.Asset.LoverOnly && target.IsLoverOfMemberNumber(controllableCharacter.MemberNumber ?? -1)) return true;
+        if (lock?.Asset.FamilyOnly && target.IsInFamilyOfMemberNumber(controllableCharacter.MemberNumber ?? -1)) return true;
         return false;
     });
 
     hookFunction("InventoryLock", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         const controllableCharacter = (getSpellEffect(Effect.ANIMA_FURTA) as AnimaFurtaEffect).getControllableCharacter();
         if (!controllableCharacter) return next(args);
-        args[3] = controllableCharacter.MemberNumber.toString();
+        args[3] = controllableCharacter.MemberNumber?.toString();
         return next(args);
     });
 
@@ -621,7 +638,7 @@ export async function loadDarkMagic(): Promise<void> {
         if (!controllableCharacter) return next(args);
         const [C, item, isWorn, sortOrder] = args;
         const asset = item.Asset;
-        if (asset.FamilyOnly && !controllableCharacter.IsInFamilyOfMemberNumber(C.MemberNumber)) return;
+        if (asset.FamilyOnly && !controllableCharacter.IsInFamilyOfMemberNumber(C.MemberNumber ?? -1)) return;
         if (asset.LoverOnly && !controllableCharacter.IsLoverOfCharacter(C)) return;
         if (asset.OwnerOnly && !C.IsOwnedByCharacter(controllableCharacter)) return;
         const inventoryItem = DialogInventoryCreateItem(C, item, isWorn, sortOrder);
@@ -684,10 +701,10 @@ export async function loadDarkMagic(): Promise<void> {
             .targetCharacter(C);
 
         if (PrevItem != null) {
-            dictionary.asset(PrevItem.Asset, "PrevAsset", PrevItem.Craft && PrevItem.Craft.Name);
+            dictionary.asset(PrevItem.Asset, "PrevAsset", PrevItem.Craft?.Name);
         }
         if (NextItem != null) {
-            dictionary.asset(NextItem.Asset, "NextAsset", NextItem.Craft && NextItem.Craft.Name);
+            dictionary.asset(NextItem.Asset, "NextAsset", NextItem.Craft?.Name);
         }
         if (C.FocusGroup != null) {
             dictionary.focusGroup(C.FocusGroup.Name);
@@ -709,13 +726,13 @@ export async function loadDarkMagic(): Promise<void> {
         if (showAnimaFurtaWaitingButton) return;
         const controllableCharacter = (getSpellEffect(Effect.ANIMA_FURTA) as AnimaFurtaEffect).getControllableCharacter();
         if (!controllableCharacter) return next(args);
-        controllableCharacter.MapData.Pos.X += ((args[0] === "West") ? -1 : 0) + ((args[0] === "East") ? 1 : 0);
-        controllableCharacter.MapData.Pos.Y += ((args[0] === "North") ? -1 : 0) + ((args[0] === "South") ? 1 : 0);
+        controllableCharacter.MapData!.Pos.X += ((args[0] === "West") ? -1 : 0) + ((args[0] === "East") ? 1 : 0);
+        controllableCharacter.MapData!.Pos.Y += ((args[0] === "North") ? -1 : 0) + ((args[0] === "South") ? 1 : 0);
         showAnimaFurtaWaitingButton = true;
         setTimeout(() => { showAnimaFurtaWaitingButton = false; }, 1000);
         messagesManager.sendPacket("animaFurtaCommand", {
             name: "mapMove",
-            pos: { x: controllableCharacter.MapData.Pos.X, y: controllableCharacter.MapData.Pos.Y, }
+            pos: { x: controllableCharacter.MapData!.Pos.X, y: controllableCharacter.MapData!.Pos.Y, }
         }, controllableCharacter.MemberNumber);
     });
 

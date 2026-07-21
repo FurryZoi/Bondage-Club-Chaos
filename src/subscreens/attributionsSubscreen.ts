@@ -3,11 +3,11 @@ import heartsIcon from "@/assets/game-icons/hearts.svg";
 import { MainSubscreen } from "./mainSubscreen";
 
 export class AttributionsSubscreen extends BaseSubscreen {
-    get name() {
+    public override get name() {
         return "Attributions";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         this.createText({

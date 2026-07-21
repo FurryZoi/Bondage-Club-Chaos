@@ -5,11 +5,11 @@ import { StyleModule } from "zois-core/shard-modules";
 import { resetStorage } from "@/modules/storage";
 
 export class ResetSettingsSubscreen extends BaseSubscreen {
-    get name() {
+    public override get name() {
         return "Reset Settings";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         this.createText({
@@ -68,7 +68,7 @@ export class ResetSettingsSubscreen extends BaseSubscreen {
         });
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

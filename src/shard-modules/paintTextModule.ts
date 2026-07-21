@@ -7,7 +7,7 @@ export class PaintTextModule extends ShardModule {
         super();
     }
 
-    override effect(_context: ShardContext, target: ShardModuleTarget) {
+    public override effect(_context: ShardContext, target: ShardModuleTarget) {
         const text = target.textContent;
         const container = target;
         container.innerHTML = "";

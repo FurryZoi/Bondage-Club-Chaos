@@ -1,25 +1,25 @@
 import { getRandomNumber } from "zois-core";
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, TriggerEvent } from "./baseEffect";
+import { BaseEffect, type TriggerEvent } from "./baseEffect";
 
 export class AcceleratioVoluptatisEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
 
-    get name(): string {
+    public override get name(): string {
         return "Acceleratio Voluptatis";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.GEMITUM, Atom.LUX];
     }
 
-    get description(): string {
+    public override get description(): string {
         return "Makes target horny";
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
         this.setInterval(event, () => {
             if (getRandomNumber(1, 2) === 1) {

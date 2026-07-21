@@ -1,30 +1,30 @@
 import { Atom } from "../modules/darkMagic";
-import { BaseEffect, RemoveEvent, TriggerEvent } from "./baseEffect";
+import { BaseEffect, type RemoveEvent, type TriggerEvent } from "./baseEffect";
 
 export class VisioInversioEffect extends BaseEffect {
-    get isInstant(): boolean {
+    public override get isInstant(): boolean {
         return false;
     }
-    
-    get name(): string {
+
+    public override get name(): string {
         return "Visio Inversio";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.RATIO, Atom.MATERIA];
     }
 
-    get description(): string {
+    public override get description(): string {
         return "Flips target's screen.";
     }
 
-    public trigger(event: TriggerEvent): void {
+    public override trigger(event: TriggerEvent): void {
         super.trigger(event);
         document.body.setAttribute("style", document.body.getAttribute("style") + "rotate:180deg;");
     }
 
-    public remove(event: RemoveEvent): void {
+    public override remove(event: RemoveEvent): void {
         super.remove(event);
-        document.body.setAttribute("style", document.body.getAttribute("style").replace("rotate:180deg;", ""));
+        document.body.setAttribute("style", document.body.getAttribute("style")?.replace("rotate:180deg;", ""));
     }
 }

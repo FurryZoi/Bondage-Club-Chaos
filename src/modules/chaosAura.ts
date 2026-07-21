@@ -5,7 +5,10 @@ import { isBody, isCloth } from "zois-core/wardrobe";
 import { findModByName, getLoadedMods, hookFunction, HookPriority } from "zois-core/mod-sdk";
 import { isLSCGSpellBeneficial, shouldSpellBounceBack } from "./darkMagic";
 
-const chaosAuraLastData = {
+const chaosAuraLastData: {
+    appearance: AppearanceBundle | null
+    pose: AssetPoseName[] | null
+} = {
     appearance: null,
     pose: null
 };
@@ -20,6 +23,7 @@ export function updateChaosAuraLastData() {
 async function skyShieldAction(target: Character) {
     const appearance1 = chaosAuraLastData.appearance;
     const activePose1 = chaosAuraLastData.pose;
+    if (appearance1 === null || activePose1 === null) return;
     const appearance2 = ServerAppearanceBundle(Player.Appearance);
     const activePose2 = Player.ActivePose;
     let newAppearance = [...appearance2];
@@ -32,13 +36,20 @@ async function skyShieldAction(target: Character) {
     const restraintsFilter = (item: ItemBundle) => InventoryGet(Player, item.Group)?.Asset?.IsRestraint;
     const noRestraintsFilter = (item: ItemBundle) => !InventoryGet(Player, item.Group)?.Asset?.IsRestraint;
 
-    const clothesFilter = (item: ItemBundle) => isCloth(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
-    const noClothesFilter = (item: ItemBundle) => isBody(ServerBundledItemToAppearanceItem(Player.AssetFamily, item));
+    const clothesFilter = (item: ItemBundle) => {
+        const appearanceItem = ServerBundledItemToAppearanceItem(Player.AssetFamily, item);
+        return appearanceItem ? isCloth(appearanceItem) : false;
+    }
+
+    const noClothesFilter = (item: ItemBundle) => {
+        const appearanceItem = ServerBundledItemToAppearanceItem(Player.AssetFamily, item);
+        return appearanceItem ? !isCloth(appearanceItem) : false;
+    }
 
     let triggered = false;
     const triggers = modStorage.chaosAura?.triggers;
 
-    if (!modStorage.chaosAura?.whiteList?.includes(target.MemberNumber)) {
+    if (!modStorage.chaosAura?.whiteList?.includes(target.MemberNumber as number)) {
         if (triggers?.clothesChange) {
             if (
                 JSON.stringify(
@@ -100,6 +111,7 @@ async function skyShieldAction(target: Character) {
         }
 
         if (triggered) {
+            modStorage.chaosAura ??= {};
             modStorage.chaosAura.triggersCount ??= 0;
             modStorage.chaosAura.triggersCount++;
             syncStorage();
@@ -129,7 +141,7 @@ async function skyShieldAction(target: Character) {
                 const items2 = appearance2
                     .filter(itemsFilter)
                     .map((item) => JSON.stringify(item));
-                let retributionItems = [];
+                let retributionItems: ServerItemBundle[] = [];
                 items2.forEach((item) => {
                     if (!items1.includes(item)) retributionItems.push(JSON.parse(item));
                 });
@@ -150,7 +162,6 @@ async function skyShieldAction(target: Character) {
                     });
                 }
             }
-            // return;
         }
     }
 
@@ -216,12 +227,13 @@ export function loadChaosAura(): void {
             modStorage.chaosAura?.whiteList?.includes(data.Sender) ||
             !findModByName("LSCG")
         ) return next(args);
-        if (data.Content !== "LSCGMsg") return next(args);
         const sender = getPlayer(data.Sender);
+        if (data.Content !== "LSCGMsg" || sender === null) return next(args);
         //@ts-expect-error
         const lscgMessage = data.Dictionary?.[0]?.message;
         const commandName = lscgMessage?.command?.name;
         const commandArgs = lscgMessage?.command?.args;
+        //@ts-expect-error
         const spell = commandArgs?.find((arg) => arg?.name === "spell")?.value;
         if (commandName !== "spell" || spell === undefined || isLSCGSpellBeneficial(spell)) return next(args);
         modStorage.chaosAura.triggersCount ??= 0;
@@ -241,7 +253,7 @@ export function loadChaosAura(): void {
                             type: "command",
                             reply: false,
                             target: data.Sender,
-                            version: getLoadedMods().find((mod) => mod.name === "LSCG").version,
+                            version: getLoadedMods().find((mod) => mod.name === "LSCG")!.version,
                             command: {
                                 name: "spell",
                                 args: [

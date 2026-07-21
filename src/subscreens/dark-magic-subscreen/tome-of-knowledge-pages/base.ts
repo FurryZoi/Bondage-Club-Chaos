@@ -2,9 +2,7 @@
 import { addDynamicClass } from "zois-core/ui";
 
 export abstract class BasePage {
-    get name(): string {
-        return null;
-    }
+    public abstract get name(): string;
 
     public load(_container: HTMLDivElement): void { }
 }

@@ -1,24 +1,23 @@
-import { getRandomNumber } from "zois-core";
-import { Atom, generateSpellName } from "../modules/darkMagic";
-import { BaseEffect, EffectParameter, TriggerEvent } from "./baseEffect";
+import { modStorage, syncStorage } from "@/modules/storage";
 import { dialogsManager } from "zois-core/dialogs";
-import { ModStorage, modStorage, syncStorage } from "@/modules/storage";
 import { toastsManager } from "zois-core/toasts";
+import { Atom, generateSpellName, type Spell } from "../modules/darkMagic";
+import { BaseEffect, type EffectParameter, type TriggerEvent } from "./baseEffect";
 
 export class TraditioArtiumEffect extends BaseEffect {
-    get name(): string {
+    public override get name(): string {
         return "Traditio Artium";
     }
 
-    get atoms(): Atom[] {
+    public override get atoms(): Atom[] {
         return [Atom.LUX];
     }
 
-    get description(): string {
+    public override get description(): string {
         return "Establishes connection with target, letting you share your magical arts";
     }
 
-    get parameters(): EffectParameter[] {
+    public override get parameters(): EffectParameter[] {
         return [
             {
                 name: "spell",
@@ -38,7 +37,7 @@ export class TraditioArtiumEffect extends BaseEffect {
         ];
     }
 
-    public async trigger(event: TriggerEvent<{ spell: ModStorage["darkMagic"]["spells"][number] }>) {
+    public override async trigger(event: TriggerEvent<{ spell: Spell }>) {
         super.trigger(event);
         const spell = event.data.spell;
         if (!spell) return;

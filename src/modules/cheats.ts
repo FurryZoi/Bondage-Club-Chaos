@@ -49,6 +49,7 @@ export function loadCheats(): void {
                 params.Target !== Player.MemberNumber
             ) {
                 const target = getPlayer(params.Target);
+                if (target === null) return next(args);
                 const item = InventoryGet(target, params.Group);
                 if (item) {
                     item.Difficulty = 1000;
@@ -102,13 +103,18 @@ export function loadCheats(): void {
         if (!params) {
             return next(args);
         }
+
+        //@ts-expect-error
         const C = params['C'];
+        //@ts-expect-error
         const CA = params['CA'];
         const regex = /Assets(.+)BeforeDraw/i;
         if (regex.test(funcName) && modStorage.cheats?.xray) {
             const ret = next(args) ?? {};
             if (CA) {
+                //@ts-expect-error
                 const layerName = (params['L'] ?? "")?.trim().slice(1) ?? "";
+                //@ts-expect-error
                 const layerIx = CA.Asset.Layer.findIndex(l => l.Name === layerName);
                 const originalLayerOpacity = CA.Asset.Layer[layerIx]?.Opacity ?? CA.Asset.Opacity;
                 const curOpacity = ret.Opacity ?? originalLayerOpacity ?? 1;
@@ -124,11 +130,11 @@ export function loadCheats(): void {
         if (!modStorage.cheats?.showPadlocksPasswords) return next(args);
         if (
             !DialogFocusSourceItem ||
-            !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem.Asset?.Name)
+            !["PasswordPadlock", "TimerPasswordPadlock"].includes(DialogFocusItem?.Asset?.Name ?? "")
         ) return next(args);
         if (InventoryItemMiscPasswordPadlockIsSet(DialogFocusSourceItem)) {
             waitFor(() => !!document.getElementById("Password"))
-                .then(() => document.getElementById("Password").setAttribute("placeholder", DialogFocusSourceItem.Property?.Password));
+                .then(() => document.getElementById("Password")!.setAttribute("placeholder", DialogFocusSourceItem?.Property?.Password));
         }
         return next(args);
     });
@@ -187,7 +193,8 @@ export function loadCheats(): void {
         const isExitButtonExists = !!document.getElementById("bcc-exit-dialog-button");
         if (!isExitButtonExists) return next(args);
         ElementRemove("bcc-exit-dialog-button");
-        DialogChangeFocusToGroup(CharacterGetCurrent(), null);
+        const current = CharacterGetCurrent();
+        if (current) DialogChangeFocusToGroup(current, null);
     });
 
     hookFunction("DialogMenuMapping.activities.Resize", HookPriority.OBSERVE, (args, next) => {
@@ -202,15 +209,7 @@ export function loadCheats(): void {
 
     hookFunction("ChatRoomDrawArousalOverlay", HookPriority.OBSERVE, (args, next) => {
         if (!modStorage.cheats?.disableArousalOverlay) return next(args);
-        return;
-    });
-
-    hookFunction("DialogStruggleStart", HookPriority.OBSERVE, (args, next) => {
-        // if (!modStorage.cheats?.disableArousalOverlay) return next(args);
-        logger.debug("DialogStruggleStart", args);
-        const [C, Action, PrevItem, NextItem] = args;
-        next(args)
-        // DialogStruggleStop();
+        return false;
     });
 
     hookFunction("StruggleMinigameStart", HookPriority.OBSERVE, (args, next) => {

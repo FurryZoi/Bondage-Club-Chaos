@@ -5,14 +5,14 @@ import { addDynamicClass } from "zois-core/ui";
 
 
 export abstract class BaseQAMSubscreen {
-    public name: string;
-    public description?: string;
+    public abstract name: string;
+    public abstract description: string;
 
     public isFeatureSubscreen(): boolean {
         return !!qamFeatures.find((f) => f.subscreen.constructor.name === this.constructor.name);
     }
 
-    public load(container: HTMLDivElement) { }
+    public load(container: HTMLDivElement): void {}
 
     protected buildButton(text: string) {
         const btn = document.createElement("button");
@@ -203,12 +203,12 @@ export abstract class BaseQAMSubscreen {
             options: (ChatRoomCharacter.length === 0 ? [Player] : ChatRoomCharacter)
                 .map((c) => {
                     return {
-                        name: c.MemberNumber.toString(),
+                        name: c.MemberNumber?.toString() ?? "-1",
                         text: c.Name + `(${c.MemberNumber})`,
                         icon: createElement(Target, { stroke: "red" })
                     };
                 }),
-            currentOption: currentCharacter.MemberNumber.toString()
+            currentOption: currentCharacter.MemberNumber?.toString()
         });
         return select;
     }

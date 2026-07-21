@@ -13,15 +13,15 @@ const minimumRoleNames = {
 };
 
 export class LimitsSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(Ban);
     }
 
-    get name() {
+    public override get name() {
         return "Limits";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         const container = this.createContainer({

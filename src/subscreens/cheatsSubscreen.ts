@@ -130,15 +130,15 @@ function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscr
 }
 
 export class CheatsSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(HandCoins);
     }
 
-    get name() {
+    public override get name() {
         return "Cheats";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         let y = 220;
@@ -210,7 +210,7 @@ export class CheatsSubscreen extends BaseSubscreen {
             padding: 2,
             width: 300,
             onClick: () => {
-                const ids = [];
+                const ids: number[] = [];
                 AssetFemale3DCG.forEach((group) => {
                     group.Asset.forEach((item) => {
                         if (typeof item === "string") return;
@@ -301,7 +301,7 @@ export class CheatsSubscreen extends BaseSubscreen {
         appendReputationElements(container, this);
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

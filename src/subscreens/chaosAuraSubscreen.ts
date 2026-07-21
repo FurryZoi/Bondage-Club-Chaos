@@ -1,32 +1,33 @@
 import { BaseSubscreen } from "zois-core/ui";
 import { createElement, Shell } from "lucide";
 import { CounterUpModule } from "zois-core/shard-modules";
-import { type ModStorage, modStorage, syncStorage } from "@/modules/storage";
+import { type ModStorage, modStorage } from "@/modules/storage";
 import { updateChaosAuraLastData } from "@/modules/chaosAura";
 import { MainSubscreen } from "./mainSubscreen";
+import type { DeepRequired } from "@/types/utilities";
 
 export class ChaosAuraSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(Shell);
     }
 
-    get name() {
+    public override get name() {
         return "Aura Of Chaos";
     }
 
-    private turnTrigger(triggerName: keyof ModStorage["chaosAura"]["triggers"]): void {
+    private turnTrigger(triggerName: keyof DeepRequired<ModStorage>["chaosAura"]["triggers"]): void {
         if (!modStorage.chaosAura) modStorage.chaosAura = {};
         if (!modStorage.chaosAura.triggers) modStorage.chaosAura.triggers = {};
         modStorage.chaosAura.triggers[triggerName] = !modStorage.chaosAura.triggers[triggerName];
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         let y = 240;
 
         this.createCheckbox({
-            isChecked: modStorage.chaosAura?.enabled,
+            isChecked: !!modStorage.chaosAura?.enabled,
             x: 120,
             y,
             text: "Enabled",
@@ -39,7 +40,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         y += 90;
 
         this.createCheckbox({
-            isChecked: modStorage.chaosAura?.retribution,
+            isChecked: !!modStorage.chaosAura?.retribution,
             x: 120,
             y,
             text: "Retribution",
@@ -61,7 +62,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             text: "Clothes change",
             x: 140,
             y,
-            isChecked: modStorage.chaosAura?.triggers?.clothesChange,
+            isChecked: !!modStorage.chaosAura?.triggers?.clothesChange,
             onChange: () => this.turnTrigger("clothesChange")
         });
         y += 90;
@@ -70,7 +71,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             text: "Items change",
             x: 140,
             y,
-            isChecked: modStorage.chaosAura?.triggers?.itemsChange,
+            isChecked: !!modStorage.chaosAura?.triggers?.itemsChange,
             onChange: () => this.turnTrigger("itemsChange")
         });
         y += 90;
@@ -79,7 +80,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             text: "Pose change",
             x: 140,
             y,
-            isChecked: modStorage.chaosAura?.triggers?.poseChange,
+            isChecked: !!modStorage.chaosAura?.triggers?.poseChange,
             onChange: () => this.turnTrigger("poseChange")
         });
         y += 90;
@@ -88,7 +89,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             text: "Magic cast",
             x: 140,
             y,
-            isChecked: modStorage.chaosAura?.triggers?.magicCast,
+            isChecked: !!modStorage.chaosAura?.triggers?.magicCast,
             onChange: () => this.turnTrigger("magicCast")
         });
         y += 90;
@@ -97,7 +98,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
             text: "Ignore items change if not restraint",
             x: 750,
             y: 240,
-            isChecked: modStorage.chaosAura?.ignoreItemsChangeIfNotRestraint,
+            isChecked: !!modStorage.chaosAura?.ignoreItemsChangeIfNotRestraint,
             onChange: () => {
                 modStorage.chaosAura ??= {};
                 modStorage.chaosAura.ignoreItemsChangeIfNotRestraint = !modStorage.chaosAura.ignoreItemsChangeIfNotRestraint;
@@ -132,7 +133,7 @@ export class ChaosAuraSubscreen extends BaseSubscreen {
         })
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

@@ -4,10 +4,10 @@ import { BaseQAMSubscreen } from "./baseQAMSubscreen";
 
 
 export class MapTeleportQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "Map Teleport";
-    public description: string = "Teleport to certain character on map";
+    public override name: string = "Map Teleport";
+    public override description: string = "Teleport to certain character on map";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         let target: Character = Player;
@@ -18,8 +18,8 @@ export class MapTeleportQAMSubscreen extends BaseQAMSubscreen {
             if (!Player.MapData) Player.MapData = {};
             const x = target.MapData?.Pos?.X;
             const y = target.MapData?.Pos?.Y;
-            if (!x || !y) return;;
-            Player.MapData.Pos = {
+            if (!x || !y) return;
+            Player.MapData!.Pos = {
                 X: x,
                 Y: y
             };

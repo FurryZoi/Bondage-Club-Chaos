@@ -1,5 +1,5 @@
 import { CastSpellMessageDto } from "@/dto/castSpellMessageDto";
-import { getSpellIcon, addDefaultParametersIfNeeds, getSpellEffect, isMagicItem, allowSpellCast, castSpell } from "@/modules/darkMagic";
+import { getSpellIcon, addDefaultParametersIfNeeds, getSpellEffect, isMagicItem, allowSpellCast, castSpell, Spell } from "@/modules/darkMagic";
 import { modStorage, ModStorage } from "@/modules/storage";
 import { toastsManager } from "zois-core/toasts";
 import { validateData } from "zois-core/validation";
@@ -11,7 +11,7 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
     public name: string = "Cast Spell";
     public description: string = "Cast dark magic spell";
 
-    public load(container: HTMLDivElement) {
+    public override load(container: HTMLDivElement) {
         super.load(container);
 
         if ((modStorage.darkMagic?.spells ?? []).length === 0) {
@@ -22,7 +22,7 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
             return;
         }
 
-        function dataURLToSVGElement(dataURL) {
+        function dataURLToSVGElement(dataURL: string) {
             const svgEncoded = dataURL.replace('data:image/svg+xml,', '');
             const svgString = decodeURIComponent(svgEncoded);
             const div = document.createElement('div');
@@ -31,7 +31,7 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
         }
 
         let target: Character = Player;
-        let spell: ModStorage["darkMagic"]["spells"][0] = JSON.parse(JSON.stringify(modStorage.darkMagic.spells[0]));
+        let spell: Spell = JSON.parse(JSON.stringify(modStorage.darkMagic?.spells?.[0]));
         addDefaultParametersIfNeeds(spell);
 
         const select = this.buildCharacterSelect((_target) => {
@@ -39,10 +39,10 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
         });
 
         const _select = this.buildDropdown({
-            options: modStorage.darkMagic?.spells?.map((s) => ({ name: s.name, text: s.name, icon: dataURLToSVGElement(getSpellIcon(s.icon).dataurl) })),
+            options: modStorage.darkMagic?.spells?.map((s) => ({ name: s.name, text: s.name, icon: dataURLToSVGElement(getSpellIcon(s.icon)!.dataurl) })) ?? [],
             currentOption: modStorage.darkMagic?.spells?.[0]?.name,
             onChange: (value) => {
-                spell = JSON.parse(JSON.stringify(modStorage.darkMagic.spells.find((s) => s.name === value)));
+                spell = JSON.parse(JSON.stringify(modStorage.darkMagic?.spells?.find((s) => s.name === value)));
                 addDefaultParametersIfNeeds(spell);
                 this.refreshParamtersContainer(paramters, spell);
             }
@@ -57,7 +57,8 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
             if (!Player.CanInteract()) {
                 return toastsManager.error({ message: "You can't interact", duration: 3000 });
             }
-            if (!isMagicItem(InventoryGet(Player, "ItemHandheld"))) {
+            const item = InventoryGet(Player, "ItemHandheld");
+            if (!item || !isMagicItem(item)) {
                 return toastsManager.error({
                     message: "You should hold magic item in your hand to cast spells",
                     duration: 5000
@@ -93,7 +94,7 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
         container.append(select, _select, paramters, btn);
     }
 
-    private refreshParamtersContainer(paramters: HTMLDivElement, spell: ModStorage["darkMagic"]["spells"][0]) {
+    private refreshParamtersContainer(paramters: HTMLDivElement, spell: Spell) {
         paramters.innerHTML = "";
         const title = document.createElement("p");
         title.style.cssText = "margin: 0.65em auto; width: 90%; font-weight: bold; font-size: 0.85em; color: #9977d0;";
@@ -117,6 +118,8 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                         input.type = "checkbox";
                         if (typeof value === "boolean") input.checked = value;
                         input.addEventListener("change", () => {
+                            spell.data ??= {};
+                            spell.data[c] ??= {};
                             spell.data[c][parameter.name] = input.checked;
                         });
                         checkbox.append(input, parameter.label);
@@ -130,6 +133,8 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                                 this.buildDynamicDropdown({
                                     options,
                                     onChange: (_value) => {
+                                        spell.data ??= {};
+                                        spell.data[c] ??= {};
                                         spell.data[c][parameter.name] = _value;
                                     }
                                 })
@@ -140,6 +145,8 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                                     options,
                                     currentOption: options.find((o) => o.name === value)?.name ?? options[0].name,
                                     onChange: (_value) => {
+                                        spell.data ??= {};
+                                        spell.data[c] ??= {};
                                         spell.data[c][parameter.name] = _value;
                                     }
                                 })
@@ -152,8 +159,10 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                         input.type = "number";
                         if (typeof value === "number") input.value = value.toString();
                         if (parameter.min) input.min = parameter.min.toString();
-                        if (parameter.min) input.max = parameter.max.toString();
+                        if (parameter.max) input.max = parameter.max.toString();
                         input.addEventListener("input", () => {
+                            spell.data ??= {};
+                            spell.data[c] ??= {};
                             spell.data[c][parameter.name] = parseInt(input.value, 10);
                         });
                         paramters.append(input);
@@ -163,6 +172,8 @@ export class CastSpellQAMSubscreen extends BaseQAMSubscreen {
                         const input = this.buildInput(parameter.label);
                         if (typeof value === "string") input.value = value;
                         input.addEventListener("input", () => {
+                            spell.data ??= {};
+                            spell.data[c] ??= {};
                             spell.data[c][parameter.name] = input.value;
                         });
                         paramters.append(input);

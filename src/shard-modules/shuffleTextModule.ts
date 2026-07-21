@@ -1,7 +1,7 @@
 import { ShardModule, type ShardModuleTarget } from "zois-core/shard-modules";
 import type { ShardContext } from "zois-core/shards";
 
-function shuffleString(str) {
+function shuffleString(str: string) {
     return str
         .split('')
         .sort(() => Math.random() - Math.random())
@@ -9,7 +9,7 @@ function shuffleString(str) {
 }
 
 export class ShuffleTextModule extends ShardModule {
-    override effect(_context: ShardContext, target: ShardModuleTarget): void {
+    public override effect(_context: ShardContext, target: ShardModuleTarget): void {
         const id = setInterval(() => {
             try {
                 target.textContent = shuffleString(target.textContent);

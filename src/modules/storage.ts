@@ -1,5 +1,5 @@
 import { version } from "@/../package.json";
-import type { MinimumRole, SpellIcon } from "./darkMagic";
+import type { CastedSpell, MinimumRole, Spell, SpellIcon } from "./darkMagic";
 import { messagesManager } from "zois-core/messaging";
 import type { SyncStorageMessageData } from "@/types/messages";
 import { removeQuickMenu } from "./quickAccessMenu";
@@ -16,7 +16,7 @@ export interface ModStorage {
         enabledFeatures?: string
         cloneBackup?: {
             nickName: string
-            labelColor: `#${string}` | ""
+            labelColor: `#${string}`
             emoticon: {
                 expression: ExpressionName
                 color: ItemColor
@@ -63,21 +63,12 @@ export interface ModStorage {
         }
     }
     darkMagic?: {
-        spells?: {
-            name: string
-            icon: SpellIcon
-            effects: string
-            data?: Record<string, Record<string, unknown>>
-            createdBy: {
-                name: string
-                id: number
-            }
-        }[]
+        spells?: Spell[]
         limits?: {
             effects?: Record<string, MinimumRole>
         }
         state?: {
-            spells?: (ModStorage["darkMagic"]["spells"][0] & { castedBy: { name: string, id: number } })[]
+            spells?: CastedSpell[]
         }
     }
     version: string
@@ -85,7 +76,7 @@ export interface ModStorage {
 
 export function loadStorage(): void {
     if (typeof Player.ExtensionSettings.BCC === "string") {
-        modStorage = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.BCC)) ?? { version };
+        modStorage = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.BCC) ?? "null") ?? { version };
     } else modStorage = { version };
     if (!modStorage.version) modStorage.version = version;
     // Legacy BCC

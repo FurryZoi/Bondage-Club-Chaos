@@ -7,19 +7,19 @@ import qamImage from "@/assets/images/qam.png";
 import { MainSubscreen } from "./mainSubscreen";
 
 export class QuickAccessMenuSubscreen extends BaseSubscreen {
-    get icon(): SVGElement {
+    public get icon(): SVGElement {
         return createElement(PanelsTopLeft);
     }
 
-    get name() {
+    public override get name() {
         return "Quick Access Menu";
     }
 
-    public load(): void {
+    public override load(): void {
         super.load();
 
         this.createCheckbox({
-            isChecked: modStorage.qam?.enabled,
+            isChecked: !!modStorage.qam?.enabled,
             text: "Enabled",
             x: 200,
             y: 200,
@@ -87,7 +87,7 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
         });
     }
 
-    public exit(): void {
+    public override exit(): void {
         super.exit();
         this.setSubscreen(new MainSubscreen());
     }

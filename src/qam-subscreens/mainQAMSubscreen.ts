@@ -15,9 +15,10 @@ function getServer() {
 }
 
 export class MainQAMSubscreen extends BaseQAMSubscreen {
-    public name: string = "BONDAGE CLUB CHAOS";
+    public override name: string = "BONDAGE CLUB CHAOS";
+    public override description: string = "";
 
-    public load(container: HTMLElement) {
+    public override load(container: HTMLElement) {
         const header = document.createElement("div");
         header.style.cssText = "cursor: grab; user-select: none; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(229, 229, 229); background: rgb(247 242 255 / 75%); padding: 0 0.15em;";
 
@@ -209,8 +210,8 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
             await PreferenceOpenSubscreen("Extensions");
             await PreferenceSubscreenExtensionsOpen(MOD_DATA.key, ["Online", "ChatRoom"]);
             setSubscreen(new MainSubscreen());
-            const qam: HTMLDivElement = document.querySelector(".bccQAM");
-            qam.style.display = "none";
+            const qam = document.querySelector<HTMLDivElement>(".bccQAM");
+            if (qam) qam.style.display = "none";
         });
 
         header.append(headerLeftButtonsContainer, title, headerRightButtonsContainer);
