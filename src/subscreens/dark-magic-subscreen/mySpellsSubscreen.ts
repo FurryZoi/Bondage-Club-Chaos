@@ -43,7 +43,7 @@ export class MySpellsSubscreen extends BaseSubscreen {
             width: 900,
             height: 650,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",
@@ -56,8 +56,9 @@ export class MySpellsSubscreen extends BaseSubscreen {
         modStorage.darkMagic?.spells?.forEach((spell) => {
             const _container = this.createContainer({
                 parent: container,
+                scroll: "none",
                 modules: {
-                    base: [
+                    content: [
                         new StyleModule({
                             display: "flex",
                             columnGap: "0.25em"
@@ -67,7 +68,7 @@ export class MySpellsSubscreen extends BaseSubscreen {
             });
             this.createButton({
                 text: spell.name,
-                icon: getSpellIcon(spell.icon)?.dataurl ? dataUrlSvgWithColor(getSpellIcon(spell.icon)!.dataurl, cssVar("--tmd-text", "black").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "black")) : cssVar("--tmd-text", "black")) : undefined,
+                icon: getSpellIcon(spell.icon)?.dataurl ? dataUrlSvgWithColor(getSpellIcon(spell.icon)!.dataurl, { fill: cssVar("--tmd-text", "black"), stroke: cssVar("--tmd-text", "black") }) : undefined,
                 padding: 2,
                 parent: _container,
                 modules: {

@@ -128,7 +128,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                 y: 760,
                 width: 800,
                 modules: {
-                    base: [
+                    content: [
                         new StyleModule({
                             display: "flex",
                             columnGap: "0.25em"
@@ -223,7 +223,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             width: 1600,
                             scroll: "x",
                             modules: {
-                                base: [
+                                content: [
                                     new StyleModule({
                                         display: "flex",
                                         gap: "4px",
@@ -322,7 +322,7 @@ export class SpellEditorSubscreen extends BaseSubscreen {
                             width: 800,
                             height: 1000 - 75 - 315,
                             modules: {
-                                base: [
+                                content: [
                                     new StyleModule({
                                         display: "flex",
                                         flexDirection: "column",

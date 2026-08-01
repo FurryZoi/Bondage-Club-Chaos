@@ -17,6 +17,9 @@ export function loadSettingsSubscreen(): void {
 		exit: () => false,
 		load: () => {
 			setSubscreen(new MainSubscreen(true));
+		},
+		resize: () => {
+			getCurrentSubscreen()?.resize();
 		}
 	});
 }

@@ -31,7 +31,7 @@ export class LimitsSubscreen extends BaseSubscreen {
             width: 800,
             height: 1000 - 75 - 240,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",
@@ -44,13 +44,15 @@ export class LimitsSubscreen extends BaseSubscreen {
         for (const [key, value] of Object.entries(spellEffects)) {
             const _container = this.createContainer({
                 parent: container,
+                scroll: "none",
                 modules: {
-                    base: [
+                    content: [
                         new StyleModule({
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "space-between",
-                            columnGap: "0.3em"
+                            columnGap: "0.3em",
+                            // overflow: "visible"
                         })
                     ]
                 }

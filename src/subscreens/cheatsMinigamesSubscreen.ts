@@ -3,6 +3,7 @@ import type { DeepRequired } from "@/types/utilities";
 import { StyleModule } from "zois-core/shard-modules";
 import { BaseSubscreen } from "zois-core/ui";
 import strugglingMinigamesImage from "@/assets/images/struggling-minigames.png";
+import lockpickingMinigamesImage from "@/assets/images/lockpicking-minigames.png";
 
 
 
@@ -53,7 +54,7 @@ export class CheatsMinigamesSubscreen extends BaseSubscreen {
             width: 1000,
             height: 600,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",
@@ -77,19 +78,31 @@ export class CheatsMinigamesSubscreen extends BaseSubscreen {
         }
 
         this.createImage({
-            src: strugglingMinigamesImage,
-            x: 1150,
+            x: 800,
             y: 200,
             width: 475,
-        })
+            src: strugglingMinigamesImage
+        });
 
         this.createText({
-            width: 750,
-            x: 1150,
-            y: 750,
-            padding: 1,
-            withBorder: true,
-            text: "Instantly completes certain mini-games with a successful result"
+            text: "Instantly completes struggling mini-games with a successful result",
+            x: 800,
+            y: 725,
+            width: 465
+        });
+
+        this.createImage({
+            x: 800 + 475 + 80,
+            y: 200,
+            width: 475,
+            src: lockpickingMinigamesImage
+        });
+
+        this.createText({
+            text: "Instantly completes lockpicking mini-game with a successful result",
+            x: 800 + 475 + 80,
+            y: 700,
+            width: 465
         });
     }
 }

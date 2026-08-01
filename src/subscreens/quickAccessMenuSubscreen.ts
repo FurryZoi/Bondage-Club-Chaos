@@ -67,7 +67,7 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
             height: 620,
             scroll: "y",
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",

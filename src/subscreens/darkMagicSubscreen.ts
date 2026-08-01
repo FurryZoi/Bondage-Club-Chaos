@@ -42,10 +42,10 @@ export class DarkMagicSubscreen extends BaseSubscreen {
 
         this.createButton({
             text: "Tome of Knowledge",
-            icon: dataUrlSvgWithColor(evilBookIcon, cssVar("--tmd-text", "white").startsWith("#") ? hexToRgb(cssVar("--tmd-text", "white")) : cssVar("--tmd-text", "white")),
+            icon: dataUrlSvgWithColor(evilBookIcon, { fill: cssVar("--tmd-text", "white"), stroke: cssVar("--tmd-text", "white") }),
             x: 165,
             y: 320 + (115 * 3) + 150,
-            style: "inverted",
+            variant: "filled",
             width: 600,
             padding: 2,
             onClick: () => this.setSubscreen(new TomeOfKnowledgeSubscreen())
@@ -97,7 +97,7 @@ export class DarkMagicSubscreen extends BaseSubscreen {
                 x,
                 y,
                 modules: {
-                    base: [
+                    content: [
                         new DynamicClassModule({
                             base: {
                                 borderRadius: "50%",

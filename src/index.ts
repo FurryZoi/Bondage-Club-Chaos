@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { injectStyles, bootstrap, waitForStart } from "zois-core";
+import { injectStyles, bootstrap } from "zois-core";
 import { toastsManager } from "zois-core/toasts";
 import styles from "./styles.css";
 import { version } from "../package.json";
@@ -60,26 +60,23 @@ bootstrap({
         MySpellsSubscreen,
         SpellEditorSubscreen,
         TomeOfKnowledgeSubscreen
+    },
+    onReady: () => {
+        injectStyles(`${styles}@font-face { font-family: Kitnyx2; src: url(${kitnyx2Font}); }`);
+        loadStorage();
+        loadSettingsSubscreen();
+        loadCheats();
+        loadQuickAccessMenu();
+        loadChaosAura();
+        loadOverlay();
+        loadDarkMagic();
+        addActivities();
+
+        logger.log(`Loaded v${version}`);
+        toastsManager.success({
+            title: "BCC loaded",
+            message: `v${version}`,
+            duration: 4500
+        });
     }
 });
-
-function start() {
-    injectStyles(`${styles}@font-face { font-family: Kitnyx2; src: url(${kitnyx2Font}); }`);
-    loadStorage();
-    loadSettingsSubscreen();
-    loadCheats();
-    loadQuickAccessMenu();
-    loadChaosAura();
-    loadOverlay();
-    loadDarkMagic();
-    addActivities();
-
-    logger.log(`Loaded v${version}`);
-    toastsManager.success({
-        title: "BCC loaded",
-        message: `v${version}`,
-        duration: 4500
-    });
-}
-
-waitForStart(start);

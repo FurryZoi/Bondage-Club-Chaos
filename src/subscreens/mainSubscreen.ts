@@ -12,7 +12,7 @@ import { CheatsSubscreen } from "./cheatsSubscreen";
 import { syncStorage } from "@/modules/storage";
 import { AttributionsSubscreen } from "./attributionsSubscreen";
 import { ResetSettingsSubscreen } from "./resetSettingsSubscreen";
-import { getRandomNumber } from "zois-core";
+import { getRandomNumber, MOD_DATA } from "zois-core";
 import { toastsManager } from "zois-core/toasts";
 
 
@@ -138,25 +138,21 @@ export class MainSubscreen extends BaseSubscreen {
         this.createButton({
             text: "Source Code",
             icon: createElement(CodeXml),
+            href: MOD_DATA.repository,
             x: 1050,
             y: 400,
             width: 485,
             padding: 2,
-            onClick() {
-                window.open("https://github.com/FurryZoi/Bondage-Club-Chaos", "_blank");
-            },
         });
 
         this.createButton({
             text: "Issues",
             icon: createElement(Bug),
+            href: MOD_DATA.repository ? MOD_DATA.repository + "/issues" : undefined,
             x: 1050,
             y: 510,
             width: 485,
-            padding: 2,
-            onClick() {
-                window.open("https://github.com/FurryZoi/Bondage-Club-Chaos/issues", "_blank");
-            }
+            padding: 2
         });
 
         this.createButton({
@@ -174,7 +170,7 @@ export class MainSubscreen extends BaseSubscreen {
             icon: createElement(Trash2),
             x: 1050,
             y: 730,
-            style: "inverted",
+            variant: "filled",
             width: 485,
             padding: 2,
             onClick: () => this.setSubscreen(new ResetSettingsSubscreen())

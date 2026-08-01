@@ -60,7 +60,7 @@ function appendReputationElements(container: HTMLDivElement, subscreen: CheatsSu
         const _container = subscreen.createContainer({
             parent: container,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         alignItems: "center",
@@ -97,7 +97,7 @@ function appendSkillsElements(container: HTMLDivElement, subscreen: CheatsSubscr
         const _container = subscreen.createContainer({
             parent: container,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         alignItems: "center",
@@ -167,10 +167,10 @@ export class CheatsSubscreen extends BaseSubscreen {
         const booleanCheatsContainer = this.createContainer({
             x: 200,
             y,
-            width: 1000,
+            width: 950,
             height: 625,
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",
@@ -288,7 +288,7 @@ export class CheatsSubscreen extends BaseSubscreen {
             height: 495,
             scroll: "y",
             modules: {
-                base: [
+                content: [
                     new StyleModule({
                         display: "flex",
                         flexDirection: "column",
