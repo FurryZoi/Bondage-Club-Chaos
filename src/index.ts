@@ -1,12 +1,12 @@
 import "reflect-metadata";
-import { injectStyles, bootstrap } from "zois-core";
+import { injectStyles, bootstrap, isVersionNewer, waitFor, ModData } from "zois-core";
 import { toastsManager } from "zois-core/toasts";
 import styles from "./styles.css";
 import { version } from "../package.json";
 import { loadSettingsSubscreen } from "./modules/settings";
 import kitnyx2Font from "./assets/Kitnyx2.ttf";
 import { loadCheats } from "./modules/cheats";
-import { loadStorage } from "./modules/storage";
+import { loadStorage, modStorage, syncStorage } from "./modules/storage";
 import { loadChaosAura } from "./modules/chaosAura";
 import { loadOverlay } from "./modules/overlay";
 import { loadDarkMagic } from "./modules/darkMagic";
@@ -28,6 +28,8 @@ import { SpellEditorSubscreen } from "./subscreens/dark-magic-subscreen/spellEdi
 import { TomeOfKnowledgeSubscreen } from "./subscreens/dark-magic-subscreen/tomeOfKnowledgeSubscreen";
 import { logger } from "zois-core/logging";
 import { CheatsMinigamesSubscreen } from "./subscreens/cheatsMinigamesSubscreen";
+import { showChangelogModal } from "zois-core/changelogs";
+import changelog from "../changelog.json";
 
 
 bootstrap({
@@ -60,6 +62,9 @@ bootstrap({
         MySpellsSubscreen,
         SpellEditorSubscreen,
         TomeOfKnowledgeSubscreen
+    },
+    changelog: {
+        data: changelog as NonNullable<ModData["changelog"]>["data"]
     },
     onReady: () => {
         injectStyles(`${styles}@font-face { font-family: Kitnyx2; src: url(${kitnyx2Font}); }`);

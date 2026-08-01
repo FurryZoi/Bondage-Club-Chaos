@@ -1,11 +1,12 @@
 {
   "name": "Bondage Club Chaos",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Cheat addon with quality of life features, own activities and magical mechanics",
   "main": "index.js",
   "scripts": {
     "dev": "esbuild src/index.ts --bundle --sourcemap --watch --outfile=dist/bundle.js --loader:.ts=ts --loader:.css=text --loader:.png=dataurl --loader:.svg=dataurl",
     "build": "node ./build.mjs",
+    "generate-changelog": "zois-core generate-changelog --owner=FurryZoi --repo=Bondage-Club-Chaos",
     "lint": "pnpm exec biome lint",
     "lint:fix": "pnpm exec biome lint --write"
   },
