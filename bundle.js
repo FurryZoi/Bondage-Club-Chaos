@@ -4817,7 +4817,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
 }`;
 
   // package.json
-  var version2 = "2.1.1";
+  var version2 = "2.2.0";
 
   // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/defaultAttributes.js
   var defaultAttributes2 = {
@@ -15201,6 +15201,90 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/constants.ts
   var REPOSITORY_URL = "https://github.com/FurryZoi/Bondage-Club-Chaos";
 
+  // changelog.json
+  var changelog_default = {
+    generated_at: "2026-08-01T12:39:38.220Z",
+    changes: [
+      {
+        message: "Switch to manual workflow trigger",
+        sha: "50f31ecc678e210c5d65eb124bcbbb3125155fa9",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-08-01T12:36:11Z",
+        tags: ["chore"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/50f31ecc678e210c5d65eb124bcbbb3125155fa9"
+      },
+      {
+        message: "Fixes fixes fixes",
+        sha: "15bb3e043e85a9d0383991b6ea58855c12a79c0b",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-08-01T12:22:48Z",
+        tags: ["fix", "chore"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/15bb3e043e85a9d0383991b6ea58855c12a79c0b"
+      },
+      {
+        message: "Make the title shimmer like a... rainbow",
+        sha: "b96904aac128dba2a8ed5f3cf7f94a8bf65c1de5",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-07-21T20:13:29Z",
+        tags: ["feature"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/b96904aac128dba2a8ed5f3cf7f94a8bf65c1de5"
+      },
+      {
+        message: "Fix most typing errors",
+        sha: "000d5e68acb5b5c772c76b3b67fd3651ec641c1a",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-07-21T18:59:13Z",
+        tags: ["chore"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/000d5e68acb5b5c772c76b3b67fd3651ec641c1a"
+      },
+      {
+        message: "Fix handshake",
+        sha: "06fe4abae1e43a2e89f97eb3fa38caf80b5dbb9a",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-07-20T12:20:47Z",
+        tags: ["fix"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/06fe4abae1e43a2e89f97eb3fa38caf80b5dbb9a"
+      },
+      {
+        message: "Add minigames cheats",
+        sha: "628b75f2fb6ed07e21341354722b51a70a223bb5",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-07-20T10:01:07Z",
+        tags: ["feature"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/628b75f2fb6ed07e21341354722b51a70a223bb5"
+      },
+      {
+        message: "Adapt to zois-core v2",
+        sha: "1cfbfece3d77cba2e1015afc66081dbc9e86c1a8",
+        author: {
+          name: "FurryZoi",
+          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
+        },
+        date: "2026-07-13T00:07:31Z",
+        tags: ["chore"],
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/1cfbfece3d77cba2e1015afc66081dbc9e86c1a8"
+      }
+    ]
+  };
+
   // src/index.ts
   bootstrap({
     name: "BCC",
@@ -15232,6 +15316,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       MySpellsSubscreen,
       SpellEditorSubscreen,
       TomeOfKnowledgeSubscreen
+    },
+    changelog: {
+      data: changelog_default
     },
     onReady: () => {
       injectStyles(`${styles_default2}@font-face { font-family: Kitnyx2; src: url(${Kitnyx2_default}); }`);
