@@ -1288,13 +1288,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/index.ts
   var import_reflect_metadata = __toESM(require_Reflect());
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/styles.css
-  var styles_default = "* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.zcInput {\n  background: var(--tmd-element, white);\n  color: var(--tmd-text, black);\n  padding: 2vw;\n  border: 2px solid var(--tmd-accent, black);\n  border-radius: 4px;\n}\n.zcInput::placeholder {\n  color: var(--tmd-text, black);\n}\n.zcTabs {\n  display: flex;\n}\n.zcTabs button {\n  cursor: pointer;\n  width: 100%;\n  color: var(--tmd-text, black);\n  background: none;\n  border: none;\n  border-bottom: 2px solid var(--tmd-element, rgb(214, 214, 214));\n  padding: 0.25em;\n}\n.zcTabs button[data-opened=true] {\n  font-weight: bold;\n  border-bottom: 2px solid var(--tmd-accent, rgb(81, 81, 231)) !important;\n}\n.zcTabs button:hover {\n  background: var(--tmd-element, rgb(235, 235, 235));\n  border-bottom: 2px solid var(--tmd-element-hover, rgb(149, 149, 149));\n}\n.zcCard {\n  border: 2px solid var(--tmd-accent, rgb(195, 195, 195));\n  border-radius: 0.4em;\n  background: var(--tmd-element, white);\n  color: var(--tmd-text, black);\n  padding: 0.4em 2.5em 0.4em 0.4em;\n}\n.zcCard:hover {\n  border: 2px solid var(--tmd-accent-hover, rgb(170, 170, 170));\n}\n.zcCard_name {\n  font-size: 0.5em;\n  color: var(--tmd-text, rgb(100, 100, 100));\n}\n.zcCard_value {\n  color: var(--tmd-text, black);\n  margin-top: 0.4em;\n  font-weight: bold;\n}\n.zcToastsContainer {\n  display: flex;\n  flex-direction: column;\n  gap: 0.15vw;\n  cursor: pointer;\n  position: fixed;\n  z-index: 30;\n}\n@keyframes zcToast-progress {\n  0% {\n    width: 0;\n  }\n  100% {\n    width: 100%;\n  }\n}\n@keyframes zcSlideInFromLeft {\n  from {\n    transform: translateX(-100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@keyframes zcSlideInFromRight {\n  from {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@keyframes zcSlideOutToLeft {\n  from {\n    transform: translateX(0);\n    opacity: 1;\n  }\n  to {\n    transform: translateX(-100%);\n    opacity: 0;\n  }\n}\n@keyframes zcSlideOutToRight {\n  from {\n    transform: translateX(0);\n    opacity: 1;\n  }\n  to {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n}\n@keyframes pop {\n  0% {\n    transform: scale(0.9);\n  }\n  50% {\n    transform: scale(1.1);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n.zcToast {\n  display: flex;\n  column-gap: 0.6em;\n  align-items: center;\n  max-width: 25vw;\n  border-radius: 0.15em;\n  position: relative;\n}\n.zcToast p {\n  color: white;\n}\n.zcToast > svg {\n  flex-shrink: 0;\n}\n.zcDialog {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: rgb(57, 64, 77);\n  margin: auto;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  border: none;\n  border-radius: 4px;\n  min-width: 200px;\n  max-width: 450px;\n  width: 90%;\n  height: fit-content;\n  z-index: 100;\n  pointer-events: all !important;\n  box-shadow: 0px 0px 6px 1px #0000006e;\n}\n.zcDialog > p {\n  padding: 0.75em 0px;\n  user-select: none;\n  width: 90%;\n  color: white;\n}\n.zcDialog > input:focus {\n  outline: 2px solid rgb(0, 238, 255);\n}\n.zcDialog > div > button {\n  cursor: pointer;\n  padding: 6px 14px;\n  border: none;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.zcDialog > div > button:first-child {\n  background: rgba(73, 82, 99, 1);\n  color: white;\n}\n.zcDialog > div > button:first-child:hover {\n  background: rgb(86, 94, 108);\n}\n.zcDialog > div > button:last-child {\n  background: #00eeffff;\n}\n.zcDialog > div > button:last-child:hover {\n  background: rgb(4, 203, 217);\n}\n@keyframes zcSpin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes zcCursorBlink {\n  from {\n    border-right-color: transparent;\n  }\n  to {\n    border-right-color: rgb(42, 42, 42);\n  }\n}\n.zcCursor {\n  border-right: 2px solid var(--tmd-text, rgb(42, 42, 42));\n  width: fit-content;\n}\n.zcDisabled {\n  pointer-events: none;\n  opacity: 0.6;\n}\n";
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/styles.css
+  var styles_default = ".zcInput {\n  background: var(--tmd-element, white);\n  color: var(--tmd-text, black);\n  padding: 2vw;\n  border: 2px solid var(--tmd-accent, black);\n  border-radius: 4px;\n}\n.zcInput::placeholder {\n  color: var(--tmd-text, black);\n}\n.zcTabs {\n  display: flex;\n}\n.zcTabs button {\n  cursor: pointer;\n  width: 100%;\n  color: var(--tmd-text, black);\n  background: none;\n  border: none;\n  border-bottom: 2px solid var(--tmd-element, rgb(214, 214, 214));\n  padding: 0.25em;\n}\n.zcTabs button[data-opened=true] {\n  font-weight: bold;\n  border-bottom: 2px solid var(--tmd-accent, rgb(81, 81, 231)) !important;\n}\n.zcTabs button:hover {\n  background: var(--tmd-element, rgb(235, 235, 235));\n  border-bottom: 2px solid var(--tmd-element-hover, rgb(149, 149, 149));\n}\n.zcCard {\n  border: 2px solid var(--tmd-accent, rgb(195, 195, 195));\n  border-radius: 0.4em;\n  background: var(--tmd-element, white);\n  color: var(--tmd-text, black);\n  padding: 0.4em 2.5em 0.4em 0.4em;\n  box-sizing: border-box;\n}\n.zcCard:hover {\n  border: 2px solid var(--tmd-accent-hover, rgb(170, 170, 170));\n}\n.zcCard_name {\n  font-size: 0.5em;\n  color: var(--tmd-text, rgb(100, 100, 100));\n  margin: 0;\n}\n.zcCard_value {\n  color: var(--tmd-text, black);\n  margin: 0;\n  margin-top: 0.4em;\n  font-weight: bold;\n}\n.zcToastsContainer {\n  display: flex;\n  flex-direction: column;\n  gap: 0.15vw;\n  cursor: pointer;\n  position: fixed;\n  z-index: 30;\n}\n@keyframes zcToast-progress {\n  0% {\n    width: 0;\n  }\n  100% {\n    width: 100%;\n  }\n}\n@keyframes zcSlideInFromLeft {\n  from {\n    transform: translateX(-100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@keyframes zcSlideInFromRight {\n  from {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@keyframes zcSlideOutToLeft {\n  from {\n    transform: translateX(0);\n    opacity: 1;\n  }\n  to {\n    transform: translateX(-100%);\n    opacity: 0;\n  }\n}\n@keyframes zcSlideOutToRight {\n  from {\n    transform: translateX(0);\n    opacity: 1;\n  }\n  to {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n}\n@keyframes pop {\n  0% {\n    transform: scale(0.9);\n  }\n  50% {\n    transform: scale(1.1);\n  }\n  100% {\n    transform: scale(1);\n  }\n}\n.zcToast {\n  display: flex;\n  column-gap: 0.6em;\n  align-items: center;\n  max-width: 25vw;\n  border-radius: 0.15em;\n  position: relative;\n}\n.zcToast p {\n  color: white;\n  margin: 0;\n}\n.zcToast > svg {\n  flex-shrink: 0;\n}\n.zcDialog {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: rgb(57, 64, 77);\n  margin: auto;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  border: none;\n  border-radius: 4px;\n  min-width: 200px;\n  max-width: 450px;\n  width: 90%;\n  height: fit-content;\n  z-index: 100;\n  pointer-events: all !important;\n  box-shadow: 0px 0px 6px 1px #0000006e;\n}\n.zcDialog > p {\n  padding: 0.85em 0px;\n  margin: 0;\n  user-select: none;\n  width: 90%;\n  color: white;\n}\n.zcDialog > input:focus {\n  outline: 2px solid rgb(0, 238, 255);\n}\n.zcDialog > div > button {\n  cursor: pointer;\n  padding: 6px 14px;\n  border: none;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.zcDialog > div > button:first-child {\n  background: rgba(73, 82, 99, 1);\n  color: white;\n}\n.zcDialog > div > button:first-child:hover {\n  background: rgb(86, 94, 108);\n}\n.zcDialog > div > button:last-child {\n  background: #00eeffff;\n}\n.zcDialog > div > button:last-child:hover {\n  background: rgb(4, 203, 217);\n}\n@keyframes zcSpin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n@keyframes zcCursorBlink {\n  from {\n    border-right-color: transparent;\n  }\n  to {\n    border-right-color: rgb(42, 42, 42);\n  }\n}\n.zcCursor {\n  border-right: 2px solid var(--tmd-text, rgb(42, 42, 42));\n  width: fit-content;\n}\n.zcDisabled {\n  pointer-events: none;\n  opacity: 0.6;\n}\n";
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/modSdk.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/modSdk.js
   var import_bondage_club_mod_sdk = __toESM(require_bcmodsdk());
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/logging.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/logging.js
   var logs = [];
   var Logger = class {
     get logs() {
@@ -1323,7 +1323,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var logger = new Logger();
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/modSdk.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/modSdk.js
   var HookPriority = /* @__PURE__ */ ((HookPriority2) => {
     HookPriority2[HookPriority2["OBSERVE"] = 0] = "OBSERVE";
     HookPriority2[HookPriority2["ADD_BEHAVIOR"] = 1] = "ADD_BEHAVIOR";
@@ -1375,7 +1375,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return !!import_bondage_club_mod_sdk.default.getModsInfo().find((m3) => m3.name === name);
   }
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/shardModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/shardModule.js
   var ShardModule = class {
     overrideContext(context, target) {
       return context;
@@ -1386,17 +1386,17 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/centerModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/centerModule.js
   var CenterModule = class extends ShardModule {
     overrideContext(context, target) {
-      target.style.cssText += "transform: translate(-50%, -50%);";
+      target.style.transform = "translate(-50%, -50%)";
       context.x = 1e3;
       context.y = 500;
       return context;
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/counterUpModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/counterUpModule.js
   function countUp(element, endValue, duration, formattingFunction) {
     if (!element) {
       throw new Error("Element not found");
@@ -1431,7 +1431,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/typeModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/typeModule.js
   function type(element, duration) {
     if (!element) {
       throw new Error("Element not found");
@@ -1466,7 +1466,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/styleModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/styleModule.js
   var StyleModule = class extends ShardModule {
     constructor(style) {
       super();
@@ -1484,7 +1484,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/dynamicClassModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/dynamicClassModule.js
   var DynamicClassModule = class extends ShardModule {
     constructor(style) {
       super();
@@ -1496,7 +1496,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/attributesModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/attributesModule.js
   var AttributesModule = class extends ShardModule {
     constructor(attributes) {
       super();
@@ -1510,7 +1510,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/clickModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/clickModule.js
   var ClickModule = class extends ShardModule {
     constructor(callback) {
       super();
@@ -1522,7 +1522,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shard-modules/multiClickModule.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shard-modules/multiClickModule.js
   function addMultiClickListener(element, n4, callback, timeout = 400) {
     let clickCount = 0;
     let timer = null;
@@ -1561,7 +1561,117 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/shard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/events.js
+  var listeners = /* @__PURE__ */ new Map();
+  var onceListeners = /* @__PURE__ */ new Map();
+  function parseEventSpec(spec) {
+    const idx = spec.indexOf(":");
+    if (idx === -1) {
+      return { event: spec, senderFilter: null };
+    }
+    return {
+      senderFilter: spec.slice(0, idx),
+      event: spec.slice(idx + 1)
+    };
+  }
+  var EventBus = class {
+    #id;
+    get id() {
+      return this.#id;
+    }
+    constructor(id) {
+      this.#id = id;
+    }
+    emit(event, data) {
+      const fullData = { ...data, sender: this.id };
+      const commonEventListeners = listeners.get(event);
+      if (commonEventListeners) {
+        for (const listener of commonEventListeners) {
+          try {
+            if (listener.senderFilter) {
+              if (listener.senderFilter === this.id) listener.callback(fullData);
+            } else {
+              listener.callback(fullData);
+            }
+          } catch (e2) {
+          }
+        }
+      }
+      const onceEventListeners = onceListeners.get(event);
+      if (onceEventListeners) {
+        for (const listener of onceEventListeners) {
+          try {
+            if (listener.senderFilter) {
+              if (listener.senderFilter === this.id) {
+                listener.callback(fullData);
+                onceEventListeners.delete(listener);
+              }
+            } else {
+              listener.callback(fullData);
+              onceEventListeners.delete(listener);
+            }
+          } catch (e2) {
+          }
+        }
+      }
+    }
+    on(eventSpec, callback) {
+      const { event, senderFilter } = parseEventSpec(eventSpec);
+      let eventListeners = listeners.get(event);
+      if (!eventListeners) {
+        eventListeners = /* @__PURE__ */ new Set();
+        listeners.set(event, eventListeners);
+      }
+      const listener = {
+        callback,
+        senderFilter
+      };
+      eventListeners.add(listener);
+      return () => {
+        eventListeners.delete(listener);
+      };
+    }
+    once(eventSpec, callback) {
+      const { event, senderFilter } = parseEventSpec(eventSpec);
+      let eventListeners = onceListeners.get(event);
+      if (!eventListeners) {
+        eventListeners = /* @__PURE__ */ new Set();
+        onceListeners.set(event, eventListeners);
+      }
+      const listener = {
+        callback,
+        senderFilter
+      };
+      eventListeners.add(listener);
+      return () => {
+        eventListeners.delete(listener);
+      };
+    }
+  };
+  var createdBuses = /* @__PURE__ */ new Map();
+  function getEventBus(id) {
+    if (typeof id !== "string" || id.trim() === "") {
+      throw new Error("id must be a non-empty string");
+    }
+    if (createdBuses.has(id)) {
+      throw new Error(
+        `EventBus with id "${id}" already exists`
+      );
+    }
+    const bus = new EventBus(id);
+    createdBuses.set(id, bus);
+    return bus;
+  }
+  var eventBus = null;
+  function createEventBus() {
+    try {
+      eventBus = window.ZOIS_CORE.getEventBus(MOD_DATA.name);
+    } catch (e2) {
+      logger.error("Failed to create EventBus:", e2);
+    }
+  }
+
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/shard.js
   var Shard = class {
     constructor(context) {
       this.context = context;
@@ -1578,25 +1688,30 @@ One of mods you are using is using an old version of SDK. It will work for now b
       parentElement.append(this.body.base);
       this.update();
       this.processModules("effect");
+      eventBus?.emit("shardMounted", {
+        shard: this
+      });
       window.addEventListener("resize", () => this.update());
-      const onUnload = (event) => {
-        if (!(event instanceof SubscreenUnloadedEvent)) return;
+      eventBus?.once("subscreenUnloaded", () => {
         this.body.base.remove();
-        window.removeEventListener("zois-core:subscreenunloaded", onUnload);
-      };
-      window.addEventListener("zois-core:subscreenunloaded", onUnload);
+        eventBus?.emit("shardUnmounted", {
+          shard: this
+        });
+      });
       return this.mountReturnValue;
     }
     processModules(stage) {
       const modules = this.context.modules ?? {};
-      if (stage === "effect") {
+      if (stage === "overrideContext") {
         for (const key of Object.keys(modules)) {
           for (const module of modules[key] ?? []) {
             if (module instanceof ShardModule) {
-              try {
-                this.context = module.overrideContext(this.context, this.body[key]);
-              } catch (e2) {
-                logger.error("OverrideContext call failed in", module, e2);
+              if (this.body?.[key]) {
+                try {
+                  this.context = module.overrideContext(this.context, this.body[key]);
+                } catch (e2) {
+                  logger.error("OverrideContext call failed in", module, e2);
+                }
               }
             }
           }
@@ -1606,10 +1721,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
         for (const key of Object.keys(modules)) {
           for (const module of modules[key] ?? []) {
             if (module instanceof ShardModule) {
-              try {
-                module.layoutEffect(this.context, this.body[key]);
-              } catch (e2) {
-                logger.error("LayoutEffect call failed in", module, e2);
+              if (this.body?.[key]) {
+                try {
+                  module.layoutEffect(this.context, this.body[key]);
+                } catch (e2) {
+                  logger.error("LayoutEffect call failed in", module, e2);
+                }
               }
             }
           }
@@ -1619,10 +1736,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
         for (const key of Object.keys(modules)) {
           for (const module of modules[key] ?? []) {
             if (module instanceof ShardModule) {
-              try {
-                module.effect(this.context, this.body[key]);
-              } catch (e2) {
-                logger.error("Effect call failed in", module, e2);
+              if (this.body?.[key]) {
+                try {
+                  module.effect(this.context, this.body[key]);
+                } catch (e2) {
+                  logger.error("Effect call failed in", module, e2);
+                }
               }
             }
           }
@@ -1638,7 +1757,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/backNextButtonShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/backNextButtonShard.js
   var BackNextButtonShard = class extends Shard {
     get dynamicClassContainer() {
       return {
@@ -1733,7 +1852,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/defaultAttributes.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/defaultAttributes.mjs
   var defaultAttributes = {
     xmlns: "http://www.w3.org/2000/svg",
     width: 24,
@@ -1746,7 +1865,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     "stroke-linejoin": "round"
   };
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/createElement.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/createElement.mjs
   var createSVGElement = ([tag, attrs, children]) => {
     const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
     Object.keys(attrs).forEach((name) => {
@@ -1769,7 +1888,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return createSVGElement([tag, attrs, iconNode]);
   };
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/book-text.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/book-text.mjs
   var BookText = [
     [
       "path",
@@ -1779,59 +1898,59 @@ One of mods you are using is using an old version of SDK. It will work for now b
     ["path", { d: "M8 7h6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/check.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/check.mjs
   var Check = [["path", { d: "M20 6 9 17l-5-5" }]];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/chevron-down.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/chevron-down.mjs
   var ChevronDown = [["path", { d: "m6 9 6 6 6-6" }]];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/circle-alert.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-alert.mjs
   var CircleAlert = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["line", { x1: "12", x2: "12", y1: "8", y2: "12" }],
     ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/circle-check.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-check.mjs
   var CircleCheck = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "m9 12 2 2 4-4" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/circle-x.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-x.mjs
   var CircleX = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "m15 9-6 6" }],
     ["path", { d: "m9 9 6 6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/external-link.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/external-link.mjs
   var ExternalLink = [
     ["path", { d: "M15 3h6v6" }],
     ["path", { d: "M10 14 21 3" }],
     ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/info.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/info.mjs
   var Info = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "M12 16v-4" }],
     ["path", { d: "M12 8h.01" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/rotate-ccw.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/rotate-ccw.mjs
   var RotateCcw = [
     ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" }],
     ["path", { d: "M3 3v5h5" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/terminal.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/terminal.mjs
   var Terminal = [
     ["path", { d: "M12 19h8" }],
     ["path", { d: "m4 17 6-6-6-6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.27.0/node_modules/lucide/dist/esm/icons/trash-2.mjs
+  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/trash-2.mjs
   var Trash2 = [
     ["path", { d: "M10 11v6" }],
     ["path", { d: "M14 11v6" }],
@@ -1840,7 +1959,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" }]
   ];
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/buttonShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/buttonShard.js
   var ButtonShard = class extends Shard {
     get dynamicClassButton() {
       return {
@@ -1896,27 +2015,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           background: "var(--tmd-accent, #5b5bff)",
           color: "var(--tmd-text, white)",
           padding: "0.1em",
+          boxSizing: "border-box",
           borderRadius: "50%"
-        },
-        ":hover > .external-link-icon": {
-          minWidth: "fit-content",
-          padding: "0.1em 0.25em",
-          borderRadius: "0.5em",
-          bottom: "calc(100% + 0.25em)",
-          top: "unset"
-        },
-        "> .external-link-icon > span": {
-          display: "none",
-          fontSize: "0.5em",
-          whiteSpace: "nowrap"
-        },
-        ":hover > .external-link-icon > span": {
-          display: "inline"
         }
       };
     }
     generateBody() {
-      const { text, variant, icon, iconAbsolutePosition = true, tooltip, href, onClick, isDisabled } = this.context;
+      const { height, text, variant, icon, iconAbsolutePosition = true, tooltip, href, onClick, isDisabled } = this.context;
       let iconElement;
       let textElement;
       const btn = document.createElement("button");
@@ -1946,6 +2051,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (text) {
         textElement = document.createElement("span");
         textElement.textContent = text;
+        if (height) {
+          textElement.style.overflow = "hidden";
+          textElement.style.textOverflow = "ellipsis";
+          textElement.style.whiteSpace = "nowrap";
+          textElement.style.maxHeight = "100%";
+        }
         btn.append(textElement);
       }
       if (tooltip) {
@@ -1961,10 +2072,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
         const externalLinkIcon = createElement(ExternalLink);
         externalLinkIcon.style.width = "auto";
         externalLinkIcon.style.height = "100%";
-        const externalLinkLabel = document.createElement("span");
-        externalLinkLabel.textContent = href;
-        externalLinkContainer.append(externalLinkIcon, externalLinkLabel);
+        externalLinkContainer.append(externalLinkIcon);
         btn.append(externalLinkContainer);
+        let hrefTooltip = null;
+        btn.addEventListener("mouseenter", () => {
+          if (hrefTooltip) return;
+          hrefTooltip = document.createElement("div");
+          hrefTooltip.style.cssText = `position: fixed; top: 0; left: 0; right: 0; bottom: 0; margin: auto;
+                width: fit-content; height: fit-content; font-size: calc(3.5px * var(--size-unit));
+                z-index: 100; color: var(--tmd-text, black); background: var(--tmd-element, #f8f8f8); padding: 0.2em;
+                border-radius: 4px; border: 1px solid var(--tmd-element-hover, #9f9f9f);`;
+          setFontFamily(hrefTooltip, CommonGetFontName());
+          hrefTooltip.textContent = href;
+          document.body.append(hrefTooltip);
+        });
+        btn.addEventListener("mouseleave", () => {
+          if (!hrefTooltip) return;
+          hrefTooltip.remove();
+          hrefTooltip = null;
+        });
       }
       if (typeof isDisabled === "function" && isDisabled()) btn.classList.add("zcDisabled");
       btn.addEventListener("click", () => {
@@ -1985,7 +2111,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/cardShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/cardShard.js
   var CardShard = class extends Shard {
     generateBody() {
       const { name, value, icon } = this.context;
@@ -2016,7 +2142,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/checkboxShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/checkboxShard.js
   var CheckboxShard = class extends Shard {
     get dynamicClassInput() {
       return {
@@ -2031,6 +2157,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          flexShrink: "0",
           transition: "background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           appearance: "none"
         },
@@ -2038,7 +2165,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           backgroundColor: "var(--tmd-accent, black)",
           borderColor: "var(--tmd-accent, black)"
         },
-        ":checked > svg": {
+        ":checked + svg": {
           strokeDashoffset: "0"
         },
         ":checked:hover": {
@@ -2051,8 +2178,33 @@ One of mods you are using is using an old version of SDK. It will work for now b
         },
         ".pop": {
           animation: "pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards"
-        },
-        "> .tooltip": {
+        }
+      };
+    }
+    get dynamicClassCheckmark() {
+      return {
+        base: {
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "70%",
+          height: "70%",
+          pointerEvents: "none",
+          stroke: "var(--tmd-text, white)",
+          strokeWidth: "3.5",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          fill: "none",
+          strokeDasharray: "24",
+          strokeDashoffset: "24",
+          transition: "stroke-dashoffset 0.45s cubic-bezier(0.25, 0.1, 0.25, 1)"
+        }
+      };
+    }
+    get dynamicClassTooltip() {
+      return {
+        base: {
           position: "absolute",
           color: "var(--tmd-text, black)",
           fontSize: "0.65em",
@@ -2062,32 +2214,29 @@ One of mods you are using is using an old version of SDK. It will work for now b
           background: "var(--tmd-element-hint, #e6e6e6)",
           width: "max-content",
           visibility: "hidden",
-          zIndex: "10"
+          zIndex: "10",
+          pointerEvents: "none",
+          whiteSpace: "nowrap"
         },
-        "> .tooltip[position=left]": {
+        "[position=left]": {
           right: "calc(100% + 1vw)"
         },
-        "> .tooltip[position=right]": {
+        "[position=right]": {
           left: "calc(100% + 1vw)"
-        },
-        ":hover .tooltip": {
-          visibility: "visible"
         }
       };
     }
-    get dynamicClassCheckmark() {
+    get dynamicClassBox() {
       return {
         base: {
-          width: "70%",
-          height: "70%",
-          stroke: "var(--tmd-text, white)",
-          strokeWidth: "3.5",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          fill: "none",
-          strokeDasharray: "24",
-          strokeDashoffset: "24",
-          transition: "stroke-dashoffset 0.45s cubic-bezier(0.25, 0.1, 0.25, 1)"
+          position: "relative",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: "0"
+        },
+        ":hover .tooltip": {
+          visibility: "visible"
         }
       };
     }
@@ -2101,6 +2250,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       wrapper.style.alignItems = "center";
       wrapper.style.columnGap = "1vw";
       wrapper.style.padding = "0.25em";
+      setFontFamily(wrapper, MOD_DATA.fontFamily);
+      const box = document.createElement("div");
+      addDynamicClass(box, this.dynamicClassBox);
       const input = document.createElement("input");
       input.type = "checkbox";
       input.checked = isChecked;
@@ -2109,12 +2261,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const checkmark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       checkmark.setAttribute("viewBox", "0 0 24 24");
       checkmark.setAttribute("class", "checkmark");
-      checkmark.innerHTML = `<path d="M5 13L9 17L19 7" />`;
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", "M5 13L9 17L19 7");
+      checkmark.appendChild(path);
       addDynamicClass(checkmark, this.dynamicClassCheckmark);
+      box.append(input, checkmark);
       const label = document.createElement("p");
       label.textContent = text;
       label.style.color = this.textColor;
-      setFontFamily(label, MOD_DATA.fontFamily);
+      label.style.margin = "0";
       if (typeof isDisabled === "function" && isDisabled()) {
         input.disabled = true;
         wrapper.classList.add("zcDisabled");
@@ -2128,14 +2283,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
         if (input.checked) {
         }
       });
-      input.appendChild(checkmark);
-      wrapper.append(input, label);
+      wrapper.append(box, label);
       if (tooltip) {
         const tooltipEl = document.createElement("span");
         tooltipEl.classList.add("tooltip");
         tooltipEl.setAttribute("position", tooltip.position);
         tooltipEl.textContent = tooltip.text;
-        input.appendChild(tooltipEl);
+        addDynamicClass(tooltipEl, this.dynamicClassTooltip);
+        box.appendChild(tooltipEl);
       }
       return {
         base: wrapper,
@@ -2151,7 +2306,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/containerShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/containerShard.js
   var ContainerShard = class extends Shard {
     get dynamicClassContainer() {
       return {
@@ -2281,11 +2436,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/imageShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/imageShard.js
   var ImageShard = class extends Shard {
     modal = null;
     generateBody() {
-      const { src, alt = "", width, height } = this.context;
+      const { src, alt = "" } = this.context;
       const img = document.createElement("img");
       img.src = src;
       img.alt = alt;
@@ -2377,7 +2532,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/inputListShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/inputListShard.js
   var InputListShard = class extends Shard {
     get dynamicClassContainer() {
       return {
@@ -2388,6 +2543,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           border: "2px solid var(--tmd-accent, black)",
           borderRadius: "4px",
           padding: "0.75vw",
+          boxSizing: "border-box",
           background: "var(--tmd-element, none)"
         },
         "> div:first-child": {
@@ -2534,7 +2690,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/inputShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/inputShard.js
   var InputShard = class extends Shard {
     generateBody() {
       const { textArea, placeholder, value, isDisabled, onChange, onInput } = this.context;
@@ -2563,7 +2719,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/selectShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/selectShard.js
   var SelectShard = class extends Shard {
     get dynamicClassContainer() {
       return {
@@ -2574,6 +2730,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           border: "2px solid var(--tmd-accent, rgb(195, 195, 195))",
           borderRadius: "0.4em",
           padding: "0.25em",
+          boxSizing: "border-box",
           zIndex: "10"
         },
         "[opened=true]": {
@@ -2581,6 +2738,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
         },
         "[opened=false]:hover": {
           borderColor: "var(--tmd-accent-hover, rgb(170, 170, 170))"
+        },
+        "> p": {
+          margin: "0"
         },
         ">svg": {
           position: "absolute",
@@ -2613,6 +2773,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           color: "var(--tmd-text, black)",
           width: "100%",
           padding: "0.25em",
+          boxSizing: "border-box",
           borderRadius: "0.25em"
         },
         ">div>div>svg": {
@@ -2684,7 +2845,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/svgShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/svgShard.js
   var SvgShard = class extends Shard {
     generateBody() {
       const { dataurl, size, fill = "var(--tmd-accent, black)", stroke = "var(--tmd-accent-hover, black)", strokeWidth = "2px" } = this.context;
@@ -2710,14 +2871,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/tabsShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/tabsShard.js
   var TabsShard = class extends Shard {
     tabHandlers = {};
+    clearDrawProcessHook = null;
     constructor(context) {
       super(context);
     }
     generateBody() {
       this.tabHandlers ??= {};
+      this.clearDrawProcessHook = null;
       const { tabs, currentTabName } = this.context;
       let tabElements = [];
       const tabsEl = document.createElement("div");
@@ -2738,6 +2901,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
             tabElements.push(...nodes);
             originalAppend(...nodes);
           };
+          this.clearDrawProcessHook?.();
           this.tabHandlers.unload?.();
           this.tabHandlers.exit?.();
           this.tabHandlers = {
@@ -2746,7 +2910,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
             unload: tab.unload,
             exit: tab.exit
           };
+          this.clearDrawProcessHook = null;
           this.tabHandlers.load?.();
+          if (tab.run) {
+            this.clearDrawProcessHook = hookFunction("DrawProcess", HookPriority.ADD_BEHAVIOR, (args, next) => {
+              next(args);
+              tab.run?.();
+            });
+          }
           document.body.append = originalAppend;
         };
         const tabEl = document.createElement("button");
@@ -2755,6 +2926,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         tabEl.addEventListener("click", switchTab);
         tabsEl.append(tabEl);
       });
+      eventBus?.once("subscreenUnloaded", () => this.clearDrawProcessHook?.());
       return {
         base: tabsEl
       };
@@ -2765,7 +2937,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/shards/textShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/shards/textShard.js
   var TextShard = class extends Shard {
     get defaultColor() {
       return "var(--tmd-text, black)";
@@ -2774,6 +2946,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const p3 = document.createElement("p");
       p3.innerHTML = this.context.text ?? "";
       p3.style.color = this.context.color ?? this.defaultColor;
+      p3.style.margin = "0";
+      p3.style.boxSizing = "border-box";
+      if (this.context.height) p3.style.overflow = "auto";
       if (this.context.withBackground) p3.style.background = "var(--tmd-element,rgb(239, 239, 239))";
       if (this.context.withBorder) p3.style.border = "2px solid var(--tmd-accent, rgb(236, 236, 236))";
       setFontFamily(p3, MOD_DATA.fontFamily);
@@ -2788,10 +2963,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/assets/icons/exit.svg
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/assets/icons/exit.svg
   var exit_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" %0A     width="86" height="86" %0A     viewBox="0 0 86 86" %0A     fill="none">%0A  <g transform="translate(0.000000,86.000000) scale(0.100000,-0.100000)"%0A     fill="currentColor" stroke="none">%0A    <path d="M120 507 l0 -305 151 -81 c83 -45 160 -81 170 -81 18 0 19 12 19 281%0A            0 163 -4 288 -10 299 -11 20 -44 40 -212 129 l-118 62 0 -304z"/>%0A    <path d="M260 787 c31 -19 52 -23 180 -27 l145 -5 3 -72 3 -73 29 0 30 0 0 81%0A            c0 126 14 119 -223 119 l-202 0 35 -23z"/>%0A    <path d="M690 590 c0 -19 -7 -20 -90 -20 l-90 0 0 -60 0 -60 90 0 c83 0 90 -1%0A            90 -20 0 -11 3 -20 7 -20 14 0 93 84 93 99 0 16 -78 101 -92 101 -4 0 -8 -9%0A            -8 -20z"/>%0A    <path d="M590 336 l0 -76 -40 0 c-38 0 -40 -2 -40 -30 0 -29 1 -30 50 -30 77 0%0A            92 20 88 123 -3 81 -3 82 -30 85 l-28 3 0 -75z"/>%0A  </g>%0A</svg>';
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/ui.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/ui.js
   function hexToRgb(hex) {
     hex = hex.replace("#", "");
     const r4 = parseInt(hex.substring(0, 2), 16);
@@ -2975,7 +3150,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
       } catch (e2) {
         logger.error("Failed to unload subscreen", previousSubscreen, e2);
       }
-      window.dispatchEvent(new SubscreenUnloadedEvent({ subscreen: previousSubscreen }));
     }
     if (subscreen) {
       try {
@@ -2983,7 +3157,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
       } catch (e2) {
         logger.error("Failed to load subscreen", subscreen, e2);
       }
-      window.dispatchEvent(new SubscreenLoadedEvent({ subscreen }));
     }
   }
   function getCurrentSubscreen() {
@@ -3030,8 +3203,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
           fontSize: 8
         }).style.cssText += "max-width: 85%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0.1em;";
       }
+      eventBus?.emit("subscreenLoaded", {
+        subscreen: this
+      });
     }
     unload() {
+      eventBus?.emit("subscreenUnloaded", {
+        subscreen: this
+      });
     }
     click() {
     }
@@ -3097,10 +3276,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     drawPolylineArrow({
       points,
-      strokeColor = getThemedColorsModule()?.base?.text ?? "black",
+      strokeColor = cssVar("--tmd-text", "black"),
       lineWidth = 2,
       circleRadius = 5,
-      circleColor = getThemedColorsModule()?.base?.text ?? "black"
+      circleColor = cssVar("--tmd-text", "black")
     }) {
       if (points.length < 2) return;
       const ctx = MainCanvas.canvas.getContext("2d");
@@ -3140,7 +3319,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/shards/coreButtonShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/shards/coreButtonShard.js
   var CoreButtonShard = class extends ButtonShard {
     get dynamicClassButton() {
       return {
@@ -3168,14 +3347,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/shards/coreTextShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/shards/coreTextShard.js
   var CoreTextShard = class extends TextShard {
     get defaultColor() {
       return "rgb(162, 255, 19)";
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/shards/coreSelectShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/shards/coreSelectShard.js
   var CoreSelectShard = class extends SelectShard {
     get dynamicClassContainer() {
       return {
@@ -3190,7 +3369,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/shards/coreCheckboxShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/shards/coreCheckboxShard.js
   var CoreCheckboxShard = class extends CheckboxShard {
     get dynamicClassInput() {
       return {
@@ -3221,7 +3400,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/shards/coreInputListShard.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/shards/coreInputListShard.js
   var CoreInputListShard = class extends InputListShard {
     get dynamicClassContainer() {
       return {
@@ -3257,7 +3436,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/coreSubscreen.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/coreSubscreen.js
   var CoreSubscreen = class extends BaseSubscreen {
     g = 40;
     h = 0.05;
@@ -3333,7 +3512,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/generalSubscreen.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/generalSubscreen.js
   var GeneralSubscreen = class extends CoreSubscreen {
     get name() {
       return "General";
@@ -3353,7 +3532,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/toasts.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/toasts.js
   function createToastsContainer() {
     const container = document.createElement("div");
     container.classList.add("zcToastsContainer");
@@ -3373,7 +3552,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     window.addEventListener("resize", update);
     document.body.append(container);
     update();
-    document.addEventListener("zois-core:coresettingschanged", update);
+    eventBus?.on("zois-core:coreSettingsChanged", update);
     return container;
   }
   function getToastIcon(type2, theme) {
@@ -3536,7 +3715,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var toastsManager = new ToastsManager();
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/toastsSubscreen.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/toastsSubscreen.js
   var ToastsSubscreen = class extends CoreSubscreen {
     get name() {
       return "Toasts";
@@ -3617,7 +3796,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         padding: 1,
         width: 400,
         onClick: () => {
-          document.dispatchEvent(new CoreSettingsChangedEvent());
+          syncSettings();
           toastsManager.success({
             title: "Something was completed successfully",
             message: "Message details",
@@ -3643,7 +3822,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/developmentSubscreen.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/developmentSubscreen.js
   var DevelopmentSubscreen = class extends CoreSubscreen {
     get name() {
       return "Development";
@@ -3663,7 +3842,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core-subscreen/mainSubscreen.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core-subscreen/mainSubscreen.js
   var MainSubscreen = class extends CoreSubscreen {
     get name() {
       return "Zoi's Modding Core";
@@ -3714,7 +3893,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/dialogs.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/dialogs.js
   function createDialog(dialog) {
     return new Promise((resolve, reject) => {
       let inputOrSelectElement = null;
@@ -3822,13 +4001,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var dialogsManager = new DialogsManager();
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/core.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/core.js
   var coreSettings = {};
+  var coreEventBus = null;
   function syncSettings() {
     if (typeof coreSettings !== "object") return;
     Player.ExtensionSettings.ZOIS_CORE = LZString.compressToBase64(JSON.stringify(coreSettings));
     ServerPlayerExtensionSettingsSync("ZOIS_CORE");
-    document.dispatchEvent(new CoreSettingsChangedEvent());
+    coreEventBus?.emit("coreSettingsChanged", {
+      settings: structuredClone(coreSettings)
+    });
   }
   function registerSubscreen() {
     PreferenceRegisterExtensionSetting({
@@ -3845,6 +4027,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       run: () => {
         getCurrentSubscreen()?.run();
       },
+      resize: () => {
+        getCurrentSubscreen()?.resize();
+      },
       click: () => {
         getCurrentSubscreen()?.click();
       },
@@ -3854,10 +4039,24 @@ One of mods you are using is using an old version of SDK. It will work for now b
     });
   }
   var loginScreenElements = [];
-  async function registerCore() {
+  function registerCore() {
     const style = document.createElement("style");
     style.innerHTML = styles_default;
     document.head.append(style);
+    coreEventBus = getEventBus("zois-core");
+    window.ZOIS_CORE = Object.freeze({
+      version,
+      enableDevMode: () => {
+        if (typeof Player?.MemberNumber !== "number") return;
+        coreSettings.devMode = true;
+        syncSettings();
+        registerSubscreen();
+      },
+      getSettings: () => {
+        return JSON.parse(JSON.stringify(coreSettings));
+      },
+      getEventBus
+    });
     if (localStorage.getItem("autoConnectToDevServer") === "true") {
       hookFunction("CommonGetServer", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
         return "https://bondage-club-server-test.herokuapp.com/";
@@ -3898,22 +4097,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
       ServerURL = CommonGetServer();
       ServerInit();
     }
-    await waitFor(() => typeof Player?.MemberNumber === "number");
-    if (typeof Player.ExtensionSettings.ZOIS_CORE === "string") {
-      coreSettings = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.ZOIS_CORE) ?? "{}");
-    }
-    if (coreSettings.devMode) registerSubscreen();
-    window.ZOIS_CORE = Object.freeze({
-      version,
-      enableDevMode: () => {
-        coreSettings.devMode = true;
-        syncSettings();
-        registerSubscreen();
-      },
-      getSettings: () => {
-        return JSON.parse(JSON.stringify(coreSettings));
-      }
-    });
     hookFunction("ChatRoomMessageCreateReplyMessageElement", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
       const [msgId, displayMessage, data] = args;
       const r4 = formatString(displayMessage);
@@ -3976,7 +4159,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
                   break;
                 }
                 default: {
-                  window.dispatchEvent(new SetSubscreenEvent({ target, isTrusted: false }));
+                  coreEventBus?.emit("setSubscreen", {
+                    target,
+                    isTrusted: false
+                  });
                 }
               }
             }
@@ -3985,9 +4171,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       }
     }, true);
+    waitFor(() => typeof Player?.MemberNumber === "number").then(() => {
+      if (typeof Player.ExtensionSettings.ZOIS_CORE === "string") {
+        coreSettings = JSON.parse(LZString.decompressFromBase64(Player.ExtensionSettings.ZOIS_CORE) ?? "{}");
+      }
+      if (coreSettings.devMode) registerSubscreen();
+    });
   }
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/localization.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/localization.js
   var translations = {};
   async function loadLocalization() {
     if (MOD_DATA.localization === void 0) {
@@ -3996,15 +4188,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     const supportedLocales = MOD_DATA.localization.locales.supported;
     const defaultLocale = MOD_DATA.localization.locales.default;
-    const preferredLocale = TranslationLanguage;
+    const preferredLocale = TranslationLanguage.toLowerCase();
     if (!supportedLocales.includes(defaultLocale)) {
       logger.warn(`Default locale ${defaultLocale} isn't supported, fix configuration`);
       return;
     }
     hookFunction("TranslationSwitchLanguage", HookPriority.OBSERVE, (args, next) => {
       const value = next(args);
-      if (supportedLocales.includes(TranslationLanguage) && !(TranslationLanguage in translations)) {
-        fetchTranslationsForLocale(TranslationLanguage);
+      if (supportedLocales.includes(TranslationLanguage.toLowerCase()) && !(TranslationLanguage.toLowerCase() in translations)) {
+        fetchTranslationsForLocale(TranslationLanguage.toLowerCase());
       }
       return value;
     });
@@ -4021,15 +4213,16 @@ One of mods you are using is using an old version of SDK. It will work for now b
     translations[locale] = data;
   }
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/package.json
-  var version = "2.0.2";
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/package.json
+  var version = "2.1.1";
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/index.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/index.js
   var MOD_DATA;
   function bootstrap(modData) {
-    if (!window.ZOIS_CORE) registerCore();
     MOD_DATA = modData;
     createModSdk();
+    if (!window.ZOIS_CORE) registerCore();
+    createEventBus();
     loadLocalization();
     hookFunction("GameKeyDown", HookPriority.ADD_BEHAVIOR, (args, next) => {
       const currentSubscreen3 = getCurrentSubscreen();
@@ -4044,28 +4237,24 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       return next(args);
     });
-    window.addEventListener(
-      "zois-core:setsubscreen",
-      async (_event) => {
-        const event = _event;
-        const target = event.detail.target;
-        const isTrusted = event.detail.isTrusted;
-        if (target === void 0) return;
-        if (target.startsWith(MOD_DATA.key + ":")) {
-          const currentSubscreen3 = getCurrentSubscreen();
-          const mod = target.substring(0, MOD_DATA.key.length);
-          const subscreen = target.substring(MOD_DATA.key.length + 1);
-          if (currentSubscreen3?.constructor?.name === subscreen) return;
-          const s4 = MOD_DATA.subscreens?.[subscreen];
-          if (s4 === void 0) return;
-          if (isTrusted || await dialogsManager.confirm({ message: `Confirm the redirecting to modded subscreen ${target}` })) {
-            await PreferenceOpenSubscreen("Extensions");
-            await PreferenceSubscreenExtensionsOpen(mod, ["Online", "ChatRoom"]);
-            setSubscreen(new s4());
-          }
+    eventBus?.on("setSubscreen", async (data) => {
+      const target = data.target;
+      const isTrusted = data.isTrusted;
+      if (target === void 0) return;
+      if (target.startsWith(MOD_DATA.key + ":")) {
+        const currentSubscreen3 = getCurrentSubscreen();
+        const mod = target.substring(0, MOD_DATA.key.length);
+        const subscreen = target.substring(MOD_DATA.key.length + 1);
+        if (currentSubscreen3?.constructor?.name === subscreen) return;
+        const s4 = MOD_DATA.subscreens?.[subscreen];
+        if (s4 === void 0) return;
+        if (isTrusted || await dialogsManager.confirm({ message: `Confirm the redirecting to modded subscreen ${target}` })) {
+          await PreferenceOpenSubscreen("Extensions");
+          await PreferenceSubscreenExtensionsOpen(mod, ["Online", "ChatRoom"]);
+          setSubscreen(new s4());
         }
       }
-    );
+    });
     ServerIsLoggedInAsync().then(() => {
       if (modData.onReady) setTimeout(modData.onReady, getRandomNumber(3e3, 6e3));
     });
@@ -4098,26 +4287,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
     return { isBeatifulString: false };
   }
-  var SetSubscreenEvent = class extends CustomEvent {
-    constructor(detail) {
-      super(`zois-core:setsubscreen`, { detail });
-    }
-  };
-  var SubscreenLoadedEvent = class extends CustomEvent {
-    constructor(detail) {
-      super(`zois-core:subscreenloaded`, { detail });
-    }
-  };
-  var SubscreenUnloadedEvent = class extends CustomEvent {
-    constructor(detail) {
-      super(`zois-core:subscreenunloaded`, { detail });
-    }
-  };
-  var CoreSettingsChangedEvent = class extends CustomEvent {
-    constructor() {
-      super(`zois-core:coresettingschanged`);
-    }
-  };
   function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -4165,18 +4334,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function getNickname(target) {
     return CharacterNickname(target);
   }
-  function getThemedColorsModule() {
-    if (!findModByName("Themed")) return null;
-    const data = LZString.decompressFromBase64(Player.ExtensionSettings.Themed ?? "") ?? "{}";
-    let themedData;
-    try {
-      themedData = JSON.parse(data);
-    } catch {
-    }
-    ;
-    if (!themedData?.GlobalModule?.themedEnabled || !themedData?.GlobalModule?.doVanillaGuiOverhaul) return null;
-    return themedData.ColorsModule;
-  }
   function injectStyles(stylesToInject) {
     const style = document.createElement("style");
     style.innerHTML = stylesToInject;
@@ -4195,12 +4352,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // src/styles.css
   var styles_default2 = `@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&family=Frijole&family=Rubik+Wet+Paint&family=Yusei+Magic&family=Macondo+Swash+Caps&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 @media (max-width: 750px) {
   .bccQAM .bccQAM_sidebar>input {
@@ -4817,7 +4968,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
 }`;
 
   // package.json
-  var version2 = "2.2.0";
+  var version2 = "2.2.1";
 
   // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/defaultAttributes.js
   var defaultAttributes2 = {
@@ -7132,7 +7283,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/validation.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/validation.js
   async function validateData(data, dtoClass) {
     try {
       const dtoInstance = plainToInstance(dtoClass, data);
@@ -7158,7 +7309,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   }
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/messaging.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/messaging.js
   function isZoiChatRoomMessage(m3) {
     return m3.Content === MOD_DATA.key;
   }
@@ -7389,7 +7540,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   // src/assets/game-icons/mouthWatering.svg
   var mouthWatering_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="currentColor" d="M87.75 30.72c-5.104.03-10.333.31-15.72.874c5.062 68.606 43.873 95.378 127.75 66.25c-26.35-43.13-62.692-67.418-112.03-67.125zm343.906 0c-49.338-.294-85.65 23.993-112 67.124c83.878 29.128 122.69 2.356 127.75-66.25a161 161 0 0 0-15.75-.875zM13.844 146.437c-.826 4.546-1.156 9.206-1.156 13.875c0 46.09 41.19 86.706 104.124 111.062c23.478 13.02 30.98 83.94 19.688 117.156c-2.47 7.262-12.906 26.75-12.906 35.626c0 12.032 9.75 21.97 21.78 21.97c12.033 0 21.75-9.938 21.75-21.97c0-8.93-11.05-28.19-13.093-35.625c-8.77-31.912-10.39-102.854 18.157-101.186c25.43 5.13 52.85 7.945 81.438 8h.094c19.003 1.767 24.585 30.437 15.843 56.156c-1.87 5.496-9.405 20.092-9.407 26.813c0 9.108 7.36 16.468 16.47 16.468c9.108 0 16.468-7.36 16.468-16.467c0-6.762-8.328-21.184-9.875-26.813c-5.86-26.52-4.616-39.726 12.81-41.656c19.96-2.21 28.955 77.376 17.283 111.72c-3.103 9.124-16 34-16 45.155a27.21 27.21 0 0 0 27.28 27.28a27.216 27.216 0 0 0 27.282-27.28c0-11.226-13.9-35.817-16.47-45.158c-11.062-40.25-6.928-130.344 18.533-138.093c.02-.008.04-.026.062-.033c.387-.097.77-.182 1.156-.28c.013-.01.02-.023.03-.032c2.284-.584 4.54-1.19 6.783-1.813c52.234-11.767 35.948 18 56.06 18c16.277 0 5.717-34.745 31.314-59.03c29.47-22.375 46.906-50.01 46.906-79.97c0-4.668-.36-9.328-1.188-13.875c-13.076 54.687-115.864 96.438-240.593 96.438c-124.73 0-227.55-41.75-240.626-96.438zM418 341.938c-12.01 0-21.75 9.74-21.75 21.75s9.74 21.718 21.75 21.718s21.72-9.71 21.72-21.72c0-12.008-9.71-21.748-21.72-21.748"/></svg>';
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/wardrobe.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/wardrobe.js
   var AppearanceComparer = class {
     seedsCache = /* @__PURE__ */ new Map();
     getSeed(arr) {
@@ -7550,6 +7701,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       addDynamicClass(p3, {
         base: {
           padding: "0.65em",
+          margin: "0",
           marginTop: "0.25em",
           color: "black",
           fontSize: "1.25em"
@@ -7586,7 +7738,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           );
           options.forEach((option) => {
             const e2 = document.createElement("div");
-            e2.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;";
+            e2.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; box-sizing: border-box;";
             if (option.icon) {
               option.icon.style.cssText = "color: #bcbcbc;";
               e2.append(option.icon);
@@ -7607,6 +7759,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       });
       const p3 = document.createElement("p");
+      p3.style.margin = "0";
       p3.style.paddingRight = "2em";
       if (options.length === 0) {
         p3.textContent = "No options";
@@ -7664,6 +7817,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       const p3 = document.createElement("p");
       p3.style.paddingRight = "2em";
+      p3.style.margin = "0";
       if (options().length === 0) {
         p3.textContent = "No options";
       } else {
@@ -7709,14 +7863,48 @@ One of mods you are using is using an old version of SDK. It will work for now b
         onChange(input.checked);
       });
       const label = document.createElement("p");
-      label.style.cssText = "font-size: 1.25em;";
+      label.style.cssText = "font-size: 1.25em; margin: 0;";
       label.textContent = labelText;
       checkbox.append(input, label);
       return checkbox;
     }
   };
 
-  // node_modules/.pnpm/zois-core@2.0.2/node_modules/zois-core/dist/changelogs.js
+  // node_modules/.pnpm/zois-core@2.1.1/node_modules/zois-core/dist/changelogs.js
+  var TAGS = {
+    fix: {
+      name: "Fix",
+      coloring: {
+        text: "#771515",
+        background: "#f9b4b4",
+        border: "#ca6565"
+      }
+    },
+    chore: {
+      name: "Chore",
+      coloring: {
+        text: "#464646",
+        background: "#f2f2f2",
+        border: "#e2e2e2"
+      }
+    },
+    feature: {
+      name: "Feature",
+      coloring: {
+        text: "#147914",
+        background: "#cbffcbc7",
+        border: "#4eea4e"
+      }
+    },
+    localization: {
+      name: "Localization",
+      coloring: {
+        text: "#09093e",
+        background: "#a1e0f4",
+        border: "#66adec"
+      }
+    }
+  };
   function showChangelogModal() {
     const changelog = MOD_DATA.changelog;
     const { data } = changelog;
@@ -7789,24 +7977,30 @@ One of mods you are using is using an old version of SDK. It will work for now b
     modal.appendChild(content);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
-    overlay.onclick = (e2) => {
-      if (e2.target === overlay) document.body.removeChild(overlay);
+    const exitHandler = () => {
+      document.removeEventListener("keydown", keyDownHandler, { capture: true });
+      document.body.removeChild(overlay);
     };
-    closeBtn.onclick = () => document.body.removeChild(overlay);
-    document.addEventListener("keydown", function handler(e2) {
+    const keyDownHandler = (e2) => {
       if (e2.key === "Escape") {
-        document.body.removeChild(overlay);
-        document.removeEventListener("keydown", handler);
+        e2.preventDefault();
+        e2.stopPropagation();
+        exitHandler();
       }
-    });
+    };
+    overlay.onclick = (e2) => {
+      if (e2.target === overlay) exitHandler();
+    };
+    closeBtn.onclick = exitHandler;
+    document.addEventListener("keydown", keyDownHandler, { capture: true });
   }
   function createCommitElement(changelogCommit) {
     try {
       const commitDiv = document.createElement("div");
       commitDiv.style.cssText = `
             display: flex;
+            flex-direction: column;
             gap: 12px;
-            align-items: center;
             padding: 12px;
             border: 1px solid #e5e7eb;
             border-radius: 8px;
@@ -7814,6 +8008,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
         `;
       commitDiv.onmouseover = () => commitDiv.style.borderColor = "#3b82f6";
       commitDiv.onmouseout = () => commitDiv.style.borderColor = "#e5e7eb";
+      const avatarAndInfo = document.createElement("div");
+      avatarAndInfo.style.cssText = `
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        `;
+      commitDiv.append(avatarAndInfo);
       const avatar = document.createElement("img");
       avatar.src = changelogCommit.author.avatar_url;
       avatar.style.cssText = `
@@ -7822,42 +8023,51 @@ One of mods you are using is using an old version of SDK. It will work for now b
             border-radius: 50%;
             flex-shrink: 0;
         `;
+      avatarAndInfo.append(avatar);
       const info = document.createElement("div");
       info.style.flex = "1";
       info.style.position = "relative";
+      avatarAndInfo.append(info);
       const author = document.createElement("div");
       author.textContent = changelogCommit.author.name;
       author.style.fontWeight = "600";
       author.style.marginBottom = "4px";
+      info.append(author);
       const message = document.createElement("div");
       message.textContent = changelogCommit.message;
       message.style.cssText = "color: #374151; line-height: 1.4;";
+      info.append(message);
+      if (changelogCommit.note) {
+        const note = document.createElement("div");
+        note.textContent = changelogCommit.note ?? "";
+        note.style.cssText = "color: #374151; line-height: 1; font-size: 0.8em;";
+        commitDiv.append(note);
+      }
       const tags = document.createElement("div");
       tags.style.cssText = "display: flex; gap: 4px; position: absolute; right: 2px; top: 2px;";
+      info.append(tags);
       for (const tag of changelogCommit.tags) {
         const tagEl = document.createElement("p");
-        tagEl.textContent = tag;
+        tagEl.textContent = TAGS[tag].name;
         addDynamicClass(tagEl, {
           base: {
             fontSize: "0.85em",
             padding: "2px 6px",
+            margin: "0",
             borderRadius: "6px",
-            background: tag === "fix" ? "#f9b4b4" : tag === "feature" ? "#cbffcbc7" : "#a1e0f4",
-            color: tag === "fix" ? "#771515" : tag === "feature" ? "#147914" : "#09093e",
+            background: TAGS[tag].coloring.background,
+            color: TAGS[tag].coloring.text,
             borderWidth: "1px",
             borderStyle: "solid",
-            borderColor: tag === "fix" ? "#ca6565" : tag === "feature" ? "#4eea4e" : "#66adec"
+            borderColor: TAGS[tag].coloring.border
           }
         });
         tags.append(tagEl);
       }
-      info.append(author, message, tags);
       commitDiv.style.cursor = "pointer";
       commitDiv.onclick = () => {
         window.open(changelogCommit.commit_url, "_blank");
       };
-      commitDiv.appendChild(avatar);
-      commitDiv.appendChild(info);
       return commitDiv;
     } catch (err) {
       logger.error(`Failed to load commit ${changelogCommit.sha}:`, err);
@@ -7940,7 +8150,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           cursor: "pointer",
           padding: "0.25em",
           color: "#8e75af",
-          borderRadius: "4px"
+          borderRadius: "4px",
+          boxSizing: "border-box"
         },
         hover: {
           background: "#94949424"
@@ -7972,7 +8183,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       headerRightButtonsContainer.append(centerQAMButton, maximizeQAMButton, closeQAMButton);
       const title = document.createElement("p");
       title.textContent = this.name;
-      title.style.cssText = "font-weight: bold; padding: 0.25em 1em; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
+      title.style.cssText = "font-weight: bold; padding: 0.25em 1em; margin: 0; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
       title.style.textShadow = "rgb(102, 0, 218) -0.095em -0.05em 0px";
       title.style.letterSpacing = "0.05em";
       title.style.fontFamily = "Finger Paint";
@@ -7984,13 +8195,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const contentAreaHeader = document.createElement("div");
       contentAreaHeader.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
       const contentAreaHeaderTitle = document.createElement("p");
-      contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em;";
+      contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em; margin: 0;";
       const contentAreaHeaderDescription = document.createElement("p");
-      contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em;";
+      contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em; margin: 0;";
       const featureContent = document.createElement("div");
       featureContent.style.cssText = "display: flex; flex-direction: column; height: 100%; overflow: auto;";
       const searchInput = document.createElement("input");
-      searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
+      searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0; color: black !important;";
       searchInput.placeholder = "Search...";
       searchInput.addEventListener("input", () => {
         setItems(
@@ -8014,6 +8225,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               background: "none",
               border: "none",
               padding: "0.25em",
+              boxSizing: "border-box",
               borderTop: "1px solid #e5e5e5",
               width: "100%"
             },
@@ -8024,23 +8236,23 @@ One of mods you are using is using an old version of SDK. It will work for now b
           const detailsContainer = document.createElement("div");
           detailsContainer.style.cssText = "display: flex; flex-direction: column; align-items: flex-start; row-gap: 4px;";
           const name = document.createElement("span");
-          name.style.fontSize = "clamp(10px, 5vw, 22px)";
+          name.style.fontSize = "22px";
           if (b3.isBeta) {
             name.innerHTML = b3.subscreen.name + "<span style='position: relative; bottom: 0.75em; margin-left: 0.45em; padding: 0 0.35em; border-radius: 6px; background: #62ffe6; font-size: 0.5em; color: #b201ff; border: 1px solid #d2d2d2;'>Beta</span>";
           } else {
             name.textContent = b3.subscreen.name;
           }
           const description = document.createElement("span");
-          description.style.fontSize = "clamp(8px, 1vw, 16px)";
+          description.style.fontSize = "16px";
           description.style.color = "#878787";
-          description.style.maxWidth = "calc(340px - clamp(10px, 8vw, 35px) - 0.45em)";
+          description.style.maxWidth = "calc(340px - 40px - 0.45em)";
           description.style.whiteSpace = "nowrap";
           description.style.overflow = "clip";
           description.style.textOverflow = "ellipsis";
           description.style.padding = "2px";
           description.textContent = b3.subscreen.description;
           const icon = createElement2(b3.icon);
-          icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
+          icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: 40px; height: 40px; padding: 4px; stroke: #7e63b6; border-radius: 4px; box-sizing: border-box;";
           btn.addEventListener("click", () => {
             featureContent.innerHTML = "";
             b3.subscreen.load(featureContent);
@@ -8067,7 +8279,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         container.append(p3);
       } else setItems(items);
       const footer = document.createElement("div");
-      footer.style.cssText = "position: absolute; left: 0; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.65em; background: rgb(247 242 255 / 75%); border-top: 2px solid #e8e8e8;";
+      footer.style.cssText = "position: absolute; left: 0; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.65em; box-sizing: border-box; background: rgb(247 242 255 / 75%); border-top: 2px solid #e8e8e8;";
       const server = document.createElement("div");
       server.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; background: rgb(227, 210, 255); border-radius: 0.65em; padding: 0.65em; font-weight: bold;";
       const ping = document.createElement("div");
@@ -8079,7 +8291,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
           cursor: "pointer",
           background: "rgb(229, 208, 255)",
           padding: "0.25em",
-          borderRadius: "4px"
+          borderRadius: "4px",
+          boxSizing: "border-box"
         },
         hover: {
           background: "rgb(223, 199, 252)"
@@ -10572,10 +10785,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           });
           const text = document.createElement("p");
-          text.style.cssText = "font-size: 0.8em;";
+          text.style.cssText = "font-size: 0.8em;  margin: 0;";
           let timeAgo = null;
           const differenceContainer = document.createElement("p");
-          differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em;";
+          differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em; margin: 0;";
           if (commit.type === "initial") {
             const iconImg = createElement2(GitCommitVertical);
             iconImg.style.cssText = "height: 80%; width: auto; color: rgb(72 72 123 / 70%);";
@@ -10595,15 +10808,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
             text.textContent = `${commit.sourceCharacter?.name} (${commit.sourceCharacter?.memberNumber})`;
             icon.append(iconImg, iconText);
             timeAgo = document.createElement("p");
-            timeAgo.style.cssText = "color: #526378; font-size: 0.75em;";
+            timeAgo.style.cssText = "color: #526378; font-size: 0.75em; margin: 0;";
             timeAgo.textContent = formatMilliseconds(Date.now() - commit.timestamp) + " ago";
             const added = document.createElement("p");
+            added.style.margin = "0";
             added.textContent = "+" + commit.bundle.difference.added.length.toString();
             added.style.color = "#57d157";
             const modified = document.createElement("p");
+            modified.style.margin = "0";
             modified.textContent = commit.bundle.difference.modified.length.toString();
             modified.style.color = "#ffa705";
             const removed = document.createElement("p");
+            removed.style.margin = "0";
             removed.textContent = "-" + commit.bundle.difference.removed.length.toString();
             removed.style.color = "#ff0000";
             differenceContainer.append(added, modified, removed);
@@ -10672,7 +10888,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           this.loadCommitsList(container, target);
         });
         const text = document.createElement("p");
-        text.style.cssText = "margin: auto; text-align: center;";
+        text.style.cssText = "margin: auto; text-align: center; margin: 0;";
         text.textContent = "Just initial commit, nothing interesting. What are you doing here?";
         container.append(exitButton, previewCanvas, text);
       } else {
@@ -12282,7 +12498,6 @@ One of mods you are using is using an old version of SDK. It will work for now b
             }
           }
         });
-        container.append(_container);
       });
       this.createCheckbox({
         anchor: "top-right",
@@ -12425,6 +12640,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           color: "var(--tmd-text, black)",
           fontSize: fontSize === "sm" ? "0.5em" : fontSize === "md" ? "1.2em" : "1.8em",
           fontFamily: "Yusei Magic",
+          margin: "0",
           marginTop: "0.25em"
         }
       });
@@ -14478,7 +14694,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var W = P.get("ServerSendModifiers", () => new Z());
 
-  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.2.4_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_bf5ca7e60c3509cafa7e3d96b8114b4e/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
+  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.2.5_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_39c4b97843afb4e3f1fb788c5d607fb7/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
   var i3;
   var r3 = class {
     static info(t3) {
@@ -14559,7 +14775,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function N2(t3) {
     return Object.values(t3).some((t4) => "string" == typeof t4);
   }
-  function R2(t3) {
+  function d2(t3) {
     const { activity: e2, label: i4, labelSelf: r4, dialog: s4, dialogSelf: n4 } = t3, { Name: a3, Target: o4, TargetSelf: c3 } = e2, E3 = i4 ?? r4 ?? { CN: a3 };
     N2(E3) ? A2(E3, (t4, e3) => {
       p2[t4] || (p2[t4] = {}), p2[t4][`Activity${a3}`] = e3;
@@ -14571,9 +14787,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
     const m3 = n4 || s4;
     m3 && g2("", m3, "Self", a3, h4);
   }
-  var d2 = {};
+  var R2 = {};
   function v2(t3) {
-    d2[t3.name] = t3;
+    R2[t3.name] = t3;
   }
   function $2(t3, e2) {
     return e2.map((e3) => {
@@ -14581,7 +14797,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         const i4 = (function(t4) {
           for (; ; ) {
             const e4 = `${t4}_prereq_${Math.random().toString(36).substring(2)}`;
-            if (!d2[e4]) return e4;
+            if (!R2[e4]) return e4;
           }
         })(t3);
         return v2({ name: i4, test: e3 }), i4;
@@ -14601,9 +14817,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   var T2;
   var D2;
+  var w2;
   var C2;
-  var F2;
-  function w2() {
+  function F2() {
     if (D2) return T2;
     D2 = 1;
     const t3 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...t4) => console.error("SEMVER", ...t4) : () => {
@@ -14611,10 +14827,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return T2 = t3;
   }
   function P2() {
-    if (F2) return C2;
-    F2 = 1;
+    if (C2) return w2;
+    C2 = 1;
     const t3 = Number.MAX_SAFE_INTEGER || 9007199254740991;
-    return C2 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t3, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
+    return w2 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t3, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
   }
   var G2;
   var M2;
@@ -14630,7 +14846,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var V2 = { exports: {} };
   function H2() {
     return G2 || (G2 = 1, (function(t3, e2) {
-      const { MAX_SAFE_COMPONENT_LENGTH: i4, MAX_SAFE_BUILD_LENGTH: r4, MAX_LENGTH: s4 } = P2(), n4 = w2(), a3 = (e2 = t3.exports = {}).re = [], o4 = e2.safeRe = [], c3 = e2.src = [], E3 = e2.safeSrc = [], h4 = e2.t = {};
+      const { MAX_SAFE_COMPONENT_LENGTH: i4, MAX_SAFE_BUILD_LENGTH: r4, MAX_LENGTH: s4 } = P2(), n4 = F2(), a3 = (e2 = t3.exports = {}).re = [], o4 = e2.safeRe = [], c3 = e2.src = [], E3 = e2.safeSrc = [], h4 = e2.t = {};
       let u4 = 0;
       const m3 = "[a-zA-Z0-9-]", l4 = [["\\s", 1], ["\\d", s4], [m3, r4]], p3 = (t4, e3, i5) => {
         const r5 = ((t5) => {
@@ -14645,7 +14861,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function z2() {
     if (k2) return X3;
     k2 = 1;
-    const t3 = w2(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i4 } = P2(), { safeRe: r4, t: s4 } = H2(), n4 = (function() {
+    const t3 = F2(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i4 } = P2(), { safeRe: r4, t: s4 } = H2(), n4 = (function() {
       if (b2) return M2;
       b2 = 1;
       const t4 = Object.freeze({ loose: true }), e3 = Object.freeze({});
@@ -14781,8 +14997,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   var Z2;
   var q;
-  var Y2;
   var J2;
+  var Y2;
   var Q = S2((function() {
     if (W2) return x2;
     W2 = 1;
@@ -14806,15 +15022,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     };
   })());
   var K = (function() {
-    if (J2) return Y2;
-    J2 = 1;
+    if (Y2) return J2;
+    Y2 = 1;
     const t3 = (function() {
       if (q) return Z2;
       q = 1;
       const t4 = z2();
       return Z2 = (e2, i4, r4) => new t4(e2, r4).compare(new t4(i4, r4)), Z2;
     })();
-    return Y2 = (e2, i4, r4) => t3(e2, i4, r4) < 0, Y2;
+    return J2 = (e2, i4, r4) => t3(e2, i4, r4) < 0, J2;
   })();
   var tt = S2(K);
   function et(t3) {
@@ -15016,7 +15232,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function Nt(t3) {
     t3.override && (At[t3.activity.Name] && r3.warn(`Override for ${t3.activity.Name} already exists, skipping`), At[t3.activity.Name] || (At[t3.activity.Name] = t3.override)), t3.item && (ft[t3.activity.Name] && r3.warn(`Item provider for ${t3.activity.Name} already exists, skipping`), ft[t3.activity.Name] || (ft[t3.activity.Name] = t3.item)), t3.dictionary && (gt[t3.activity.Name] && r3.warn(`Dictionary processor for ${t3.activity.Name} already exists, skipping`), gt[t3.activity.Name] || (gt[t3.activity.Name] = t3.dictionary));
   }
-  var Rt = class {
+  var dt = class {
     addPrerequisites(t3) {
       c2(() => t3.forEach((t4) => v2(t4)));
     }
@@ -15028,7 +15244,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       for (const e2 of t3) {
         const t4 = { ...e2 };
         c2(() => {
-          t4.activity.Prerequisite = $2(t4.activity.Name, t4.activity.Prerequisite), "R121" === GameVersion ? t4.activity.ActivityID = -1 : t4.activity.ActivityID = void 0, ActivityFemale3DCG.push(t4.activity), ActivityFemale3DCGOrdering.push(t4.activity.Name), R2(t4), n3(t4.activity.Name, t4), y2(t4), Nt(t4), pt(t4.activity, t4.useImage);
+          t4.activity.Prerequisite = $2(t4.activity.Name, t4.activity.Prerequisite), "R121" === GameVersion ? t4.activity.ActivityID = -1 : t4.activity.ActivityID = void 0, ActivityFemale3DCG.push(t4.activity), ActivityFemale3DCGOrdering.push(t4.activity.Name), d2(t4), n3(t4.activity.Name, t4), y2(t4), Nt(t4), pt(t4.activity, t4.useImage);
         });
       }
     }
@@ -15091,10 +15307,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
           const { Content: i4, Dictionary: r4, Type: s4 } = e2[1];
           if ("Activity" !== s4 || !r4) return;
           const n4 = t3(i4);
-          n4 && r4.push({ Tag: `MISSING ACTIVITY DESCRIPTION FOR KEYWORD ${i4}`, Text: n4 });
+          n4 && r4.push({ Tag: `MISSING TEXT IN "ActivityDictionary.csv": ${i4}`, Text: n4 });
         });
       })(), u.hookFunction("ActivityCheckPrerequisite", 1, (t3, e2) => {
-        const i4 = d2[t3[0]];
+        const i4 = R2[t3[0]];
         return i4 ? i4.test(...t3) : e2(t3);
       });
     }
@@ -15110,11 +15326,11 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return this;
     }
   };
-  var dt = new Rt();
+  var Rt = new dt();
 
   // src/modules/activities.ts
   function addActivities() {
-    dt.addCustomActivity({
+    Rt.addCustomActivity({
       activity: {
         Name: "BCC_StealPanties" /* STEAL_PANTIES */,
         Prerequisite: ["UseHands", (_3, _acter, acted) => !!InventoryGet(acted, "Panties")],
@@ -15158,7 +15374,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         ChatRoomCharacterUpdate(Player);
       }
     });
-    dt.addCustomActivity({
+    Rt.addCustomActivity({
       activity: {
         Name: "BCC_SuckOnTipOfHair" /* SUCK_ON_TIP_HAIR */,
         Prerequisite: ["UseMouth"],
@@ -15195,7 +15411,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
     });
     u.initWithMod(modSdk);
-    dt.init();
+    Rt.init();
   }
 
   // src/constants.ts
@@ -15203,84 +15419,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // changelog.json
   var changelog_default = {
-    generated_at: "2026-08-01T12:39:38.220Z",
+    generated_at: "2026-08-20T21:08:05.601Z",
     changes: [
       {
-        message: "Switch to manual workflow trigger",
-        sha: "50f31ecc678e210c5d65eb124bcbbb3125155fa9",
+        message: "Delete global reset styles",
+        sha: "3553a430ffa70c256b521fe0341ba0430d0f0062",
         author: {
           name: "FurryZoi",
           avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
         },
-        date: "2026-08-01T12:36:11Z",
-        tags: ["chore"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/50f31ecc678e210c5d65eb124bcbbb3125155fa9"
-      },
-      {
-        message: "Fixes fixes fixes",
-        sha: "15bb3e043e85a9d0383991b6ea58855c12a79c0b",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-08-01T12:22:48Z",
-        tags: ["fix", "chore"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/15bb3e043e85a9d0383991b6ea58855c12a79c0b"
-      },
-      {
-        message: "Make the title shimmer like a... rainbow",
-        sha: "b96904aac128dba2a8ed5f3cf7f94a8bf65c1de5",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-07-21T20:13:29Z",
-        tags: ["feature"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/b96904aac128dba2a8ed5f3cf7f94a8bf65c1de5"
-      },
-      {
-        message: "Fix most typing errors",
-        sha: "000d5e68acb5b5c772c76b3b67fd3651ec641c1a",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-07-21T18:59:13Z",
-        tags: ["chore"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/000d5e68acb5b5c772c76b3b67fd3651ec641c1a"
-      },
-      {
-        message: "Fix handshake",
-        sha: "06fe4abae1e43a2e89f97eb3fa38caf80b5dbb9a",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-07-20T12:20:47Z",
+        date: "2026-08-20T21:06:49Z",
         tags: ["fix"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/06fe4abae1e43a2e89f97eb3fa38caf80b5dbb9a"
-      },
-      {
-        message: "Add minigames cheats",
-        sha: "628b75f2fb6ed07e21341354722b51a70a223bb5",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-07-20T10:01:07Z",
-        tags: ["feature"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/628b75f2fb6ed07e21341354722b51a70a223bb5"
-      },
-      {
-        message: "Adapt to zois-core v2",
-        sha: "1cfbfece3d77cba2e1015afc66081dbc9e86c1a8",
-        author: {
-          name: "FurryZoi",
-          avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
-        },
-        date: "2026-07-13T00:07:31Z",
-        tags: ["chore"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/1cfbfece3d77cba2e1015afc66081dbc9e86c1a8"
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/3553a430ffa70c256b521fe0341ba0430d0f0062"
       }
     ]
   };
@@ -15372,7 +15522,7 @@ lucide/dist/esm/icons/terminal.mjs:
 lucide/dist/esm/icons/trash-2.mjs:
 lucide/dist/esm/lucide.mjs:
   (**
-   * @license lucide v1.27.0 - ISC
+   * @license lucide v1.33.0 - ISC
    *
    * This source code is licensed under the ISC license.
    * See the LICENSE file in the root directory of this source tree.
@@ -15459,7 +15609,7 @@ lucide/dist/esm/lucide.js:
 
 @sugarch/bc-activity-manager/dist/index.mjs:
   (**
-   * @sugarch/bc-activity-manager v1.2.4
+   * @sugarch/bc-activity-manager v1.2.5
    * 
    * Copyright (c) 2026 SugarChain Studio
    * License: MIT
