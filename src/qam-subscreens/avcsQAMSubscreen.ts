@@ -92,10 +92,10 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                     }
                 });
                 const text = document.createElement("p");
-                text.style.cssText = "font-size: 0.8em;";
+                text.style.cssText = "font-size: 0.8em;  margin: 0;";
                 let timeAgo: HTMLParagraphElement | null = null;
                 const differenceContainer = document.createElement("p");
-                differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em;";
+                differenceContainer.style.cssText = "display: flex; column-gap: 0.45em; color: #6d6d6d; font-size: 0.75em; margin: 0;";
 
                 if (commit.type === "initial") {
                     const iconImg = createElement(GitCommitVertical);
@@ -116,15 +116,18 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                     text.textContent = `${commit.sourceCharacter?.name} (${commit.sourceCharacter?.memberNumber})`;
                     icon.append(iconImg, iconText);
                     timeAgo = document.createElement("p");
-                    timeAgo.style.cssText = "color: #526378; font-size: 0.75em;";
+                    timeAgo.style.cssText = "color: #526378; font-size: 0.75em; margin: 0;";
                     timeAgo.textContent = formatMilliseconds(Date.now() - commit.timestamp) + " ago";
                     const added = document.createElement("p");
+                    added.style.margin = "0";
                     added.textContent = "+" + commit.bundle.difference.added.length.toString();
                     added.style.color = "#57d157";
                     const modified = document.createElement("p");
+                    modified.style.margin = "0";
                     modified.textContent = commit.bundle.difference.modified.length.toString();
                     modified.style.color = "#ffa705";
                     const removed = document.createElement("p");
+                    removed.style.margin = "0";
                     removed.textContent = "-" + commit.bundle.difference.removed.length.toString();
                     removed.style.color = "#ff0000";
                     differenceContainer.append(added, modified, removed);
@@ -197,7 +200,7 @@ export class AVQS_QAMSubscreen extends BaseQAMSubscreen {
                 this.loadCommitsList(container, target);
             });
             const text = document.createElement("p");
-            text.style.cssText = "margin: auto; text-align: center;";
+            text.style.cssText = "margin: auto; text-align: center; margin: 0;";
             text.textContent = "Just initial commit, nothing interesting. What are you doing here?";
             container.append(exitButton, previewCanvas, text);
         } else {

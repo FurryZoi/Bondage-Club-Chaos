@@ -109,7 +109,6 @@ export class MySpellsSubscreen extends BaseSubscreen {
                     }
                 }
             });
-            container.append(_container);
         });
 
         this.createCheckbox({

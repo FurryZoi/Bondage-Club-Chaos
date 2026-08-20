@@ -30,6 +30,7 @@ import { logger } from "zois-core/logging";
 import { CheatsMinigamesSubscreen } from "./subscreens/cheatsMinigamesSubscreen";
 import { showChangelogModal } from "zois-core/changelogs";
 import changelog from "../changelog.json";
+import { dialogsManager } from "zois-core/dialogs";
 
 
 bootstrap({

@@ -16,6 +16,7 @@ export class PageMarkup {
                 color: "var(--tmd-text, black)",
                 fontSize: fontSize === "sm" ? "0.5em" : fontSize === "md" ? "1.2em" : "1.8em",
                 fontFamily: "Yusei Magic",
+                margin: "0",
                 marginTop: "0.25em"
             }
         });

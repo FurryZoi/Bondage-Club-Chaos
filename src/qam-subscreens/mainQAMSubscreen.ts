@@ -36,7 +36,8 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 cursor: "pointer",
                 padding: "0.25em",
                 color: "#8e75af",
-                borderRadius: "4px"
+                borderRadius: "4px",
+                boxSizing: "border-box"
             },
             hover: {
                 background: "#94949424"
@@ -74,7 +75,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
 
         const title = document.createElement("p");
         title.textContent = this.name;
-        title.style.cssText = "font-weight: bold; padding: 0.25em 1em; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
+        title.style.cssText = "font-weight: bold; padding: 0.25em 1em; margin: 0; text-align: center; font-size: clamp(10px, 5vw, 24px); width: 100%; letter-spacing: 0.08em;";
         title.style.textShadow = "rgb(102, 0, 218) -0.095em -0.05em 0px";
         title.style.letterSpacing = "0.05em";
         title.style.fontFamily = "Finger Paint";
@@ -90,16 +91,16 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         contentAreaHeader.style.cssText = "display: flex; flex-direction: column; row-gap: 0.65em; padding: 0.65em; border-bottom: 1px solid #e5e5e5; margin-bottom: 0.5em;";
 
         const contentAreaHeaderTitle = document.createElement("p");
-        contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em;";
+        contentAreaHeaderTitle.style.cssText = "font-weight: bold; font-size: 1.15em; margin: 0;";
 
         const contentAreaHeaderDescription = document.createElement("p");
-        contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em;";
+        contentAreaHeaderDescription.style.cssText = "color: #424242; font-size: 0.75em; margin: 0;";
 
         const featureContent = document.createElement("div");
         featureContent.style.cssText = "display: flex; flex-direction: column; height: 100%; overflow: auto;";
 
         const searchInput = document.createElement("input");
-        searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0;";
+        searchInput.style.cssText = "border: none !important; outline: none !important; background: none; width: 100%; padding: 0.65em; margin: 0.25em 0; color: black !important;";
         searchInput.placeholder = "Search...";
         searchInput.addEventListener("input", () => {
             setItems(
@@ -126,6 +127,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                         background: "none",
                         border: "none",
                         padding: "0.25em",
+                        boxSizing: "border-box",
                         borderTop: "1px solid #e5e5e5",
                         width: "100%"
                     },
@@ -138,7 +140,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 detailsContainer.style.cssText = "display: flex; flex-direction: column; align-items: flex-start; row-gap: 4px;";
 
                 const name = document.createElement("span");
-                name.style.fontSize = "clamp(10px, 5vw, 22px)";
+                name.style.fontSize = "22px";
                 if (b.isBeta) {
                     name.innerHTML = b.subscreen.name + "<span style='position: relative; bottom: 0.75em; margin-left: 0.45em; padding: 0 0.35em; border-radius: 6px; background: #62ffe6; font-size: 0.5em; color: #b201ff; border: 1px solid #d2d2d2;'>Beta</span>";
                 } else {
@@ -146,9 +148,9 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 }
 
                 const description = document.createElement("span");
-                description.style.fontSize = "clamp(8px, 1vw, 16px)";
+                description.style.fontSize = "16px";
                 description.style.color = "#878787";
-                description.style.maxWidth = "calc(340px - clamp(10px, 8vw, 35px) - 0.45em)";
+                description.style.maxWidth = "calc(340px - 40px - 0.45em)";
                 description.style.whiteSpace = "nowrap";
                 description.style.overflow = "clip";
                 description.style.textOverflow = "ellipsis";
@@ -156,7 +158,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 description.textContent = b.subscreen.description;
 
                 const icon = createElement(b.icon);
-                icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: clamp(10px, 8vw, 35px); height: clamp(10px, 8vw, 35px); padding: 4px; stroke: #7e63b6; border-radius: 4px;";
+                icon.style.cssText = "background: rgb(228 215 255 / 65%); flex-shrink: 0; width: 40px; height: 40px; padding: 4px; stroke: #7e63b6; border-radius: 4px; box-sizing: border-box;";
                 btn.addEventListener("click", () => {
                     featureContent.innerHTML = "";
                     b.subscreen.load(featureContent);
@@ -185,7 +187,7 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         } else setItems(items);
 
         const footer = document.createElement("div");
-        footer.style.cssText = "position: absolute; left: 0; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.65em; background: rgb(247 242 255 / 75%); border-top: 2px solid #e8e8e8;";
+        footer.style.cssText = "position: absolute; left: 0; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.65em; box-sizing: border-box; background: rgb(247 242 255 / 75%); border-top: 2px solid #e8e8e8;";
 
         const server = document.createElement("div");
         server.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; background: rgb(227, 210, 255); border-radius: 0.65em; padding: 0.65em; font-weight: bold;";
@@ -200,7 +202,8 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
                 cursor: "pointer",
                 background: "rgb(229, 208, 255)",
                 padding: "0.25em",
-                borderRadius: "4px"
+                borderRadius: "4px",
+                boxSizing: "border-box"
             },
             hover: {
                 background: "rgb(223, 199, 252)"

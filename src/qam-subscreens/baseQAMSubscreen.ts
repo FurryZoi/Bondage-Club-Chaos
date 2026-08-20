@@ -12,7 +12,7 @@ export abstract class BaseQAMSubscreen {
         return !!qamFeatures.find((f) => f.subscreen.constructor.name === this.constructor.name);
     }
 
-    public load(container: HTMLDivElement): void {}
+    public load(container: HTMLDivElement): void { }
 
     protected buildButton(text: string) {
         const btn = document.createElement("button");
@@ -39,6 +39,7 @@ export abstract class BaseQAMSubscreen {
         addDynamicClass(p, {
             base: {
                 padding: "0.65em",
+                margin: "0",
                 marginTop: "0.25em",
                 color: "black",
                 fontSize: "1.25em"
@@ -85,7 +86,7 @@ export abstract class BaseQAMSubscreen {
                 );
                 options.forEach((option) => {
                     const e = document.createElement("div");
-                    e.style.cssText = "display: flex; align-items: center; column-gap: 0.5em;";
+                    e.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; box-sizing: border-box;";
                     if (option.icon) {
                         option.icon.style.cssText = "color: #bcbcbc;";
                         e.append(option.icon);
@@ -107,6 +108,7 @@ export abstract class BaseQAMSubscreen {
         });
 
         const p = document.createElement("p");
+        p.style.margin = "0";
         p.style.paddingRight = "2em";
         if (options.length === 0) {
             p.textContent = "No options";
@@ -180,6 +182,7 @@ export abstract class BaseQAMSubscreen {
 
         const p = document.createElement("p");
         p.style.paddingRight = "2em";
+        p.style.margin = "0";
         if (options().length === 0) {
             p.textContent = "No options";
         } else {
@@ -233,7 +236,7 @@ export abstract class BaseQAMSubscreen {
         });
 
         const label = document.createElement("p");
-        label.style.cssText = "font-size: 1.25em;";
+        label.style.cssText = "font-size: 1.25em; margin: 0;";
         label.textContent = labelText;
 
         checkbox.append(input, label);
