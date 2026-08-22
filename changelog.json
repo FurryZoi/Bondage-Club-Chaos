@@ -1,16 +1,17 @@
 {
-  "generated_at": "2026-08-20T21:08:05.601Z",
+  "generated_at": "2026-08-22T19:20:01.345Z",
   "changes": [
     {
-      "message": "Delete global reset styles",
-      "sha": "3553a430ffa70c256b521fe0341ba0430d0f0062",
+      "message": "Fix chaos aura so that it does not ignore the blacklist and ghostlist, as well as ignore spells that are not aimed at the player",
+      "note": "Check https://github.com/FurryZoi/Bondage-Club-Chaos/issues/7 for more details",
+      "sha": "80f9400c640f42168f8ea8c2996dc6897da18a31",
       "author": {
         "name": "FurryZoi",
         "avatar_url": "https://avatars.githubusercontent.com/u/170041826?v=4"
       },
-      "date": "2026-08-20T21:06:49Z",
+      "date": "2026-08-22T19:17:04Z",
       "tags": ["fix"],
-      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/3553a430ffa70c256b521fe0341ba0430d0f0062"
+      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/80f9400c640f42168f8ea8c2996dc6897da18a31"
     }
   ]
 }
