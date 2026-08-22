@@ -225,17 +225,20 @@ export function loadChaosAura(): void {
             typeof data.Sender !== "number" ||
             data.Sender === Player.MemberNumber ||
             modStorage.chaosAura?.whiteList?.includes(data.Sender) ||
-            !findModByName("LSCG")
+            !findModByName("LSCG") ||
+            Player.HasOnGhostlist(data.Sender) ||
+            Player.HasOnBlacklist(data.Sender)
         ) return next(args);
         const sender = getPlayer(data.Sender);
         if (data.Content !== "LSCGMsg" || sender === null) return next(args);
         //@ts-expect-error
         const lscgMessage = data.Dictionary?.[0]?.message;
+        const target = lscgMessage?.target;
         const commandName = lscgMessage?.command?.name;
         const commandArgs = lscgMessage?.command?.args;
         //@ts-expect-error
         const spell = commandArgs?.find((arg) => arg?.name === "spell")?.value;
-        if (commandName !== "spell" || spell === undefined || isLSCGSpellBeneficial(spell)) return next(args);
+        if (commandName !== "spell" || spell === undefined || target !== Player.MemberNumber || isLSCGSpellBeneficial(spell)) return next(args);
         modStorage.chaosAura.triggersCount ??= 0;
         modStorage.chaosAura.triggersCount++;
         syncStorage();
