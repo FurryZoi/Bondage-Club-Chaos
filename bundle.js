@@ -4968,7 +4968,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
 }`;
 
   // package.json
-  var version2 = "2.2.1";
+  var version2 = "2.2.2";
 
   // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/defaultAttributes.js
   var defaultAttributes2 = {
@@ -11687,14 +11687,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
     });
     hookFunction("ChatRoomMessage", HookPriority.OVERRIDE_BEHAVIOR, (args, next) => {
       const data = args[0];
-      if (!modStorage.chaosAura?.enabled || !modStorage.chaosAura?.triggers?.magicCast || typeof data.Sender !== "number" || data.Sender === Player.MemberNumber || modStorage.chaosAura?.whiteList?.includes(data.Sender) || !findModByName("LSCG")) return next(args);
+      if (!modStorage.chaosAura?.enabled || !modStorage.chaosAura?.triggers?.magicCast || typeof data.Sender !== "number" || data.Sender === Player.MemberNumber || modStorage.chaosAura?.whiteList?.includes(data.Sender) || !findModByName("LSCG") || Player.HasOnGhostlist(data.Sender) || Player.HasOnBlacklist(data.Sender)) return next(args);
       const sender = getPlayer(data.Sender);
       if (data.Content !== "LSCGMsg" || sender === null) return next(args);
       const lscgMessage = data.Dictionary?.[0]?.message;
+      const target = lscgMessage?.target;
       const commandName = lscgMessage?.command?.name;
       const commandArgs = lscgMessage?.command?.args;
       const spell = commandArgs?.find((arg) => arg?.name === "spell")?.value;
-      if (commandName !== "spell" || spell === void 0 || isLSCGSpellBeneficial(spell)) return next(args);
+      if (commandName !== "spell" || spell === void 0 || target !== Player.MemberNumber || isLSCGSpellBeneficial(spell)) return next(args);
       modStorage.chaosAura.triggersCount ??= 0;
       modStorage.chaosAura.triggersCount++;
       syncStorage();
@@ -15419,18 +15420,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // changelog.json
   var changelog_default = {
-    generated_at: "2026-08-20T21:08:05.601Z",
+    generated_at: "2026-08-22T19:20:01.345Z",
     changes: [
       {
-        message: "Delete global reset styles",
-        sha: "3553a430ffa70c256b521fe0341ba0430d0f0062",
+        message: "Fix chaos aura so that it does not ignore the blacklist and ghostlist, as well as ignore spells that are not aimed at the player",
+        note: "Check https://github.com/FurryZoi/Bondage-Club-Chaos/issues/7 for more details",
+        sha: "80f9400c640f42168f8ea8c2996dc6897da18a31",
         author: {
           name: "FurryZoi",
           avatar_url: "https://avatars.githubusercontent.com/u/170041826?v=4"
         },
-        date: "2026-08-20T21:06:49Z",
+        date: "2026-08-22T19:17:04Z",
         tags: ["fix"],
-        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/3553a430ffa70c256b521fe0341ba0430d0f0062"
+        commit_url: "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/80f9400c640f42168f8ea8c2996dc6897da18a31"
       }
     ]
   };
