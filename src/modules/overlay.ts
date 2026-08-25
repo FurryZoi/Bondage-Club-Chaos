@@ -45,13 +45,14 @@ export function loadOverlay(): void {
                 ) ||
                 versionText === 2
             ) {
-                DrawTextFit(
+                MainCanvas.font = CommonGetFont(16 * Zoom);
+                DrawText(
                     `BCC v${bccData?.version}`,
                     CharX + 250 * Zoom,
                     CharY + 60 * Zoom,
-                    100 * Zoom,
                     getRainbowColor()
                 );
+                MainCanvas.font = CommonGetFont(36);
             }
 
             if (
