@@ -35,7 +35,7 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
             x: 200,
             y: 300,
             src: qamImage,
-            width: 350,
+            width: 500,
             modules: {
                 base: [
                     new StyleModule({
@@ -46,11 +46,12 @@ export class QuickAccessMenuSubscreen extends BaseSubscreen {
         });
 
         this.createText({
-            x: 580,
-            y: 300,
-            width: 600,
+            x: 200,
+            y: 580,
+            width: 1000,
+            height: 345,
             withBorder: true,
-            text: `You can forget about the text commands. Any actions are performed through the "Quick Access Menu" (QAM).<br>Most of the functions and mechanics are located there.<br>The button to open the menu remembers its last position (Linked to the device and not to the account)`,
+            text: `<b>Quick Access Menu</b> or <b>QAM</b><br><br>Interactive, draggable utility overlay that lets you to perform many actions on fly instead of navigating through complex submenus or using chat commands.<br>Most of the functions and mechanics are located there.<br>The button to open the menu remembers its last position (Linked to the device and not to the account)`,
             padding: 2
         });
 
