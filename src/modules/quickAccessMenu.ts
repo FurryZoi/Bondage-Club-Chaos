@@ -84,11 +84,18 @@ class Draggable {
 
         if (!this.isReadyForDragging) return;
 
-        const x = e.clientX - this.offset.x;
-        const y = e.clientY - this.offset.y;
+        let x = e.clientX - this.offset.x;
+        let y = e.clientY - this.offset.y;
 
-        if (x >= 0 && (x + this.draggableElement.offsetWidth) <= window.innerWidth) this.draggableElement.style.left = x + 'px';
-        if (y >= 0 && (y + this.draggableElement.offsetHeight) <= window.innerHeight) this.draggableElement.style.top = y + 'px';
+        const maxX = window.innerWidth - this.draggableElement.offsetWidth;
+        const maxY = window.innerHeight - this.draggableElement.offsetHeight;
+
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
+
+        this.draggableElement.style.left = x + 'px';
+        this.draggableElement.style.top = y + 'px';
+
         this.isDragging = true;
     }
 
@@ -121,11 +128,18 @@ class Draggable {
 
         if (!this.isReadyForDragging) return;
 
-        const x = touch.clientX - this.offset.x;
-        const y = touch.clientY - this.offset.y;
+        let x = touch.clientX - this.offset.x;
+        let y = touch.clientY - this.offset.y;
 
-        if (x >= 0 && (x + this.draggableElement.offsetWidth) <= window.innerWidth) this.draggableElement.style.left = x + 'px';
-        if (y >= 0 && (y + this.draggableElement.offsetHeight) <= window.innerHeight) this.draggableElement.style.top = y + 'px';
+        const maxX = window.innerWidth - this.draggableElement.offsetWidth;
+        const maxY = window.innerHeight - this.draggableElement.offsetHeight;
+
+        x = Math.max(0, Math.min(x, maxX));
+        y = Math.max(0, Math.min(y, maxY));
+
+        this.draggableElement.style.left = x + 'px';
+        this.draggableElement.style.top = y + 'px';
+
         this.isDragging = true;
     }
 
