@@ -23,7 +23,10 @@ import { AVQS_QAMSubscreen } from "@/qam-subscreens/avcsQAMSubscreen";
 import { AuraOfChaosQAMSubscreen } from "@/qam-subscreens/auraOfChaosQAMSubscreen";
 import { logger } from "zois-core/logging";
 
-export let serverPing: number;
+export let serverPing: {
+    value: number
+    fetchedAt: number
+} | null = null;
 let currentSubscreen: BaseQAMSubscreen;
 const LOCAL_STORAGE_POS_KEY = "BCC_QAMButton_Pos";
 
@@ -191,7 +194,20 @@ class QAMButton extends Draggable {
             d.classList.add("bccQAM");
             document.body.append(d);
             setQAMSubscreen(new MainQAMSubscreen());
-            pingServer();
+        }
+        const serverPingEl = document.getElementById("bcc-server-ping");
+        if (serverPing === null) {
+            pingServer().then(() => {
+                if (serverPingEl && serverPing !== null) serverPingEl.textContent = serverPing.value + "ms";
+            });
+        } else {
+            if (Date.now() - serverPing.fetchedAt > 60_000) {
+                pingServer().then(() => {
+                    if (serverPingEl && serverPing !== null) serverPingEl.textContent = serverPing.value + "ms";
+                });
+            } else {
+                if (serverPingEl && serverPing !== null) serverPingEl.textContent = serverPing.value + "ms";
+            }
         }
 
     }
@@ -432,7 +448,12 @@ export function removeQuickMenu(): void {
 export async function pingServer() {
     const d1 = Date.now();
     const res = await fetch(window.location.href);
-    if (res.status < 400) serverPing = Date.now() - d1;
+    if (res.status < 400) {
+        serverPing = {
+            value: Date.now() - d1,
+            fetchedAt: Date.now()
+        };
+    }
 }
 
 interface BaseCommit {
@@ -537,11 +558,6 @@ export function loadQuickAccessMenu(): void {
         });
     }
 
-    setInterval(() => {
-        if (!currentSubscreen || currentSubscreen.name !== "BONDAGE CLUB CHAOS") return;
-        pingServer();
-    }, 10_000);
-
     hookFunction("ChatRoomCharacterItemUpdate", HookPriority.OBSERVE, (args, next) => {
         next(args);
         const [target, _group] = args;
@@ -582,5 +598,19 @@ export function loadQuickAccessMenu(): void {
         const [data] = args;
         const target = getPlayer(data.SourceMemberNumber);
         if (target) addCommit(null, target);
+    });
+
+    hookFunction("CommonFetch", HookPriority.OBSERVE, async (args, next) => {
+        const d1 = Date.now();
+        const res = await next(args);
+        if (res.status < 400) {
+            serverPing = {
+                value: Date.now() - d1,
+                fetchedAt: Date.now()
+            };
+            const serverPingEl = document.getElementById("bcc-server-ping");
+            if (serverPingEl) serverPingEl.textContent = serverPing.value + "ms";
+        }
+        return res;
     });
 }

@@ -193,8 +193,9 @@ export class MainQAMSubscreen extends BaseQAMSubscreen {
         server.style.cssText = "display: flex; align-items: center; column-gap: 0.5em; background: rgb(227, 210, 255); border-radius: 0.65em; padding: 0.65em; font-weight: bold;";
 
         const ping = document.createElement("div");
+        ping.id = "bcc-server-ping";
         ping.style.cssText = "padding: 4px; background: #cabaefe8; border-radius: 6px; font-size: 0.8em;";
-        ping.textContent = serverPing + "ms";
+        ping.textContent = (serverPing?.value ?? "-") + "ms";
 
         const settingsBtn = createElement(Settings, { stroke: "rgb(126, 99, 182)", height: "2em", width: "2em" });
         addDynamicClass(settingsBtn, {
