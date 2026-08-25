@@ -1,17 +1,49 @@
 {
-  "generated_at": "2026-08-22T19:20:01.345Z",
+  "generated_at": "2026-08-25T15:51:14.585Z",
   "changes": [
     {
-      "message": "Fix chaos aura so that it does not ignore the blacklist and ghostlist, as well as ignore spells that are not aimed at the player",
-      "note": "Check https://github.com/FurryZoi/Bondage-Club-Chaos/issues/7 for more details",
-      "sha": "80f9400c640f42168f8ea8c2996dc6897da18a31",
+      "message": "Clamp QAM coordinates instead of skipping position updates",
+      "sha": "33184e754b27c823379c3c5d1ac6ebd946d25fcc",
       "author": {
         "name": "FurryZoi",
         "avatar_url": "https://avatars.githubusercontent.com/u/170041826?v=4"
       },
-      "date": "2026-08-22T19:17:04Z",
+      "date": "2026-08-25T15:38:01Z",
       "tags": ["fix"],
-      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/80f9400c640f42168f8ea8c2996dc6897da18a31"
+      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/33184e754b27c823379c3c5d1ac6ebd946d25fcc"
+    },
+    {
+      "message": "Dynamically update ping indicator",
+      "sha": "98efa207f8c4e75748b9a50d9b47d8a7d8585b1d",
+      "author": {
+        "name": "FurryZoi",
+        "avatar_url": "https://avatars.githubusercontent.com/u/170041826?v=4"
+      },
+      "date": "2026-08-25T14:46:57Z",
+      "tags": ["fix"],
+      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/98efa207f8c4e75748b9a50d9b47d8a7d8585b1d"
+    },
+    {
+      "message": "Update QAM settings subscreen",
+      "sha": "37fb4b41c6b3ce4aa1b2f6c21ac18f9578a6a035",
+      "author": {
+        "name": "FurryZoi",
+        "avatar_url": "https://avatars.githubusercontent.com/u/170041826?v=4"
+      },
+      "date": "2026-08-25T13:49:53Z",
+      "tags": [],
+      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/37fb4b41c6b3ce4aa1b2f6c21ac18f9578a6a035"
+    },
+    {
+      "message": "Fix version label cutting",
+      "sha": "6a5c22be110fd2626c5c625af5d26cfb4c422632",
+      "author": {
+        "name": "FurryZoi",
+        "avatar_url": "https://avatars.githubusercontent.com/u/170041826?v=4"
+      },
+      "date": "2026-08-25T10:25:31Z",
+      "tags": ["fix"],
+      "commit_url": "https://github.com/FurryZoi/Bondage-Club-Chaos/commit/6a5c22be110fd2626c5c625af5d26cfb4c422632"
     }
   ]
 }
