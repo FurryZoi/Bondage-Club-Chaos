@@ -1,3 +1,8 @@
+// BCC: Bondage Club Chaos
+if (typeof window.ImportBondageCollege !== "function") {
+  alert("Club not detected! Please only use this while you have Club open!");
+  throw "Dependency not met";
+}
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -1133,7 +1138,7 @@
           const e3 = new Error(o5);
           throw console.error(e3), e3;
         }
-        const t3 = new TextEncoder();
+        const t4 = new TextEncoder();
         function n4(o5) {
           return !!o5 && "object" == typeof o5 && !Array.isArray(o5);
         }
@@ -1146,44 +1151,44 @@
           a3.has(o5) || (a3.add(o5), console.warn(o5));
         }
         function s4(o5) {
-          const e3 = [], t4 = /* @__PURE__ */ new Map(), n5 = /* @__PURE__ */ new Set();
+          const e3 = [], t5 = /* @__PURE__ */ new Map(), n5 = /* @__PURE__ */ new Set();
           for (const r6 of f3.values()) {
             const i6 = r6.patching.get(o5.name);
             if (i6) {
               e3.push(...i6.hooks);
-              for (const [e4, a4] of i6.patches.entries()) t4.has(e4) && t4.get(e4) !== a4 && c3(`ModSDK: Mod '${r6.name}' is patching function ${o5.name} with same pattern that is already applied by different mod, but with different pattern:
+              for (const [e4, a4] of i6.patches.entries()) t5.has(e4) && t5.get(e4) !== a4 && c3(`ModSDK: Mod '${r6.name}' is patching function ${o5.name} with same pattern that is already applied by different mod, but with different pattern:
 Pattern:
 ${e4}
 Patch1:
-${t4.get(e4) || ""}
+${t5.get(e4) || ""}
 Patch2:
-${a4}`), t4.set(e4, a4), n5.add(r6.name);
+${a4}`), t5.set(e4, a4), n5.add(r6.name);
             }
           }
           e3.sort(((o6, e4) => e4.priority - o6.priority));
           const r5 = (function(o6, e4) {
             if (0 === e4.size) return o6;
-            let t5 = o6.toString().replaceAll("\r\n", "\n");
-            for (const [n6, r6] of e4.entries()) t5.includes(n6) || c3(`ModSDK: Patching ${o6.name}: Patch ${n6} not applied`), t5 = t5.replaceAll(n6, r6);
-            return (0, eval)(`(${t5})`);
-          })(o5.original, t4);
+            let t6 = o6.toString().replaceAll("\r\n", "\n");
+            for (const [n6, r6] of e4.entries()) t6.includes(n6) || c3(`ModSDK: Patching ${o6.name}: Patch ${n6} not applied`), t6 = t6.replaceAll(n6, r6);
+            return (0, eval)(`(${t6})`);
+          })(o5.original, t5);
           let i5 = function(e4) {
-            var t5, i6;
-            const a4 = null === (i6 = (t5 = m3.errorReporterHooks).hookChainExit) || void 0 === i6 ? void 0 : i6.call(t5, o5.name, n5), c4 = r5.apply(this, e4);
+            var t6, i6;
+            const a4 = null === (i6 = (t6 = m3.errorReporterHooks).hookChainExit) || void 0 === i6 ? void 0 : i6.call(t6, o5.name, n5), c4 = r5.apply(this, e4);
             return null == a4 || a4(), c4;
           };
-          for (let t5 = e3.length - 1; t5 >= 0; t5--) {
-            const n6 = e3[t5], r6 = i5;
+          for (let t6 = e3.length - 1; t6 >= 0; t6--) {
+            const n6 = e3[t6], r6 = i5;
             i5 = function(e4) {
-              var t6, i6;
-              const a4 = null === (i6 = (t6 = m3.errorReporterHooks).hookEnter) || void 0 === i6 ? void 0 : i6.call(t6, o5.name, n6.mod), c4 = n6.hook.apply(this, [e4, (o6) => {
+              var t7, i6;
+              const a4 = null === (i6 = (t7 = m3.errorReporterHooks).hookEnter) || void 0 === i6 ? void 0 : i6.call(t7, o5.name, n6.mod), c4 = n6.hook.apply(this, [e4, (o6) => {
                 if (1 !== arguments.length || !Array.isArray(e4)) throw new Error(`Mod ${n6.mod} failed to call next hook: Expected args to be array, got ${typeof o6}`);
                 return r6.call(this, o6);
               }]);
               return null == a4 || a4(), c4;
             };
           }
-          return { hooks: e3, patches: t4, patchesSources: n5, enter: i5, final: r5 };
+          return { hooks: e3, patches: t5, patchesSources: n5, enter: i5, final: r5 };
         }
         function l4(o5, e3 = false) {
           let r5 = i4.get(o5);
@@ -1191,12 +1196,12 @@ ${a4}`), t4.set(e4, a4), n5.add(r6.name);
           else {
             let e4 = window;
             const a4 = o5.split(".");
-            for (let t4 = 0; t4 < a4.length - 1; t4++) if (e4 = e4[a4[t4]], !n4(e4)) throw new Error(`ModSDK: Function ${o5} to be patched not found; ${a4.slice(0, t4 + 1).join(".")} is not object`);
+            for (let t5 = 0; t5 < a4.length - 1; t5++) if (e4 = e4[a4[t5]], !n4(e4)) throw new Error(`ModSDK: Function ${o5} to be patched not found; ${a4.slice(0, t5 + 1).join(".")} is not object`);
             const c4 = e4[a4[a4.length - 1]];
             if ("function" != typeof c4) throw new Error(`ModSDK: Function ${o5} to be patched not found`);
             const l5 = (function(o6) {
               let e5 = -1;
-              for (const n5 of t3.encode(o6)) {
+              for (const n5 of t4.encode(o6)) {
                 let o7 = 255 & (e5 ^ n5);
                 for (let e6 = 0; e6 < 8; e6++) o7 = 1 & o7 ? -306674912 ^ o7 >>> 1 : o7 >>> 1;
                 e5 = e5 >>> 8 ^ o7;
@@ -1217,52 +1222,52 @@ ${a4}`), t4.set(e4, a4), n5.add(r6.name);
         }
         function p3() {
           const o5 = /* @__PURE__ */ new Map();
-          for (const [e3, t4] of i4) o5.set(e3, { name: e3, original: t4.original, originalHash: t4.originalHash, sdkEntrypoint: t4.router, currentEntrypoint: t4.context[t4.contextProperty], hookedByMods: r4(t4.precomputed.hooks.map(((o6) => o6.mod))), patchedByMods: Array.from(t4.precomputed.patchesSources) });
+          for (const [e3, t5] of i4) o5.set(e3, { name: e3, original: t5.original, originalHash: t5.originalHash, sdkEntrypoint: t5.router, currentEntrypoint: t5.context[t5.contextProperty], hookedByMods: r4(t5.precomputed.hooks.map(((o6) => o6.mod))), patchedByMods: Array.from(t5.precomputed.patchesSources) });
           return o5;
         }
         const f3 = /* @__PURE__ */ new Map();
         function u4(o5) {
           f3.get(o5.name) !== o5 && e2(`Failed to unload mod '${o5.name}': Not registered`), f3.delete(o5.name), o5.loaded = false, d3();
         }
-        function g3(o5, t4) {
+        function g3(o5, t5) {
           o5 && "object" == typeof o5 || e2("Failed to register mod: Expected info object, got " + typeof o5), "string" == typeof o5.name && o5.name || e2("Failed to register mod: Expected name to be non-empty string, got " + typeof o5.name);
           let r5 = `'${o5.name}'`;
-          "string" == typeof o5.fullName && o5.fullName || e2(`Failed to register mod ${r5}: Expected fullName to be non-empty string, got ${typeof o5.fullName}`), r5 = `'${o5.fullName} (${o5.name})'`, "string" != typeof o5.version && e2(`Failed to register mod ${r5}: Expected version to be string, got ${typeof o5.version}`), o5.repository || (o5.repository = void 0), void 0 !== o5.repository && "string" != typeof o5.repository && e2(`Failed to register mod ${r5}: Expected repository to be undefined or string, got ${typeof o5.version}`), null == t4 && (t4 = {}), t4 && "object" == typeof t4 || e2(`Failed to register mod ${r5}: Expected options to be undefined or object, got ${typeof t4}`);
-          const i5 = true === t4.allowReplace, a4 = f3.get(o5.name);
+          "string" == typeof o5.fullName && o5.fullName || e2(`Failed to register mod ${r5}: Expected fullName to be non-empty string, got ${typeof o5.fullName}`), r5 = `'${o5.fullName} (${o5.name})'`, "string" != typeof o5.version && e2(`Failed to register mod ${r5}: Expected version to be string, got ${typeof o5.version}`), o5.repository || (o5.repository = void 0), void 0 !== o5.repository && "string" != typeof o5.repository && e2(`Failed to register mod ${r5}: Expected repository to be undefined or string, got ${typeof o5.version}`), null == t5 && (t5 = {}), t5 && "object" == typeof t5 || e2(`Failed to register mod ${r5}: Expected options to be undefined or object, got ${typeof t5}`);
+          const i5 = true === t5.allowReplace, a4 = f3.get(o5.name);
           a4 && (a4.allowReplace && i5 || e2(`Refusing to load mod ${r5}: it is already loaded and doesn't allow being replaced.
 Was the mod loaded multiple times?`), u4(a4));
           const c4 = (o6) => {
             let e3 = g4.patching.get(o6.name);
             return e3 || (e3 = { hooks: [], patches: /* @__PURE__ */ new Map() }, g4.patching.set(o6.name, e3)), e3;
-          }, s5 = (o6, t5) => (...n5) => {
+          }, s5 = (o6, t6) => (...n5) => {
             var i6, a5;
             const c5 = null === (a5 = (i6 = m3.errorReporterHooks).apiEndpointEnter) || void 0 === a5 ? void 0 : a5.call(i6, o6, g4.name);
             g4.loaded || e2(`Mod ${r5} attempted to call SDK function after being unloaded`);
-            const s6 = t5(...n5);
+            const s6 = t6(...n5);
             return null == c5 || c5(), s6;
-          }, p4 = { unload: s5("unload", (() => u4(g4))), hookFunction: s5("hookFunction", ((o6, t5, n5) => {
+          }, p4 = { unload: s5("unload", (() => u4(g4))), hookFunction: s5("hookFunction", ((o6, t6, n5) => {
             "string" == typeof o6 && o6 || e2(`Mod ${r5} failed to patch a function: Expected function name string, got ${typeof o6}`);
             const i6 = l4(o6), a5 = c4(i6);
-            "number" != typeof t5 && e2(`Mod ${r5} failed to hook function '${o6}': Expected priority number, got ${typeof t5}`), "function" != typeof n5 && e2(`Mod ${r5} failed to hook function '${o6}': Expected hook function, got ${typeof n5}`);
-            const s6 = { mod: g4.name, priority: t5, hook: n5 };
+            "number" != typeof t6 && e2(`Mod ${r5} failed to hook function '${o6}': Expected priority number, got ${typeof t6}`), "function" != typeof n5 && e2(`Mod ${r5} failed to hook function '${o6}': Expected hook function, got ${typeof n5}`);
+            const s6 = { mod: g4.name, priority: t6, hook: n5 };
             return a5.hooks.push(s6), d3(), () => {
               const o7 = a5.hooks.indexOf(s6);
               o7 >= 0 && (a5.hooks.splice(o7, 1), d3());
             };
-          })), patchFunction: s5("patchFunction", ((o6, t5) => {
+          })), patchFunction: s5("patchFunction", ((o6, t6) => {
             "string" == typeof o6 && o6 || e2(`Mod ${r5} failed to patch a function: Expected function name string, got ${typeof o6}`);
             const i6 = l4(o6), a5 = c4(i6);
-            n4(t5) || e2(`Mod ${r5} failed to patch function '${o6}': Expected patches object, got ${typeof t5}`);
-            for (const [n5, i7] of Object.entries(t5)) "string" == typeof i7 ? a5.patches.set(n5, i7) : null === i7 ? a5.patches.delete(n5) : e2(`Mod ${r5} failed to patch function '${o6}': Invalid format of patch '${n5}'`);
+            n4(t6) || e2(`Mod ${r5} failed to patch function '${o6}': Expected patches object, got ${typeof t6}`);
+            for (const [n5, i7] of Object.entries(t6)) "string" == typeof i7 ? a5.patches.set(n5, i7) : null === i7 ? a5.patches.delete(n5) : e2(`Mod ${r5} failed to patch function '${o6}': Invalid format of patch '${n5}'`);
             d3();
           })), removePatches: s5("removePatches", ((o6) => {
             "string" == typeof o6 && o6 || e2(`Mod ${r5} failed to patch a function: Expected function name string, got ${typeof o6}`);
-            const t5 = l4(o6);
-            c4(t5).patches.clear(), d3();
-          })), callOriginal: s5("callOriginal", ((o6, t5, n5) => {
+            const t6 = l4(o6);
+            c4(t6).patches.clear(), d3();
+          })), callOriginal: s5("callOriginal", ((o6, t6, n5) => {
             "string" == typeof o6 && o6 || e2(`Mod ${r5} failed to call a function: Expected function name string, got ${typeof o6}`);
             const i6 = l4(o6);
-            return Array.isArray(t5) || e2(`Mod ${r5} failed to call a function: Expected args array, got ${typeof t5}`), i6.original.apply(null != n5 ? n5 : globalThis, t5);
+            return Array.isArray(t6) || e2(`Mod ${r5} failed to call a function: Expected args array, got ${typeof t6}`), i6.original.apply(null != n5 ? n5 : globalThis, t6);
           })), getOriginalHash: s5("getOriginalHash", ((o6) => {
             "string" == typeof o6 && o6 || e2(`Mod ${r5} failed to get hash: Expected function name string, got ${typeof o6}`);
             return l4(o6).originalHash;
@@ -1852,7 +1857,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     }
   };
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/defaultAttributes.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/defaultAttributes.mjs
   var defaultAttributes = {
     xmlns: "http://www.w3.org/2000/svg",
     width: 24,
@@ -1865,7 +1870,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     "stroke-linejoin": "round"
   };
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/createElement.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/createElement.mjs
   var createSVGElement = ([tag, attrs, children]) => {
     const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
     Object.keys(attrs).forEach((name) => {
@@ -1888,7 +1893,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return createSVGElement([tag, attrs, iconNode]);
   };
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/book-text.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/book-text.mjs
   var BookText = [
     [
       "path",
@@ -1898,60 +1903,60 @@ One of mods you are using is using an old version of SDK. It will work for now b
     ["path", { d: "M8 7h6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/check.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/check.mjs
   var Check = [["path", { d: "M20 6 9 17l-5-5" }]];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/chevron-down.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/chevron-down.mjs
   var ChevronDown = [["path", { d: "m6 9 6 6 6-6" }]];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-alert.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/circle-alert.mjs
   var CircleAlert = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["line", { x1: "12", x2: "12", y1: "8", y2: "12" }],
     ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-check.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/circle-check.mjs
   var CircleCheck = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
-    ["path", { d: "m9 12 2 2 4-4" }]
+    ["path", { d: "m16 9-5.5 5.5L8 12" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/circle-x.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/circle-x.mjs
   var CircleX = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "m15 9-6 6" }],
     ["path", { d: "m9 9 6 6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/external-link.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/external-link.mjs
   var ExternalLink = [
     ["path", { d: "M15 3h6v6" }],
     ["path", { d: "M10 14 21 3" }],
     ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/info.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/info.mjs
   var Info = [
     ["circle", { cx: "12", cy: "12", r: "10" }],
     ["path", { d: "M12 16v-4" }],
     ["path", { d: "M12 8h.01" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/rotate-ccw.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/rotate-ccw.mjs
   var RotateCcw = [
     ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" }],
     ["path", { d: "M3 3v5h5" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/terminal.mjs
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/terminal.mjs
   var Terminal = [
     ["path", { d: "M12 19h8" }],
     ["path", { d: "m4 17 6-6-6-6" }]
   ];
 
-  // node_modules/.pnpm/lucide@1.33.0/node_modules/lucide/dist/esm/icons/trash-2.mjs
-  var Trash2 = [
+  // node_modules/.pnpm/lucide@1.47.0/node_modules/lucide/dist/esm/icons/trash.mjs
+  var Trash = [
     ["path", { d: "M10 11v6" }],
     ["path", { d: "M14 11v6" }],
     ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" }],
@@ -2651,7 +2656,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         value?.forEach((v3) => addItem(String(v3)));
         if (typeof onChange === "function") onChange(numbersOnly ? items.map((i4) => parseInt(i4)) : items);
       });
-      addButton(createElement(Trash2), () => {
+      addButton(createElement(Trash), () => {
         if (typeof isDisabled === "function" && isDisabled()) return div.classList.add("zcDisabled");
         for (const c3 of [...itemsElement.children]) {
           if (c3.getAttribute("style")?.includes("border: 2px solid red;")) {
@@ -5352,7 +5357,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
   ];
 
   // node_modules/.pnpm/lucide@0.554.0/node_modules/lucide/dist/esm/icons/trash-2.js
-  var Trash22 = [
+  var Trash2 = [
     ["path", { d: "M10 11v6" }],
     ["path", { d: "M14 11v6" }],
     ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" }],
@@ -6085,13 +6090,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/class-transformer@0.5.1/node_modules/class-transformer/esm5/ClassTransformer.js
   var __assign = function() {
-    __assign = Object.assign || function(t3) {
+    __assign = Object.assign || function(t4) {
       for (var s4, i4 = 1, n4 = arguments.length; i4 < n4; i4++) {
         s4 = arguments[i4];
         for (var p3 in s4) if (Object.prototype.hasOwnProperty.call(s4, p3))
-          t3[p3] = s4[p3];
+          t4[p3] = s4[p3];
       }
-      return t3;
+      return t4;
     };
     return __assign.apply(this, arguments);
   };
@@ -6872,9 +6877,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var __generator = function(thisArg, body) {
     var _3 = { label: 0, sent: function() {
-      if (t3[0] & 1) throw t3[1];
-      return t3[1];
-    }, trys: [], ops: [] }, f3, y3, t3, g3;
+      if (t4[0] & 1) throw t4[1];
+      return t4[1];
+    }, trys: [], ops: [] }, f3, y3, t4, g3;
     return g3 = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g3[Symbol.iterator] = function() {
       return this;
     }), g3;
@@ -6886,12 +6891,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
     function step(op) {
       if (f3) throw new TypeError("Generator is already executing.");
       while (g3 && (g3 = 0, op[0] && (_3 = 0)), _3) try {
-        if (f3 = 1, y3 && (t3 = op[0] & 2 ? y3["return"] : op[0] ? y3["throw"] || ((t3 = y3["return"]) && t3.call(y3), 0) : y3.next) && !(t3 = t3.call(y3, op[1])).done) return t3;
-        if (y3 = 0, t3) op = [op[0] & 2, t3.value];
+        if (f3 = 1, y3 && (t4 = op[0] & 2 ? y3["return"] : op[0] ? y3["throw"] || ((t4 = y3["return"]) && t4.call(y3), 0) : y3.next) && !(t4 = t4.call(y3, op[1])).done) return t4;
+        if (y3 = 0, t4) op = [op[0] & 2, t4.value];
         switch (op[0]) {
           case 0:
           case 1:
-            t3 = op;
+            t4 = op;
             break;
           case 4:
             _3.label++;
@@ -6906,25 +6911,25 @@ One of mods you are using is using an old version of SDK. It will work for now b
             _3.trys.pop();
             continue;
           default:
-            if (!(t3 = _3.trys, t3 = t3.length > 0 && t3[t3.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+            if (!(t4 = _3.trys, t4 = t4.length > 0 && t4[t4.length - 1]) && (op[0] === 6 || op[0] === 2)) {
               _3 = 0;
               continue;
             }
-            if (op[0] === 3 && (!t3 || op[1] > t3[0] && op[1] < t3[3])) {
+            if (op[0] === 3 && (!t4 || op[1] > t4[0] && op[1] < t4[3])) {
               _3.label = op[1];
               break;
             }
-            if (op[0] === 6 && _3.label < t3[1]) {
-              _3.label = t3[1];
-              t3 = op;
+            if (op[0] === 6 && _3.label < t4[1]) {
+              _3.label = t4[1];
+              t4 = op;
               break;
             }
-            if (t3 && _3.label < t3[2]) {
-              _3.label = t3[2];
+            if (t4 && _3.label < t4[2]) {
+              _3.label = t4[2];
               _3.ops.push(op);
               break;
             }
-            if (t3[2]) _3.ops.pop();
+            if (t4[2]) _3.ops.pop();
             _3.trys.pop();
             continue;
         }
@@ -6933,7 +6938,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         op = [6, e2];
         y3 = 0;
       } finally {
-        f3 = t3 = 0;
+        f3 = t4 = 0;
       }
       if (op[0] & 5) throw op[1];
       return { value: op[0] ? op[1] : void 0, done: true };
@@ -7132,13 +7137,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/class-validator@0.14.4/node_modules/class-validator/esm5/decorator/common/ValidateNested.js
   var __assign2 = function() {
-    __assign2 = Object.assign || function(t3) {
+    __assign2 = Object.assign || function(t4) {
       for (var s4, i4 = 1, n4 = arguments.length; i4 < n4; i4++) {
         s4 = arguments[i4];
         for (var p3 in s4) if (Object.prototype.hasOwnProperty.call(s4, p3))
-          t3[p3] = s4[p3];
+          t4[p3] = s4[p3];
       }
-      return t3;
+      return t4;
     };
     return __assign2.apply(this, arguments);
   };
@@ -7665,8 +7670,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
     return !ValidationIsItemBlockedOrLimited(C3, Player.MemberNumber, group, asset.Name) && ServerChatRoomGetAllowItem(Player, C3);
   }
   function serverAppearanceBundleToAppearance(assetFamily, serverAppearanceBundle) {
-    return serverAppearanceBundle.map((t3) => {
-      return ServerBundledItemToAppearanceItem(assetFamily, t3);
+    return serverAppearanceBundle.map((t4) => {
+      return ServerBundledItemToAppearanceItem(assetFamily, t4);
     }).filter((i4) => !!i4);
   }
 
@@ -10911,22 +10916,22 @@ One of mods you are using is using an old version of SDK. It will work for now b
         const diffsContainer = document.createElement("div");
         diffsContainer.style.cssText = "font-size: clamp(8px, 1.5vw, 12px); overflow-y: scroll;";
         commit.bundle.difference.added.forEach((added) => {
-          const t3 = document.createElement("div");
-          t3.style.color = "rgb(87, 209, 87)";
-          t3.textContent = "+ " + added;
-          diffsContainer.append(t3);
+          const t4 = document.createElement("div");
+          t4.style.color = "rgb(87, 209, 87)";
+          t4.textContent = "+ " + added;
+          diffsContainer.append(t4);
         });
         commit.bundle.difference.modified.forEach((modified) => {
-          const t3 = document.createElement("div");
-          t3.style.color = "rgb(255, 167, 5)";
-          t3.textContent = modified;
-          diffsContainer.append(t3);
+          const t4 = document.createElement("div");
+          t4.style.color = "rgb(255, 167, 5)";
+          t4.textContent = modified;
+          diffsContainer.append(t4);
         });
         commit.bundle.difference.removed.forEach((removed) => {
-          const t3 = document.createElement("div");
-          t3.style.color = "rgb(255, 0, 0)";
-          t3.textContent = "- " + removed;
-          diffsContainer.append(t3);
+          const t4 = document.createElement("div");
+          t4.style.color = "rgb(255, 0, 0)";
+          t4.textContent = "- " + removed;
+          diffsContainer.append(t4);
         });
         const details = document.createElement("p");
         details.style.margin = "0.25em 1em";
@@ -12510,7 +12515,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           }
         });
         this.createButton({
-          icon: createElement2(Trash22),
+          icon: createElement2(Trash2),
           parent: _container,
           isDisabled: () => !this.deletionMode,
           modules: {
@@ -12727,7 +12732,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const t22 = PageMarkup.text({
         content: "The world around us, visible and invisible, is made up of countless <b>Magical Atoms</b> \u2014 primordial particles that are the source of all supernatural energy. A magician is not a shaman who invokes spirits, but an arcanist engineer who, by force of will and mind, gathers these atoms into complex structures \u2014 formulas that we call <b>spells</b>."
       });
-      const t3 = PageMarkup.text({
+      const t32 = PageMarkup.text({
         content: "There are only few <b>atoms of magic</b> known:"
       });
       const atomsContainer = PageMarkup.flexContainer({
@@ -12760,7 +12765,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       const t5 = PageMarkup.text({
         content: "Such items are: " + MAGIC_ITEMS.map((m3) => AssetGet(Player.AssetFamily, "ItemHandheld", m3)?.Description).filter((m3) => typeof m3 === "string").join(", ") + "."
       });
-      container.append(t1, t22, t3, atomsContainer, t4, t5);
+      container.append(t1, t22, t32, atomsContainer, t4, t5);
     }
   };
 
@@ -12806,13 +12811,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
           height: "auto"
         })
       );
-      const t3 = PageMarkup.text({
+      const t32 = PageMarkup.text({
         content: "In the spell editor, you can specify the icon, name, and effects of your spell. There are also descriptions of each effect and which atoms they consist of."
       });
       const t4 = PageMarkup.text({
         content: "Spells can only be edited by their creators. That is, if someone gives you a spell, you won't be able to edit it."
       });
-      container.append(t1, img, t22, imagesContainer, t3, t4);
+      container.append(t1, img, t22, imagesContainer, t32, t4);
     }
   };
 
@@ -12841,7 +12846,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         height: "auto"
       });
       img.style.marginTop = "0.35em";
-      const t3 = PageMarkup.text({
+      const t32 = PageMarkup.text({
         content: "Select an already created spell and the target character from the drop-down list."
       });
       const img2 = PageMarkup.image({
@@ -12857,7 +12862,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         content: "<b>To be continued</b>",
         fontSize: "lg"
       });
-      container.append(t1, t22, img, t3, img2, t4, t5);
+      container.append(t1, t22, img, t32, img2, t4, t5);
     }
   };
 
@@ -12924,15 +12929,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
         new MySpellsSubscreen(),
         new SpellEditorSubscreen(),
         new LimitsSubscreen()
-      ].forEach((t3, i4) => {
+      ].forEach((t4, i4) => {
         this.createButton({
-          text: t3.name,
-          icon: t3.icon,
+          text: t4.name,
+          icon: t4.icon,
           x: 165,
           y: 320 + 115 * i4,
           width: 600,
           padding: 2,
-          onClick: () => this.setSubscreen(t3)
+          onClick: () => this.setSubscreen(t4)
         }).style.fontWeight = "bold";
       });
       this.createButton({
@@ -13892,10 +13897,10 @@ One of mods you are using is using an old version of SDK. It will work for now b
         new DarkMagicSubscreen(),
         new QuickAccessMenuSubscreen(),
         new CheatsSubscreen()
-      ].forEach((t3, i4) => {
+      ].forEach((t4, i4) => {
         this.createButton({
-          text: t3.name,
-          icon: t3.icon,
+          text: t4.name,
+          icon: t4.icon,
           x: 165,
           y: 280 + 115 * i4,
           width: 575,
@@ -13911,7 +13916,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
               })
             ]
           },
-          onClick: () => this.setSubscreen(t3)
+          onClick: () => this.setSubscreen(t4)
         }).style.fontWeight = "bold";
       });
       this.createButton({
@@ -13943,7 +13948,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
       });
       this.createButton({
         text: "Reset Settings",
-        icon: createElement2(Trash22),
+        icon: createElement2(Trash2),
         x: 1050,
         y: 730,
         variant: "filled",
@@ -14095,62 +14100,62 @@ One of mods you are using is using an old version of SDK. It will work for now b
 
   // node_modules/.pnpm/@sugarch+bc-mod-hook-manager@0.3.4_bondage-club-mod-sdk@1.2.0/node_modules/@sugarch/bc-mod-hook-manager/dist/index.mjs
   var t = class {
-    constructor(t3) {
-      this.hookMng = t3, this.workList = [];
+    constructor(t4) {
+      this.hookMng = t4, this.workList = [];
     }
-    run(t3, o4) {
+    run(t4, o4) {
       let i4, n4 = false;
-      for (const s4 of this.workList) if ("inject" === s4.value) s4.work(t3, o4);
-      else if ("next" === s4.value) i4 = o4(t3), n4 = true;
-      else if ("override" === s4.value) i4 = s4.work(t3, o4), n4 = true;
+      for (const s4 of this.workList) if ("inject" === s4.value) s4.work(t4, o4);
+      else if ("next" === s4.value) i4 = o4(t4), n4 = true;
+      else if ("override" === s4.value) i4 = s4.work(t4, o4), n4 = true;
       else if ("flag" === s4.value) {
         if (!s4.flag) break;
         s4.once && (s4.flag = false);
-      } else if ("check" === s4.value && !s4.work(t3, o4)) break;
-      return n4 ? i4 : o4(t3);
+      } else if ("check" === s4.value && !s4.work(t4, o4)) break;
+      return n4 ? i4 : o4(t4);
     }
     next() {
       return this.workList.push({ value: "next" }), this;
     }
-    inject(t3) {
-      return this.workList.push({ value: "inject", work: t3 }), this;
+    inject(t4) {
+      return this.workList.push({ value: "inject", work: t4 }), this;
     }
-    inside(t3, { once: o4 = false, priority: i4 = 1 } = {}) {
+    inside(t4, { once: o4 = false, priority: i4 = 1 } = {}) {
       const n4 = { value: "flag", flag: false, once: o4 };
-      return this.hookMng.hookFunction(t3, i4, (t4, o5) => {
+      return this.hookMng.hookFunction(t4, i4, (t5, o5) => {
         n4.flag = true;
-        const i5 = o5(t4);
+        const i5 = o5(t5);
         return n4.flag = false, i5;
       }), this.workList.push(n4), this;
     }
-    when(t3) {
-      return this.workList.push({ value: "check", work: t3 }), this;
+    when(t4) {
+      return this.workList.push({ value: "check", work: t4 }), this;
     }
-    override(t3) {
-      return this.workList.push({ value: "override", work: t3 }), this;
+    override(t4) {
+      return this.workList.push({ value: "override", work: t4 }), this;
     }
   };
   var o;
   var i = class {
-    static info(t3) {
-      o?.info(t3);
+    static info(t4) {
+      o?.info(t4);
     }
-    static warn(t3) {
-      o?.warn(t3);
+    static warn(t4) {
+      o?.warn(t4);
     }
-    static error(t3) {
-      o?.error(t3);
+    static error(t4) {
+      o?.error(t4);
     }
   };
   var n = class {
-    constructor(t3 = false) {
-      this.done = t3, this.list = [];
+    constructor(t4 = false) {
+      this.done = t4, this.list = [];
     }
     run() {
       for (this.done = true; this.list.length > 0; ) this.list.shift()();
     }
-    push(t3) {
-      this.done ? t3() : this.list.push(t3);
+    push(t4) {
+      this.done ? t4() : this.list.push(t4);
     }
   };
   var s = new n();
@@ -14167,60 +14172,60 @@ One of mods you are using is using an old version of SDK. It will work for now b
     get mod() {
       return this.mMod;
     }
-    push(t3, o4) {
-      t3.push(o4);
+    push(t4, o4) {
+      t4.push(o4);
     }
-    initWithMod(t3) {
-      this.mMod = t3, h.run(), r.run();
+    initWithMod(t4) {
+      this.mMod = t4, h.run(), r.run();
       const o4 = () => e.run();
-      l() ? o4() : this.mod.hookFunction("LoginResponse", 0, (t4, i4) => {
-        i4(t4), l() && o4();
+      l() ? o4() : this.mod.hookFunction("LoginResponse", 0, (t5, i4) => {
+        i4(t5), l() && o4();
       }), s.run();
     }
-    afterInit(t3) {
-      this.push(s, t3);
+    afterInit(t4) {
+      this.push(s, t4);
     }
-    afterPlayerLogin(t3) {
-      this.push(e, t3);
+    afterPlayerLogin(t4) {
+      this.push(e, t4);
     }
-    patchFunction(t3, o4) {
-      this.push(h, () => this.mod.patchFunction(t3, o4));
+    patchFunction(t4, o4) {
+      this.push(h, () => this.mod.patchFunction(t4, o4));
     }
-    invokeOriginal(t3, ...o4) {
-      return this.mod ? this.mod.callOriginal(t3, o4) : globalThis[t3]?.(...o4);
+    invokeOriginal(t4, ...o4) {
+      return this.mod ? this.mod.callOriginal(t4, o4) : globalThis[t4]?.(...o4);
     }
-    hookFunction(t3, o4, i4) {
-      this.push(r, () => this.mod.hookFunction(t3, o4, i4));
+    hookFunction(t4, o4, i4) {
+      this.push(r, () => this.mod.hookFunction(t4, o4, i4));
     }
     progressiveHook(o4, i4 = 1) {
       const n4 = new t(this);
-      return this.hookFunction(o4, i4, (t3, o5) => n4.run(t3, o5)), n4;
+      return this.hookFunction(o4, i4, (t4, o5) => n4.run(t4, o5)), n4;
     }
-    insideFlag(t3, o4 = 1) {
+    insideFlag(t4, o4 = 1) {
       const i4 = { inside: false, args: void 0 };
-      return this.hookFunction(t3, o4, (t4, o5) => {
-        i4.inside = true, i4.args = t4;
-        const n4 = o5(t4);
+      return this.hookFunction(t4, o4, (t5, o5) => {
+        i4.inside = true, i4.args = t5;
+        const n4 = o5(t5);
         return i4.inside = false, n4;
       }), i4;
     }
-    hookPlayerFunction(t3, o4, i4) {
+    hookPlayerFunction(t4, o4, i4) {
       var n4;
-      n4 = () => this.mod.hookFunction(t3, o4, i4), l() ? e.push(n4) : n4();
+      n4 = () => this.mod.hookFunction(t4, o4, i4), l() ? e.push(n4) : n4();
     }
-    globalFunction(t3, o4) {
-      "function" != typeof o4 && i.warn("globalFunction: param is not a function"), null == globalThis[t3] ? globalThis[t3] = o4 : globalThis[t3] != o4 && i.warn(`globalFunction: ${t3} is already defined`);
+    globalFunction(t4, o4) {
+      "function" != typeof o4 && i.warn("globalFunction: param is not a function"), null == globalThis[t4] ? globalThis[t4] = o4 : globalThis[t4] != o4 && i.warn(`globalFunction: ${t4} is already defined`);
     }
-    randomGlobalFunction(t3, o4) {
-      const i4 = (t4) => t4 + Math.random().toString(16).substring(2);
-      let n4 = i4(t3);
-      for (; null != globalThis[n4]; ) n4 = i4(t3);
+    randomGlobalFunction(t4, o4) {
+      const i4 = (t5) => t5 + Math.random().toString(16).substring(2);
+      let n4 = i4(t4);
+      for (; null != globalThis[n4]; ) n4 = i4(t4);
       return globalThis[n4] = o4, n4;
     }
-    setLogger(t3) {
-      !(function(t4) {
-        o = t4;
-      })(t3);
+    setLogger(t4) {
+      !(function(t5) {
+        o = t5;
+      })(t4);
     }
   }();
 
@@ -14258,35 +14263,35 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var R;
   var d = { exports: {} };
   function N() {
-    return h2 || (h2 = 1, (function(e2, t3) {
-      const { MAX_SAFE_COMPONENT_LENGTH: r4, MAX_SAFE_BUILD_LENGTH: n4, MAX_LENGTH: s4 } = a(), i4 = o2(), h4 = (t3 = e2.exports = {}).re = [], c3 = t3.safeRe = [], E3 = t3.src = [], l4 = t3.safeSrc = [], f3 = t3.t = {};
+    return h2 || (h2 = 1, (function(e2, t4) {
+      const { MAX_SAFE_COMPONENT_LENGTH: r4, MAX_SAFE_BUILD_LENGTH: n4, MAX_LENGTH: s4 } = a(), i4 = o2(), h4 = (t4 = e2.exports = {}).re = [], c3 = t4.safeRe = [], E3 = t4.src = [], l4 = t4.safeSrc = [], f3 = t4.t = {};
       let p3 = 0;
-      const u4 = "[a-zA-Z0-9-]", I3 = [["\\s", 1], ["\\d", s4], [u4, n4]], v3 = (e3, t4, r5) => {
+      const u4 = "[a-zA-Z0-9-]", I3 = [["\\s", 1], ["\\d", s4], [u4, n4]], v3 = (e3, t5, r5) => {
         const n5 = ((e4) => {
-          for (const [t5, r6] of I3) e4 = e4.split(`${t5}*`).join(`${t5}{0,${r6}}`).split(`${t5}+`).join(`${t5}{1,${r6}}`);
+          for (const [t6, r6] of I3) e4 = e4.split(`${t6}*`).join(`${t6}{0,${r6}}`).split(`${t6}+`).join(`${t6}{1,${r6}}`);
           return e4;
-        })(t4), s5 = p3++;
-        i4(e3, s5, t4), f3[e3] = s5, E3[s5] = t4, l4[s5] = n5, h4[s5] = new RegExp(t4, r5 ? "g" : void 0), c3[s5] = new RegExp(n5, r5 ? "g" : void 0);
+        })(t5), s5 = p3++;
+        i4(e3, s5, t5), f3[e3] = s5, E3[s5] = t5, l4[s5] = n5, h4[s5] = new RegExp(t5, r5 ? "g" : void 0), c3[s5] = new RegExp(n5, r5 ? "g" : void 0);
       };
-      v3("NUMERICIDENTIFIER", "0|[1-9]\\d*"), v3("NUMERICIDENTIFIERLOOSE", "\\d+"), v3("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${u4}*`), v3("MAINVERSION", `(${E3[f3.NUMERICIDENTIFIER]})\\.(${E3[f3.NUMERICIDENTIFIER]})\\.(${E3[f3.NUMERICIDENTIFIER]})`), v3("MAINVERSIONLOOSE", `(${E3[f3.NUMERICIDENTIFIERLOOSE]})\\.(${E3[f3.NUMERICIDENTIFIERLOOSE]})\\.(${E3[f3.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASEIDENTIFIER", `(?:${E3[f3.NONNUMERICIDENTIFIER]}|${E3[f3.NUMERICIDENTIFIER]})`), v3("PRERELEASEIDENTIFIERLOOSE", `(?:${E3[f3.NONNUMERICIDENTIFIER]}|${E3[f3.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASE", `(?:-(${E3[f3.PRERELEASEIDENTIFIER]}(?:\\.${E3[f3.PRERELEASEIDENTIFIER]})*))`), v3("PRERELEASELOOSE", `(?:-?(${E3[f3.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${E3[f3.PRERELEASEIDENTIFIERLOOSE]})*))`), v3("BUILDIDENTIFIER", `${u4}+`), v3("BUILD", `(?:\\+(${E3[f3.BUILDIDENTIFIER]}(?:\\.${E3[f3.BUILDIDENTIFIER]})*))`), v3("FULLPLAIN", `v?${E3[f3.MAINVERSION]}${E3[f3.PRERELEASE]}?${E3[f3.BUILD]}?`), v3("FULL", `^${E3[f3.FULLPLAIN]}$`), v3("LOOSEPLAIN", `[v=\\s]*${E3[f3.MAINVERSIONLOOSE]}${E3[f3.PRERELEASELOOSE]}?${E3[f3.BUILD]}?`), v3("LOOSE", `^${E3[f3.LOOSEPLAIN]}$`), v3("GTLT", "((?:<|>)?=?)"), v3("XRANGEIDENTIFIERLOOSE", `${E3[f3.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), v3("XRANGEIDENTIFIER", `${E3[f3.NUMERICIDENTIFIER]}|x|X|\\*`), v3("XRANGEPLAIN", `[v=\\s]*(${E3[f3.XRANGEIDENTIFIER]})(?:\\.(${E3[f3.XRANGEIDENTIFIER]})(?:\\.(${E3[f3.XRANGEIDENTIFIER]})(?:${E3[f3.PRERELEASE]})?${E3[f3.BUILD]}?)?)?`), v3("XRANGEPLAINLOOSE", `[v=\\s]*(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:${E3[f3.PRERELEASELOOSE]})?${E3[f3.BUILD]}?)?)?`), v3("XRANGE", `^${E3[f3.GTLT]}\\s*${E3[f3.XRANGEPLAIN]}$`), v3("XRANGELOOSE", `^${E3[f3.GTLT]}\\s*${E3[f3.XRANGEPLAINLOOSE]}$`), v3("COERCEPLAIN", `(^|[^\\d])(\\d{1,${r4}})(?:\\.(\\d{1,${r4}}))?(?:\\.(\\d{1,${r4}}))?`), v3("COERCE", `${E3[f3.COERCEPLAIN]}(?:$|[^\\d])`), v3("COERCEFULL", E3[f3.COERCEPLAIN] + `(?:${E3[f3.PRERELEASE]})?(?:${E3[f3.BUILD]})?(?:$|[^\\d])`), v3("COERCERTL", E3[f3.COERCE], true), v3("COERCERTLFULL", E3[f3.COERCEFULL], true), v3("LONETILDE", "(?:~>?)"), v3("TILDETRIM", `(\\s*)${E3[f3.LONETILDE]}\\s+`, true), t3.tildeTrimReplace = "$1~", v3("TILDE", `^${E3[f3.LONETILDE]}${E3[f3.XRANGEPLAIN]}$`), v3("TILDELOOSE", `^${E3[f3.LONETILDE]}${E3[f3.XRANGEPLAINLOOSE]}$`), v3("LONECARET", "(?:\\^)"), v3("CARETTRIM", `(\\s*)${E3[f3.LONECARET]}\\s+`, true), t3.caretTrimReplace = "$1^", v3("CARET", `^${E3[f3.LONECARET]}${E3[f3.XRANGEPLAIN]}$`), v3("CARETLOOSE", `^${E3[f3.LONECARET]}${E3[f3.XRANGEPLAINLOOSE]}$`), v3("COMPARATORLOOSE", `^${E3[f3.GTLT]}\\s*(${E3[f3.LOOSEPLAIN]})$|^$`), v3("COMPARATOR", `^${E3[f3.GTLT]}\\s*(${E3[f3.FULLPLAIN]})$|^$`), v3("COMPARATORTRIM", `(\\s*)${E3[f3.GTLT]}\\s*(${E3[f3.LOOSEPLAIN]}|${E3[f3.XRANGEPLAIN]})`, true), t3.comparatorTrimReplace = "$1$2$3", v3("HYPHENRANGE", `^\\s*(${E3[f3.XRANGEPLAIN]})\\s+-\\s+(${E3[f3.XRANGEPLAIN]})\\s*$`), v3("HYPHENRANGELOOSE", `^\\s*(${E3[f3.XRANGEPLAINLOOSE]})\\s+-\\s+(${E3[f3.XRANGEPLAINLOOSE]})\\s*$`), v3("STAR", "(<|>)?=?\\s*\\*"), v3("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), v3("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
+      v3("NUMERICIDENTIFIER", "0|[1-9]\\d*"), v3("NUMERICIDENTIFIERLOOSE", "\\d+"), v3("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${u4}*`), v3("MAINVERSION", `(${E3[f3.NUMERICIDENTIFIER]})\\.(${E3[f3.NUMERICIDENTIFIER]})\\.(${E3[f3.NUMERICIDENTIFIER]})`), v3("MAINVERSIONLOOSE", `(${E3[f3.NUMERICIDENTIFIERLOOSE]})\\.(${E3[f3.NUMERICIDENTIFIERLOOSE]})\\.(${E3[f3.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASEIDENTIFIER", `(?:${E3[f3.NONNUMERICIDENTIFIER]}|${E3[f3.NUMERICIDENTIFIER]})`), v3("PRERELEASEIDENTIFIERLOOSE", `(?:${E3[f3.NONNUMERICIDENTIFIER]}|${E3[f3.NUMERICIDENTIFIERLOOSE]})`), v3("PRERELEASE", `(?:-(${E3[f3.PRERELEASEIDENTIFIER]}(?:\\.${E3[f3.PRERELEASEIDENTIFIER]})*))`), v3("PRERELEASELOOSE", `(?:-?(${E3[f3.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${E3[f3.PRERELEASEIDENTIFIERLOOSE]})*))`), v3("BUILDIDENTIFIER", `${u4}+`), v3("BUILD", `(?:\\+(${E3[f3.BUILDIDENTIFIER]}(?:\\.${E3[f3.BUILDIDENTIFIER]})*))`), v3("FULLPLAIN", `v?${E3[f3.MAINVERSION]}${E3[f3.PRERELEASE]}?${E3[f3.BUILD]}?`), v3("FULL", `^${E3[f3.FULLPLAIN]}$`), v3("LOOSEPLAIN", `[v=\\s]*${E3[f3.MAINVERSIONLOOSE]}${E3[f3.PRERELEASELOOSE]}?${E3[f3.BUILD]}?`), v3("LOOSE", `^${E3[f3.LOOSEPLAIN]}$`), v3("GTLT", "((?:<|>)?=?)"), v3("XRANGEIDENTIFIERLOOSE", `${E3[f3.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), v3("XRANGEIDENTIFIER", `${E3[f3.NUMERICIDENTIFIER]}|x|X|\\*`), v3("XRANGEPLAIN", `[v=\\s]*(${E3[f3.XRANGEIDENTIFIER]})(?:\\.(${E3[f3.XRANGEIDENTIFIER]})(?:\\.(${E3[f3.XRANGEIDENTIFIER]})(?:${E3[f3.PRERELEASE]})?${E3[f3.BUILD]}?)?)?`), v3("XRANGEPLAINLOOSE", `[v=\\s]*(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:\\.(${E3[f3.XRANGEIDENTIFIERLOOSE]})(?:${E3[f3.PRERELEASELOOSE]})?${E3[f3.BUILD]}?)?)?`), v3("XRANGE", `^${E3[f3.GTLT]}\\s*${E3[f3.XRANGEPLAIN]}$`), v3("XRANGELOOSE", `^${E3[f3.GTLT]}\\s*${E3[f3.XRANGEPLAINLOOSE]}$`), v3("COERCEPLAIN", `(^|[^\\d])(\\d{1,${r4}})(?:\\.(\\d{1,${r4}}))?(?:\\.(\\d{1,${r4}}))?`), v3("COERCE", `${E3[f3.COERCEPLAIN]}(?:$|[^\\d])`), v3("COERCEFULL", E3[f3.COERCEPLAIN] + `(?:${E3[f3.PRERELEASE]})?(?:${E3[f3.BUILD]})?(?:$|[^\\d])`), v3("COERCERTL", E3[f3.COERCE], true), v3("COERCERTLFULL", E3[f3.COERCEFULL], true), v3("LONETILDE", "(?:~>?)"), v3("TILDETRIM", `(\\s*)${E3[f3.LONETILDE]}\\s+`, true), t4.tildeTrimReplace = "$1~", v3("TILDE", `^${E3[f3.LONETILDE]}${E3[f3.XRANGEPLAIN]}$`), v3("TILDELOOSE", `^${E3[f3.LONETILDE]}${E3[f3.XRANGEPLAINLOOSE]}$`), v3("LONECARET", "(?:\\^)"), v3("CARETTRIM", `(\\s*)${E3[f3.LONECARET]}\\s+`, true), t4.caretTrimReplace = "$1^", v3("CARET", `^${E3[f3.LONECARET]}${E3[f3.XRANGEPLAIN]}$`), v3("CARETLOOSE", `^${E3[f3.LONECARET]}${E3[f3.XRANGEPLAINLOOSE]}$`), v3("COMPARATORLOOSE", `^${E3[f3.GTLT]}\\s*(${E3[f3.LOOSEPLAIN]})$|^$`), v3("COMPARATOR", `^${E3[f3.GTLT]}\\s*(${E3[f3.FULLPLAIN]})$|^$`), v3("COMPARATORTRIM", `(\\s*)${E3[f3.GTLT]}\\s*(${E3[f3.LOOSEPLAIN]}|${E3[f3.XRANGEPLAIN]})`, true), t4.comparatorTrimReplace = "$1$2$3", v3("HYPHENRANGE", `^\\s*(${E3[f3.XRANGEPLAIN]})\\s+-\\s+(${E3[f3.XRANGEPLAIN]})\\s*$`), v3("HYPHENRANGELOOSE", `^\\s*(${E3[f3.XRANGEPLAINLOOSE]})\\s+-\\s+(${E3[f3.XRANGEPLAINLOOSE]})\\s*$`), v3("STAR", "(<|>)?=?\\s*\\*"), v3("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), v3("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
     })(d, d.exports)), d.exports;
   }
   function O() {
     if (u2) return p;
     u2 = 1;
-    const e2 = o2(), { MAX_LENGTH: t3, MAX_SAFE_INTEGER: r4 } = a(), { safeRe: n4, t: s4 } = N(), i4 = (function() {
+    const e2 = o2(), { MAX_LENGTH: t4, MAX_SAFE_INTEGER: r4 } = a(), { safeRe: n4, t: s4 } = N(), i4 = (function() {
       if (E) return c;
       E = 1;
-      const e3 = Object.freeze({ loose: true }), t4 = Object.freeze({});
-      return c = (r5) => r5 ? "object" != typeof r5 ? e3 : r5 : t4;
+      const e3 = Object.freeze({ loose: true }), t5 = Object.freeze({});
+      return c = (r5) => r5 ? "object" != typeof r5 ? e3 : r5 : t5;
     })(), { compareIdentifiers: h4 } = (function() {
       if (f) return l2;
       f = 1;
-      const e3 = /^[0-9]+$/, t4 = (t5, r5) => {
-        const n5 = e3.test(t5), s5 = e3.test(r5);
-        return n5 && s5 && (t5 = +t5, r5 = +r5), t5 === r5 ? 0 : n5 && !s5 ? -1 : s5 && !n5 ? 1 : t5 < r5 ? -1 : 1;
+      const e3 = /^[0-9]+$/, t5 = (t6, r5) => {
+        const n5 = e3.test(t6), s5 = e3.test(r5);
+        return n5 && s5 && (t6 = +t6, r5 = +r5), t6 === r5 ? 0 : n5 && !s5 ? -1 : s5 && !n5 ? 1 : t6 < r5 ? -1 : 1;
       };
-      return l2 = { compareIdentifiers: t4, rcompareIdentifiers: (e4, r5) => t4(r5, e4) }, l2;
+      return l2 = { compareIdentifiers: t5, rcompareIdentifiers: (e4, r5) => t5(r5, e4) }, l2;
     })();
     class I3 {
       constructor(o4, a3) {
@@ -14294,7 +14299,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
           if (o4.loose === !!a3.loose && o4.includePrerelease === !!a3.includePrerelease) return o4;
           o4 = o4.version;
         } else if ("string" != typeof o4) throw new TypeError(`Invalid version. Must be a string. Got type "${typeof o4}".`);
-        if (o4.length > t3) throw new TypeError(`version is longer than ${t3} characters`);
+        if (o4.length > t4) throw new TypeError(`version is longer than ${t4} characters`);
         e2("SemVer", o4, a3), this.options = a3, this.loose = !!a3.loose, this.includePrerelease = !!a3.includePrerelease;
         const h5 = o4.trim().match(a3.loose ? n4[s4.LOOSE] : n4[s4.FULL]);
         if (!h5) throw new TypeError(`Invalid Version: ${o4}`);
@@ -14303,8 +14308,8 @@ One of mods you are using is using an old version of SDK. It will work for now b
         if (this.patch > r4 || this.patch < 0) throw new TypeError("Invalid patch version");
         h5[4] ? this.prerelease = h5[4].split(".").map((e3) => {
           if (/^[0-9]+$/.test(e3)) {
-            const t4 = +e3;
-            if (t4 >= 0 && t4 < r4) return t4;
+            const t5 = +e3;
+            if (t5 >= 0 && t5 < r4) return t5;
           }
           return e3;
         }) : this.prerelease = [], this.build = h5[5] ? h5[5].split(".") : [], this.format();
@@ -14315,60 +14320,60 @@ One of mods you are using is using an old version of SDK. It will work for now b
       toString() {
         return this.version;
       }
-      compare(t4) {
-        if (e2("SemVer.compare", this.version, this.options, t4), !(t4 instanceof I3)) {
-          if ("string" == typeof t4 && t4 === this.version) return 0;
-          t4 = new I3(t4, this.options);
+      compare(t5) {
+        if (e2("SemVer.compare", this.version, this.options, t5), !(t5 instanceof I3)) {
+          if ("string" == typeof t5 && t5 === this.version) return 0;
+          t5 = new I3(t5, this.options);
         }
-        return t4.version === this.version ? 0 : this.compareMain(t4) || this.comparePre(t4);
+        return t5.version === this.version ? 0 : this.compareMain(t5) || this.comparePre(t5);
       }
       compareMain(e3) {
         return e3 instanceof I3 || (e3 = new I3(e3, this.options)), h4(this.major, e3.major) || h4(this.minor, e3.minor) || h4(this.patch, e3.patch);
       }
-      comparePre(t4) {
-        if (t4 instanceof I3 || (t4 = new I3(t4, this.options)), this.prerelease.length && !t4.prerelease.length) return -1;
-        if (!this.prerelease.length && t4.prerelease.length) return 1;
-        if (!this.prerelease.length && !t4.prerelease.length) return 0;
+      comparePre(t5) {
+        if (t5 instanceof I3 || (t5 = new I3(t5, this.options)), this.prerelease.length && !t5.prerelease.length) return -1;
+        if (!this.prerelease.length && t5.prerelease.length) return 1;
+        if (!this.prerelease.length && !t5.prerelease.length) return 0;
         let r5 = 0;
         do {
-          const n5 = this.prerelease[r5], s5 = t4.prerelease[r5];
+          const n5 = this.prerelease[r5], s5 = t5.prerelease[r5];
           if (e2("prerelease compare", r5, n5, s5), void 0 === n5 && void 0 === s5) return 0;
           if (void 0 === s5) return 1;
           if (void 0 === n5) return -1;
           if (n5 !== s5) return h4(n5, s5);
         } while (++r5);
       }
-      compareBuild(t4) {
-        t4 instanceof I3 || (t4 = new I3(t4, this.options));
+      compareBuild(t5) {
+        t5 instanceof I3 || (t5 = new I3(t5, this.options));
         let r5 = 0;
         do {
-          const n5 = this.build[r5], s5 = t4.build[r5];
+          const n5 = this.build[r5], s5 = t5.build[r5];
           if (e2("build compare", r5, n5, s5), void 0 === n5 && void 0 === s5) return 0;
           if (void 0 === s5) return 1;
           if (void 0 === n5) return -1;
           if (n5 !== s5) return h4(n5, s5);
         } while (++r5);
       }
-      inc(e3, t4, r5) {
+      inc(e3, t5, r5) {
         if (e3.startsWith("pre")) {
-          if (!t4 && false === r5) throw new Error("invalid increment argument: identifier is empty");
-          if (t4) {
-            const e4 = `-${t4}`.match(this.options.loose ? n4[s4.PRERELEASELOOSE] : n4[s4.PRERELEASE]);
-            if (!e4 || e4[1] !== t4) throw new Error(`invalid identifier: ${t4}`);
+          if (!t5 && false === r5) throw new Error("invalid increment argument: identifier is empty");
+          if (t5) {
+            const e4 = `-${t5}`.match(this.options.loose ? n4[s4.PRERELEASELOOSE] : n4[s4.PRERELEASE]);
+            if (!e4 || e4[1] !== t5) throw new Error(`invalid identifier: ${t5}`);
           }
         }
         switch (e3) {
           case "premajor":
-            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", t4, r5);
+            this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", t5, r5);
             break;
           case "preminor":
-            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", t4, r5);
+            this.prerelease.length = 0, this.patch = 0, this.minor++, this.inc("pre", t5, r5);
             break;
           case "prepatch":
-            this.prerelease.length = 0, this.inc("patch", t4, r5), this.inc("pre", t4, r5);
+            this.prerelease.length = 0, this.inc("patch", t5, r5), this.inc("pre", t5, r5);
             break;
           case "prerelease":
-            0 === this.prerelease.length && this.inc("patch", t4, r5), this.inc("pre", t4, r5);
+            0 === this.prerelease.length && this.inc("patch", t5, r5), this.inc("pre", t5, r5);
             break;
           case "release":
             if (0 === this.prerelease.length) throw new Error(`version ${this.raw} is not a prerelease`);
@@ -14390,13 +14395,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
               let n5 = this.prerelease.length;
               for (; --n5 >= 0; ) "number" == typeof this.prerelease[n5] && (this.prerelease[n5]++, n5 = -2);
               if (-1 === n5) {
-                if (t4 === this.prerelease.join(".") && false === r5) throw new Error("invalid increment argument: identifier already exists");
+                if (t5 === this.prerelease.join(".") && false === r5) throw new Error("invalid increment argument: identifier already exists");
                 this.prerelease.push(e4);
               }
             }
-            if (t4) {
-              let n5 = [t4, e4];
-              false === r5 && (n5 = [t4]), 0 === h4(this.prerelease[0], t4) ? isNaN(this.prerelease[1]) && (this.prerelease = n5) : this.prerelease = n5;
+            if (t5) {
+              let n5 = [t5, e4];
+              false === r5 && (n5 = [t5]), 0 === h4(this.prerelease[0], t5) ? isNaN(this.prerelease[1]) && (this.prerelease = n5) : this.prerelease = n5;
             }
             break;
           }
@@ -14419,18 +14424,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (v) return I;
       v = 1;
       const e3 = O();
-      return I = (t3, r4, n4 = false) => {
-        if (t3 instanceof e3) return t3;
+      return I = (t4, r4, n4 = false) => {
+        if (t4 instanceof e3) return t4;
         try {
-          return new e3(t3, r4);
+          return new e3(t4, r4);
         } catch (e4) {
           if (!n4) return null;
           throw e4;
         }
       }, I;
     })();
-    return m = (t3, r4) => {
-      const n4 = e2(t3, r4);
+    return m = (t4, r4) => {
+      const n4 = e2(t4, r4);
       return n4 ? n4.version : null;
     }, m;
   })();
@@ -14442,9 +14447,9 @@ One of mods you are using is using an old version of SDK. It will work for now b
       if (L) return A;
       L = 1;
       const e3 = O();
-      return A = (t3, r4, n4) => new e3(t3, n4).compare(new e3(r4, n4)), A;
+      return A = (t4, r4, n4) => new e3(t4, n4).compare(new e3(r4, n4)), A;
     })();
-    return $ = (t3, r4, n4) => e2(t3, r4, n4) < 0, $;
+    return $ = (t4, r4, n4) => e2(t4, r4, n4) < 0, $;
   })();
   var T = t2(C);
   function g(e2) {
@@ -14452,71 +14457,71 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }
   var P = class _P {
     static _initStorage() {
-      var e2, t3;
-      g(this._namespace) || (e2 = this._namespace, t3 = {}, globalThis[e2] = t3);
+      var e2, t4;
+      g(this._namespace) || (e2 = this._namespace, t4 = {}, globalThis[e2] = t4);
     }
-    static get(e2, t3) {
+    static get(e2, t4) {
       this._initStorage();
       const r4 = g(this._namespace);
-      return e2 in r4 || (r4[e2] = t3()), r4[e2];
+      return e2 in r4 || (r4[e2] = t4()), r4[e2];
     }
-    static getMayOverride(e2, t3) {
+    static getMayOverride(e2, t4) {
       this._initStorage();
       const r4 = g(this._namespace);
-      return r4[e2] = t3(r4[e2]), r4[e2];
+      return r4[e2] = t4(r4[e2]), r4[e2];
     }
-    static getByVersion(e2, t3, r4, n4) {
-      if (this._initStorage(), !_(t3)) throw new Error(`Invalid version for ${e2}: ${t3}`);
+    static getByVersion(e2, t4, r4, n4) {
+      if (this._initStorage(), !_(t4)) throw new Error(`Invalid version for ${e2}: ${t4}`);
       const s4 = g(this._namespace), i4 = `${e2}.__Version`, o4 = s4[e2], a3 = s4[i4];
-      return o4 ? a3 && !T(a3, t3) || (s4[e2] = n4(a3, o4), s4[i4] = t3) : (s4[e2] = r4(o4), s4[i4] = t3), s4[e2];
+      return o4 ? a3 && !T(a3, t4) || (s4[e2] = n4(a3, o4), s4[i4] = t4) : (s4[e2] = r4(o4), s4[i4] = t4), s4[e2];
     }
-    static set(e2, t3) {
-      this._initStorage(), g(this._namespace)[e2] = t3;
+    static set(e2, t4) {
+      this._initStorage(), g(this._namespace)[e2] = t4;
     }
     static has(e2) {
       return this._initStorage(), e2 in g(this._namespace);
     }
     static delete(e2) {
       this._initStorage();
-      const t3 = g(this._namespace);
-      return e2 in t3 && delete t3[e2];
+      const t4 = g(this._namespace);
+      return e2 in t4 && delete t4[e2];
     }
     static setImplementation(e2) {
-      const t3 = ["get", "set", "has", "delete"];
-      for (const r4 of t3) {
+      const t4 = ["get", "set", "has", "delete"];
+      for (const r4 of t4) {
         if ("function" != typeof e2[r4]) throw new Error(`Implementation must provide a '${r4}' function`);
         _P[r4] = e2[r4];
       }
     }
     static createNamespace(e2) {
-      return { get: (t3, r4) => _P.get(`${e2}.${t3}`, r4), getMayOverride: (t3, r4) => _P.getMayOverride(`${e2}.${t3}`, r4), set: (t3, r4) => _P.set(`${e2}.${t3}`, r4), has: (t3) => _P.has(`${e2}.${t3}`), delete: (t3) => _P.delete(`${e2}.${t3}`) };
+      return { get: (t4, r4) => _P.get(`${e2}.${t4}`, r4), getMayOverride: (t4, r4) => _P.getMayOverride(`${e2}.${t4}`, r4), set: (t4, r4) => _P.set(`${e2}.${t4}`, r4), has: (t4) => _P.has(`${e2}.${t4}`), delete: (t4) => _P.delete(`${e2}.${t4}`) };
     }
   };
   function w(e2) {
-    return new Promise((t3) => setTimeout(t3, e2));
+    return new Promise((t4) => setTimeout(t4, e2));
   }
-  function M(e2, t3 = 100) {
+  function M(e2, t4 = 100) {
     return (async () => {
-      for (; !e2(); ) await w(t3);
+      for (; !e2(); ) await w(t4);
     })();
   }
   P._namespace = "__BC_LUZI_GLOBALS__", P.createNamespace("OnceFlag");
   var D;
   var b = { exports: {} };
   var F = (D || (D = 1, (function(e2) {
-    var t3 = Object.prototype.hasOwnProperty, r4 = "~";
+    var t4 = Object.prototype.hasOwnProperty, r4 = "~";
     function n4() {
     }
-    function s4(e3, t4, r5) {
-      this.fn = e3, this.context = t4, this.once = r5 || false;
+    function s4(e3, t5, r5) {
+      this.fn = e3, this.context = t5, this.once = r5 || false;
     }
-    function i4(e3, t4, n5, i5, o5) {
+    function i4(e3, t5, n5, i5, o5) {
       if ("function" != typeof n5) throw new TypeError("The listener must be a function");
-      var a4 = new s4(n5, i5 || e3, o5), h4 = r4 ? r4 + t4 : t4;
+      var a4 = new s4(n5, i5 || e3, o5), h4 = r4 ? r4 + t5 : t5;
       return e3._events[h4] ? e3._events[h4].fn ? e3._events[h4] = [e3._events[h4], a4] : e3._events[h4].push(a4) : (e3._events[h4] = a4, e3._eventsCount++), e3;
     }
-    function o4(e3, t4) {
-      0 === --e3._eventsCount ? e3._events = new n4() : delete e3._events[t4];
+    function o4(e3, t5) {
+      0 === --e3._eventsCount ? e3._events = new n4() : delete e3._events[t5];
     }
     function a3() {
       this._events = new n4(), this._eventsCount = 0;
@@ -14524,18 +14529,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
     Object.create && (n4.prototype = /* @__PURE__ */ Object.create(null), new n4().__proto__ || (r4 = false)), a3.prototype.eventNames = function() {
       var e3, n5, s5 = [];
       if (0 === this._eventsCount) return s5;
-      for (n5 in e3 = this._events) t3.call(e3, n5) && s5.push(r4 ? n5.slice(1) : n5);
+      for (n5 in e3 = this._events) t4.call(e3, n5) && s5.push(r4 ? n5.slice(1) : n5);
       return Object.getOwnPropertySymbols ? s5.concat(Object.getOwnPropertySymbols(e3)) : s5;
     }, a3.prototype.listeners = function(e3) {
-      var t4 = r4 ? r4 + e3 : e3, n5 = this._events[t4];
+      var t5 = r4 ? r4 + e3 : e3, n5 = this._events[t5];
       if (!n5) return [];
       if (n5.fn) return [n5.fn];
       for (var s5 = 0, i5 = n5.length, o5 = new Array(i5); s5 < i5; s5++) o5[s5] = n5[s5].fn;
       return o5;
     }, a3.prototype.listenerCount = function(e3) {
-      var t4 = r4 ? r4 + e3 : e3, n5 = this._events[t4];
+      var t5 = r4 ? r4 + e3 : e3, n5 = this._events[t5];
       return n5 ? n5.fn ? 1 : n5.length : 0;
-    }, a3.prototype.emit = function(e3, t4, n5, s5, i5, o5) {
+    }, a3.prototype.emit = function(e3, t5, n5, s5, i5, o5) {
       var a4 = r4 ? r4 + e3 : e3;
       if (!this._events[a4]) return false;
       var h4, c3, E3 = this._events[a4], l4 = arguments.length;
@@ -14544,15 +14549,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
           case 1:
             return E3.fn.call(E3.context), true;
           case 2:
-            return E3.fn.call(E3.context, t4), true;
+            return E3.fn.call(E3.context, t5), true;
           case 3:
-            return E3.fn.call(E3.context, t4, n5), true;
+            return E3.fn.call(E3.context, t5, n5), true;
           case 4:
-            return E3.fn.call(E3.context, t4, n5, s5), true;
+            return E3.fn.call(E3.context, t5, n5, s5), true;
           case 5:
-            return E3.fn.call(E3.context, t4, n5, s5, i5), true;
+            return E3.fn.call(E3.context, t5, n5, s5, i5), true;
           case 6:
-            return E3.fn.call(E3.context, t4, n5, s5, i5, o5), true;
+            return E3.fn.call(E3.context, t5, n5, s5, i5, o5), true;
         }
         for (c3 = 1, h4 = new Array(l4 - 1); c3 < l4; c3++) h4[c3 - 1] = arguments[c3];
         E3.fn.apply(E3.context, h4);
@@ -14563,13 +14568,13 @@ One of mods you are using is using an old version of SDK. It will work for now b
             E3[c3].fn.call(E3[c3].context);
             break;
           case 2:
-            E3[c3].fn.call(E3[c3].context, t4);
+            E3[c3].fn.call(E3[c3].context, t5);
             break;
           case 3:
-            E3[c3].fn.call(E3[c3].context, t4, n5);
+            E3[c3].fn.call(E3[c3].context, t5, n5);
             break;
           case 4:
-            E3[c3].fn.call(E3[c3].context, t4, n5, s5);
+            E3[c3].fn.call(E3[c3].context, t5, n5, s5);
             break;
           default:
             if (!h4) for (f3 = 1, h4 = new Array(l4 - 1); f3 < l4; f3++) h4[f3 - 1] = arguments[f3];
@@ -14577,37 +14582,37 @@ One of mods you are using is using an old version of SDK. It will work for now b
         }
       }
       return true;
-    }, a3.prototype.on = function(e3, t4, r5) {
-      return i4(this, e3, t4, r5, false);
-    }, a3.prototype.once = function(e3, t4, r5) {
-      return i4(this, e3, t4, r5, true);
-    }, a3.prototype.removeListener = function(e3, t4, n5, s5) {
+    }, a3.prototype.on = function(e3, t5, r5) {
+      return i4(this, e3, t5, r5, false);
+    }, a3.prototype.once = function(e3, t5, r5) {
+      return i4(this, e3, t5, r5, true);
+    }, a3.prototype.removeListener = function(e3, t5, n5, s5) {
       var i5 = r4 ? r4 + e3 : e3;
       if (!this._events[i5]) return this;
-      if (!t4) return o4(this, i5), this;
+      if (!t5) return o4(this, i5), this;
       var a4 = this._events[i5];
-      if (a4.fn) a4.fn !== t4 || s5 && !a4.once || n5 && a4.context !== n5 || o4(this, i5);
+      if (a4.fn) a4.fn !== t5 || s5 && !a4.once || n5 && a4.context !== n5 || o4(this, i5);
       else {
-        for (var h4 = 0, c3 = [], E3 = a4.length; h4 < E3; h4++) (a4[h4].fn !== t4 || s5 && !a4[h4].once || n5 && a4[h4].context !== n5) && c3.push(a4[h4]);
+        for (var h4 = 0, c3 = [], E3 = a4.length; h4 < E3; h4++) (a4[h4].fn !== t5 || s5 && !a4[h4].once || n5 && a4[h4].context !== n5) && c3.push(a4[h4]);
         c3.length ? this._events[i5] = 1 === c3.length ? c3[0] : c3 : o4(this, i5);
       }
       return this;
     }, a3.prototype.removeAllListeners = function(e3) {
-      var t4;
-      return e3 ? (t4 = r4 ? r4 + e3 : e3, this._events[t4] && o4(this, t4)) : (this._events = new n4(), this._eventsCount = 0), this;
+      var t5;
+      return e3 ? (t5 = r4 ? r4 + e3 : e3, this._events[t5] && o4(this, t5)) : (this._events = new n4(), this._eventsCount = 0), this;
     }, a3.prototype.off = a3.prototype.removeListener, a3.prototype.addListener = a3.prototype.on, a3.prefixed = r4, a3.EventEmitter = a3, e2.exports = a3;
   })(b)), b.exports);
   var G = t2(F);
   var U = "1.0.1";
   var x = class {
     constructor() {
-      this.handler = new G(), u.hookFunction("ChatRoomMessage", 10, (e2, t3) => {
+      this.handler = new G(), u.hookFunction("ChatRoomMessage", 10, (e2, t4) => {
         const { Type: r4 } = e2[0];
-        return "ServerMessage" !== r4 && "Status" !== r4 && this.handler.emit(r4, e2[0]), t3(e2);
-      }), u.hookFunction("ChatRoomSync", 1, (e2, t3) => {
-        const r4 = Player && !ServerPlayerIsInChatRoom() && RelogData?.ChatRoomName !== e2[0].Name, n4 = t3(e2);
+        return "ServerMessage" !== r4 && "Status" !== r4 && this.handler.emit(r4, e2[0]), t4(e2);
+      }), u.hookFunction("ChatRoomSync", 1, (e2, t4) => {
+        const r4 = Player && !ServerPlayerIsInChatRoom() && RelogData?.ChatRoomName !== e2[0].Name, n4 = t4(e2);
         return r4 && this.handler.emit("PlayerJoin", Player), n4;
-      }), u.hookFunction("ServerSend", 1, (e2, t3) => ("ChatRoomLeave" === e2[0] && Player && this.handler.emit("PlayerLeave", Player), t3(e2)));
+      }), u.hookFunction("ServerSend", 1, (e2, t4) => ("ChatRoomLeave" === e2[0] && Player && this.handler.emit("PlayerLeave", Player), t4(e2)));
     }
     on(...e2) {
       this.handler.on(...e2);
@@ -14622,12 +14627,12 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var X2 = P.get(`ChatRoomEvents@${U}`, () => new x());
   var j = class {
     constructor() {
-      this.handler = new G(), u.hookFunction("ActivityOrgasmStop", 9, (e2, t3) => {
+      this.handler = new G(), u.hookFunction("ActivityOrgasmStop", 9, (e2, t4) => {
         const [r4, n4] = e2;
-        r4.IsPlayer() && (ActivityOrgasmRuined ? this.handler.emit("ruined", { Player: r4 }) : n4 >= 60 && this.handler.emit("resisted", { Player: r4 })), t3(e2);
-      }), u.hookFunction("ActivityOrgasmStart", 9, (e2, t3) => {
+        r4.IsPlayer() && (ActivityOrgasmRuined ? this.handler.emit("ruined", { Player: r4 }) : n4 >= 60 && this.handler.emit("resisted", { Player: r4 })), t4(e2);
+      }), u.hookFunction("ActivityOrgasmStart", 9, (e2, t4) => {
         const [r4] = e2;
-        r4.IsPlayer() && !ActivityOrgasmRuined && this.handler.emit("orgasmed", { Player: r4 }), t3(e2);
+        r4.IsPlayer() && !ActivityOrgasmRuined && this.handler.emit("orgasmed", { Player: r4 }), t4(e2);
       });
     }
     on(...e2) {
@@ -14645,7 +14650,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
     constructor() {
       this.handler = new G(), (async () => {
         var e2;
-        await M(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = this.handler, { Description: `SugarChain ChatMessage Handler v${U}`, Priority: 1024, Callback: (t3, r4, n4, s4) => (e2.emit(t3.Type, t3, r4, n4, s4), false) }));
+        await M(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = this.handler, { Description: `SugarChain ChatMessage Handler v${U}`, Priority: 1024, Callback: (t4, r4, n4, s4) => (e2.emit(t4.Type, t4, r4, n4, s4), false) }));
       })();
     }
     on(...e2) {
@@ -14660,28 +14665,28 @@ One of mods you are using is using an old version of SDK. It will work for now b
   };
   var B = P.get(`ChatRoomMessageHandlerEvents@${U}`, () => new H());
   var V = { pullActivityInfo: function(...e2) {
-    const [t3, r4, n4, s4] = e2;
-    if ("Activity" !== t3.Type || !t3.Dictionary || !s4) return;
+    const [t4, r4, n4, s4] = e2;
+    if ("Activity" !== t4.Type || !t4.Dictionary || !s4) return;
     const { ActivityName: i4, ActivityAsset: o4, CraftingNames: a3, FocusGroup: h4, TargetMemberNumber: c3 } = s4;
     if (!(i4 && h4 && c3 && r4.MemberNumber)) return;
-    return { SourceCharacter: r4.MemberNumber, SourceCharacterC: r4, TargetCharacter: c3, ActivityGroup: h4, ActivityName: i4, Asset: void 0 !== o4 ? { Asset: o4, CraftName: a3?.ActivityAsset } : void 0, Dictionary: t3.Dictionary };
+    return { SourceCharacter: r4.MemberNumber, SourceCharacterC: r4, TargetCharacter: c3, ActivityGroup: h4, ActivityName: i4, Asset: void 0 !== o4 ? { Asset: o4, CraftName: a3?.ActivityAsset } : void 0, Dictionary: t4.Dictionary };
   } };
   var z = { OthersOnSelf: /* @__PURE__ */ new Set(["OthersOnSelf", "AnyOnSelf", "SelfInvolved", "AnyInvolved"]), SelfOnSelf: /* @__PURE__ */ new Set(["SelfOnSelf", "AnyOnSelf", "SelfInvolved", "AnyInvolved"]), SelfOnOthers: /* @__PURE__ */ new Set(["SelfOnOthers", "SelfInvolved", "AnyInvolved"]), OthersOnOthers: /* @__PURE__ */ new Set(["AnyInvolved"]) };
   var J = class {
     constructor() {
       this._handlers = [], (async () => {
         var e2;
-        await M(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = (...e3) => this.emit(...e3), { Description: `SugarChain Activity Handler v${U}`, Priority: 290, Callback: (t3, r4, n4, s4) => {
-          const i4 = V.pullActivityInfo(t3, r4, n4, s4);
+        await M(() => Array.isArray(ChatRoomMessageHandlers)), ChatRoomRegisterMessageHandler((e2 = (...e3) => this.emit(...e3), { Description: `SugarChain Activity Handler v${U}`, Priority: 290, Callback: (t4, r4, n4, s4) => {
+          const i4 = V.pullActivityInfo(t4, r4, n4, s4);
           if (!i4) return false;
           const o4 = i4.TargetCharacter === Player.MemberNumber ? r4.MemberNumber === i4.TargetCharacter ? z.SelfOnSelf : z.OthersOnSelf : i4.SourceCharacter === Player.MemberNumber ? z.SelfOnOthers : z.OthersOnOthers;
           return e2(o4, i4.ActivityName, r4, Player, i4), false;
         } }));
       })();
     }
-    emit(e2, t3, ...r4) {
+    emit(e2, t4, ...r4) {
       const n4 = [...this._handlers], s4 = [];
-      for (const i4 of n4) if (null !== i4.activity && t3 !== i4.activity || !e2.has(i4.mode)) s4.push(i4);
+      for (const i4 of n4) if (null !== i4.activity && t4 !== i4.activity || !e2.has(i4.mode)) s4.push(i4);
       else {
         try {
           i4.listener(...r4);
@@ -14692,20 +14697,20 @@ One of mods you are using is using an old version of SDK. It will work for now b
       }
       this._handlers = s4;
     }
-    on(e2, t3, r4) {
-      this._handlers.push({ mode: e2, activity: t3, listener: r4, once: false });
+    on(e2, t4, r4) {
+      this._handlers.push({ mode: e2, activity: t4, listener: r4, once: false });
     }
-    once(e2, t3, r4) {
-      this._handlers.push({ mode: e2, activity: t3, listener: r4, once: true });
+    once(e2, t4, r4) {
+      this._handlers.push({ mode: e2, activity: t4, listener: r4, once: true });
     }
-    onAny(e2, t3) {
-      this._handlers.push({ mode: e2, activity: null, listener: t3, once: false });
+    onAny(e2, t4) {
+      this._handlers.push({ mode: e2, activity: null, listener: t4, once: false });
     }
-    onceAny(e2, t3) {
-      this._handlers.push({ mode: e2, activity: null, listener: t3, once: true });
+    onceAny(e2, t4) {
+      this._handlers.push({ mode: e2, activity: null, listener: t4, once: true });
     }
-    off(e2, t3, r4) {
-      this._handlers = r4 ? this._handlers.filter((n4) => n4.mode !== e2 || n4.activity !== t3 || n4.listener !== r4) : this._handlers.filter((r5) => r5.mode !== e2 || r5.activity !== t3);
+    off(e2, t4, r4) {
+      this._handlers = r4 ? this._handlers.filter((n4) => n4.mode !== e2 || n4.activity !== t4 || n4.listener !== r4) : this._handlers.filter((r5) => r5.mode !== e2 || r5.activity !== t4);
     }
   };
   var Y = P.get(`ActivityEvents@${U}`, () => new J());
@@ -14714,62 +14719,62 @@ One of mods you are using is using an old version of SDK. It will work for now b
       return e2 in this.modifiers;
     }
     constructor() {
-      this.modifiers = { ChatRoomChat: [], ChatRoomCharacterUpdate: [], ChatRoomCharacterExpressionUpdate: [], ChatRoomCharacterPoseUpdate: [], ChatRoomCharacterArousalUpdate: [], ChatRoomCharacterItemUpdate: [], ChatRoomCharacterMapDataUpdate: [], ChatRoomGame: [] }, u.hookFunction("ServerSend", 10, (e2, t3) => {
+      this.modifiers = { ChatRoomChat: [], ChatRoomCharacterUpdate: [], ChatRoomCharacterExpressionUpdate: [], ChatRoomCharacterPoseUpdate: [], ChatRoomCharacterArousalUpdate: [], ChatRoomCharacterItemUpdate: [], ChatRoomCharacterMapDataUpdate: [], ChatRoomGame: [] }, u.hookFunction("ServerSend", 10, (e2, t4) => {
         const [r4, n4] = e2;
         if (this.isAllowed(r4)) {
-          const t4 = this.modifiers[r4];
-          for (const r5 of t4) e2[1] = r5(n4);
+          const t5 = this.modifiers[r4];
+          for (const r5 of t5) e2[1] = r5(n4);
         }
-        return t3(e2);
+        return t4(e2);
       });
     }
-    addModifier(e2, t3) {
-      this.modifiers[e2].push(t3);
+    addModifier(e2, t4) {
+      this.modifiers[e2].push(t4);
     }
-    removeModifier(e2, t3) {
-      const r4 = this.modifiers[e2].indexOf(t3);
+    removeModifier(e2, t4) {
+      const r4 = this.modifiers[e2].indexOf(t4);
       r4 > -1 && this.modifiers[e2].splice(r4, 1);
     }
   };
   var W = P.get("ServerSendModifiers", () => new Z());
 
-  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.2.5_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_39c4b97843afb4e3f1fb788c5d607fb7/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
+  // node_modules/.pnpm/@sugarch+bc-activity-manager@1.2.6_@sugarch+bc-event-handler@1.0.1_@sugarch+bc-mod-hook_2993d1c80f69920f1a960b8b8478821f/node_modules/@sugarch/bc-activity-manager/dist/index.mjs
   var i3;
   var r3 = class {
-    static info(t3) {
-      i3?.info(t3);
+    static info(t4) {
+      i3?.info(t4);
     }
-    static warn(t3) {
-      i3?.warn(t3);
+    static warn(t4) {
+      i3?.warn(t4);
     }
-    static error(t3) {
-      i3?.error(t3);
+    static error(t4) {
+      i3?.error(t4);
     }
   };
   var s3 = /* @__PURE__ */ new Set();
   function n3(e2, i4) {
-    s3.has(e2) ? r3.warn(`Handler for ${e2} already exists, skipping`) : Y.on(i4.mode ?? "SelfInvolved", e2, (t3, e3, r4) => {
-      i4.run?.(e3, t3, r4);
+    s3.has(e2) ? r3.warn(`Handler for ${e2} already exists, skipping`) : Y.on(i4.mode ?? "SelfInvolved", e2, (t4, e3, r4) => {
+      i4.run?.(e3, t4, r4);
     });
   }
   var a2 = [];
   var o3 = false;
-  function c2(t3) {
-    o3 ? t3() : a2.push(t3);
+  function c2(t4) {
+    o3 ? t4() : a2.push(t4);
   }
-  function E2(t3, e2) {
+  function E2(t4, e2) {
     const i4 = "TW" !== TranslationLanguage ? TranslationLanguage : "CN";
-    let r4 = t3(i4);
-    return void 0 !== r4 ? r4 : (r4 = "CN" === i4 ? t3("CN") : t3("EN") || t3("CN"), void 0 !== r4 ? r4 : e2);
+    let r4 = t4(i4);
+    return void 0 !== r4 ? r4 : (r4 = "CN" === i4 ? t4("CN") : t4("EN") || t4("CN"), void 0 !== r4 ? r4 : e2);
   }
-  function h3(t3, e2) {
-    return E2((e3) => t3[e3], e2);
+  function h3(t4, e2) {
+    return E2((e3) => t4[e3], e2);
   }
-  function u3(t3, e2, i4) {
-    return E2((i5) => t3[i5]?.[e2], i4);
+  function u3(t4, e2, i4) {
+    return E2((i5) => t4[i5]?.[e2], i4);
   }
-  function m2(t3, e2, i4, r4) {
-    return E2((r5) => t3[r5]?.[e2]?.[i4], r4);
+  function m2(t4, e2, i4, r4) {
+    return E2((r5) => t4[r5]?.[e2]?.[i4], r4);
   }
   var l3 = new class {
     constructor() {
@@ -14778,48 +14783,48 @@ One of mods you are using is using an old version of SDK. It will work for now b
   }();
   var p2 = {};
   var I2 = { ItemVulva: "ItemPenis", ItemVulvaPiercings: "ItemGlans" };
-  function A2(t3, e2) {
-    for (const [i4, r4] of Object.entries(t3)) {
+  function A2(t4, e2) {
+    for (const [i4, r4] of Object.entries(t4)) {
       r4 && e2(i4, r4);
       const s4 = I2[i4];
       if (s4) {
-        const i5 = t3[s4];
+        const i5 = t4[s4];
         i5 && e2(s4, i5);
       }
     }
   }
-  function f2(t3, e2, i4, r4) {
+  function f2(t4, e2, i4, r4) {
     A2(e2, (e3, s4) => {
-      p2[e3] = (function(t4, e4, i5 = {}) {
+      p2[e3] = (function(t5, e4, i5 = {}) {
         const r5 = { ...i5 };
-        return A2(t4, (t5, i6) => {
-          const { key: s5, value: n4 } = e4(t5, i6);
+        return A2(t5, (t6, i6) => {
+          const { key: s5, value: n4 } = e4(t6, i6);
           r5[s5] = n4;
         }), r5;
-      })(s4, (e4, s5) => ({ key: `${t3}Chat${i4}-${e4}-${r4}`, value: s5 }), p2[e3] || {});
+      })(s4, (e4, s5) => ({ key: `${t4}Chat${i4}-${e4}-${r4}`, value: s5 }), p2[e3] || {});
     });
   }
-  function g2(t3, e2, i4, r4, s4) {
-    N2(e2) ? (function(t4, e3, i5, r5, s5) {
+  function g2(t4, e2, i4, r4, s4) {
+    N2(e2) ? (function(t5, e3, i5, r5, s5) {
       A2(e3, (e4, n4) => {
         p2[e4] || (p2[e4] = {});
         for (const a3 of s5) {
-          p2[e4][`${t4}Chat${i5}-${a3}-${r5}`] = n4;
+          p2[e4][`${t5}Chat${i5}-${a3}-${r5}`] = n4;
           const s6 = I2[a3];
-          s6 && (p2[e4][`${t4}Chat${i5}-${s6}-${r5}`] = n4);
+          s6 && (p2[e4][`${t5}Chat${i5}-${s6}-${r5}`] = n4);
         }
       });
-    })(t3, e2, i4, r4, s4) : f2(t3, e2, i4, r4);
+    })(t4, e2, i4, r4, s4) : f2(t4, e2, i4, r4);
   }
-  function N2(t3) {
-    return Object.values(t3).some((t4) => "string" == typeof t4);
+  function N2(t4) {
+    return Object.values(t4).some((t5) => "string" == typeof t5);
   }
-  function d2(t3) {
-    const { activity: e2, label: i4, labelSelf: r4, dialog: s4, dialogSelf: n4 } = t3, { Name: a3, Target: o4, TargetSelf: c3 } = e2, E3 = i4 ?? r4 ?? { CN: a3 };
-    N2(E3) ? A2(E3, (t4, e3) => {
-      p2[t4] || (p2[t4] = {}), p2[t4][`Activity${a3}`] = e3;
-    }) : A2(E3, (t4, e3) => {
-      p2[t4] || (p2[t4] = {}), p2[t4][`Activity${a3}`] = Object.values(e3)[0] || a3;
+  function d2(t4) {
+    const { activity: e2, label: i4, labelSelf: r4, dialog: s4, dialogSelf: n4 } = t4, { Name: a3, Target: o4, TargetSelf: c3 } = e2, E3 = i4 ?? r4 ?? { CN: a3 };
+    N2(E3) ? A2(E3, (t5, e3) => {
+      p2[t5] || (p2[t5] = {}), p2[t5][`Activity${a3}`] = e3;
+    }) : A2(E3, (t5, e3) => {
+      p2[t5] || (p2[t5] = {}), p2[t5][`Activity${a3}`] = Object.values(e3)[0] || a3;
     }), g2("Label-", E3, "Other", a3, o4), s4 && g2("", s4, "Other", a3, o4);
     const h4 = "boolean" == typeof c3 && c3 ? o4 : Array.isArray(c3) ? c3 : [], u4 = r4 || i4;
     u4 && g2("Label-", u4, "Self", a3, h4);
@@ -14827,32 +14832,32 @@ One of mods you are using is using an old version of SDK. It will work for now b
     m3 && g2("", m3, "Self", a3, h4);
   }
   var R2 = {};
-  function v2(t3) {
-    R2[t3.name] = t3;
+  function v2(t4) {
+    R2[t4.name] = t4;
   }
-  function $2(t3, e2) {
+  function $2(t4, e2) {
     return e2.map((e3) => {
       if ("function" == typeof e3) {
-        const i4 = (function(t4) {
+        const i4 = (function(t5) {
           for (; ; ) {
-            const e4 = `${t4}_prereq_${Math.random().toString(36).substring(2)}`;
+            const e4 = `${t5}_prereq_${Math.random().toString(36).substring(2)}`;
             if (!R2[e4]) return e4;
           }
-        })(t3);
+        })(t4);
         return v2({ name: i4, test: e3 }), i4;
       }
       return e3;
     });
   }
   var L2 = {};
-  function y2(t3) {
-    L2[t3.activity.Name] = t3;
+  function y2(t4) {
+    L2[t4.activity.Name] = t4;
   }
-  function O2(t3) {
-    return !!L2[t3];
+  function O2(t4) {
+    return !!L2[t4];
   }
-  function S2(t3) {
-    return t3 && t3.__esModule && Object.prototype.hasOwnProperty.call(t3, "default") ? t3.default : t3;
+  function S2(t4) {
+    return t4 && t4.__esModule && Object.prototype.hasOwnProperty.call(t4, "default") ? t4.default : t4;
   }
   var T2;
   var D2;
@@ -14861,15 +14866,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function F2() {
     if (D2) return T2;
     D2 = 1;
-    const t3 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...t4) => console.error("SEMVER", ...t4) : () => {
+    const t4 = "object" == typeof process && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...t5) => console.error("SEMVER", ...t5) : () => {
     };
-    return T2 = t3;
+    return T2 = t4;
   }
   function P2() {
     if (C2) return w2;
     C2 = 1;
-    const t3 = Number.MAX_SAFE_INTEGER || 9007199254740991;
-    return w2 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t3, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
+    const t4 = Number.MAX_SAFE_INTEGER || 9007199254740991;
+    return w2 = { MAX_LENGTH: 256, MAX_SAFE_COMPONENT_LENGTH: 16, MAX_SAFE_BUILD_LENGTH: 250, MAX_SAFE_INTEGER: t4, RELEASE_TYPES: ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"], SEMVER_SPEC_VERSION: "2.0.0", FLAG_INCLUDE_PRERELEASE: 1, FLAG_LOOSE: 2 };
   }
   var G2;
   var M2;
@@ -14884,15 +14889,15 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var W2;
   var V2 = { exports: {} };
   function H2() {
-    return G2 || (G2 = 1, (function(t3, e2) {
-      const { MAX_SAFE_COMPONENT_LENGTH: i4, MAX_SAFE_BUILD_LENGTH: r4, MAX_LENGTH: s4 } = P2(), n4 = F2(), a3 = (e2 = t3.exports = {}).re = [], o4 = e2.safeRe = [], c3 = e2.src = [], E3 = e2.safeSrc = [], h4 = e2.t = {};
+    return G2 || (G2 = 1, (function(t4, e2) {
+      const { MAX_SAFE_COMPONENT_LENGTH: i4, MAX_SAFE_BUILD_LENGTH: r4, MAX_LENGTH: s4 } = P2(), n4 = F2(), a3 = (e2 = t4.exports = {}).re = [], o4 = e2.safeRe = [], c3 = e2.src = [], E3 = e2.safeSrc = [], h4 = e2.t = {};
       let u4 = 0;
-      const m3 = "[a-zA-Z0-9-]", l4 = [["\\s", 1], ["\\d", s4], [m3, r4]], p3 = (t4, e3, i5) => {
-        const r5 = ((t5) => {
-          for (const [e4, i6] of l4) t5 = t5.split(`${e4}*`).join(`${e4}{0,${i6}}`).split(`${e4}+`).join(`${e4}{1,${i6}}`);
-          return t5;
+      const m3 = "[a-zA-Z0-9-]", l4 = [["\\s", 1], ["\\d", s4], [m3, r4]], p3 = (t5, e3, i5) => {
+        const r5 = ((t6) => {
+          for (const [e4, i6] of l4) t6 = t6.split(`${e4}*`).join(`${e4}{0,${i6}}`).split(`${e4}+`).join(`${e4}{1,${i6}}`);
+          return t6;
         })(e3), s5 = u4++;
-        n4(t4, s5, e3), h4[t4] = s5, c3[s5] = e3, E3[s5] = r5, a3[s5] = new RegExp(e3, i5 ? "g" : void 0), o4[s5] = new RegExp(r5, i5 ? "g" : void 0);
+        n4(t5, s5, e3), h4[t5] = s5, c3[s5] = e3, E3[s5] = r5, a3[s5] = new RegExp(e3, i5 ? "g" : void 0), o4[s5] = new RegExp(r5, i5 ? "g" : void 0);
       };
       p3("NUMERICIDENTIFIER", "0|[1-9]\\d*"), p3("NUMERICIDENTIFIERLOOSE", "\\d+"), p3("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${m3}*`), p3("MAINVERSION", `(${c3[h4.NUMERICIDENTIFIER]})\\.(${c3[h4.NUMERICIDENTIFIER]})\\.(${c3[h4.NUMERICIDENTIFIER]})`), p3("MAINVERSIONLOOSE", `(${c3[h4.NUMERICIDENTIFIERLOOSE]})\\.(${c3[h4.NUMERICIDENTIFIERLOOSE]})\\.(${c3[h4.NUMERICIDENTIFIERLOOSE]})`), p3("PRERELEASEIDENTIFIER", `(?:${c3[h4.NONNUMERICIDENTIFIER]}|${c3[h4.NUMERICIDENTIFIER]})`), p3("PRERELEASEIDENTIFIERLOOSE", `(?:${c3[h4.NONNUMERICIDENTIFIER]}|${c3[h4.NUMERICIDENTIFIERLOOSE]})`), p3("PRERELEASE", `(?:-(${c3[h4.PRERELEASEIDENTIFIER]}(?:\\.${c3[h4.PRERELEASEIDENTIFIER]})*))`), p3("PRERELEASELOOSE", `(?:-?(${c3[h4.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${c3[h4.PRERELEASEIDENTIFIERLOOSE]})*))`), p3("BUILDIDENTIFIER", `${m3}+`), p3("BUILD", `(?:\\+(${c3[h4.BUILDIDENTIFIER]}(?:\\.${c3[h4.BUILDIDENTIFIER]})*))`), p3("FULLPLAIN", `v?${c3[h4.MAINVERSION]}${c3[h4.PRERELEASE]}?${c3[h4.BUILD]}?`), p3("FULL", `^${c3[h4.FULLPLAIN]}$`), p3("LOOSEPLAIN", `[v=\\s]*${c3[h4.MAINVERSIONLOOSE]}${c3[h4.PRERELEASELOOSE]}?${c3[h4.BUILD]}?`), p3("LOOSE", `^${c3[h4.LOOSEPLAIN]}$`), p3("GTLT", "((?:<|>)?=?)"), p3("XRANGEIDENTIFIERLOOSE", `${c3[h4.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`), p3("XRANGEIDENTIFIER", `${c3[h4.NUMERICIDENTIFIER]}|x|X|\\*`), p3("XRANGEPLAIN", `[v=\\s]*(${c3[h4.XRANGEIDENTIFIER]})(?:\\.(${c3[h4.XRANGEIDENTIFIER]})(?:\\.(${c3[h4.XRANGEIDENTIFIER]})(?:${c3[h4.PRERELEASE]})?${c3[h4.BUILD]}?)?)?`), p3("XRANGEPLAINLOOSE", `[v=\\s]*(${c3[h4.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c3[h4.XRANGEIDENTIFIERLOOSE]})(?:\\.(${c3[h4.XRANGEIDENTIFIERLOOSE]})(?:${c3[h4.PRERELEASELOOSE]})?${c3[h4.BUILD]}?)?)?`), p3("XRANGE", `^${c3[h4.GTLT]}\\s*${c3[h4.XRANGEPLAIN]}$`), p3("XRANGELOOSE", `^${c3[h4.GTLT]}\\s*${c3[h4.XRANGEPLAINLOOSE]}$`), p3("COERCEPLAIN", `(^|[^\\d])(\\d{1,${i4}})(?:\\.(\\d{1,${i4}}))?(?:\\.(\\d{1,${i4}}))?`), p3("COERCE", `${c3[h4.COERCEPLAIN]}(?:$|[^\\d])`), p3("COERCEFULL", c3[h4.COERCEPLAIN] + `(?:${c3[h4.PRERELEASE]})?(?:${c3[h4.BUILD]})?(?:$|[^\\d])`), p3("COERCERTL", c3[h4.COERCE], true), p3("COERCERTLFULL", c3[h4.COERCEFULL], true), p3("LONETILDE", "(?:~>?)"), p3("TILDETRIM", `(\\s*)${c3[h4.LONETILDE]}\\s+`, true), e2.tildeTrimReplace = "$1~", p3("TILDE", `^${c3[h4.LONETILDE]}${c3[h4.XRANGEPLAIN]}$`), p3("TILDELOOSE", `^${c3[h4.LONETILDE]}${c3[h4.XRANGEPLAINLOOSE]}$`), p3("LONECARET", "(?:\\^)"), p3("CARETTRIM", `(\\s*)${c3[h4.LONECARET]}\\s+`, true), e2.caretTrimReplace = "$1^", p3("CARET", `^${c3[h4.LONECARET]}${c3[h4.XRANGEPLAIN]}$`), p3("CARETLOOSE", `^${c3[h4.LONECARET]}${c3[h4.XRANGEPLAINLOOSE]}$`), p3("COMPARATORLOOSE", `^${c3[h4.GTLT]}\\s*(${c3[h4.LOOSEPLAIN]})$|^$`), p3("COMPARATOR", `^${c3[h4.GTLT]}\\s*(${c3[h4.FULLPLAIN]})$|^$`), p3("COMPARATORTRIM", `(\\s*)${c3[h4.GTLT]}\\s*(${c3[h4.LOOSEPLAIN]}|${c3[h4.XRANGEPLAIN]})`, true), e2.comparatorTrimReplace = "$1$2$3", p3("HYPHENRANGE", `^\\s*(${c3[h4.XRANGEPLAIN]})\\s+-\\s+(${c3[h4.XRANGEPLAIN]})\\s*$`), p3("HYPHENRANGELOOSE", `^\\s*(${c3[h4.XRANGEPLAINLOOSE]})\\s+-\\s+(${c3[h4.XRANGEPLAINLOOSE]})\\s*$`), p3("STAR", "(<|>)?=?\\s*\\*"), p3("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$"), p3("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
     })(V2, V2.exports)), V2.exports;
@@ -14900,19 +14905,19 @@ One of mods you are using is using an old version of SDK. It will work for now b
   function z2() {
     if (k2) return X3;
     k2 = 1;
-    const t3 = F2(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i4 } = P2(), { safeRe: r4, t: s4 } = H2(), n4 = (function() {
+    const t4 = F2(), { MAX_LENGTH: e2, MAX_SAFE_INTEGER: i4 } = P2(), { safeRe: r4, t: s4 } = H2(), n4 = (function() {
       if (b2) return M2;
       b2 = 1;
-      const t4 = Object.freeze({ loose: true }), e3 = Object.freeze({});
-      return M2 = (i5) => i5 ? "object" != typeof i5 ? t4 : i5 : e3;
+      const t5 = Object.freeze({ loose: true }), e3 = Object.freeze({});
+      return M2 = (i5) => i5 ? "object" != typeof i5 ? t5 : i5 : e3;
     })(), { compareIdentifiers: a3 } = (function() {
       if (U2) return _2;
       U2 = 1;
-      const t4 = /^[0-9]+$/, e3 = (e4, i5) => {
-        const r5 = t4.test(e4), s5 = t4.test(i5);
+      const t5 = /^[0-9]+$/, e3 = (e4, i5) => {
+        const r5 = t5.test(e4), s5 = t5.test(i5);
         return r5 && s5 && (e4 = +e4, i5 = +i5), e4 === i5 ? 0 : r5 && !s5 ? -1 : s5 && !r5 ? 1 : e4 < i5 ? -1 : 1;
       };
-      return _2 = { compareIdentifiers: e3, rcompareIdentifiers: (t5, i5) => e3(i5, t5) }, _2;
+      return _2 = { compareIdentifiers: e3, rcompareIdentifiers: (t6, i5) => e3(i5, t6) }, _2;
     })();
     class o4 {
       constructor(a4, c3) {
@@ -14921,18 +14926,18 @@ One of mods you are using is using an old version of SDK. It will work for now b
           a4 = a4.version;
         } else if ("string" != typeof a4) throw new TypeError(`Invalid version. Must be a string. Got type "${typeof a4}".`);
         if (a4.length > e2) throw new TypeError(`version is longer than ${e2} characters`);
-        t3("SemVer", a4, c3), this.options = c3, this.loose = !!c3.loose, this.includePrerelease = !!c3.includePrerelease;
+        t4("SemVer", a4, c3), this.options = c3, this.loose = !!c3.loose, this.includePrerelease = !!c3.includePrerelease;
         const E3 = a4.trim().match(c3.loose ? r4[s4.LOOSE] : r4[s4.FULL]);
         if (!E3) throw new TypeError(`Invalid Version: ${a4}`);
         if (this.raw = a4, this.major = +E3[1], this.minor = +E3[2], this.patch = +E3[3], this.major > i4 || this.major < 0) throw new TypeError("Invalid major version");
         if (this.minor > i4 || this.minor < 0) throw new TypeError("Invalid minor version");
         if (this.patch > i4 || this.patch < 0) throw new TypeError("Invalid patch version");
-        E3[4] ? this.prerelease = E3[4].split(".").map((t4) => {
-          if (/^[0-9]+$/.test(t4)) {
-            const e3 = +t4;
+        E3[4] ? this.prerelease = E3[4].split(".").map((t5) => {
+          if (/^[0-9]+$/.test(t5)) {
+            const e3 = +t5;
             if (e3 >= 0 && e3 < i4) return e3;
           }
-          return t4;
+          return t5;
         }) : this.prerelease = [], this.build = E3[5] ? E3[5].split(".") : [], this.format();
       }
       format() {
@@ -14942,14 +14947,14 @@ One of mods you are using is using an old version of SDK. It will work for now b
         return this.version;
       }
       compare(e3) {
-        if (t3("SemVer.compare", this.version, this.options, e3), !(e3 instanceof o4)) {
+        if (t4("SemVer.compare", this.version, this.options, e3), !(e3 instanceof o4)) {
           if ("string" == typeof e3 && e3 === this.version) return 0;
           e3 = new o4(e3, this.options);
         }
         return e3.version === this.version ? 0 : this.compareMain(e3) || this.comparePre(e3);
       }
-      compareMain(t4) {
-        return t4 instanceof o4 || (t4 = new o4(t4, this.options)), a3(this.major, t4.major) || a3(this.minor, t4.minor) || a3(this.patch, t4.patch);
+      compareMain(t5) {
+        return t5 instanceof o4 || (t5 = new o4(t5, this.options)), a3(this.major, t5.major) || a3(this.minor, t5.minor) || a3(this.patch, t5.patch);
       }
       comparePre(e3) {
         if (e3 instanceof o4 || (e3 = new o4(e3, this.options)), this.prerelease.length && !e3.prerelease.length) return -1;
@@ -14958,7 +14963,7 @@ One of mods you are using is using an old version of SDK. It will work for now b
         let i5 = 0;
         do {
           const r5 = this.prerelease[i5], s5 = e3.prerelease[i5];
-          if (t3("prerelease compare", i5, r5, s5), void 0 === r5 && void 0 === s5) return 0;
+          if (t4("prerelease compare", i5, r5, s5), void 0 === r5 && void 0 === s5) return 0;
           if (void 0 === s5) return 1;
           if (void 0 === r5) return -1;
           if (r5 !== s5) return a3(r5, s5);
@@ -14969,21 +14974,21 @@ One of mods you are using is using an old version of SDK. It will work for now b
         let i5 = 0;
         do {
           const r5 = this.build[i5], s5 = e3.build[i5];
-          if (t3("build compare", i5, r5, s5), void 0 === r5 && void 0 === s5) return 0;
+          if (t4("build compare", i5, r5, s5), void 0 === r5 && void 0 === s5) return 0;
           if (void 0 === s5) return 1;
           if (void 0 === r5) return -1;
           if (r5 !== s5) return a3(r5, s5);
         } while (++i5);
       }
-      inc(t4, e3, i5) {
-        if (t4.startsWith("pre")) {
+      inc(t5, e3, i5) {
+        if (t5.startsWith("pre")) {
           if (!e3 && false === i5) throw new Error("invalid increment argument: identifier is empty");
           if (e3) {
-            const t5 = `-${e3}`.match(this.options.loose ? r4[s4.PRERELEASELOOSE] : r4[s4.PRERELEASE]);
-            if (!t5 || t5[1] !== e3) throw new Error(`invalid identifier: ${e3}`);
+            const t6 = `-${e3}`.match(this.options.loose ? r4[s4.PRERELEASELOOSE] : r4[s4.PRERELEASE]);
+            if (!t6 || t6[1] !== e3) throw new Error(`invalid identifier: ${e3}`);
           }
         }
-        switch (t4) {
+        switch (t5) {
           case "premajor":
             this.prerelease.length = 0, this.patch = 0, this.minor = 0, this.major++, this.inc("pre", e3, i5);
             break;
@@ -15010,24 +15015,24 @@ One of mods you are using is using an old version of SDK. It will work for now b
             0 === this.prerelease.length && this.patch++, this.prerelease = [];
             break;
           case "pre": {
-            const t5 = Number(i5) ? 1 : 0;
-            if (0 === this.prerelease.length) this.prerelease = [t5];
+            const t6 = Number(i5) ? 1 : 0;
+            if (0 === this.prerelease.length) this.prerelease = [t6];
             else {
               let r5 = this.prerelease.length;
               for (; --r5 >= 0; ) "number" == typeof this.prerelease[r5] && (this.prerelease[r5]++, r5 = -2);
               if (-1 === r5) {
                 if (e3 === this.prerelease.join(".") && false === i5) throw new Error("invalid increment argument: identifier already exists");
-                this.prerelease.push(t5);
+                this.prerelease.push(t6);
               }
             }
             if (e3) {
-              let r5 = [e3, t5];
+              let r5 = [e3, t6];
               false === i5 && (r5 = [e3]), 0 === a3(this.prerelease[0], e3) ? isNaN(this.prerelease[1]) && (this.prerelease = r5) : this.prerelease = r5;
             }
             break;
           }
           default:
-            throw new Error(`invalid increment argument: ${t4}`);
+            throw new Error(`invalid increment argument: ${t5}`);
         }
         return this.raw = this.format(), this.build.length && (this.raw += `+${this.build.join(".")}`), this;
       }
@@ -15041,322 +15046,322 @@ One of mods you are using is using an old version of SDK. It will work for now b
   var Q = S2((function() {
     if (W2) return x2;
     W2 = 1;
-    const t3 = (function() {
+    const t4 = (function() {
       if (j2) return B2;
       j2 = 1;
-      const t4 = z2();
+      const t5 = z2();
       return B2 = (e2, i4, r4 = false) => {
-        if (e2 instanceof t4) return e2;
+        if (e2 instanceof t5) return e2;
         try {
-          return new t4(e2, i4);
-        } catch (t5) {
+          return new t5(e2, i4);
+        } catch (t6) {
           if (!r4) return null;
-          throw t5;
+          throw t6;
         }
       };
     })();
     return x2 = (e2, i4) => {
-      const r4 = t3(e2, i4);
+      const r4 = t4(e2, i4);
       return r4 ? r4.version : null;
     };
   })());
   var K = (function() {
     if (Y2) return J2;
     Y2 = 1;
-    const t3 = (function() {
+    const t4 = (function() {
       if (q) return Z2;
       q = 1;
-      const t4 = z2();
-      return Z2 = (e2, i4, r4) => new t4(e2, r4).compare(new t4(i4, r4)), Z2;
+      const t5 = z2();
+      return Z2 = (e2, i4, r4) => new t5(e2, r4).compare(new t5(i4, r4)), Z2;
     })();
-    return J2 = (e2, i4, r4) => t3(e2, i4, r4) < 0, J2;
+    return J2 = (e2, i4, r4) => t4(e2, i4, r4) < 0, J2;
   })();
   var tt = S2(K);
-  function et(t3) {
-    return globalThis[t3];
+  function et(t4) {
+    return globalThis[t4];
   }
-  var it = class _it {
+  var it = class t3 {
     static _initStorage() {
-      var t3, e2;
-      et(this._namespace) || (t3 = this._namespace, e2 = {}, globalThis[t3] = e2);
+      var t4, e2;
+      et(this._namespace) || (t4 = this._namespace, e2 = {}, globalThis[t4] = e2);
     }
-    static get(t3, e2) {
+    static get(t4, e2) {
       this._initStorage();
       const i4 = et(this._namespace);
-      return t3 in i4 || (i4[t3] = e2()), i4[t3];
+      return t4 in i4 || (i4[t4] = e2()), i4[t4];
     }
-    static getMayOverride(t3, e2) {
+    static getMayOverride(t4, e2) {
       this._initStorage();
       const i4 = et(this._namespace);
-      return i4[t3] = e2(i4[t3]), i4[t3];
+      return i4[t4] = e2(i4[t4]), i4[t4];
     }
-    static getByVersion(t3, e2, i4, r4) {
-      if (this._initStorage(), !Q(e2)) throw new Error(`Invalid version for ${t3}: ${e2}`);
-      const s4 = et(this._namespace), n4 = `${t3}.__Version`, a3 = s4[t3], o4 = s4[n4];
-      return a3 ? o4 && !tt(o4, e2) || (s4[t3] = r4(o4, a3), s4[n4] = e2) : (s4[t3] = i4(a3), s4[n4] = e2), s4[t3];
+    static getByVersion(t4, e2, i4, r4) {
+      if (this._initStorage(), !Q(e2)) throw new Error(`Invalid version for ${t4}: ${e2}`);
+      const s4 = et(this._namespace), n4 = `${t4}.__Version`, a3 = s4[t4], o4 = s4[n4];
+      return a3 ? o4 && !tt(o4, e2) || (s4[t4] = r4(o4, a3), s4[n4] = e2) : (s4[t4] = i4(a3), s4[n4] = e2), s4[t4];
     }
-    static set(t3, e2) {
-      this._initStorage(), et(this._namespace)[t3] = e2;
+    static set(t4, e2) {
+      this._initStorage(), et(this._namespace)[t4] = e2;
     }
-    static has(t3) {
-      return this._initStorage(), t3 in et(this._namespace);
+    static has(t4) {
+      return this._initStorage(), t4 in et(this._namespace);
     }
-    static delete(t3) {
+    static delete(t4) {
       this._initStorage();
       const e2 = et(this._namespace);
-      return t3 in e2 && delete e2[t3];
+      return t4 in e2 && delete e2[t4];
     }
-    static setImplementation(t3) {
-      const e2 = ["get", "set", "has", "delete"];
-      for (const i4 of e2) {
-        if ("function" != typeof t3[i4]) throw new Error(`Implementation must provide a '${i4}' function`);
-        _it[i4] = t3[i4];
+    static setImplementation(e2) {
+      const i4 = ["get", "set", "has", "delete"];
+      for (const r4 of i4) {
+        if ("function" != typeof e2[r4]) throw new Error(`Implementation must provide a '${r4}' function`);
+        t3[r4] = e2[r4];
       }
     }
-    static createNamespace(t3) {
-      return { get: (e2, i4) => _it.get(`${t3}.${e2}`, i4), getMayOverride: (e2, i4) => _it.getMayOverride(`${t3}.${e2}`, i4), set: (e2, i4) => _it.set(`${t3}.${e2}`, i4), has: (e2) => _it.has(`${t3}.${e2}`), delete: (e2) => _it.delete(`${t3}.${e2}`) };
+    static createNamespace(e2) {
+      return { get: (i4, r4) => t3.get(`${e2}.${i4}`, r4), getMayOverride: (i4, r4) => t3.getMayOverride(`${e2}.${i4}`, r4), set: (i4, r4) => t3.set(`${e2}.${i4}`, r4), has: (i4) => t3.has(`${e2}.${i4}`), delete: (i4) => t3.delete(`${e2}.${i4}`) };
     }
   };
   it._namespace = "__BC_LUZI_GLOBALS__";
   var rt = it.createNamespace("OnceFlag");
-  function st(t3, e2) {
-    rt.get(t3, () => false) || (rt.set(t3, true), e2());
+  function st(t4, e2) {
+    rt.get(t4, () => false) || (rt.set(t4, true), e2());
   }
-  function nt(t3) {
-    return new Promise((e2) => setTimeout(e2, t3));
+  function nt(t4) {
+    return new Promise((e2) => setTimeout(e2, t4));
   }
-  function at(t3, e2 = 100) {
+  function at(t4, e2 = 100) {
     return (async () => {
-      for (; !t3(); ) await nt(e2);
+      for (; !t4(); ) await nt(e2);
     })();
   }
   var ot = class {
     static get emptyImage() {
       return "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAG3RFWHRTb2Z0d2FyZQBDZWxzeXMgU3R1ZGlvIFRvb2zBp+F8AAAADUlEQVQI12P4//8/AwAI/AL+XJ/P2gAAAABJRU5ErkJggg==";
     }
-    static assetPreviewIconPath(t3) {
-      const e2 = "Asset" in t3 ? t3.Asset : t3;
+    static assetPreviewIconPath(t4) {
+      const e2 = "Asset" in t4 ? t4.Asset : t4;
       return `${AssetGetPreviewPath(e2)}/${e2.Name}.png`;
     }
-    static activityPreviewIconPath(t3) {
-      return `Assets/Female3DCG/Activity/${("Activity" in t3 ? t3.Activity : t3).Name}.png`;
+    static activityPreviewIconPath(t4) {
+      return `Assets/Female3DCG/Activity/${("Activity" in t4 ? t4.Activity : t4).Name}.png`;
     }
   };
-  function ct(t3, e2) {
+  function ct(t4, e2) {
     const i4 = /* @__PURE__ */ new Set();
-    let r4 = t3;
+    let r4 = t4;
     for (; e2[r4]; ) {
       if (i4.has(r4)) return console.warn(`Circular dependency detected during resolution: ${r4}`), "";
       i4.add(r4), r4 = e2[r4];
     }
     return r4;
   }
-  function Et(t3) {
+  function Et(t4) {
     const e2 = {};
-    for (const i4 of Object.keys(t3)) {
-      const r4 = ct(i4, t3);
+    for (const i4 of Object.keys(t4)) {
+      const r4 = ct(i4, t4);
       if (!r4) return console.warn(`Circular dependency detected during optimization: ${i4}`), null;
       e2[i4] = r4;
     }
     return e2;
   }
   var ht = class {
-    constructor(t3, e2) {
-      this.path = t3, this.storage = e2;
+    constructor(t4, e2) {
+      this.path = t4, this.storage = e2;
     }
-    map(t3) {
-      const e2 = Array.isArray(t3) ? t3 : [t3], i4 = {};
-      for (const t4 of e2) i4[t4] = this.path;
+    map(t4) {
+      const e2 = Array.isArray(t4) ? t4 : [t4], i4 = {};
+      for (const t5 of e2) i4[t5] = this.path;
       return this.storage.addImgMapping(i4), this;
     }
-    resolve(t3) {
-      return this.storage.addImgMapping({ [this.path]: t3 }), this;
+    resolve(t4) {
+      return this.storage.addImgMapping({ [this.path]: t4 }), this;
     }
   };
   var ut = new class {
     constructor() {
       this.basic = {}, this.custom = {}, this.customSrc = {};
     }
-    addImgMapping(t3) {
-      const e2 = { ...this.customSrc, ...t3 }, i4 = Et(e2);
+    addImgMapping(t4) {
+      const e2 = { ...this.customSrc, ...t4 }, i4 = Et(e2);
       i4 ? (this.customSrc = e2, this.custom = i4) : console.warn("Failed to add mappings due to circular dependencies.");
     }
     rebuildCustomMapping() {
-      const t3 = Et(this.customSrc);
-      t3 ? this.custom = t3 : console.warn("Failed to rebuild mappings due to circular dependencies.");
+      const t4 = Et(this.customSrc);
+      t4 ? this.custom = t4 : console.warn("Failed to rebuild mappings due to circular dependencies.");
     }
-    migrateTo(t3) {
-      t3.customSrc = { ...t3.customSrc, ...this.customSrc }, t3.basic = { ...t3.basic, ...this.basic }, t3.rebuildCustomMapping(), this.customSrc = t3.customSrc, this.basic = t3.basic, this.custom = t3.custom;
+    migrateTo(t4) {
+      t4.customSrc = { ...t4.customSrc, ...this.customSrc }, t4.basic = { ...t4.basic, ...this.basic }, t4.rebuildCustomMapping(), this.customSrc = t4.customSrc, this.basic = t4.basic, this.custom = t4.custom;
     }
-    setBasicImgMapping(t3) {
-      this.basic = { ...t3, ...this.basic };
+    setBasicImgMapping(t4) {
+      this.basic = { ...t4, ...this.basic };
     }
-    mapImgSrc(t3) {
-      if ("string" != typeof t3) return t3;
-      if (!t3.endsWith(".png")) return t3;
-      if (t3.startsWith("blob:")) return t3;
-      if (t3.startsWith("data:")) return t3;
-      if (t3.startsWith("http:")) return t3;
-      if (t3.startsWith("https:")) return t3;
-      if (t3.startsWith("@nomap/")) return t3;
-      const e2 = t3.startsWith("./") ? t3.slice(2) : t3;
+    mapImgSrc(t4) {
+      if ("string" != typeof t4) return t4;
+      if (!t4.endsWith(".png")) return t4;
+      if (t4.startsWith("blob:")) return t4;
+      if (t4.startsWith("data:")) return t4;
+      if (t4.startsWith("http:")) return t4;
+      if (t4.startsWith("https:")) return t4;
+      if (t4.startsWith("@nomap/")) return t4;
+      const e2 = t4.startsWith("./") ? t4.slice(2) : t4;
       let i4 = e2;
-      return this.custom[i4] && (i4 = this.custom[i4]), this.basic[i4] && (i4 = this.basic[i4]), i4 !== e2 ? i4 : t3;
+      return this.custom[i4] && (i4 = this.custom[i4]), this.basic[i4] && (i4 = this.basic[i4]), i4 !== e2 ? i4 : t4;
     }
-    mapImg(t3, e2) {
-      let i4 = t3;
-      i4.startsWith("data:image") || i4.startsWith("http") || (this.custom[i4] && (i4 = this.custom[i4]), this.basic[i4] && (i4 = this.basic[i4]), i4 !== t3 && e2(i4));
+    mapImg(t4, e2) {
+      let i4 = t4;
+      i4.startsWith("data:image") || i4.startsWith("http") || (this.custom[i4] && (i4 = this.custom[i4]), this.basic[i4] && (i4 = this.basic[i4]), i4 !== t4 && e2(i4));
     }
   }();
   var mt = class {
     constructor() {
       st("ImgMappingOnce.GLDrawLoadImage.crossOrigin", () => {
-        u.patchFunction("GLDrawLoadImage", { "Img.src = url;": 'Img.crossOrigin = "Anonymous";\n		Img.src = url;' });
-      }), ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t3) => {
-        u.hookFunction(t3, 10, (t4, e2) => (t4[0] = ut.mapImgSrc(t4[0]), e2(t4)));
+        u.patchFunction("GLDrawLoadImage", { "	Img.src = url;": '	Img.crossOrigin = "Anonymous";\n			Img.src = url;', "	tmpImg.src = url;": '	tmpImg.crossOrigin = "Anonymous";\n			tmpImg.src = url;' });
+      }), ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t4) => {
+        u.hookFunction(t4, 10, (t5, e2) => (t5[0] = ut.mapImgSrc(t5[0]), e2(t5)));
       }), st("ImgMappingOnce.nomap", () => {
-        ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t3) => {
-          u.hookFunction(t3, 0, (t4, e2) => ("string" == typeof t4[0] && t4[0].startsWith("@nomap/") && (t4[0] = t4[0].substring(7)), e2(t4)));
+        ["DrawImageEx", "DrawImageResize", "GLDrawImage", "DrawGetImage"].forEach((t4) => {
+          u.hookFunction(t4, 0, (t5, e2) => ("string" == typeof t5[0] && t5[0].startsWith("@nomap/") && (t5[0] = t5[0].substring(7)), e2(t5)));
         });
-      }), u.hookFunction("GLDrawLoadTextureAlphaMask", 0, (t3, e2) => (Array.isArray(t3[5]) && (t3[5] = t3[5].map((t4) => ({ ...t4, Url: ut.mapImgSrc(t4.Url) }))), e2(t3))), (async () => {
-        await at(() => void 0 !== globalThis.ElementButton), u.hookFunction("ElementButton.CreateForAsset", 0, (t3, e2) => (ut.mapImg(ot.assetPreviewIconPath(t3[1]), (e3) => {
-          t3[4] = { ...t3[4], image: e3 };
-        }), e2(t3))), u.hookFunction("ElementButton.CreateForActivity", 0, (t3, e2) => {
-          const i4 = t3[1], r4 = t3[4]?.image ?? (i4.Item ? ot.assetPreviewIconPath(i4.Item.Asset) : `Assets/Female3DCG/Activity/${i4.Activity.Name}.png`);
+      }), u.hookFunction("GLDrawLoadTextureAlphaMask", 0, (t4, e2) => (Array.isArray(t4[5]) && (t4[5] = t4[5].map((t5) => ({ ...t5, Url: ut.mapImgSrc(t5.Url) }))), e2(t4))), (async () => {
+        await at(() => void 0 !== globalThis.ElementButton), u.hookFunction("ElementButton.CreateForAsset", 0, (t4, e2) => (ut.mapImg(ot.assetPreviewIconPath(t4[1]), (e3) => {
+          t4[4] = { ...t4[4], image: e3 };
+        }), e2(t4))), u.hookFunction("ElementButton.CreateForActivity", 0, (t4, e2) => {
+          const i4 = t4[1], r4 = t4[4]?.image ?? (i4.Item ? ot.assetPreviewIconPath(i4.Item.Asset) : `Assets/Female3DCG/Activity/${i4.Activity.Name}.png`);
           return ut.mapImg(r4, (e3) => {
-            t3[4] = { ...t3[4], image: e3 };
-          }), e2(t3);
-        }), u.hookFunction("ElementButton.Create", 0, (t3, e2) => {
-          if (t3[0]?.startsWith("dialog-inventory")) {
-            const e3 = t3[2];
-            e3?.icons && (e3.icons = e3.icons.map((t4) => {
-              if ("string" == typeof t4 && t4.endsWith("Padlock")) {
-                const e4 = `Assets/Female3DCG/ItemMisc/Preview/${t4}.png`, i4 = ut.mapImgSrc(e4);
-                if (i4 !== e4) return { name: t4, iconSrc: i4, tooltipText: InterfaceTextGet("PreviewIconPadlock").replace("AssetName", AssetGet("Female3DCG", "ItemMisc", t4)?.Description ?? t4) };
+            t4[4] = { ...t4[4], image: e3 };
+          }), e2(t4);
+        }), u.hookFunction("ElementButton.Create", 0, (t4, e2) => {
+          if (t4[0]?.startsWith("dialog-inventory")) {
+            const e3 = t4[2];
+            e3?.icons && (e3.icons = e3.icons.map((t5) => {
+              if ("string" == typeof t5 && t5.endsWith("Padlock")) {
+                const e4 = `Assets/Female3DCG/ItemMisc/Preview/${t5}.png`, i4 = ut.mapImgSrc(e4);
+                if (i4 !== e4) return { name: t5, iconSrc: i4, tooltipText: InterfaceTextGet("PreviewIconPadlock").replace("AssetName", AssetGet("Female3DCG", "ItemMisc", t5)?.Description ?? t5) };
               }
-              return t4;
+              return t5;
             }));
           }
-          if (t3[0]?.startsWith("dialog-expression-button-grid-Emoticon")) {
-            const e3 = t3[2];
+          if (t4[0]?.startsWith("dialog-expression-button-grid-Emoticon")) {
+            const e3 = t4[2];
             e3?.image && (e3.image = ut.mapImgSrc(e3.image));
           }
-          return e2(t3);
+          return e2(t4);
         });
       })();
     }
     get storage() {
       return ut;
     }
-    addImgMapping(t3) {
-      ut.addImgMapping(t3);
+    addImgMapping(t4) {
+      ut.addImgMapping(t4);
     }
-    setBasicImgMapping(t3) {
-      ut.setBasicImgMapping(t3);
+    setBasicImgMapping(t4) {
+      ut.setBasicImgMapping(t4);
     }
-    createVirtualPath(t3) {
-      return new ht(t3, ut);
+    createVirtualPath(t4) {
+      return new ht(t4, ut);
     }
   };
-  var lt = it.get("ImageMapping@2.2.0", () => new mt());
-  function pt(t3, e2) {
-    if ("function" == typeof e2) return void (It[t3.Name] = e2);
-    const i4 = {}, r4 = ot.activityPreviewIconPath(t3);
+  var lt = it.get("ImageMapping@2.2.1", () => new mt());
+  function pt(t4, e2) {
+    if ("function" == typeof e2) return void (It[t4.Name] = e2);
+    const i4 = {}, r4 = ot.activityPreviewIconPath(t4);
     Array.isArray(e2) ? i4[r4] = `Assets/Female3DCG/${e2[0]}/Preview/${e2[1]}.png` : "None" === e2 || void 0 === e2 ? i4[r4] = ot.emptyImage : e2.startsWith("http") || e2.startsWith("data:image") ? i4[r4] = e2 : i4[r4] = ot.activityPreviewIconPath({ Name: e2 }), lt.addImgMapping(i4);
   }
   var It = {};
   var At = {};
   var ft = {};
   var gt = {};
-  function Nt(t3) {
-    t3.override && (At[t3.activity.Name] && r3.warn(`Override for ${t3.activity.Name} already exists, skipping`), At[t3.activity.Name] || (At[t3.activity.Name] = t3.override)), t3.item && (ft[t3.activity.Name] && r3.warn(`Item provider for ${t3.activity.Name} already exists, skipping`), ft[t3.activity.Name] || (ft[t3.activity.Name] = t3.item)), t3.dictionary && (gt[t3.activity.Name] && r3.warn(`Dictionary processor for ${t3.activity.Name} already exists, skipping`), gt[t3.activity.Name] || (gt[t3.activity.Name] = t3.dictionary));
+  function Nt(t4) {
+    t4.override && (At[t4.activity.Name] && r3.warn(`Override for ${t4.activity.Name} already exists, skipping`), At[t4.activity.Name] || (At[t4.activity.Name] = t4.override)), t4.item && (ft[t4.activity.Name] && r3.warn(`Item provider for ${t4.activity.Name} already exists, skipping`), ft[t4.activity.Name] || (ft[t4.activity.Name] = t4.item)), t4.dictionary && (gt[t4.activity.Name] && r3.warn(`Dictionary processor for ${t4.activity.Name} already exists, skipping`), gt[t4.activity.Name] || (gt[t4.activity.Name] = t4.dictionary));
   }
   var dt = class {
-    addPrerequisites(t3) {
-      c2(() => t3.forEach((t4) => v2(t4)));
+    addPrerequisites(t4) {
+      c2(() => t4.forEach((t5) => v2(t5)));
     }
-    checkActivityAvailability(t3) {
-      return !ActivityFemale3DCGOrdering.includes(t3);
+    checkActivityAvailability(t4) {
+      return !ActivityFemale3DCGOrdering.includes(t4);
     }
-    addCustomActivity(t3) {
-      Array.isArray(t3) || (t3 = [t3]);
-      for (const e2 of t3) {
-        const t4 = { ...e2 };
+    addCustomActivity(t4) {
+      Array.isArray(t4) || (t4 = [t4]);
+      for (const e2 of t4) {
+        const t5 = { ...e2 };
         c2(() => {
-          t4.activity.Prerequisite = $2(t4.activity.Name, t4.activity.Prerequisite), "R121" === GameVersion ? t4.activity.ActivityID = -1 : t4.activity.ActivityID = void 0, ActivityFemale3DCG.push(t4.activity), ActivityFemale3DCGOrdering.push(t4.activity.Name), d2(t4), n3(t4.activity.Name, t4), y2(t4), Nt(t4), pt(t4.activity, t4.useImage);
+          t5.activity.Prerequisite = $2(t5.activity.Name, t5.activity.Prerequisite), "R121" === GameVersion ? t5.activity.ActivityID = -1 : t5.activity.ActivityID = void 0, ActivityFemale3DCG.push(t5.activity), ActivityFemale3DCGOrdering.push(t5.activity.Name), d2(t5), n3(t5.activity.Name, t5), y2(t5), Nt(t5), pt(t5.activity, t5.useImage);
         });
       }
     }
-    removeCustomActivity(t3) {
-      ActivityFemale3DCG = ActivityFemale3DCG.filter((e2) => e2.Name !== t3), ActivityFemale3DCGOrdering = ActivityFemale3DCGOrdering.filter((e2) => e2 !== t3);
+    removeCustomActivity(t4) {
+      ActivityFemale3DCG = ActivityFemale3DCG.filter((e2) => e2.Name !== t4), ActivityFemale3DCGOrdering = ActivityFemale3DCGOrdering.filter((e2) => e2 !== t4);
     }
-    activityIsCustom(t3) {
-      return O2(t3);
+    activityIsCustom(t4) {
+      return O2(t4);
     }
-    addCustomActivities(t3) {
-      this.addCustomActivity(t3);
+    addCustomActivities(t4) {
+      this.addCustomActivity(t4);
     }
-    activityTrigger(t3) {
-      c2(() => n3(t3.name, t3));
+    activityTrigger(t4) {
+      c2(() => n3(t4.name, t4));
     }
     init() {
       (async () => {
-        await at(() => Array.isArray(ActivityFemale3DCG) && ActivityFemale3DCG.length > 0 && Array.isArray(ActivityFemale3DCGOrdering)), (function(t3 = {}) {
-          const { startMsg: e2 = "Start loading", endMsg: i4 = "Loading completed, time usage: " } = t3, s4 = Date.now();
+        await at(() => Array.isArray(ActivityFemale3DCG) && ActivityFemale3DCG.length > 0 && Array.isArray(ActivityFemale3DCGOrdering)), (function(t4 = {}) {
+          const { startMsg: e2 = "Start loading", endMsg: i4 = "Loading completed, time usage: " } = t4, s4 = Date.now();
           for (r3.info(e2), o3 = true; a2.length > 0; ) {
-            const t4 = a2.shift();
-            t4 && t4();
+            const t5 = a2.shift();
+            t5 && t5();
           }
           const n4 = Date.now();
           r3.info(`${i4} ${n4 - s4}ms`);
         })();
       })(), (function() {
-        u.hookFunction("ActivityRun", 0, (t4, e2) => {
-          const i4 = At[t4[3].Activity.Name];
-          if (i4) return i4(t4[0], t4[1], t4[2], t4[3]);
-          const r4 = ft[t4[3].Activity.Name];
+        u.hookFunction("ActivityRun", 0, (t5, e2) => {
+          const i4 = At[t5[3].Activity.Name];
+          if (i4) return i4(t5[0], t5[1], t5[2], t5[3]);
+          const r4 = ft[t5[3].Activity.Name];
           if (r4) {
-            const e3 = r4(t4[0], t4[1], t4[2], t4[3]);
-            e3 && (t4[3].Item = e3);
+            const e3 = r4(t5[0], t5[1], t5[2], t5[3]);
+            e3 && (t5[3].Item = e3);
           }
-          return e2(t4);
-        }), u.hookFunction("PreferenceGetActivityFactor", 0, (t4, e2) => O2(t4[1]) ? 2 : e2(t4));
-        const t3 = u.insideFlag("ActivityRun");
+          return e2(t5);
+        }), u.hookFunction("PreferenceGetActivityFactor", 0, (t5, e2) => O2(t5[1]) ? 2 : e2(t5));
+        const t4 = u.insideFlag("ActivityRun");
         u.hookFunction("ServerSend", 0, (e2, i4) => {
-          if (!t3.inside || !t3.args) return i4(e2);
+          if (!t4.inside || !t4.args) return i4(e2);
           if ("ChatRoomChat" != e2[0]) return i4(e2);
-          const r4 = e2[1], s4 = r4.Dictionary, n4 = t3.args ? t3.args[3].Activity : null;
+          const r4 = e2[1], s4 = r4.Dictionary, n4 = t4.args ? t4.args[3].Activity : null;
           if (!n4) return i4(e2);
           const a3 = gt[n4.Name];
           if (!a3) return i4(e2);
-          if (!s4.some((t4) => t4?.ActivityName === n4?.Name)) return i4(e2);
-          const o4 = t3.args, c3 = a3(Array.from(s4), o4[0], o4[1], o4[2], o4[3]);
+          if (!s4.some((t5) => t5?.ActivityName === n4?.Name)) return i4(e2);
+          const o4 = t4.args, c3 = a3(Array.from(s4), o4[0], o4[1], o4[2], o4[3]);
           i4([e2[0], { ...r4, Dictionary: c3 }]);
         });
-      })(), u.hookFunction("ElementButton.CreateForActivity", 1, (t3, e2) => {
-        const [i4, r4, s4] = t3, n4 = It[r4.Activity.Name];
+      })(), u.hookFunction("ElementButton.CreateForActivity", 1, (t4, e2) => {
+        const [i4, r4, s4] = t4, n4 = It[r4.Activity.Name];
         if (n4) {
           const e3 = n4(r4.Activity, s4, r4.Group) ?? ot.emptyImage;
-          e3 && (t3[4] = { ...t3[4], image: e3 });
+          e3 && (t4[4] = { ...t4[4], image: e3 });
         }
-        return e2(t3);
+        return e2(t4);
       }), (function() {
-        const t3 = (t4) => l3.translateString(p2, t4);
-        u.hookFunction("ActivityDictionaryText", 1, (e2, i4) => t3(e2[0]) || i4(e2)), u.progressiveHook("ServerSend", 1).inside("ActivityRun").inject((e2) => {
+        const t4 = (t5) => l3.translateString(p2, t5);
+        u.hookFunction("ActivityDictionaryText", 1, (e2, i4) => t4(e2[0]) || i4(e2)), u.progressiveHook("ServerSend", 1).inside("ActivityRun").inject((e2) => {
           const { Content: i4, Dictionary: r4, Type: s4 } = e2[1];
           if ("Activity" !== s4 || !r4) return;
-          const n4 = t3(i4);
+          const n4 = t4(i4);
           n4 && r4.push({ Tag: `MISSING TEXT IN "ActivityDictionary.csv": ${i4}`, Text: n4 });
         });
-      })(), u.hookFunction("ActivityCheckPrerequisite", 1, (t3, e2) => {
-        const i4 = R2[t3[0]];
-        return i4 ? i4.test(...t3) : e2(t3);
+      })(), u.hookFunction("ActivityCheckPrerequisite", 1, (t4, e2) => {
+        const i4 = R2[t4[0]];
+        return i4 ? i4.test(...t4) : e2(t4);
       });
     }
-    setLogger(t3) {
-      !(function(t4) {
-        i3 = t4;
-      })(t3);
+    setLogger(t4) {
+      !(function(t5) {
+        i3 = t5;
+      })(t4);
     }
     typePrerequisiteNames() {
       return this;
@@ -15591,10 +15596,10 @@ lucide/dist/esm/icons/external-link.mjs:
 lucide/dist/esm/icons/info.mjs:
 lucide/dist/esm/icons/rotate-ccw.mjs:
 lucide/dist/esm/icons/terminal.mjs:
-lucide/dist/esm/icons/trash-2.mjs:
+lucide/dist/esm/icons/trash.mjs:
 lucide/dist/esm/lucide.mjs:
   (**
-   * @license lucide v1.33.0 - ISC
+   * @license lucide v1.47.0 - ISC
    *
    * This source code is licensed under the ISC license.
    * See the LICENSE file in the root directory of this source tree.
@@ -15681,7 +15686,7 @@ lucide/dist/esm/lucide.js:
 
 @sugarch/bc-activity-manager/dist/index.mjs:
   (**
-   * @sugarch/bc-activity-manager v1.2.5
+   * @sugarch/bc-activity-manager v1.2.6
    * 
    * Copyright (c) 2026 SugarChain Studio
    * License: MIT
@@ -15705,7 +15710,7 @@ lucide/dist/esm/lucide.js:
    * @preserve
    *)
   (**
-   * @sugarch/bc-image-mapping v2.2.0
+   * @sugarch/bc-image-mapping v2.2.1
    * 
    * Copyright (c) 2026 SugarChain Studio
    * License: MIT
