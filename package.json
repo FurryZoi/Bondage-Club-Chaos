@@ -4,8 +4,9 @@
   "description": "Cheat addon with quality of life features, own activities and magical mechanics",
   "main": "index.js",
   "scripts": {
-    "dev": "esbuild src/index.ts --bundle --sourcemap --watch --outfile=dist/bundle.js --loader:.ts=ts --loader:.css=text --loader:.png=dataurl --loader:.svg=dataurl",
-    "build": "node ./build.mjs",
+    "dev": "node ./scripts/dev.mjs",
+    "build": "node ./scripts/build.mjs",
+    "build:dev": "node ./scripts/build.mjs --dev",
     "generate-changelog": "zois-core generate-changelog --owner=FurryZoi --repo=Bondage-Club-Chaos",
     "lint": "pnpm exec biome lint",
     "lint:fix": "pnpm exec biome lint --write"
@@ -16,17 +17,19 @@
   "packageManager": "pnpm@10.6.5",
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
-    "bc-stubs": "129.0.0",
-    "esbuild": "^0.28.2"
+    "bc-stubs": "132.0.0",
+    "chalk": "^6.0.0",
+    "esbuild": "^0.28.2",
+    "open": "^11.0.4"
   },
   "pnpm": {
     "overrides": {}
   },
   "dependencies": {
-    "@sugarch/bc-activity-manager": "^1.2.5",
+    "@sugarch/bc-activity-manager": "^1.2.6",
     "@sugarch/bc-mod-hook-manager": "^0.3.4",
     "lucide": "^0.554.0",
     "reflect-metadata": "^0.2.2",
-    "zois-core": "^2.1.1"
+    "zois-core": "2.1.1"
   }
 }
