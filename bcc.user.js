@@ -1,15 +1,13 @@
 // ==UserScript==
 // @name Bondage Club Chaos
 // @namespace https://www.bondageprojects.com/
-// @version 2.0.0
+// @version 2.0.1
 // @description Cheat addon with quality of life features, own activities and magical mechanics
 // @author Zoi
-// @match https://bondageprojects.elementfx.com/*
-// @match https://www.bondageprojects.elementfx.com/*
-// @match https://bondage-europe.com/*
-// @match https://www.bondage-europe.com/*
-// @match https://www.bondageprojects.com/*
-// @match https://bondageprojects.com/*
+// @include /^https:\/\/(www\.)?bondageprojects\.elementfx\.com\/R\d+\/(BondageClub|\d+)(\/((index|\d+)\.html)?)?$/
+// @include /^https:\/\/(www\.)?bondage-europe\.com\/R\d+\/(BondageClub|\d+)(\/((index|\d+)\.html)?)?$/
+// @include /^https:\/\/(www\.)?bondageeurope\.com\/R\d+\/(BondageClub|\d+)(\/((index|\d+)\.html)?)?$/
+// @include /^https:\/\/(www\.)?bondage-asia\.com\/club\/R\d+(\/((index|\d+)\.html)?)?$/
 // @run-at document-end
 // @grant none
 // ==/UserScript==
